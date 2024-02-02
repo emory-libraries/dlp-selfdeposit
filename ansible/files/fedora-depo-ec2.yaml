@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  FedoraServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: "ami-0cf10cdf9fcd62d37"
+      InstanceType: "t3.large"
+      KeyName: "library_team.pem"
+      PropagateTagsToVolumeOnCreation: True
+      SecurityGroupIds: 
+        - "sg-0d01f29e22a683661"
+        - "sg-0b12ad1019be6c5a3"
+        - "sg-0f9a0b8bf4d1639d8"
+      SubnetId: "subnet-0289823249b0d4c77"
+      Tags: 
+        - Key: "Name"
+          Value: "OE24-fedora"
+        - Key: "EmoryEnvironment"
+          Value: "ARCH"
+        - Key: "EmoryApplicationName"
+          Value: "Openemory"
+        - Key: "AnsibleDesignation"
+          Value: "OE24fedora" 

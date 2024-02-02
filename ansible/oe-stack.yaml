@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Create the Open Emory ec2 
+    cloudformation: 
+      stack_name: "ansible-OE-cloudformationformation-ec2"
+      disable_rollback: true
+      state: "present"
+      region: "us-east-1"
+      template: "files/fedora-depo-ec2.yaml"
+    register: ec2
+  - name: add to correct target group
+    community.aws.elb_target:
+      target_group_name: oe24-fedora-instances
+      target_id: "{{ ec2.stack_resources[0].physical_resource_id }}"
+      state: present
+      target_port: 8080
+  - name: create s3s
+    cloudformation:
+      stack_name: "ansible-OE-cloudformation-s3"
+      disable_rollback: true
+      state: "present"
+      region: "us-east-1"
+      template: "files/fedora-depo-s3.yaml"
+      template_parameters:
+        S3NameParameter: fedora-depo-arch-binaries
+  - name: create s3 backup
+    cloudformation:
+      stack_name: "ansible-OE-cloudformation-s3"
+      disable_rollback: true
+      state: "present"
+      region: "us-west-2"
+      template: "files/fedora-depo-s3.yaml"
+      template_parameters:
+        S3NameParameter: backup-fedora-depo-arch-binaries

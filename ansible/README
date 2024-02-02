@@ -1,0 +1,5 @@
+User's Guide to creating environments:
+
+ansible-galaxy collection install amazon.aws
+
+

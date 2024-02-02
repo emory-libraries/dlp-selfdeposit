@@ -1,0 +1,88 @@
+--- 
+- name: install tomcat and fedora
+  hosts: tag_AnsibleDesignation_OE24fedora
+  user: ec2-user
+  become: yes
+  tasks:
+   - name: install java
+     command: amazon-linux-extras install java-openjdk11 -y
+     args: 
+       creates: /usr/lib/jvm/
+   - name: create tomcat user
+     user:
+       name: tomcat
+   - name: Create a Tomcat Group
+     group:
+       name: tomcat
+   - name: Create a Tomcat Directory
+     file:
+       path: /opt/tomcat9
+       owner: tomcat
+       group: tomcat
+       mode: 755
+       recurse: yes
+   - name: Check if we need to download tomcat
+     stat:
+       path: /opt/tomcat9/apache-tomcat-9.0.73
+     register: filesFound
+   - name: download & unarchive tomcat
+     unarchive:
+       src: https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
+       dest: /opt/tomcat9
+       remote_src: yes
+     when: filesFound.stat.exists == False 
+   - name: Change ownership of tomcat directory
+     file:
+       path: /opt/tomcat9
+       owner: tomcat
+       group: tomcat
+       mode: "u+rwx,g+rx,o=rx"
+       recurse: yes
+       state: directory
+   - name: create symbolic link for ease
+     file:
+       src: /opt/tomcat9/apache-tomcat-9.0.73
+       dest: /opt/tomcat
+       owner: tomcat
+       group: tomcat
+       state: link
+   - name: Copy Tomcat service from local to remote
+     copy:
+       src: files/tomcat.service
+       dest: /etc/systemd/system/
+       mode: 0755
+       force: true
+   - name: set custom java opts
+     copy:
+       dest: /opt/tomcat/bin/setenv.sh
+       owner: tomcat
+       group: tomcat
+       mode: 0755
+       src: files/setenv.sh
+   - name: disable auth
+     copy:
+       dest: /opt/tomcat/conf/Catalina/localhost/fcrepo.xml
+       owner: tomcat
+       group: tomcat
+       mode: 0755
+       src: files/fcrepo.xml
+       force: true
+   - name: download fedora war
+     get_url:
+       owner: tomcat
+       group: tomcat
+       url: https://github.com/fcrepo/fcrepo/releases/download/fcrepo-6.4.0/fcrepo-webapp-6.4.0.war
+       dest: /opt/tomcat/webapps/fcrepo.war
+       force: true
+   - name: setup fedora data home
+     file:
+       path: /opt/fedora
+       owner: tomcat
+       group: tomcat
+       mode: 755
+       recurse: yes 
+   - name: Start and Enable Tomcat 9 on sever
+     systemd:
+       name: tomcat
+       state: started
+       daemon_reload: true
