@@ -6,11 +6,6 @@ ruby-gemset
 .rvmrc
 Gemfile*.lock
 
-# Docker data
-bundle
-fcrepo
-solr/data
-
 ## JS lock files
 yarn.lock
 package-lock.json
