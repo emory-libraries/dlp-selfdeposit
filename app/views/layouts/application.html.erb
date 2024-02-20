@@ -7,6 +7,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <%= javascript_include_tag 'xray', nonce: true, "data-turbo-track": "reload", defer: true if Rails.env.development? %>
+    <%= stylesheet_link_tag 'xray', nonce: true if Rails.env.development? %> 
   </head>
 
   <body>
