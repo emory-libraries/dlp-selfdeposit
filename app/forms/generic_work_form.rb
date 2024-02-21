@@ -8,6 +8,7 @@
 class GenericWorkForm < Hyrax::Forms::ResourceForm(GenericWork)
   include Hyrax::FormFields(:basic_metadata)
   include Hyrax::FormFields(:generic_work)
+  include Hyrax::FormFields(:publication_metadata)
 
   # Define custom form fields using the Valkyrie::ChangeSet interface
   #
