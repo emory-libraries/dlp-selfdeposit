@@ -1,0 +1,261 @@
+# Simple yaml config-driven schema which is used to define model attributes,
+# index key names, and form properties.
+#
+# Attributes must have a type but all other configuration options are optional.
+# Please note: If using Valkyrie's Fedora Metadata Adapter, predicates for attributes
+# must be placed here.
+#
+# attributes:
+#   attribute_name:
+#     type: string
+#     multiple: false
+#     index_keys:
+#       - "attribute_name_sim"
+#     form:
+#       required: true
+#       primary: true
+#       multiple: false
+#
+# @see config/metadata/basic_metadata.yaml for an example configuration
+
+attributes:
+  author_notes:
+    type: string
+    multiple: false
+    form:
+      primary: false
+      multiple: false
+    index_keys:
+      - 'author_notes_tesi'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#authorNote
+  conference_dates:
+    type: date_time
+    multiple: false
+    form:
+      primary: false
+      multiple: false
+    index_keys:
+      - 'conference_dates_dtsi'
+      - 'conference_dates_si'
+      - 'conference_dates_tesi'
+    predicate: http://rdaregistry.info/Elements/u/P60526
+  conference_name:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'conference_name_tesi'
+    predicate: http://purl.org/dc/terms/relation#conferenceOrMeeting
+  content_genres:
+    type: string
+    form:
+      primary: true
+    index_keys:
+      - 'content_genres_sim'
+      - 'content_genres_tesim'
+    predicate: http://www.europeana.edu/schemas/edm/hasType
+  data_classifications:
+    type: string
+    multiple: true
+    form:
+      primary: true
+    index_keys:
+      - 'data_classifications_tesim'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#dataClassification
+  date_issued:
+    type: date_time
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'date_issued_tesi'
+      - 'date_issued_si'
+    predicate: http://purl.org/dc/terms/issued
+  deduplication_key:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      required: true
+      multiple: false
+    index_keys:
+      - 'deduplication_key_tesi'
+    predicate: http://metadata.emory.edu/vocab/predicates#deduplicationKey
+  edition:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'edition_tesi'
+    predicate: http://id.loc.gov/ontologies/bibframe/editionStatement
+  emory_ark:
+    type: string
+    multiple: true
+    form:
+      primary: true
+    index_keys:
+      - 'emory_ark_tesim'
+    predicate: http://id.loc.gov/vocabulary/identifiers/local#ark
+  final_published_versions:
+    type: string
+    multiple: true
+    form:
+      primary: false
+      multiple: true
+    index_keys:
+      - 'final_published_versions_tesim'
+    predicate: http://purl.org/dc/terms/hasVersion
+  grant_agencies:
+    type: string
+    multiple: true
+    form:
+      primary: true
+    index_keys:
+      - 'grant_agencies_tesim'
+    predicate: http://id.loc.gov/vocabulary/relators/fnd
+  grant_information:
+    type: string
+    multiple: true
+    form:
+      primary: true
+    index_keys:
+      - 'grant_information_tesim'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#grantOrFundingNote
+  institution:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'institution_tesi'
+    predicate: http://rdaregistry.info/Elements/u/P60402
+  internal_rights_note:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'internal_rights_note_tesi'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#internalRightsNote
+  issn:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'issn_tesi'
+    predicate: http://id.loc.gov/vocabulary/identifiers/issn
+  issue:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'issue_tesi'
+    predicate: http://purl.org/ontology/bibo/issue
+  other_identifiers:
+    type: string
+    multiple: true
+    form:
+      primary: true
+    index_keys:
+      - 'other_identifiers_tesim'
+    predicate: http://id.loc.gov/vocabulary/identifiers/local#legacy
+  page_range_end:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'page_range_end_tesi'
+    predicate: http://purl.org/ontology/bibo/pageEnd
+  page_range_start:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'page_range_start_tesi'
+    predicate: http://purl.org/ontology/bibo/pageStart
+  parent_title:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'parent_title_tesi'
+    predicate: http://rdaregistry.info/Elements/u/P60101
+  place_of_production:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'place_of_production_tesi'
+    predicate: http://id.loc.gov/vocabulary/relators/pup
+  publisher_version:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'publisher_version_tesi'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#publicationStage
+  related_datasets:
+    type: string
+    multiple: true
+    form:
+      primary: false
+      multiple: true
+    index_keys:
+      - 'related_datasets_tesim'
+    predicate: http://purl.org/dc/terms/relation#dataset
+  series_title:
+    type: string
+    multiple: false
+    form:
+      primary: false
+      multiple: false
+    index_keys:
+      - 'series_title_tesi'
+    predicate: http://id.loc.gov/ontologies/bibframe/seriesStatement
+  sponsor:
+    type: string
+    multiple: false
+    form:
+      primary: false
+      multiple: false
+    index_keys:
+      - 'sponsor_tesi'
+    predicate: http://id.loc.gov/vocabulary/relators/spn
+  staff_notes:
+    type: string
+    multiple: true
+    form:
+      primary: false
+    index_keys:
+      - 'staff_notes_tesim'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#staffNote
+  volume:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'volume_tesi'
+    predicate: http://purl.org/ontology/bibo/volume
