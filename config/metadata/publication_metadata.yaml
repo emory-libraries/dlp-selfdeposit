@@ -29,13 +29,12 @@ attributes:
       - 'author_notes_tesi'
     predicate: http://metadata.emory.edu/vocab/cor-terms#authorNote
   conference_dates:
-    type: date_time
+    type: string
     multiple: false
     form:
       primary: false
       multiple: false
     index_keys:
-      - 'conference_dates_dtsi'
       - 'conference_dates_si'
       - 'conference_dates_tesi'
     predicate: http://rdaregistry.info/Elements/u/P60526
@@ -65,7 +64,7 @@ attributes:
       - 'data_classifications_tesim'
     predicate: http://metadata.emory.edu/vocab/cor-terms#dataClassification
   date_issued:
-    type: date_time
+    type: string
     multiple: false
     form:
       primary: true
