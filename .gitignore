@@ -83,3 +83,4 @@ spec/reports
 /spec/examples.txt
 node_modules
 .env.*
+public/
