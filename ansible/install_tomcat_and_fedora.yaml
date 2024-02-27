@@ -19,7 +19,7 @@
        path: /opt/tomcat9
        owner: tomcat
        group: tomcat
-       mode: 755
+       mode: 0755
        recurse: yes
    - name: Check if we need to download tomcat
      stat:
@@ -51,7 +51,11 @@
        src: files/tomcat.service
        dest: /etc/systemd/system/
        mode: 0755
-       force: true
+   - name: Start and Enable Tomcat 9 on sever
+     systemd:
+       name: tomcat
+       state: started
+       daemon_reload: true
    - name: set custom java opts
      copy:
        dest: /opt/tomcat/bin/setenv.sh
@@ -66,23 +70,21 @@
        group: tomcat
        mode: 0755
        src: files/fcrepo.xml
-       force: true
    - name: download fedora war
      get_url:
        owner: tomcat
        group: tomcat
        url: https://github.com/fcrepo/fcrepo/releases/download/fcrepo-6.4.0/fcrepo-webapp-6.4.0.war
        dest: /opt/tomcat/webapps/fcrepo.war
-       force: true
    - name: setup fedora data home
      file:
        path: /opt/fedora
        owner: tomcat
        group: tomcat
-       mode: 755
+       mode: 0755
        recurse: yes 
    - name: Start and Enable Tomcat 9 on sever
      systemd:
        name: tomcat
-       state: started
+       state: restarted
        daemon_reload: true

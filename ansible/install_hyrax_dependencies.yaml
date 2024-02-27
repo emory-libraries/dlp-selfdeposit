@@ -1,0 +1,95 @@
+--- 
+- name: install apache and ruby
+  hosts: tag_AnsibleDesignation_OE24hyrax
+  user: ec2-user
+  become: yes
+  vars:
+    hyrax_packages:
+      - httpd
+      - git
+      - libyaml-devel   
+      - perl-IPC-Cmd
+      - gcc
+      - zlib-devel
+      - libffi-devel
+      - openssl-devel
+      - readline-devel
+      - gcc-c++
+      - libcurl-devel
+      - httpd-devel
+      - apr-devel
+      - apr-util-devel
+    profile_files:
+      - /root/.bash_profile
+      - /home/deploy/.bash_profile
+      - /home/ec2-user/.bash_profile
+  tasks: 
+   - name: create deploy user
+     user: 
+       name: deploy
+   - name: add key to deploy user
+     authorized_key:
+       user: deploy
+       state: present
+       key: "{{ lookup('file', 'files/deploy.pub') }}"
+   - name: install package "{{ item }}
+     yum: 
+       name: "{{ item }}"
+       state: latest
+     loop: "{{ hyrax_packages }}"
+   - name: start and enable apache
+     service:
+       name: httpd
+       state: started
+       enabled: yes
+   - name: install rbenv
+     git: 
+       repo: https://github.com/sstephenson/rbenv.git
+       dest: /usr/local/rbenv
+   - name: create plugin directory
+     file:
+       path: /usr/local/rbenv/plugins
+       state: directory
+   - name: install ruby-build plugins
+     git:
+       repo: https://github.com/sstephenson/ruby-build.git
+       dest: /usr/local/rbenv/plugins/ruby-build
+   - name: source rbenv
+     blockinfile:
+       path: "{{ item }}"
+       block: | 
+         export RBENV_ROOT=/usr/local/rbenv
+         export PATH="$RBENV_ROOT/bin:$PATH" 
+         eval "$(rbenv init -)"
+     loop: "{{ profile_files }}"
+   - name: install ruby 3.2.2
+     shell: |
+       source /root/.bash_profile
+       /usr/local/rbenv/bin/rbenv install 3.2.2
+     args:
+       creates: /usr/local/rbenv/versions/3.2.2
+     timeout: 1500
+   - name: set ruby version
+     shell: |
+       source /root/.bash_profile
+       rbenv global 3.2.2
+   - name: install passenger
+     shell: |
+       source /root/.bash_profile
+       /usr/local/rbenv/shims/gem install passenger
+     args:
+       creates: /usr/local/rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/passenger-6.0.20
+   - name: place passenger.conf
+     copy:       
+       dest: /etc/httpd/conf.d/passenger.conf
+       src: files/passenger.conf   
+   - name: build apache passenger module
+     shell: |
+       source /root/.bash_profile
+       ruby /usr/local/rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/passenger-6.0.20/bin/passenger-install-apache2-module -a 
+     args:
+       creates: /usr/local/rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/passenger-6.0.20/buildout/apache2/mod_passenger.so
+   - name: restart apache
+     service:
+       name: httpd
+       state: restarted

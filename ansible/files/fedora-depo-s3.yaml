@@ -1,12 +1,34 @@
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
-  S3NameParameter:
+  EnvironmentParameter:
     Type: String
-    Default: fedora-depo-arch-binaries
-    Description: the name for the bucket
+  BackupParameter:
+    Type: String
+Conditions: 
+  IsBackup: !Equals 
+    - !Ref BackupParameter
+    - 'true'
+  NotBackup: !Equals
+    - !Ref BackupParameter
+    - 'false'
 Resources:
   FedoraDepoS3:
     Type: 'AWS::S3::Bucket'
+    Condition: NotBackup
     Properties:
-      BucketName: 
-        Ref: S3NameParameter
+      BucketName: !Sub 'fedora-depo-${EnvironmentParameter}-binaries'
+      VersioningConfiguration:
+        Status: Enabled
+      ReplicationConfiguration:
+        Role: arn:aws:iam::556359784184:role/replicationrole
+        Rules: 
+          - Destination: 
+              Bucket: !Sub 'arn:aws:s3:::backup-fedora-depo-${EnvironmentParameter}-binaries'
+            Status: Enabled
+  FedoraDepoS3Backup:
+    Type: 'AWS::S3::Bucket'
+    Condition: IsBackup
+    Properties:
+      BucketName: !Sub 'backup-fedora-depo-${EnvironmentParameter}-binaries'
+      VersioningConfiguration:
+        Status: Enabled

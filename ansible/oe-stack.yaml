@@ -1,35 +1,75 @@
 ---
-- hosts: localhost
+- name: create cloudformation resources
+  hosts: localhost
+  vars:
+    rdsname: |-
+      {%- if ENV != "prod" -%}
+      fedora-depo-arch-rds
+      {%- else -%}
+      fedora-depo-prod-rds
+      {%- endif -%}
   tasks:
-  - name: Create the Open Emory ec2 
+  - name: Create the Open Emory ec2s
     cloudformation: 
       stack_name: "ansible-OE-cloudformationformation-ec2"
       disable_rollback: true
-      state: "present"
+      state: "{{ STATE }}"
       region: "us-east-1"
       template: "files/fedora-depo-ec2.yaml"
+      template_parameters:
+        EnvironmentParameter: "{{ ENV }}"  
     register: ec2
   - name: add to correct target group
     community.aws.elb_target:
-      target_group_name: oe24-fedora-instances
+      target_group_name: "oe24-fedora-{{ ENV }}-instances"
       target_id: "{{ ec2.stack_resources[0].physical_resource_id }}"
-      state: present
+      state: "{{ STATE }}"
       target_port: 8080
-  - name: create s3s
-    cloudformation:
-      stack_name: "ansible-OE-cloudformation-s3"
-      disable_rollback: true
-      state: "present"
-      region: "us-east-1"
-      template: "files/fedora-depo-s3.yaml"
-      template_parameters:
-        S3NameParameter: fedora-depo-arch-binaries
+    when: STATE != 'absent'
+  - name: add hyrax to correct target group
+    community.aws.elb_target:
+      target_group_name: "oe24-{{ ENV }}-hyrax-instances"
+      target_id: "{{ ec2.stack_resources[1].physical_resource_id }}"
+      state: "{{ STATE }}"
+      target_port: 80
+    when: STATE != 'absent'
   - name: create s3 backup
     cloudformation:
       stack_name: "ansible-OE-cloudformation-s3"
       disable_rollback: true
-      state: "present"
+      state: "{{ STATE }}"
       region: "us-west-2"
       template: "files/fedora-depo-s3.yaml"
       template_parameters:
-        S3NameParameter: backup-fedora-depo-arch-binaries
+        EnvironmentParameter: "{{ ENV }}"
+        BackupParameter: 'true' 
+  - name: create main s3 bucket with replication
+    cloudformation:
+      stack_name: "ansible-OE-cloudformation-s3"
+      disable_rollback: true
+      state: "{{ STATE }}"
+      region: "us-east-1" 
+      template: "files/fedora-depo-s3.yaml"
+      template_parameters:
+        EnvironmentParameter: "{{ ENV }}"
+        BackupParameter: 'false'
+  - name: Get RDS info
+    rds_instance_info:
+      db_instance_identifier: "{{ rdsname }}" 
+    register: db_info
+  - name: create DB
+    community.postgresql.postgresql_db:
+      name: "oe24-{{ ENV }}"
+      state: present
+      login_host: "{{ db_info.instances[0].endpoint.address }}"
+      login_user: postgres
+      login_password: "{{ lookup('amazon.aws.aws_secret','rds!db-4789b990-9571-430b-9d5a-7a07cdb50e8e.password', nested=true) }}"
+  - name: create User for DB
+    community.postgresql.postgresql_user:
+      db: "oe24-{{ ENV }}"
+      name: "oe24-{{ ENV }}"
+      password: "{{ lookup('amazon.aws.aws_secret','oe24-{{ ENV }}-dbuser-password') }}"
+      priv: 'ALL'
+      login_user: postgres
+      login_password: "{{ lookup('amazon.aws.aws_secret','rds!db-4789b990-9571-430b-9d5a-7a07cdb50e8e.password', nested=true) }}"
+      login_host: "{{ db_info.instances[0].endpoint.address }}" 

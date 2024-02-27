@@ -1,0 +1,40 @@
+---
+- hosts:                                  
+    - "tag_AnsibleDesignation_solr1:&tag_AnsibleEnvironment_{{ ENV }}"
+  user: ec2-user
+  become: true
+  become_user: solr
+  tasks:
+  - name: create new configset folder
+    file:
+      path: /opt/solr/server/solr/configsets/self-deposit
+      owner: solr
+      group: solr
+      mode: 0775
+      state: directory
+  - name: create new configset conf folder
+    file:
+      path: /opt/solr/server/solr/configsets/self-deposit/conf
+      owner: solr
+      group: solr
+      mode: 0755
+      state: directory
+  - name: copy in solr schema
+    copy: 
+      src: files/solr-schema.xml
+      dest: /opt/solr/server/solr/configsets/self-deposit/conf/schema.xml
+      owner: solr
+      group: solr
+  - name: copy in solr config
+    copy: 
+     src: files/solrconfig.xml
+     dest: /opt/solr/server/solr/configsets/self-deposit/conf/solrconfig.xml
+     owner: solr
+     group: solr
+  - name: check existence of core
+    uri:
+      url: http://localhost:8983/solr/OE24_collection/schema?
+    register: _result
+  - name: create solr
+    command: /opt/solr/bin/solr create_collection -c OE24_collection -d self-deposit -s 1 -rf 3
+    when: _result.status == 404

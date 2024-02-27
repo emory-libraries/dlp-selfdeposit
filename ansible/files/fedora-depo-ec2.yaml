@@ -1,4 +1,9 @@
 AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  EnvironmentParameter:
+    Type: String
+    Default: arch
+    Description: arch, test, or production
 Resources:
   FedoraServer:
     Type: AWS::EC2::Instance
@@ -14,10 +19,31 @@ Resources:
       SubnetId: "subnet-0289823249b0d4c77"
       Tags: 
         - Key: "Name"
-          Value: "OE24-fedora"
+          Value: !Sub 'OE24-fedora-${EnvironmentParameter}'
         - Key: "EmoryEnvironment"
-          Value: "ARCH"
+          Value: 
+            Ref: EnvironmentParameter
         - Key: "EmoryApplicationName"
           Value: "Openemory"
         - Key: "AnsibleDesignation"
           Value: "OE24fedora" 
+  HyraxServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: "ami-0cf10cdf9fcd62d37"
+      InstanceType: "t3.medium"
+      KeyName: "library_team.pem"
+      PropagateTagsToVolumeOnCreation: True
+      SecurityGroupIds:
+        - "sg-05d9c90cf588fbf55"
+      SubnetId: "subnet-0289823249b0d4c77"
+      Tags:
+        - Key: "Name"
+          Value: !Sub 'OE24-hyrax-${EnvironmentParameter}'
+        - Key: "EmoryEnvironment"
+          Value: 
+            Ref: EnvironmentParameter
+        - Key: "EmoryApplicationName"
+          Value: "Openemory"
+        - Key: "AnsibleDesignation"
+          Value: "OE24hyrax"

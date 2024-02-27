@@ -2,4 +2,20 @@ User's Guide to creating environments:
 
 ansible-galaxy collection install amazon.aws
 
+on Mac you may need to set the following environment varibale:
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+you will need to have the library_team.pem key loaded and be on tki (account 70) and vpn
+run as 
+ansible-playbook -i aws_ec2.yml main.yml -e "ENV=[arch,test,prod] STATE=[present,absent]"
+
+so to create an arch environment run
+ansible-playbook -i aws_ec2.yaml main.yaml -e "ENV=arch STATE=present"
+
+
+This will create:
+2 ec2 instances
+1 solr collection
+1 database and user
+2 s3 buckets with replication
 
