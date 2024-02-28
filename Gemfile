@@ -35,11 +35,9 @@ group :development do
 
   # Add deployment tools
   gem "capistrano", "~> 3.18", require: false
-  gem 'capistrano-bundler', '~> 1.3'
-  gem 'capistrano-ext'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails'
-  gem 'capistrano-rails-collection'
+  gem 'capistrano-bundler', '~> 1.3', require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem 'capistrano-rbenv', '~> 2.2', require: false
   gem 'ed25519', '>= 1.2', '< 2.0'
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 
