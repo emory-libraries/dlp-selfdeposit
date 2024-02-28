@@ -10,6 +10,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'dalli'
 gem 'devise'
 gem 'devise-guests', '~> 0.8'
+gem 'dotenv-rails'
 gem 'hyrax', git: 'https://github.com/samvera/hyrax', branch: 'main'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -31,6 +32,16 @@ group :development do
   
   # Add deeper stack trace used by better errors
   gem 'binding_of_caller'
+
+  # Add deployment tools
+  gem "capistrano", "~> 3.18", require: false
+  gem 'capistrano-bundler', '~> 1.3'
+  gem 'capistrano-ext'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-collection'
+  gem 'ed25519', '>= 1.2', '< 2.0'
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code
   gem 'web-console', '>= 3.3.0'
