@@ -929,12 +929,13 @@ GEM
       psych (>= 3.3)
       rdf (~> 3.3)
       rdf-xsd (~> 3.3)
-    yard (0.9.34)
+    yard (0.9.35)
     zeitwerk (2.6.13)
 
 PLATFORMS
   x86_64-darwin-22
   x86_64-darwin-23
+  x86_64-linux
   x86_64-linux-musl
 
 DEPENDENCIES
