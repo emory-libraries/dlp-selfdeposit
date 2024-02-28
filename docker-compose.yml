@@ -12,7 +12,7 @@ services:
     tty: true
     user: root
     env_file:
-      - .env
+      - .env.development
     depends_on:
       - chrome
       - db_migrate
@@ -42,7 +42,7 @@ services:
     command: sh -c 'bundle exec sidekiq'
     user: root
     env_file:
-      - .env
+      - .env.development
     depends_on:
       - db_migrate
       - memcached
@@ -68,7 +68,7 @@ services:
     entrypoint: ./scripts/entrypoint.sh
     user: root
     env_file:
-      - .env
+      - .env.development
     command: ./scripts/db-migrate-seed.sh
     depends_on:
       - postgres
@@ -99,7 +99,7 @@ services:
   postgres:
     image: postgres:15
     env_file:
-      - .env
+      - .env.development
     ports:
       - "5432:5432"
     volumes:
@@ -139,7 +139,7 @@ services:
   redis:
     image: bitnami/redis:6.2
     env_file:
-      - .env
+      - .env.development
     volumes:
       - redis:/bitnami/redis/data
     networks:

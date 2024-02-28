@@ -6,7 +6,7 @@ require 'dotenv'
 Dotenv.load('.env.development')
 
 # ======================================================
-# Pre-deployment tasks
+# Pre Deployment tasks
 # ======================================================
 
 namespace :deploy do
