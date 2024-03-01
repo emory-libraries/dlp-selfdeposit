@@ -34,6 +34,8 @@ set :deploy_to, '/opt/dlp-selfdeposit'
 
 server ENV['ARCH_SERVER_IP'], user: 'deploy', roles: [:web, :app, :db, :ubuntu]
 
+set :rbenv_ruby, '3.2.2'
+set :rbenv_custom_path, '/usr/local/rbenv'
 set :rails_env, 'production'
 set :assets_prefix, "#{shared_path}/public/assets"
 set :migration_role, :app
