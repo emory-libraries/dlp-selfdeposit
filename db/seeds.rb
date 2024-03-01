@@ -67,7 +67,7 @@ if wipe_data
   Hyrax::RequiredDataSeeder.new.generate_seed_data
 end
 
-if seed_app == 'true'
+if seed_app
   puts 'Seeding Application ...'
 
   Hyrax::RequiredDataSeeder.new.generate_seed_data
