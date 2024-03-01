@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 ruby '~> 3.2.2'
 
-gem 'base64'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.0'
 gem 'coffee-rails', '~> 4.2'

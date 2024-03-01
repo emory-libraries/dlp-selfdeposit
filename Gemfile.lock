@@ -971,7 +971,6 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  base64
   bcrypt_pbkdf (>= 1.0, < 2.0)
   better_errors
   binding_of_caller
@@ -1015,4 +1014,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.19
+   2.5.6
