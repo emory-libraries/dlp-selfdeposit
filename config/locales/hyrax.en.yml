@@ -59,4 +59,5 @@ en:
   simple_form:
     labels:
       defaults:
+        emory_content_type: Format
         holding_repository: Library
