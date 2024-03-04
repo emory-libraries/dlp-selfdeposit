@@ -100,6 +100,16 @@ attributes:
     index_keys:
       - 'emory_ark_tesim'
     predicate: http://id.loc.gov/vocabulary/identifiers/local#ark
+  emory_content_type:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      required: true
+      multiple: false
+    index_keys:
+      - 'emory_content_type_tesi'
+    predicate: http://metadata.emory.edu/vocab/predicates#contentType
   final_published_versions:
     type: string
     multiple: true
