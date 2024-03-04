@@ -44,9 +44,9 @@ unless wipe_data || seed_release_testing
   puts
 end
 
-allow_release_seeding_in_production = ActiveModel::Type::Boolean.new.cast(ENV.fetch('ALLOW_RELEASE_SEEDING_IN_PRODUCTION', false))
+allow_seeding_in_production = ActiveModel::Type::Boolean.new.cast(ENV.fetch('ALLOW_SEEDING_IN_PRODUCTION', false))
 
-if Rails.env == 'production' && !allow_release_seeding_in_production
+if Rails.env == 'production' && !allow_seeding_in_production
   puts "Seeding data for release testing is not for use in production!"
   exit
 end
@@ -71,7 +71,7 @@ if seed_app
   puts 'Seeding Application ...'
 
   Hyrax::RequiredDataSeeder.new.generate_seed_data
-  Hyrax::TestDataSeeders::UserSeeder.generate_seeds
+  Hyrax::TestDataSeeders::UserSeeder.generate_seeds(allow_seeding_in_production: allow_seeding_in_production)
 end
 
 if seed_release_testing
