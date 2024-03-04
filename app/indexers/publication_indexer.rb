@@ -3,7 +3,7 @@
 # Generated via
 #  `rails generate hyrax:work_resource Publication`
 class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
-  include Hyrax::Indexer(:basic_metadata)
+  include Hyrax::Indexer(:emory_basic_metadata)
   include Hyrax::Indexer(:publication_metadata)
 
   # Uncomment this block if you want to add custom indexing behavior:

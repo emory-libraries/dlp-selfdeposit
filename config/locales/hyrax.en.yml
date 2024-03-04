@@ -57,6 +57,10 @@ en:
     product_name: DLP Self Deposit
     product_twitter_handle: ""
   simple_form:
+    hints:
+      defaults:
+        language: ''
     labels:
       defaults:
         holding_repository: Library
+        language: Primary Language
