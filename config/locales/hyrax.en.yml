@@ -56,3 +56,7 @@ en:
     institution_name_full: The Institution Name
     product_name: DLP Self Deposit
     product_twitter_handle: ""
+  simple_form:
+    labels:
+      defaults:
+        holding_repository: Library
