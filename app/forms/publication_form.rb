@@ -6,7 +6,7 @@
 # @see https://github.com/samvera/hyrax/wiki/Hyrax-Valkyrie-Usage-Guide#forms
 # @see https://github.com/samvera/valkyrie/wiki/ChangeSets-and-Dirty-Tracking
 class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
-  include Hyrax::FormFields(:basic_metadata)
+  include Hyrax::FormFields(:emory_basic_metadata)
   include Hyrax::FormFields(:publication_metadata)
 
   # Define custom form fields using the Valkyrie::ChangeSet interface

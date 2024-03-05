@@ -57,7 +57,11 @@ en:
     product_name: DLP Self Deposit
     product_twitter_handle: ""
   simple_form:
+    hints:
+      defaults:
+        language: ''
     labels:
       defaults:
         emory_content_type: Format
         holding_repository: Library
+        language: Primary Language
