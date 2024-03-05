@@ -56,6 +56,13 @@ en:
     institution_name_full: The Institution Name
     product_name: DLP Self Deposit
     product_twitter_handle: ""
+    search:
+      button:
+        html: <span aria-hidden="true"></span> Search
+        text: Search
+      form:
+        q:
+          placeholder: Search OpenEmory
   simple_form:
     labels:
       defaults:
