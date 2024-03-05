@@ -173,6 +173,7 @@ attributes:
     multiple: true
     form:
       primary: true
+      required: true
     index_keys:
       - "rights_statement_tesim"
     predicate: http://www.europeana.eu/schemas/edm/rights
