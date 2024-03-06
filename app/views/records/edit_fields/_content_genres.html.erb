@@ -1,0 +1,7 @@
+<% content_genres_service = SelfDeposit::ContentGenresService.new %>
+
+<%= f.input :content_genres, as: :multi_value_select,
+    collection: content_genres_service.select_active_options,
+    include_blank: true, required: false,
+    item_helper: content_genres_service.method(:include_current_value),
+    input_html: { class: 'form-control' } %>
