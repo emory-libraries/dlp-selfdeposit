@@ -3,10 +3,47 @@
 
 
 /**** Nav Styling ****/
-
+.nav-link {
+    font-family: $font-family-sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.875rem;
+    line-height: 1.6111;
+    color: $mid-blue;
+}
 
 /**** Header Styling ****/
 
+.branding-header {
+    display: flex;
+    flex-direction: row;
+}
 
+.branding-header.logo {
+    margin-right: 0.5rem;
+}
 
+branding-header.branding-text {
+    display: flex;
+    flex-direction: column;
+}
 
+.organization {
+    text-transform: uppercase;
+    font-family: $font-family-sans-serif;
+    color: $dark-gold;
+    font-weight: bold;
+    font-size: 0.875rem;
+  }
+  
+.division {
+    font-family: $font-family-sans-serif;
+    font-weight: bold;
+    color: $base-blue;
+    font-size: 1.5rem;
+  }
+
+/**** Search Form Styling ****/
+.search-form {
+    ;
+}
