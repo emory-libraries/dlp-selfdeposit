@@ -1,0 +1,22 @@
+terms:
+    - id: Article
+      term: Article
+      active: true
+    - id: Book
+      term: Book
+      active: true
+    - id: Book Chapter
+      term: Book Chapter
+      active: true
+    - id: Conference Paper
+      term: Conference Paper
+      active: true
+    - id: Poster
+      term: Poster
+      active: true
+    - id: Presentation
+      term: Presentation
+      active: true
+    - id: Report
+      term: Report
+      active: true
