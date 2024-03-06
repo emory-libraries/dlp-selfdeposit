@@ -60,6 +60,7 @@ attributes:
     multiple: true
     form:
       primary: true
+      required: true
     index_keys:
       - 'data_classifications_tesim'
     predicate: http://metadata.emory.edu/vocab/cor-terms#dataClassification
