@@ -1,3 +1,19 @@
-<a id="logo" class="navbar-brand" href="<%= hyrax.root_path %>" data-no-turbolink="true">
-  <span class="institution_name"><%= application_name %></span>
-</a>
+<div class="branding-header">
+  <div class="branding-header logo">
+    <%= link_to root_path do %>
+      <%= image_tag("shield.svg", :alt => "Emory Library") %>
+    <% end %>
+  </div>
+  <div class="branding-header">
+    <div class="row ml-0">
+      <div>
+        <%= link_to "Emory University", "https://emory.edu/", class: "branding-header organization" %>
+      </div>
+    </div>
+    <div class="row ml-0">
+      <div>
+        <%= link_to "Emory Libraries", "https://libraries.emory.edu/", class: "branding-header division" %>
+      </div>
+    </div>
+  </div>
+</div>
