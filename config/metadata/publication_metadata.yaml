@@ -270,6 +270,15 @@ attributes:
     index_keys:
       - 'staff_notes_tesim'
     predicate: http://metadata.emory.edu/vocab/cor-terms#staffNote
+  system_of_record_ID:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'system_of_record_ID_tesi'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#descriptiveSystemID
   volume:
     type: string
     multiple: false
