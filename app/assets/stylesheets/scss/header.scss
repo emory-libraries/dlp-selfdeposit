@@ -9,7 +9,15 @@
     font-weight: bold;
     font-size: 0.875rem;
     line-height: 1.6111;
-    color: $mid-blue;
+    color: $base-blue;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: $base-blue;
+}
+
+.navbar-toggler-icon {
+    display: inline-block !important
 }
 
 /**** Header Styling ****/
