@@ -1,7 +1,9 @@
+@import 'colors.scss';
+
 footer {
     display: grid; 
-    background-color: #091c44; 
-    color: #d0defd;
+    background-color: $dark-blue;
+    color: $light-blue;
     margin-top:80px; 
     grid-template-columns: repeat(2, 1fr) min-content repeat(2, 1fr); 
     grid-row-gap: 0.9375rem; 
@@ -22,11 +24,11 @@ footer {
     justify-content: space-around;
     svg {
       width: 100%;
-      fill: #ffffff;
+      fill: $white;
     }
     svg #badge-bg {
       opacity: 1 !important;
-      fill: #091c44;
+      fill: $dark-blue;
     }
   }
   
@@ -53,12 +55,12 @@ footer {
   
   a.nav-link {
     text-decoration: none; 
-    color: #d0defd;
+    color: $light-blue;
   }
 
   a {
     text-decoration: none; 
-    color: #d0defd;
+    color: $light-blue;
   }
   
   div.footer-placeholder {
@@ -87,7 +89,7 @@ footer {
   
   a.copyright-policy {
     margin-left:10px;
-    color: #d0defd;
+    color: $light-blue;
   }
   
   .footer-version {
