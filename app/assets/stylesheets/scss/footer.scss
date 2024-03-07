@@ -56,11 +56,27 @@ footer {
   a.nav-link {
     text-decoration: none; 
     color: $light-blue;
+
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
   }
+
+
 
   a {
     text-decoration: none; 
     color: $light-blue;
+  }
+
+  a.link {
+    padding: 0.5rem 1rem;
+    display: block;
+
+    &:hover {
+      color: $white;
+    }
   }
   
   div.footer-placeholder {
@@ -90,6 +106,10 @@ footer {
   a.copyright-policy {
     margin-left:10px;
     color: $light-blue;
+
+    &:hover {
+      color: $white;
+    }
   }
   
   .footer-version {
