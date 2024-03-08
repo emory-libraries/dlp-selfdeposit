@@ -83,8 +83,19 @@ footer {
     height: 100px; 
     grid-row: 2;
   }
+
+  div.footer-version {
+    grid-row: 2;
+    grid-column: 1 / span 5;
+    font-family: 'Open Sans', sans-serif; 
+    font-size:0.8125rem;
+
+    p {
+      margin-bottom: 0.2rem;
+    }
+  }
   
-  div.footer-version-copyright {
+  div.footer-copyright {
     font-family: 'Open Sans', sans-serif; 
     font-size:0.8125rem; 
     grid-row: 3; 
@@ -110,10 +121,5 @@ footer {
     &:hover {
       color: $white;
     }
-  }
-  
-  .footer-version {
-    display: flex;
-    justify-content: center;
   }
 }
