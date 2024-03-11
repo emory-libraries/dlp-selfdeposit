@@ -20,7 +20,7 @@ LAST_UPDATED =
     Date.parse(deployed).strftime("%d %B %Y")
   elsif Rails.env.development? || Rails.env.test?
     # Use latest commit date instead of deployment date in development
-    # date_str = `git log -1 --format=%cd`.chomp
-    # date = Date.strptime(date_str, '%a %b %d')
-    # date.strftime('%d %B %Y')
+    date_str = `git log -1 --format=%cd`.chomp
+    date = Date.strptime(date_str, '%a %b %d')
+    date.strftime('%d %B %Y')
   end
