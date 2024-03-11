@@ -63,7 +63,7 @@ attributes:
       primary: true
       required: true
     index_keys:
-      - 'data_classification_tesim'
+      - 'data_classification_tesi'
     predicate: http://metadata.emory.edu/vocab/cor-terms#dataClassification
   date_issued:
     type: string
