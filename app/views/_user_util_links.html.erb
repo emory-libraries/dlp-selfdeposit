@@ -1,11 +1,11 @@
-<ul id="user_utility_links" class="navbar-nav navbar-dark">
+<ul id="user_utility_links" class="oe2-right-nav navbar-nav navbar-dark ms-auto">
   <%= render 'shared/locale_picker' if available_translations.size > 1 %>
   <% if user_signed_in? %>
     <li class="nav-item">
       <%= render_notifications(user: current_user) %>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only"><%= t("hyrax.toolbar.profile.sr_action") %></span>
         <span><%= current_user.name %></span>
         <span class="sr-only"> <%= t("hyrax.toolbar.profile.sr_target") %></span>
