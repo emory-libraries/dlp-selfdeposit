@@ -1,0 +1,9 @@
+<%# Hyrax v5.0.0 Override - brought in to set default value %>
+<% rights_statements = Hyrax.config.rights_statement_service_class.new %>
+
+<%= f.input :rights_statement,
+    collection: rights_statements.select_active_options,
+    include_blank: true,
+    item_helper: rights_statements.method(:include_current_value),
+    selected: 'http://rightsstatements.org/vocab/InC/1.0/',
+    input_html: { class: 'form-control' } %>
