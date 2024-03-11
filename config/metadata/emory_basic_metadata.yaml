@@ -31,22 +31,16 @@ attributes:
   alternative_title:
     type: string
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "alternative_title_tesim"
     predicate: http://purl.org/dc/terms/alternative
   arkivo_checksum:
     type: string
     multiple: false
-    form:
-      primary: false
     predicate: http://scholarsphere.psu.edu/ns#arkivoChecksum
   based_near:
     type: string
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "based_near_sim"
       - "based_near_tesim"
@@ -58,8 +52,6 @@ attributes:
   contributor:
     type: string
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "contributor_tesim"
       - "contributor_sim"
@@ -84,16 +76,12 @@ attributes:
   description:
     type: string
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "description_tesim"
     predicate: http://purl.org/dc/elements/1.1/description
   identifier:
     type: string
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "identifier_tesim"
     predicate: http://purl.org/dc/terms/identifier
@@ -119,8 +107,6 @@ attributes:
     predicate: http://purl.org/dc/elements/1.1/publisher
   label:
     type: string
-    form:
-      primary: false
     index_keys:
       - "label_tesim"
     predicate: info:fedora/fedora-system:def/model#downloadFilename
@@ -146,16 +132,12 @@ attributes:
   related_url:
     type: string
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "related_url_tesim"
     predicate: http://www.w3.org/2000/01/rdf-schema#seeAlso
   resource_type:
     type: string
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "resource_type_sim"
       - "resource_type_tesim"
@@ -180,8 +162,6 @@ attributes:
   source:
     type: string
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "source_tesim"
     predicate: http://purl.org/dc/terms/source
