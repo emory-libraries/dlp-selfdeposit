@@ -55,14 +55,15 @@ attributes:
       - 'content_genres_sim'
       - 'content_genres_tesim'
     predicate: http://www.europeana.edu/schemas/edm/hasType
-  data_classifications:
+  data_classification:
     type: string
-    multiple: true
+    multiple: false
     form:
+      multiple: false
       primary: true
       required: true
     index_keys:
-      - 'data_classifications_tesim'
+      - 'data_classification_tesi'
     predicate: http://metadata.emory.edu/vocab/cor-terms#dataClassification
   date_issued:
     type: string

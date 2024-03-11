@@ -1,4 +1,5 @@
 <%= f.input :emory_content_type, as: :select,
     collection: SelfDeposit::ContentTypesService.select_options,
     include_blank: true, required: true,
+    selected: 'http://id.loc.gov/vocabulary/resourceTypes/txt',
     input_html: { class: 'form-control', multiple: false } %>
