@@ -7,7 +7,7 @@
     font-family: $font-family-sans-serif;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 0.875rem;
+    font-size: 0.6875rem;
     line-height: 1.6111;
     color: $base-blue;
 }
@@ -22,7 +22,7 @@
 }
 
 .navbar .navbar-toggler-icon {
-    display: inline-block !important
+    display: inline-block !important;
 }
 
 .navbar .nav-item {
@@ -93,4 +93,8 @@ branding-header.branding-text {
     margin-right: -10px;
 }
 
+#search-field-header {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
 
