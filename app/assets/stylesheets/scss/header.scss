@@ -31,11 +31,6 @@
 
 header .navbar .nav-item:not(:last-child)::after {
     content: "|";
-    // position: absolute;
-    // right: 0;
-    // top: 14px;
-    // height: 25px;
-    // width: 1px;
     color: $base-slate;
     display: flex;
     padding-top: .35rem;
@@ -46,13 +41,6 @@ header .navbar .nav-item:not(:last-child)::after {
         display: none;
     }
 }
-
-// .oe2-right-nav .nav-item::after {
-//     content: "❯";
-//     float: right;
-//     transform: rotate(90deg);
-//     color: $base-blue;
-// }
 
 .oe2-right-nav .nav-link::after {
     content: "❯";
@@ -86,14 +74,14 @@ branding-header.branding-text {
     color: $gold-caution;
     font-weight: bold;
     font-size: 0.875rem;
-  }
-  
+}
+
 .division {
     font-family: $font-family-sans-serif;
     font-weight: bold;
     color: $base-blue;
     font-size: 1.5rem;
-  }
+}
 
 /**** Search Form Styling ****/
 .header-search {
