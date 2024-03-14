@@ -1,6 +1,7 @@
 @import 'colors.scss';
 @import 'fonts.scss';
 
+header {
 
 /**** Nav Styling ****/
 .navbar .navbar-nav .nav-item .nav-link {
@@ -16,7 +17,7 @@
     color: $base-blue;
 }
 
-.navbar .navbar-light .navbar-toggler {
+.navbar .navbar-light .navbar-collapse {
     color: #004990;
     border-color: rgba(0, 0, 0, 0.1);
 }
@@ -29,26 +30,24 @@
     display: flex;
 }
 
-header .navbar .nav-item:not(:last-child)::after {
+.navbar .nav-item:not(:last-child)::after {
     content: "|";
     color: $base-slate;
     display: flex;
-    padding-top: .35rem;
+    padding-top: .25rem;
 }
 
-@media screen {
-    header .navbar .nav-item:not(:last-child)::after {
-        display: none;
-    }
-}
-
-.oe2-right-nav .nav-link::after {
+.oe2-right-nav .nav-link:not(:last-child)::after {
     content: "❯";
     float: right;
     transform: rotate(90deg);
     color: $base-blue;
     padding-left: 15px;
     margin-top: -7px;
+}
+
+.oe2-right-nav .notify-number {
+    margin-left: 15px;
 }
 
 /**** Branding Styling ****/
@@ -98,3 +97,8 @@ branding-header.branding-text {
     border-bottom-left-radius: 0px;
 }
 
+.header-search-container {
+    padding: 15px 15px 15px 0;
+}
+
+}

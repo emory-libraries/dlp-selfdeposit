@@ -1,5 +1,29 @@
 /**** Phone Screen ****/
 @media (max-width: 767px) {
+    /**** Header ****/
+    header {
+        .navbar .nav-item {
+            flex-wrap: wrap;
+            flex-basis: 100%;
+        } 
+        .nav-link {
+            flex-basis: 100%
+        }
+        li {
+            flex-wrap: wrap;
+        }
+        .navbar .nav-item:not(:last-child)::after {
+        display: none;
+        }
+        .header-search {
+            justify-content: center;
+        }
+        .col-sm-7 {
+            flex: auto;
+            max-width: 100%;
+        }
+    }
+    
     /**** Footer ****/
     #emory-as-footer footer {
         display: flex; 
