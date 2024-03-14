@@ -1,6 +1,41 @@
-/**** Phone Screen ****/
+@import 'colors.scss';
+
+/**** Phone/Tablet Screen ****/
 @media (max-width: 767px) {
     /**** Header ****/
+    header {
+
+        nav {
+            /**** top nav ****/
+            &.navbar-collapse {
+                
+                .navbar-nav.col-md-5 {
+                }
+    
+                .oe2-controls {
+                    width: 100%;
+
+
+                }
+            }/**** END top nav ****/
+    
+            /**** masthead nav ****/
+            &#masthead {
+    
+            }/**** END masthead nav ****/
+
+                    /*** general styling ****/
+        .nav-item {
+            .nav-link {
+                border-bottom: 1px solid $light-slate;
+
+                &::after {
+                    position: absolute;
+                }
+            }
+        }
+        }
+    }
     header {
         .navbar .nav-item {
             flex-wrap: wrap;
@@ -21,6 +56,7 @@
         .col-sm-7 {
             flex: auto;
             max-width: 100%;
+            padding: 15px 0;
         }
     }
     

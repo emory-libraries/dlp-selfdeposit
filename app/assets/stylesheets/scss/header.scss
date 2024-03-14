@@ -3,6 +3,37 @@
 
 header {
 
+    nav {
+        /**** top nav ****/
+        &.navbar-collapse {
+            
+            .navbar-nav.col-md-5 {
+                padding: 0;
+            }
+
+            .oe2-controls {
+
+                // hide notifications
+                span.count.badge.invisible.badge-secondary {
+                    display: none;
+                }
+
+            }
+        }/**** END top nav ****/
+
+        /**** masthead nav ****/
+        &#masthead {
+
+        }/**** END masthead nav ****/
+
+        /*** general styling ****/
+        .nav-item {
+            .nav-link {
+                // border-bottom: 1px solid;
+            }
+        }
+    }
+
 /**** Nav Styling ****/
 .navbar .navbar-nav .nav-item .nav-link {
     font-family: $font-family-sans-serif;
@@ -17,10 +48,11 @@ header {
     color: $base-blue;
 }
 
-.navbar .navbar-light .navbar-collapse {
-    color: #004990;
-    border-color: rgba(0, 0, 0, 0.1);
-}
+// this section isn't doing anything currently.
+// .navbar .navbar-light .navbar-collapse {
+//     color: #004990;
+//     border-color: rgba(0, 0, 0, 0.1);
+// }
 
 .navbar .navbar-toggler-icon {
     display: inline-block !important;
@@ -37,7 +69,8 @@ header {
     padding-top: .25rem;
 }
 
-.oe2-right-nav .nav-link:not(:last-child)::after {
+.nav-item.dropdown .nav-link::after {
+// .oe2-right-nav .dropdown .nav-link::after 
     content: "❯";
     float: right;
     transform: rotate(90deg);
@@ -88,8 +121,8 @@ branding-header.branding-text {
 }
 
 .input-group.header-search {
-    padding-right: 0px;
-    margin-right: -10px;
+    padding: 0;
+    margin: 0;
 }
 
 #search-field-header {
