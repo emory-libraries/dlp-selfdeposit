@@ -54,8 +54,15 @@ group :development do
 end
 
 group :development, :test do
+  gem 'bixby'
   gem 'debug', '>= 1.0.0'
+  gem 'factory_bot_rails'
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-rescue'
+  gem 'rspec-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end

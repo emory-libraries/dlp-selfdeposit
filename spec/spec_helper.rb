@@ -1,3 +1,11 @@
+require 'factory_bot'
+require 'hyrax/specs/shared_specs/factories/strategies/json_strategy'
+require 'hyrax/specs/shared_specs/factories/strategies/valkyrie_resource'
+
+FactoryBot.register_strategy(:valkyrie_create, ValkyrieCreateStrategy)
+FactoryBot.register_strategy(:json, JsonStrategy)
+FactoryBot.find_definitions
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
