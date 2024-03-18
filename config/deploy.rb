@@ -95,3 +95,15 @@ namespace :sidekiq do
     end
   end
 end
+
+namespace :yarn do
+  task :install do
+    on roles :all do
+      within release_path do
+        execute :yarn, 'install'
+      end
+    end
+  end
+end
+
+after :'deploy:assets:precompile', :'yarn:install'
