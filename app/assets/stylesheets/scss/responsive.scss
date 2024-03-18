@@ -1,5 +1,65 @@
-/**** Phone Screen ****/
+@import 'colors.scss';
+
+/**** Phone/Tablet Screen ****/
 @media (max-width: 767px) {
+    /**** Header ****/
+    header {
+
+        nav {
+            /**** top nav ****/
+            &.navbar-collapse {
+                
+                .navbar-nav.col-md-5 {
+                }
+    
+                .oe2-controls {
+                    width: 100%;
+
+
+                }
+            }/**** END top nav ****/
+    
+            /**** masthead nav ****/
+            &#masthead {
+    
+            }/**** END masthead nav ****/
+
+                    /*** general styling ****/
+        .nav-item {
+            .nav-link {
+                border-bottom: 1px solid $light-slate;
+
+                &::after {
+                    position: absolute;
+                }
+            }
+        }
+        }
+    }
+    header {
+        .navbar .nav-item {
+            flex-wrap: wrap;
+            flex-basis: 100%;
+        } 
+        .nav-link {
+            flex-basis: 100%
+        }
+        li {
+            flex-wrap: wrap;
+        }
+        .navbar .nav-item:not(:last-child)::after {
+        display: none;
+        }
+        .header-search {
+            justify-content: center;
+        }
+        .col-sm-7 {
+            flex: auto;
+            max-width: 100%;
+            padding: 15px 0;
+        }
+    }
+    
     /**** Footer ****/
     #emory-as-footer footer {
         display: flex; 
