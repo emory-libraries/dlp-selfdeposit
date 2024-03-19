@@ -16,21 +16,21 @@ jobs:
       DB_PASSWORD: hyrax_password
       DB_PORT: 5432
       FCREPO_URL: http://fedoraAdmin:fedoraAdmin@localhost:8080/fcrepo/rest
-      SOLR_TEST_URL: http://localhost:8983/solr/dlp-selfdeposit
+      SOLR_TEST_URL: http://localhost:8983/solr/dlp-selfdeposit-test
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      # Add or replace dependency steps here
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.2'
           bundler-cache: true
-      # Add or replace database setup steps here
       - name: Create database
         run: bundle exec rails db:create
       - name: Migrate database
         run: bundle exec rails db:migrate
+      - name: Create Solr core
+        run: docker exec solr solr-precreate dlp-selfdeposit-test /opt/solr/server/configsets/hyraxconf
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec spec
@@ -59,9 +59,9 @@ jobs:
           - 8080:8080
       solr:
         image: solr:8.11
-        command: ["sh", "-c", "solr-precreate dlp-selfdeposit /opt/solr/server/configsets/hyraxconf"]
         ports:
           - 8983:8983
+        options: --name solr
   lint:
     runs-on: ubuntu-latest
     steps:
