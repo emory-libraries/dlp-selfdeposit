@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.18.0"
 
@@ -15,7 +16,7 @@ namespace :deploy do
     if fetch(:stage) == :PROD
       ask(:cab_acknowledged, 'Have you submitted and received CAB approval? (Yes/No): ')
       unless /^y(es)?$/i.match?(fetch(:cab_acknowledged))
-        puts 'Please submit a CAB request and get it approved before proceeding with deployment.'
+        Rails.logger.debug 'Please submit a CAB request and get it approved before proceeding with deployment.'
         exit
       end
     end
@@ -51,8 +52,8 @@ append :linked_dirs, "log", "public/assets", "tmp/pids", "tmp/cache", "tmp/socke
 append :linked_files, ".env.production", "config/secrets.yml"
 
 set :default_env,
-    PATH:                            '$PATH:/usr/local/rbenv/shims/ruby',
-    LD_LIBRARY_PATH:                 '$LD_LIBRARY_PATH:/usr/lib64',
+    PATH: '$PATH:/usr/local/rbenv/shims/ruby',
+    LD_LIBRARY_PATH: '$LD_LIBRARY_PATH:/usr/lib64',
     PASSENGER_INSTANCE_REGISTRY_DIR: '/var/run'
 
 # Default value for local_user is ENV['USER']
