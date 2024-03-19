@@ -6,7 +6,7 @@ on:
     branches: [ "main" ]
 jobs:
   test:
-    runs-on: docker
+    runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
       DATABASE_URL: postgresql://hyrax_user:hyrax_password@localhost/dlp-selfdeposit?pool=5
@@ -61,7 +61,11 @@ jobs:
         image: solr:8.11
         ports:
           - 8983:8983
-        options: --name solr
+        options: >-
+          --health-cmd "curl -f http://localhost:8983/solr/admin/cores?action=STATUS"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
   lint:
     runs-on: ubuntu-latest
     steps:
