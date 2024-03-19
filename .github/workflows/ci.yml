@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
-      DATABASE_URL: postgresql://hyrax_user:hyrax_password@postgres/dlp-selfdeposit?pool=5
-      DB_HOST: postgres
+      DATABASE_URL: postgresql://hyrax_user:hyrax_password@localhost/dlp-selfdeposit?pool=5
+      DB_HOST: localhost
       DB_NAME: dlp-selfdeposit
       DB_USERNAME: hyrax_user
       DB_PASSWORD: hyrax_password
