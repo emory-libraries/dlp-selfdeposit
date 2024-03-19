@@ -29,8 +29,18 @@ jobs:
         run: bundle exec rails db:create
       - name: Migrate database
         run: bundle exec rails db:migrate
+      - name: Zip Solr configuration
+        run: |
+          zip -1 -r solr_conf.zip ./solr/conf
+      - name: Upload Solr configuration
+        run: |
+          curl -H "Content-type: application/octet-stream" --data-binary @solr_conf.zip \
+            "http://localhost:8983/solr/admin/configs?action=UPLOAD&name=solrconfig"
       - name: Create Solr core
-        run: docker exec solr solr-precreate dlp-selfdeposit-test /opt/solr/server/configsets/hyraxconf
+        run: |
+          curl -H 'Content-type: application/json' \
+            http://localhost:8983/api/collections/ \
+            -d '{ "create": { "name": "dlp-selfdeposit-test", "config": "solrconfig", "numShards": 1 }}'
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec spec
