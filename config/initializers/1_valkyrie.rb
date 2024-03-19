@@ -5,29 +5,6 @@ require 'faraday/multipart'
 # require "valkyrie/storage/shrine"
 # require "valkyrie/shrine/checksum/s3"
 
-# database = ENV.fetch("METADATA_DB_NAME", "nurax_pg_metadata")
-# Rails.logger.info "Establishing connection to postgresql on: " \
-#                   "#{ENV["DB_HOST"]}:#{ENV["DB_PORT"]}.\n" \
-#                   "Using database: #{database}."
-# connection = Sequel.connect(
-#   user: ENV["DB_USERNAME"],
-#   password: ENV["DB_PASSWORD"],
-#   host: ENV["DB_HOST"],
-#   port: ENV["DB_PORT"],
-#   database: database,
-#   max_connections: ENV.fetch("DB_POOL", 5),
-#   pool_timeout: ENV.fetch("DB_TIMEOUT", 5000),
-#   adapter: :postgres
-# )
-#
-# Valkyrie::MetadataAdapter
-#   .register(Valkyrie::Sequel::MetadataAdapter.new(connection: connection),
-#             :nurax_pg_metadata_adapter)
-Valkyrie::MetadataAdapter.register(
-  Valkyrie::Persistence::Postgres::MetadataAdapter.new,
-  :pg_metadata
-)
-
 Valkyrie::MetadataAdapter.register(
   Valkyrie::Persistence::Fedora::MetadataAdapter.new(
     connection: ::Ldp::Client.new(Hyrax.config.fedora_connection_builder.call(
@@ -68,12 +45,6 @@ Valkyrie::StorageAdapter.register(
   ), :fedora_storage
 )
 
-Valkyrie::StorageAdapter.register(
-  Valkyrie::Storage::VersionedDisk.new(base_path: Rails.root.join("storage", "files"),
-                                       file_mover: FileUtils.method(:cp)),
-  :versioned_disk_storage
-)
-
-Valkyrie.config.storage_adapter  = ENV.fetch('VALKYRIE_STORAGE_ADAPTER') { :versioned_disk_storage }.to_sym
+Valkyrie.config.storage_adapter  = :fedora_storage
 
 Valkyrie.config.indexing_adapter = :solr_index
