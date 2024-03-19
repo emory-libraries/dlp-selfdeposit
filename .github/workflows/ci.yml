@@ -15,6 +15,7 @@ jobs:
       DB_USERNAME: hyrax_user
       DB_PASSWORD: hyrax_password
       DB_PORT: 5432
+      FCREPO_URL: http://fedoraAdmin:fedoraAdmin@fcrepo:8080/fcrepo/rest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -35,7 +36,7 @@ jobs:
     services:
       postgres:
         # Docker Hub image
-        image: postgres
+        image: postgres:15
         # Provide the password for postgres
         env:
           POSTGRES_USER: hyrax_user
@@ -48,6 +49,13 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+      fcrepo:
+        image: fcrepo/fcrepo:6.4.0
+        env:
+          CATALINA_OPTS: -Dfcrepo.home=/fcrepo-home -Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms512m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+          JAVA_OPTS: -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+        ports:
+          - 8080:8080
 
   lint:
     runs-on: ubuntu-latest
