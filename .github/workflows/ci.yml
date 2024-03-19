@@ -15,7 +15,8 @@ jobs:
       DB_USERNAME: hyrax_user
       DB_PASSWORD: hyrax_password
       DB_PORT: 5432
-      FCREPO_URL: http://fedoraAdmin:fedoraAdmin@fcrepo:8080/fcrepo/rest
+      FCREPO_URL: http://fedoraAdmin:fedoraAdmin@localhost:8080/fcrepo/rest
+      SOLR_TEST_URL: http://localhost:8983/solr/dlp-selfdeposit
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -56,7 +57,11 @@ jobs:
           JAVA_OPTS: -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
         ports:
           - 8080:8080
-
+      solr:
+        image: solr:8.11
+        command: ["sh", "-c", "solr-precreate dlp-selfdeposit /opt/solr/server/configsets/hyraxconf"]
+        ports:
+          - 8983:8983
   lint:
     runs-on: ubuntu-latest
     steps:
