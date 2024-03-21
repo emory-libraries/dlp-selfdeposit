@@ -68,6 +68,9 @@ jobs:
       ruby_version:
         default: "3.2.2"
         type: string
+      bundler_version:
+        default: "2.5.6"
+        type: string
       solr_port:
         default: "8983"
         type: string
