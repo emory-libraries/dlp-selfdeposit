@@ -67,3 +67,8 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 end
+
+group :test do
+  gem 'capybara'
+  gem 'rspec_junit_formatter'
+end
