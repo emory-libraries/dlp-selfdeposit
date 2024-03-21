@@ -42,9 +42,11 @@ jobs:
       POSTGRES_DB: dlp-selfdeposit-test
       POSTGRES_HOST: 127.0.0.1
       POSTGRES_USER: hyrax_user
+      POSTGRES_PASSWORD: hyrax_password
       DB_HOST: localhost
       DB_NAME: dlp-selfdeposit-test
       DB_USERNAME: hyrax_user
+      DB_PASSWORD: hyrax_password
       DB_PORT: 5432
       RACK_ENV: test
       RAILS_ENV: test
