@@ -227,6 +227,9 @@ attributes:
     index_keys:
       - 'place_of_production_tesi'
     predicate: http://id.loc.gov/vocabulary/relators/pup
+  preservation_event_ids:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#preservationEventIDs
   publisher_version:
     type: string
     multiple: false
