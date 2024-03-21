@@ -3,18 +3,78 @@ orbs:
     samvera: samvera/circleci-orb@1.0.3
 jobs:
     build:
+        docker:
+          - image: cimg/<< parameters.ruby_type >>:<< parameters.ruby_version >>-browsers
+          - image: fcrepo/fcrepo:<< parameters.fcrepo_version >>
+            environment:
+              CATALINA_OPTS: >-
+                -Dfcrepo.home=/fcrepo-home -Djava.awt.headless=true -Dfile.encoding=UTF-8
+                -server -Xms512m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m
+                -XX:MaxPermSize=256m -XX:+DisableExplicitGC -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+              JAVA_OPTS: >-
+                -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+          - image: zookeeper:3.4
+          - image: solr:<< parameters.solr_version >>
+            command: >-
+              sh -c "server/scripts/cloud-scripts/zkcli.sh -zkhost localhost:2181 -cmd
+              put /security.json \"${SECURITY_JSON}\" && solr-fg -cloud -noprompt  -p <<
+              parameters.solr_port >> -z localhost:2181"
+            environment:
+              SECURITY_JSON: >-
+                {"authentication":{"blockUnknown": false,
+                "class":"solr.BasicAuthPlugin",
+                "credentials":{"solr":"IV0EHq1OnNrj6gvRCwvFwTrZ1+z1oBbnQdiVC3otuq0=
+                Ndd7LKvVBAaZIF0QAVi1ekCfAJXr1GGfLtRUXhgrF8c="}, "realm":"My Solr users",
+                "forwardCredentials": false}, "authorization":{
+                "class":"solr.RuleBasedAuthorizationPlugin",
+                "permissions":[{"name":"security-edit", "role":"admin"}],
+                "user-role":{"solr":"admin"}}}
+              VERBOSE: 'yes'
+          - image: redis:<< parameters.redis_version >>
+          - image: cimg/postgres:<< parameters.postgres_version >>
+        environment:
+          BUNDLE_JOBS: 4
+          BUNDLE_PATH: vendor/bundle
+          BUNDLE_RETRY: 3
+          FCREPO_TEST_PORT: 8080
+          POSTGRES_DB: dlp-selfdeposit-test
+          POSTGRES_HOST: 127.0.0.1
+          POSTGRES_USER: hyrax_user
+          DB_HOST: localhost
+          DB_NAME: dlp-selfdeposit-test
+          DB_USERNAME: hyrax_user
+          DB_PORT: 5432
+          RACK_ENV: test
+          RAILS_ENV: test
+          SOLR_TEST_URL: http://127.0.0.1:8983/solr/dlp-selfdeposit-test
+          SPEC_OPTS: >-
+            --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
+            --format progress
         parameters:
-            ruby_version:
-                type: string
-                default: 3.2.2
-            bundler_version:
-                type: string
-                default: 2.5.6
-        executor:
-            name: samvera/ruby_fcrepo_solr_redis
-            ruby_version: << parameters.ruby_version >>
-            solr_version: 8-alpine
-            fcrepo_version: 6.4.0
+          fcrepo_version:
+            default: 6.4.0
+            type: string
+          postgres_version:
+            default: 15
+            type: string
+          redis_version:
+            default: 6.2
+            type: string
+          ruby_type:
+            default: ruby
+            type: string
+          ruby_version:
+            default: 3.2.2
+            type: string
+          solr_port:
+            default: 8983
+            type: string
+          solr_version:
+            default: 8.11-slim
+            type: string
+          core_name:
+            default: dlp-selfdeposit-test
+            type: string
         working_directory: ~/project
         parallelism: 4
         steps:
