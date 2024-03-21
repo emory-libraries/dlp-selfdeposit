@@ -42,6 +42,7 @@ module Hyrax
     end
     # rubocop:enable Metrics/MethodLength
 
+    # Hyrax v5.0.0 Override - inserts PreservationEvents if Publication is updated successfully.
     def update_valkyrie_work
       form = build_form
       return after_update_error(form_err_msg(form)) unless form.validate(params[hash_key_for_curation_concern])
