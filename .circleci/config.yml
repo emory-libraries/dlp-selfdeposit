@@ -33,7 +33,7 @@ jobs:
             "user-role":{"solr":"admin"}}}
           VERBOSE: 'yes'
       - image: redis:<< parameters.redis_version >>
-      - image: cimg/postgres:<< parameters.postgres_version >>
+      - image: postgres:<< parameters.postgres_version >>
     environment:
       BUNDLE_JOBS: 4
       BUNDLE_PATH: vendor/bundle
@@ -57,7 +57,7 @@ jobs:
         default: "6.4.0"
         type: string
       postgres_version:
-        default: "15"
+        default: "15.6"
         type: string
       redis_version:
         default: "6.2"
