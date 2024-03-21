@@ -54,25 +54,25 @@ jobs:
         --format progress
     parameters:
       fcrepo_version:
-        default: 6.4.0
+        default: "6.4.0"
         type: string
       postgres_version:
-        default: 15
+        default: "15"
         type: string
       redis_version:
-        default: 6.2
+        default: "6.2"
         type: string
       ruby_type:
         default: ruby
         type: string
       ruby_version:
-        default: 3.2.2
+        default: "3.2.2"
         type: string
       solr_port:
-        default: 8983
+        default: "8983"
         type: string
       solr_version:
-        default: 8.11-slim
+        default: "8.11-slim"
         type: string
       core_name:
         default: dlp-selfdeposit-test
