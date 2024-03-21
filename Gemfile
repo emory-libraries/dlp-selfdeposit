@@ -56,6 +56,7 @@ end
 
 group :development, :test do
   gem 'bixby'
+  gem 'coveralls', require: false
   gem 'debug', '>= 1.0.0'
   gem 'factory_bot_rails'
   gem 'pry-doc'
