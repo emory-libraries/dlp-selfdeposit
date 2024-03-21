@@ -103,13 +103,13 @@ jobs:
           paths:
             - ~/project/node_modules
       - samvera/install_solr_core
-      # - run:
-      #     name: Install Code Climate test reporter
-      #     command: |
-      #       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-      #       chmod +x ./cc-test-reporter
-      #       ./cc-test-reporter before-build
-      # - samvera/parallel_rspec
+      - run:
+          name: Install Code Climate test reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+      - samvera/parallel_rspec
       # - run:
       #     name: Generate CC coverage
       #     command: ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
