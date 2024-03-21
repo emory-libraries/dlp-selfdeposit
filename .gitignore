@@ -6,7 +6,6 @@ ruby-gemset
 .rvmrc
 
 ## JS lock files
-yarn.lock
 package-lock.json
 
 ## MAC OS
