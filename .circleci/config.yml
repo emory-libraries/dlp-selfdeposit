@@ -34,15 +34,17 @@ jobs:
           VERBOSE: 'yes'
       - image: redis:<< parameters.redis_version >>
       - image: postgres:<< parameters.postgres_version >>
+        environment:
+          POSTGRES_USER: hyrax_user
+          POSTGRES_PASSWORD: hyrax_password
     environment:
       BUNDLE_JOBS: 4
       BUNDLE_PATH: vendor/bundle
       BUNDLE_RETRY: 3
       FCREPO_TEST_PORT: 8080
+      FCREPO_URL: http://fedoraAdmin:fedoraAdmin@127.0.0.1:8080/fcrepo/rest
       POSTGRES_DB: dlp-selfdeposit-test
       POSTGRES_HOST: 127.0.0.1
-      POSTGRES_USER: hyrax_user
-      POSTGRES_PASSWORD: hyrax_password
       DB_HOST: localhost
       DB_NAME: dlp-selfdeposit-test
       DB_USERNAME: hyrax_user
@@ -50,7 +52,7 @@ jobs:
       DB_PORT: 5432
       RACK_ENV: test
       RAILS_ENV: test
-      SOLR_TEST_URL: http://127.0.0.1:8983/solr/dlp-selfdeposit-test
+      SOLR_TEST_URL: http://127.0.0.1:8985/solr/dlp-selfdeposit-test
       SPEC_OPTS: >-
         --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
         --format progress
@@ -74,7 +76,7 @@ jobs:
         default: "2.5.6"
         type: string
       solr_port:
-        default: "8983"
+        default: "8985"
         type: string
       solr_version:
         default: "8.11-slim"
