@@ -1,4 +1,4 @@
-<div class="accordion" id="metadata-form">
+<div class="accordion" id="publication-form">
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
@@ -8,7 +8,7 @@
       </h2>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#metadata-form">
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#publication-form">
       <div class="card-body">
         <div class="admin-terms form-group">
                 <% f.object.administrative_terms.each do |term| %>
@@ -26,7 +26,7 @@
         </button>
       </h2>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#metadata-form">
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#publication-form">
       <div class="card-body">
             <div class="publication-terms">
                 <% f.object.publication_information.each do |term| %>

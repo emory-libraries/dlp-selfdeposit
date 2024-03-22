@@ -85,9 +85,7 @@ h3 {
 }
 
 /**** New Publication Form ****/
-#metadata-form {
-
-
+#publication-form {
   .card {
 
     &:not(:last-child) {
@@ -99,16 +97,20 @@ h3 {
       button {
         width: 100%;
         padding: 20px 10px;
+
+        &::after {
+          content: '❯';
+          float: right;
+          transform: rotate(90deg);
+          color: #082b73;
+          padding-left: 15px;
+          margin-top: -7px;
+        }
       }
     }
   }
 
   .carrot-thing {
-    content: ❯;
-    float: right;
-    transform: rotate(90deg);
-    color: #082b73;
-    padding-left: 15px;
-    margin-top: -7px;
+
   }
 }
