@@ -17,4 +17,15 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
   # model attribute, make it virtual
   #
   # property :user_input_not_destined_for_the_model, virtual: true
+
+  # To be used in place of #primary_terms or other built-in term collections within
+  #   app/views/hyrax/base/_form_metadata.html.erb to feed desired fields
+  #   to separate field groupings. Fields must be within an array in order of how they
+  #   appear in the form, symbolized, and match the attribute names in their metadata YAMLS
+  #   (e.g. config/metadata/publication_metadata.yaml).
+  def administrative_terms
+    [:emory_ark, :rights_statement, :internal_rights_note, :staff_notes, :access_right,
+     :system_of_record_ID, :emory_content_type, :holding_repository, :institution,
+     :data_classification, :date_created]
+  end
 end
