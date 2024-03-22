@@ -1,5 +1,5 @@
-@import 'colors.scss';
-@import 'fonts.scss';
+@import "colors.scss";
+@import "fonts.scss";
 
 /**** Main Layout ****/
 * {
@@ -11,7 +11,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   color: $charcoal;
   font-size: 1rem;
 }
@@ -41,7 +41,6 @@ h3 {
   color: $charcoal;
   font-size: 1.75rem;
 }
-
 
 /**** Helper Classes ****/
 
@@ -83,4 +82,33 @@ h3 {
 /** 30 spacer **/
 .spacer-30 {
   height: 30px;
+}
+
+/**** New Publication Form ****/
+#metadata-form {
+
+
+  .card {
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+    .card-header {
+      padding: 0;
+  
+      button {
+        width: 100%;
+        padding: 20px 10px;
+      }
+    }
+  }
+
+  .carrot-thing {
+    content: ❯;
+    float: right;
+    transform: rotate(90deg);
+    color: #082b73;
+    padding-left: 15px;
+    margin-top: -7px;
+  }
 }
