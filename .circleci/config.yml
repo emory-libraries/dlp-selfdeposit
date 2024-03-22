@@ -133,8 +133,8 @@ workflows:
   ci:
     jobs:
       - build:
-          name: ruby<< parameters.ruby_version >>
+          name: test
       # - coverage:
       #     name: codeclimate
       #     requires:
-      #       - ruby<< parameters.ruby_version >>
+      #       - test
