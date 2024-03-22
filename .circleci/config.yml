@@ -99,7 +99,7 @@ jobs:
             ./cc-test-reporter before-build
       - samvera/parallel_rspec
       - run:
-          name: Generate CC coverage
+          name: Generate Code Climate coverage
           command: ./cc-test-reporter format-coverage -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json" --input-type simplecov
       - persist_to_workspace:
           root: coverage
