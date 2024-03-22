@@ -4,7 +4,6 @@ require 'hyrax/specs/shared_specs/factories/strategies/json_strategy'
 require 'hyrax/specs/shared_specs/factories/strategies/valkyrie_resource'
 require 'coveralls'
 
-
 Coveralls.wear!('rails')
 
 FactoryBot.register_strategy(:valkyrie_create, ValkyrieCreateStrategy)
