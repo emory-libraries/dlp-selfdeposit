@@ -42,19 +42,21 @@ jobs:
       BUNDLE_JOBS: 4
       BUNDLE_PATH: vendor/bundle
       BUNDLE_RETRY: 3
-      FCREPO_TEST_PORT: 8080
-      FCREPO_URL: http://fedoraAdmin:fedoraAdmin@127.0.0.1:8080/fcrepo/rest
       DB_HOST: localhost
       DB_NAME: dlp-selfdeposit-test
-      DB_USERNAME: hyrax_user
       DB_PASSWORD: hyrax_password
       DB_PORT: 5432
+      DB_USERNAME: hyrax_user
+      FCREPO_TEST_PORT: 8080
+      FCREPO_URL: http://fedoraAdmin:fedoraAdmin@127.0.0.1:8080/fcrepo/rest
       RACK_ENV: test
       RAILS_ENV: test
       SOLR_TEST_URL: http://127.0.0.1:8985/solr/dlp-selfdeposit-test
       SPEC_OPTS: >-
         --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
         --format progress
+      VALKYRIE_METADATA_ADAPTER: fedora_metadata
+      VALKYRIE_STORAGE_ADAPTER: fedora_storage
     parameters:
       ruby_version:
         default: "3.2.2"
