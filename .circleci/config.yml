@@ -6,8 +6,8 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/<< parameters.ruby_type >>:<< parameters.ruby_version >>-browsers
-      - image: fcrepo/fcrepo:<< parameters.fcrepo_version >>
+      - image: cimg/ruby:<< parameters.ruby_version >>-browsers
+      - image: fcrepo/fcrepo:6.4.0
         environment:
           CATALINA_OPTS: >-
             -Dfcrepo.home=/fcrepo-home -Djava.awt.headless=true -Dfile.encoding=UTF-8
@@ -32,8 +32,8 @@ jobs:
             "permissions":[{"name":"security-edit", "role":"admin"}],
             "user-role":{"solr":"admin"}}}
           VERBOSE: 'yes'
-      - image: redis:<< parameters.redis_version >>
-      - image: postgres:<< parameters.postgres_version >>
+      - image: redis:6.2
+      - image: postgres:15.6
         environment:
           POSTGRES_USER: hyrax_user
           POSTGRES_PASSWORD: hyrax_password
@@ -56,18 +56,6 @@ jobs:
         --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
         --format progress
     parameters:
-      fcrepo_version:
-        default: "6.4.0"
-        type: string
-      postgres_version:
-        default: "15.6"
-        type: string
-      redis_version:
-        default: "6.2"
-        type: string
-      ruby_type:
-        default: ruby
-        type: string
       ruby_version:
         default: "3.2.2"
         type: string
@@ -145,8 +133,8 @@ workflows:
   ci:
     jobs:
       - build:
-          name: ruby3.2.2
+          name: ruby<< parameters.ruby_version >>
       # - coverage:
       #     name: codeclimate
       #     requires:
-      #       - ruby3.2.2
+      #       - ruby<< parameters.ruby_version >>
