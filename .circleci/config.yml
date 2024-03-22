@@ -1,0 +1,138 @@
+version: 2.1
+
+orbs:
+  samvera: samvera/circleci-orb@1.0.3
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:<< parameters.ruby_version >>-browsers
+      - image: fcrepo/fcrepo:6.4.0
+        environment:
+          CATALINA_OPTS: >-
+            -Dfcrepo.home=/fcrepo-home -Djava.awt.headless=true -Dfile.encoding=UTF-8
+            -server -Xms512m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m
+            -XX:MaxPermSize=256m -XX:+DisableExplicitGC -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+          JAVA_OPTS: >-
+            -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+      - image: zookeeper:3.4
+      - image: solr:<< parameters.solr_version >>
+        command: >-
+          sh -c "server/scripts/cloud-scripts/zkcli.sh -zkhost localhost:2181 -cmd
+          put /security.json \"${SECURITY_JSON}\" && solr-fg -cloud -noprompt -p <<
+          parameters.solr_port >> -z localhost:2181"
+        environment:
+          SECURITY_JSON: >-
+            {"authentication":{"blockUnknown": false,
+            "class":"solr.BasicAuthPlugin",
+            "credentials":{"solr":"IV0EHq1OnNrj6gvRCwvFwTrZ1+z1oBbnQdiVC3otuq0=
+            Ndd7LKvVBAaZIF0QAVi1ekCfAJXr1GGfLtRUXhgrF8c="}, "realm":"My Solr users",
+            "forwardCredentials": false}, "authorization":{
+            "class":"solr.RuleBasedAuthorizationPlugin",
+            "permissions":[{"name":"security-edit", "role":"admin"}],
+            "user-role":{"solr":"admin"}}}
+          VERBOSE: 'yes'
+      - image: redis:6.2
+      - image: postgres:15.6
+        environment:
+          POSTGRES_USER: hyrax_user
+          POSTGRES_PASSWORD: hyrax_password
+          POSTGRES_DB: dlp-selfdeposit-test
+    environment:
+      BUNDLE_JOBS: 4
+      BUNDLE_PATH: vendor/bundle
+      BUNDLE_RETRY: 3
+      FCREPO_TEST_PORT: 8080
+      FCREPO_URL: http://fedoraAdmin:fedoraAdmin@127.0.0.1:8080/fcrepo/rest
+      DB_HOST: localhost
+      DB_NAME: dlp-selfdeposit-test
+      DB_USERNAME: hyrax_user
+      DB_PASSWORD: hyrax_password
+      DB_PORT: 5432
+      RACK_ENV: test
+      RAILS_ENV: test
+      SOLR_TEST_URL: http://127.0.0.1:8985/solr/dlp-selfdeposit-test
+      SPEC_OPTS: >-
+        --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
+        --format progress
+    parameters:
+      ruby_version:
+        default: "3.2.2"
+        type: string
+      bundler_version:
+        default: "2.5.6"
+        type: string
+      solr_port:
+        default: "8985"
+        type: string
+      solr_version:
+        default: "8.11-slim"
+        type: string
+      core_name:
+        default: dlp-selfdeposit-test
+        type: string
+    working_directory: ~/project
+    parallelism: 4
+    steps:
+      - checkout
+      - samvera/bundle:
+          ruby_version: << parameters.ruby_version >>
+          bundler_version: << parameters.bundler_version >>
+      - samvera/rubocop
+      - run:
+          name: Get yarn version
+          command: echo $(yarn --version) >> "YARN_VERSION"
+      - restore_cache:
+          keys:
+            - v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
+      - run: yarn
+      - save_cache:
+          key: v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
+          paths:
+            - ~/project/node_modules
+      - samvera/install_solr_core
+      - run:
+          name: Install Code Climate test reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+      - samvera/parallel_rspec
+      - run:
+          name: Generate Code Climate coverage
+          command: ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
+      - persist_to_workspace:
+          root: coverage
+          paths: codeclimate.*.json
+      - store_artifacts:
+          path: tmp/screenshots
+      
+  coverage:
+    docker:
+      - image: cimg/ruby:3.2.2
+    working_directory: ~/project
+    parallelism: 1
+    steps:
+      - attach_workspace:
+          at: /tmp/codeclimate
+      - run:
+          name: Install Code Climate test reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Upload Coverage
+          command: |
+            ./cc-test-reporter sum-coverage --output='/tmp/codeclimate/summed_coverage.json' /tmp/codeclimate/codeclimate.*.json
+            ./cc-test-reporter upload-coverage --input='/tmp/codeclimate/summed_coverage.json'
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - build:
+          name: ruby3.2.2
+      - coverage:
+          name: codeclimate
+          requires:
+            - ruby3.2.2

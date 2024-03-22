@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -63,9 +64,9 @@ Rails.application.configure do
 
   # Allowlist container IP for web-console
   # FIXME: Update next line to use `allowed_ips` once web-console is upgraded to 4.0.3+
-  config.web_console.whitelisted_ips = Socket.getifaddrs.select { |ifa|
+  config.web_console.whitelisted_ips = Socket.getifaddrs.select do |ifa|
     ifa&.addr&.ipv4_private?
-  }.map { |ifa|
+  end.map do |ifa|
     IPAddr.new(ifa.addr.ip_address + '/' + ifa.netmask.ip_address)
-  }
+  end
 end

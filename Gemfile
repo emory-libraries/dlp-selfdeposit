@@ -14,6 +14,7 @@ gem 'dotenv-rails'
 gem 'hyrax', '~> 5.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'mutex_m', '~> 0.2.0'
 gem 'pg', '~> 1.3'
 gem 'puma'
 gem 'rails', '~> 6.1'
@@ -29,22 +30,22 @@ gem 'uglifier', '>= 1.3.0'
 group :development do
   # Add command line in browser when errors
   gem 'better_errors'
-  
+
   # Add deeper stack trace used by better errors
   gem 'binding_of_caller'
 
   # Add deployment tools
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
   gem "capistrano", "~> 3.18", require: false
   gem 'capistrano-bundler', '~> 1.3', require: false
   gem "capistrano-rails", "~> 1.6", require: false
   gem 'capistrano-rbenv', '~> 2.2', require: false
   gem 'ed25519', '>= 1.2', '< 2.0'
-  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  
+  gem 'web-console', '>= 3.3.0'
+
   # Spring speeds up development by keeping your application running in the background
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -54,8 +55,21 @@ group :development do
 end
 
 group :development, :test do
+  gem 'bixby'
+  gem 'coveralls', require: false
   gem 'debug', '>= 1.0.0'
+  gem 'factory_bot_rails'
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-rescue'
+  gem 'rspec-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+end
+
+group :test do
+  gem 'capybara'
+  gem 'rspec_junit_formatter'
 end
