@@ -109,7 +109,7 @@ jobs:
       
   coverage:
     docker:
-      - image: circleci/ruby:3.2.2
+      - image: cimg/ruby:3.2.2
     working_directory: ~/project
     parallelism: 1
     steps:
