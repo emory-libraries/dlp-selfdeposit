@@ -100,7 +100,7 @@ jobs:
       - samvera/parallel_rspec
       - run:
           name: Generate Code Climate coverage
-          command: ./cc-test-reporter format-coverage /tmp/test-results/rspec.xml -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json" --input-type simplecov
+          command: ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
       - persist_to_workspace:
           root: coverage
           paths: codeclimate.*.json
