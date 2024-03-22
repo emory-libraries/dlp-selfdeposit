@@ -25,10 +25,10 @@ module Hyrax
     def create_valkyrie_work
       @event_start = DateTime.current # record event_start timestamp
       form = build_form
-      action = create_valkyrie_work_action.new(form: form,
-                                               transactions: transactions,
+      action = create_valkyrie_work_action.new(form:,
+                                               transactions:,
                                                user: current_user,
-                                               params: params,
+                                               params:,
                                                work_attributes_key: hash_key_for_curation_concern)
 
       return after_create_error(form_err_msg(action.form), action.work_attributes) unless action.validate
@@ -48,8 +48,8 @@ module Hyrax
       return after_update_error(form_err_msg(form)) unless form.validate(params[hash_key_for_curation_concern])
       result =
         transactions['change_set.update_work']
-        .with_step_args('work_resource.add_file_sets' => { uploaded_files: uploaded_files, file_set_params: params[hash_key_for_curation_concern][:file_set] },
-                        'work_resource.update_work_members' => { work_members_attributes: work_members_attributes },
+        .with_step_args('work_resource.add_file_sets' => { uploaded_files:, file_set_params: params[hash_key_for_curation_concern][:file_set] },
+                        'work_resource.update_work_members' => { work_members_attributes: },
                         'work_resource.save_acl' => { permissions_params: form.input_params["permissions"] })
         .call(form)
       @curation_concern = result.value_or { return after_update_error(transaction_err_msg(result)) }

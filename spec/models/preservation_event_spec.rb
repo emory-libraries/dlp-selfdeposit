@@ -74,13 +74,13 @@ RSpec.describe PreservationEvent do
       let(:different_event_start) { DateTime.current.strftime('%FT%T%:z') }
       let(:preservation_event) do
         event = described_class.new(
-          event_type:       event_type,
-          initiating_user:  initiating_user,
-          event_start:      different_event_start,
-          event_end:        event_end,
-          outcome:          outcome,
-          software_version: software_version,
-          event_details:    event_details
+          event_type:,
+          initiating_user:,
+          event_start: different_event_start,
+          event_end:,
+          outcome:,
+          software_version:,
+          event_details:
         )
 
         persister.save(resource: event)

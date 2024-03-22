@@ -8,12 +8,12 @@ module PreservationEvents
   def create_preservation_event(object, event)
     persister = Hyrax.persister
     event = PreservationEvent.new(
-      event_details:    event['details'],
-      event_end:        event['end'] || DateTime.current,
-      event_start:      event['start'],
-      event_type:       event['type'],
-      initiating_user:  event['user'],
-      outcome:          event['outcome'],
+      event_details: event['details'],
+      event_end: event['end'] || DateTime.current,
+      event_start: event['start'],
+      event_type: event['type'],
+      initiating_user: event['user'],
+      outcome: event['outcome'],
       software_version: event['software_version']
     )
 
