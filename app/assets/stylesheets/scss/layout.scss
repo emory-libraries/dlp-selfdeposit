@@ -1,5 +1,5 @@
-@import 'colors.scss';
-@import 'fonts.scss';
+@import "colors.scss";
+@import "fonts.scss";
 
 /**** Main Layout ****/
 * {
@@ -11,7 +11,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   color: $charcoal;
   font-size: 1rem;
 }
@@ -41,7 +41,6 @@ h3 {
   color: $charcoal;
   font-size: 1.75rem;
 }
-
 
 /**** Helper Classes ****/
 
@@ -83,4 +82,46 @@ h3 {
 /** 30 spacer **/
 .spacer-30 {
   height: 30px;
+}
+
+/**** New Publication Form ****/
+#publication-form {
+  .card {
+    border-radius: 0;
+    border: 2px solid $base-blue; 
+
+    &:not(:last-child) {
+      border-bottom: 2px solid $dark-blue;
+      margin-bottom: 0;
+    }
+    .card-header {
+      padding: 0;
+
+      button {
+        &.collapsed {
+          text-decoration: none;
+        }
+
+        text-decoration: underline;
+        width: 100%;
+        padding: 20px 10px;
+        background-color: $base-blue;
+        font-family: $font-family-serif;
+        text-transform: none;
+        color: $white;
+        font-size: 1.5rem;
+        border: none;
+        // padding: 30px 10px 15px 10px;
+
+        &::after {
+          content: "❯";
+          float: right;
+          transform: rotate(90deg);
+          color: $white;
+          padding-left: 15px;
+          margin-top: -7px;
+        }
+      }
+    }
+  }
 }
