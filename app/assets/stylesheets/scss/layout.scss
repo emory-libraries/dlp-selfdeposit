@@ -85,10 +85,49 @@ h3 {
 }
 
 /**** New Publication Form ****/
+.add-pub-info {
+  padding: 1rem;
+  background: $light-slate;
+  margin-bottom: 1rem;
+}
+
+.genres-block {
+  .listing {
+    max-width: 100%;
+    li.field-wrapper {
+      width: 100%;
+      select {
+        border-radius: 0;
+      }
+      .field-controls {
+        margin: 0;
+      }
+    }
+  }
+}
+
 #publication-form {
   .card {
     border-radius: 0;
     border: 2px solid $base-blue; 
+
+    //minor field layout cleanup
+    select, input {
+      border-radius: 0;
+    }
+    textarea {
+      border-radius: 0;
+      height: 120px;
+    }
+    .multi_value .listing, .controlled_vocabulary .listing {
+      max-width: initial;
+    }
+    .multi_value .listing .input-group, .controlled_vocabulary .listing .input-group {
+      width: 100%;
+    }
+    .multi_value .field-controls, .controlled_vocabulary .field-controls {
+      margin: 0;
+    }
 
     &:not(:last-child) {
       border-bottom: 2px solid $dark-blue;
@@ -125,3 +164,4 @@ h3 {
     }
   }
 }
+/**** End Publication Form ****/
