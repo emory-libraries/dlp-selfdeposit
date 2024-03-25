@@ -1,0 +1,23 @@
+attributes:
+  workflow_type:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#workflowType
+  workflow_notes:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#workflowNote
+  workflow_rights_basis:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#workflowRightsBasis
+  workflow_rights_basis_note:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#workflowRightsBasisNote
+  workflow_rights_basis_date:
+    type: date_time
+    predicate: http://metadata.emory.edu/vocab/cor-terms#workflowRightsBasisDate
+  workflow_rights_basis_reviewer:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#workflowRightsBasisReviewer
+  workflow_rights_basis_uri:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#workflowRightsBasisURI
+

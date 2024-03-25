@@ -1,0 +1,31 @@
+attributes:
+  event_details:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#eventDetails
+  event_end:
+    type: date_time
+    predicate: http://metadata.emory.edu/vocab/cor-terms#eventEnd
+  event_id:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#eventIdentifier
+  event_start:
+    type: date_time
+    predicate: http://metadata.emory.edu/vocab/cor-terms#eventStart
+  event_type:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#eventType
+  fileset_id:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#filesetRelatedObject
+  initiating_user:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#eventUser
+  outcome:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#eventOutcome
+  software_version:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#softwareVersion
+  workflow_id:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#workflowRelatedObject
