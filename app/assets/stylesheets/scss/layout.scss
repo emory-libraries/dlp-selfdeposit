@@ -87,30 +87,41 @@ h3 {
 /**** New Publication Form ****/
 #publication-form {
   .card {
+    border-radius: 0;
+    border: 2px solid $base-blue; 
 
     &:not(:last-child) {
+      border-bottom: 2px solid $dark-blue;
       margin-bottom: 0;
     }
     .card-header {
       padding: 0;
-  
+
       button {
+        &.collapsed {
+          text-decoration: none;
+        }
+
+        text-decoration: underline;
         width: 100%;
         padding: 20px 10px;
+        background-color: $base-blue;
+        font-family: $font-family-serif;
+        text-transform: none;
+        color: $white;
+        font-size: 1.5rem;
+        border: none;
+        // padding: 30px 10px 15px 10px;
 
         &::after {
-          content: '❯';
+          content: "❯";
           float: right;
           transform: rotate(90deg);
-          color: #082b73;
+          color: $white;
           padding-left: 15px;
           margin-top: -7px;
         }
       }
     }
-  }
-
-  .carrot-thing {
-
   }
 }
