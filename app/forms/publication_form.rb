@@ -35,4 +35,8 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
      :issn, :series_title, :edition, :volume, :issue, :page_range_start, :page_range_end,
      :place_of_production, :sponsor, :grant_agencies, :grant_information, :related_datasets]
   end
+
+  def additional_information
+    [:abstract, :author_notes, :subject]
+  end
 end
