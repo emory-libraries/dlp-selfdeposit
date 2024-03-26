@@ -1,0 +1,4 @@
+attributes:
+  preservation_event_ids:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#preservationEventIDs
