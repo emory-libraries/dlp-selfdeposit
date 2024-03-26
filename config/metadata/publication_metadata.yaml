@@ -80,7 +80,6 @@ attributes:
     multiple: false
     form:
       primary: true
-      required: true
       multiple: false
     index_keys:
       - 'deduplication_key_tesi'
