@@ -26,7 +26,7 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
   def administrative_terms
     [:emory_ark, :rights_statement, :internal_rights_note, :staff_notes, :access_right,
      :system_of_record_ID, :emory_content_type, :holding_repository, :institution,
-     :data_classification, :date_created]
+     :data_classification, :date_created, :deduplication_key]
   end
 
   def publication_information
