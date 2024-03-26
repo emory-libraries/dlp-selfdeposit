@@ -1,3 +1,17 @@
+<div class="add-pub-info">
+  <p class="">Please provide a description of your publication so that it can be properly cited by others. Next, click on the Files tab when you are ready to upload your content.</p>
+  <hr class="my-4">
+    <p>The Save Work menu will indicate when you have completed all required elements for your submission.
+Please refer to our <%= link_to 'Help', help_path %> page for more guidance.</p>
+</div>
+
+
+<div class="genres-block">
+<% f.object.genres_block.each do |term| %>
+<%= render_edit_field_partial(term, f: f) %>
+<% end %>
+</div>
+
 <div class="accordion" id="publication-form">
   <div class="card">
     <div class="card-header" id="headingOne">
