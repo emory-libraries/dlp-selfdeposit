@@ -37,7 +37,7 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
   end
 
   def additional_information
-    [:abstract, :author_notes, :keyword, :subject]
+    [:abstract, :author_notes, :keyword, :subject, :research_categories]
   end
 
   def genres_block
