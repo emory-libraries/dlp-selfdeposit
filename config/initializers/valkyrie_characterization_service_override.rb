@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.0] - We take over #make_file_set_and_ingest to create a
-#   PreservationEvent registering the creation of a Publication's FileSet.
+# [Hyrax-overwrite-v5.0.0] - We take over .run to create a PreservationEvent
+#   registering the characterization of a Publication's FileSet.
 require './lib/preservation_events'
 
 Rails.application.config.to_prepare do
