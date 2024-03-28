@@ -1,0 +1,1301 @@
+---
+terms:
+- id: '0729'
+  term: Architecture
+  active: true
+- id: '0462'
+  term: Architectural engineering
+  active: true
+- id: '0390'
+  term: Landscape architecture
+  active: true
+- id: '0296'
+  term: African American studies
+  active: true
+- id: '0293'
+  term: African studies
+  active: true
+- id: '0323'
+  term: American studies
+  active: true
+- id: '0343'
+  term: Asian American studies
+  active: true
+- id: '0342'
+  term: Asian studies
+  active: true
+- id: '0361'
+  term: Baltic studies
+  active: true
+- id: '0325'
+  term: Black studies
+  active: true
+- id: '0385'
+  term: Canadian studies
+  active: true
+- id: '0432'
+  term: Caribbean studies
+  active: true
+- id: '0434'
+  term: Classical studies
+  active: true
+- id: '0437'
+  term: East European studies
+  active: true
+- id: '0631'
+  term: Ethnic studies
+  active: true
+- id: '0440'
+  term: European studies
+  active: true
+- id: '0482'
+  term: French Canadian culture
+  active: true
+- id: '0733'
+  term: Gender studies
+  active: true
+- id: '0492'
+  term: LGBTQ studies
+  active: true
+- id: '0737'
+  term: Hispanic American studies
+  active: true
+- id: '0507'
+  term: Holocaust studies
+  active: true
+- id: '0512'
+  term: Islamic studies
+  active: true
+- id: '0751'
+  term: Judaic studies
+  active: true
+- id: '0550'
+  term: Latin American studies
+  active: true
+- id: '0555'
+  term: Middle Eastern studies
+  active: true
+- id: '0740'
+  term: Native American studies
+  active: true
+- id: '0559'
+  term: Near Eastern studies
+  active: true
+- id: '0561'
+  term: Pacific Rim studies
+  active: true
+- id: '0604'
+  term: Regional studies
+  active: true
+- id: '0613'
+  term: Scandinavian studies
+  active: true
+- id: '0211'
+  term: Sexuality
+  active: true
+- id: '0614'
+  term: Slavic studies
+  active: true
+- id: '0654'
+  term: South African studies
+  active: true
+- id: '0638'
+  term: South Asian studies
+  active: true
+- id: '0560'
+  term: North African studies
+  active: true
+- id: '0639'
+  term: Sub Saharan Africa studies
+  active: true
+- id: '0453'
+  term: Womens studies
+  active: true
+- id: '0222'
+  term: Southeast Asian studies
+  active: true
+- id: '0272'
+  term: Accounting
+  active: true
+- id: '0424'
+  term: Arts management
+  active: true
+- id: '0770'
+  term: Banking
+  active: true
+- id: '0310'
+  term: Business administration
+  active: true
+- id: '0429'
+  term: Entrepreneurship
+  active: true
+- id: '0508'
+  term: Finance
+  active: true
+- id: '0454'
+  term: Management
+  active: true
+- id: '0338'
+  term: Marketing
+  active: true
+- id: '0430'
+  term: Sports management
+  active: true
+- id: '0459'
+  term: Communication
+  active: true
+- id: '0723'
+  term: Information science
+  active: true
+- id: '0391'
+  term: Journalism
+  active: true
+- id: '0399'
+  term: Library science
+  active: true
+- id: '0708'
+  term: Mass communication
+  active: true
+- id: '0643'
+  term: Technical communication
+  active: true
+- id: '0646'
+  term: Web studies
+  active: true
+- id: '0516'
+  term: Adult education
+  active: true
+- id: '0273'
+  term: Art education
+  active: true
+- id: '0282'
+  term: Bilingual education
+  active: true
+- id: '0688'
+  term: Business education
+  active: true
+- id: '0275'
+  term: Community college education
+  active: true
+- id: '0651'
+  term: Continuing education
+  active: true
+- id: '0727'
+  term: Curriculum development
+  active: true
+- id: '0518'
+  term: Early childhood education
+  active: true
+- id: '0515'
+  term: Education
+  active: true
+- id: '0520'
+  term: Education history
+  active: true
+- id: '0458'
+  term: Education policy
+  active: true
+- id: '0514'
+  term: Educational administration
+  active: true
+- id: '0443'
+  term: Educational evaluation
+  active: true
+- id: '0449'
+  term: Educational leadership
+  active: true
+- id: '0998'
+  term: Education philosophy
+  active: true
+- id: '0525'
+  term: Educational psychology
+  active: true
+- id: '0340'
+  term: Educational sociology
+  active: true
+- id: '0710'
+  term: Educational technology
+  active: true
+- id: '0288'
+  term: Educational tests & measurements
+  active: true
+- id: '0524'
+  term: Elementary education
+  active: true
+- id: '0456'
+  term: Pedagogy
+  active: true
+- id: '0529'
+  term: Special education
+  active: true
+- id: '0745'
+  term: Higher education
+  active: true
+- id: '0522'
+  term: Music education
+  active: true
+- id: '0441'
+  term: English as a second language---ESL
+  active: true
+- id: '0444'
+  term: Foreign language education
+  active: true
+- id: '0445'
+  term: Gifted education
+  active: true
+- id: '0680'
+  term: Health education
+  active: true
+- id: '0446'
+  term: Higher education administration
+  active: true
+- id: '0278'
+  term: Home economics education
+  active: true
+- id: '0521'
+  term: Industrial arts education
+  active: true
+- id: '0447'
+  term: Instructional design
+  active: true
+- id: '0279'
+  term: Language arts
+  active: true
+- id: '0280'
+  term: Mathematics education
+  active: true
+- id: '0450'
+  term: Middle school education
+  active: true
+- id: '0455'
+  term: Multicultural education
+  active: true
+- id: '0457'
+  term: Performing arts education
+  active: true
+- id: '0523'
+  term: Physical education
+  active: true
+- id: '0535'
+  term: Reading instruction
+  active: true
+- id: '0527'
+  term: Religious education
+  active: true
+- id: '0519'
+  term: School counseling
+  active: true
+- id: '0714'
+  term: Science education
+  active: true
+- id: '0533'
+  term: Secondary education
+  active: true
+- id: '0534'
+  term: Social sciences education
+  active: true
+- id: '0530'
+  term: Teacher education
+  active: true
+- id: '0747'
+  term: Vocational education
+  active: true
+- id: '0365'
+  term: Art criticism
+  active: true
+- id: '0377'
+  term: Art history
+  active: true
+- id: '0435'
+  term: Cinematography
+  active: true
+- id: '0378'
+  term: Dance
+  active: true
+- id: '0389'
+  term: Design
+  active: true
+- id: '0200'
+  term: Fashion
+  active: true
+- id: '0900'
+  term: Film studies
+  active: true
+- id: '0357'
+  term: Fine arts
+  active: true
+- id: '0413'
+  term: Music
+  active: true
+- id: '0214'
+  term: Musical composition
+  active: true
+- id: '0943'
+  term: Musical performances
+  active: true
+- id: '0208'
+  term: Music history
+  active: true
+- id: '0221'
+  term: Music theory
+  active: true
+- id: '0641'
+  term: Performing arts
+  active: true
+- id: '0465'
+  term: Theater
+  active: true
+- id: '0644'
+  term: Theater history
+  active: true
+- id: '0331'
+  term: African history
+  active: true
+- id: '0337'
+  term: American history
+  active: true
+- id: '0579'
+  term: Ancient history
+  active: true
+- id: '0332'
+  term: Asian history
+  active: true
+- id: '0328'
+  term: Black history
+  active: true
+- id: '0334'
+  term: Canadian history
+  active: true
+- id: '0335'
+  term: European history
+  active: true
+- id: '0578'
+  term: History
+  active: true
+- id: '0504'
+  term: History of Oceania
+  active: true
+- id: '0336'
+  term: Latin American history
+  active: true
+- id: '0581'
+  term: Medieval history
+  active: true
+- id: '0333'
+  term: Middle Eastern history
+  active: true
+- id: '0722'
+  term: Military history
+  active: true
+- id: '0582'
+  term: Modern history
+  active: true
+- id: '0724'
+  term: Russian history
+  active: true
+- id: '0585'
+  term: Science history
+  active: true
+- id: '0506'
+  term: World history
+  active: true
+- id: '0363'
+  term: Alternative energy
+  active: true
+- id: '0304'
+  term: Biographies
+  active: true
+- id: '0404'
+  term: Climate change
+  active: true
+- id: '0436'
+  term: Cultural resources management
+  active: true
+- id: '0201'
+  term: Disability studies
+  active: true
+- id: '0791'
+  term: Energy
+  active: true
+- id: '0359'
+  term: Food science
+  active: true
+- id: '0386'
+  term: Home economics
+  active: true
+- id: '0489'
+  term: Information technology
+  active: true
+- id: '0558'
+  term: Multimedia communications
+  active: true
+- id: '0730'
+  term: Museum studies
+  active: true
+- id: '0640'
+  term: Sustainability
+  active: true
+- id: '0994'
+  term: Textile research
+  active: true
+- id: '0746'
+  term: Wood sciences
+  active: true
+- id: '0324'
+  term: Archaeology
+  active: true
+- id: '0341'
+  term: Area planning and development
+  active: true
+- id: '0505'
+  term: Commerce-Business
+  active: true
+- id: '0627'
+  term: Criminology
+  active: true
+- id: '0326'
+  term: Cultural anthropology
+  active: true
+- id: '0938'
+  term: Demography
+  active: true
+- id: '0509'
+  term: Economic history
+  active: true
+- id: '0511'
+  term: Economic theory
+  active: true
+- id: '0501'
+  term: Economics
+  active: true
+- id: '0358'
+  term: Folklore
+  active: true
+- id: '0339'
+  term: Forensic anthropology
+  active: true
+- id: '0366'
+  term: Geography
+  active: true
+- id: '0741'
+  term: Indigenous studies
+  active: true
+- id: '0628'
+  term: Individual & family studies
+  active: true
+- id: '0601'
+  term: International relations
+  active: true
+- id: '0510'
+  term: Labor economics
+  active: true
+- id: '0629'
+  term: Labor relations
+  active: true
+- id: '0750'
+  term: Military studies
+  active: true
+- id: '0635'
+  term: Organization theory
+  active: true
+- id: '0703'
+  term: Organizational behavior
+  active: true
+- id: '0563'
+  term: Peace studies
+  active: true
+- id: '0327'
+  term: Physical anthropology
+  active: true
+- id: '0615'
+  term: Political science
+  active: true
+- id: '0617'
+  term: Public administration
+  active: true
+- id: '0630'
+  term: Public policy
+  active: true
+- id: '0814'
+  term: Recreation
+  active: true
+- id: '0344'
+  term: Social research
+  active: true
+- id: '0700'
+  term: Social structure
+  active: true
+- id: '0452'
+  term: Social work
+  active: true
+- id: '0636'
+  term: Sociolinguistics
+  active: true
+- id: '0626'
+  term: Sociology
+  active: true
+- id: '0709'
+  term: Transportation
+  active: true
+- id: '0999'
+  term: Urban planning
+  active: true
+- id: '0316'
+  term: African literature
+  active: true
+- id: '0591'
+  term: American literature
+  active: true
+- id: '0289'
+  term: Ancient languages
+  active: true
+- id: '0305'
+  term: Asian literature
+  active: true
+- id: '0356'
+  term: Australian literature
+  active: true
+- id: '0593'
+  term: British & Irish literature
+  active: true
+- id: '0352'
+  term: Canadian literature
+  active: true
+- id: '0360'
+  term: Caribbean literature
+  active: true
+- id: '0294'
+  term: Classical literature
+  active: true
+- id: '0295'
+  term: Comparative literature
+  active: true
+- id: '0203'
+  term: Creative writing
+  active: true
+- id: '0355'
+  term: French Canadian literature
+  active: true
+- id: '0205'
+  term: French literature
+  active: true
+- id: '0311'
+  term: German literature
+  active: true
+- id: '0362'
+  term: Icelandic & Scandinavian literature
+  active: true
+- id: '0220'
+  term: Italian literature
+  active: true
+- id: '0679'
+  term: Language
+  active: true
+- id: '0312'
+  term: Latin American literature
+  active: true
+- id: '0290'
+  term: Linguistics
+  active: true
+- id: '0401'
+  term: Literature
+  active: true
+- id: '0297'
+  term: Medieval literature
+  active: true
+- id: '0315'
+  term: Middle Eastern literature
+  active: true
+- id: '0291'
+  term: Modern language
+  active: true
+- id: '0298'
+  term: Modern literature
+  active: true
+- id: '0681'
+  term: Rhetoric
+  active: true
+- id: '0313'
+  term: Romance literature
+  active: true
+- id: '0314'
+  term: Slavic literature
+  active: true
+- id: '0213'
+  term: Translation studies
+  active: true
+- id: '0649'
+  term: Alternative dispute resolution
+  active: true
+- id: '0513'
+  term: Intellectual property
+  active: true
+- id: '0616'
+  term: International law
+  active: true
+- id: '0398'
+  term: Law
+  active: true
+- id: '0206'
+  term: Law enforcement
+  active: true
+- id: '0562'
+  term: Patent law
+  active: true
+- id: '0650'
+  term: Aesthetics
+  active: true
+- id: '0321'
+  term: Biblical studies
+  active: true
+- id: '0375'
+  term: Canon law
+  active: true
+- id: '0319'
+  term: Clergy
+  active: true
+- id: '0618'
+  term: Comparative religion
+  active: true
+- id: '0376'
+  term: Divinity
+  active: true
+- id: '0393'
+  term: Epistemology
+  active: true
+- id: '0394'
+  term: Ethics
+  active: true
+- id: '0395'
+  term: Logic
+  active: true
+- id: '0396'
+  term: Metaphysics
+  active: true
+- id: '0397'
+  term: Pastoral counseling
+  active: true
+- id: '0422'
+  term: Philosophy
+  active: true
+- id: '0322'
+  term: Philosophy of religion
+  active: true
+- id: '0402'
+  term: Philosophy of science
+  active: true
+- id: '0318'
+  term: Religion
+  active: true
+- id: '0320'
+  term: Religious history
+  active: true
+- id: '0647'
+  term: Spirituality
+  active: true
+- id: '0469'
+  term: Theology
+  active: true
+- id: '0473'
+  term: Agriculture
+  active: true
+- id: '0503'
+  term: Agriculture economics
+  active: true
+- id: '0517'
+  term: Agriculture education
+  active: true
+- id: '0539'
+  term: Agriculture engineering
+  active: true
+- id: '0285'
+  term: Agronomy
+  active: true
+- id: '0476'
+  term: Animal diseases
+  active: true
+- id: '0475'
+  term: Animal sciences
+  active: true
+- id: '0792'
+  term: Aquatic sciences
+  active: true
+- id: '0478'
+  term: Forestry
+  active: true
+- id: '0471'
+  term: Horticulture
+  active: true
+- id: '0480'
+  term: Plant pathology
+  active: true
+- id: '0479'
+  term: Plant sciences
+  active: true
+- id: '0777'
+  term: Range management
+  active: true
+- id: '0481'
+  term: Soil sciences
+  active: true
+- id: '0281'
+  term: Urban forestry
+  active: true
+- id: '0286'
+  term: Wildlife management
+  active: true
+- id: '0384'
+  term: Behavioral psychology
+  active: true
+- id: '0602'
+  term: Behavioral sciences
+  active: true
+- id: '0622'
+  term: Clinical psychology
+  active: true
+- id: '0633'
+  term: Cognitive psychology
+  active: true
+- id: '0603'
+  term: Counseling psychology
+  active: true
+- id: '0620'
+  term: Developmental psychology
+  active: true
+- id: '0623'
+  term: Experimental psychology
+  active: true
+- id: '0624'
+  term: Occupational psychology
+  active: true
+- id: '0625'
+  term: Personality psychology
+  active: true
+- id: '0989'
+  term: Physiological psychology
+  active: true
+- id: '0349'
+  term: Psychobiology
+  active: true
+- id: '0621'
+  term: Psychology
+  active: true
+- id: '0632'
+  term: Quantitative psychology
+  active: true
+- id: '0451'
+  term: Social psychology
+  active: true
+- id: '0487'
+  term: Biochemistry
+  active: true
+- id: '0715'
+  term: Bioinformatics
+  active: true
+- id: '0306'
+  term: Biology
+  active: true
+- id: '0648'
+  term: Biomechanics
+  active: true
+- id: '0786'
+  term: Biophysics
+  active: true
+- id: '0308'
+  term: Biostatistics
+  active: true
+- id: '0309'
+  term: Botany
+  active: true
+- id: '0379'
+  term: Cellular biology
+  active: true
+- id: '0758'
+  term: Developmental biology
+  active: true
+- id: '0409'
+  term: Endocrinology
+  active: true
+- id: '0353'
+  term: Entomology
+  active: true
+- id: '0412'
+  term: Evolution & development
+  active: true
+- id: '0369'
+  term: Genetics
+  active: true
+- id: '0414'
+  term: Histology
+  active: true
+- id: '0793'
+  term: Limnology
+  active: true
+- id: '0410'
+  term: Microbiology
+  active: true
+- id: '0307'
+  term: Molecular biology
+  active: true
+- id: '0287'
+  term: Morphology
+  active: true
+- id: '0317'
+  term: Neurosciences
+  active: true
+- id: '0718'
+  term: Parasitology
+  active: true
+- id: '0719'
+  term: Physiology
+  active: true
+- id: '0423'
+  term: Systematic biology
+  active: true
+- id: '0720'
+  term: Virology
+  active: true
+- id: '0472'
+  term: Zoology
+  active: true
+- id: '0329'
+  term: Ecology
+  active: true
+- id: '0420'
+  term: Macroecology
+  active: true
+- id: '0426'
+  term: Paleoecology
+  active: true
+- id: '0538'
+  term: Aerospace engineering
+  active: true
+- id: '0800'
+  term: Artificial intelligence
+  active: true
+- id: '0540'
+  term: Automotive engineering
+  active: true
+- id: '0202'
+  term: Bioengineering
+  active: true
+- id: '0541'
+  term: Biomedical engineering
+  active: true
+- id: '0542'
+  term: Chemical engineering
+  active: true
+- id: '0543'
+  term: Civil engineering
+  active: true
+- id: '0464'
+  term: Computer engineering
+  active: true
+- id: '0984'
+  term: Computer science
+  active: true
+- id: '0544'
+  term: Electrical engineering
+  active: true
+- id: '0537'
+  term: Engineering
+  active: true
+- id: '0466'
+  term: Geological engineering
+  active: true
+- id: '0428'
+  term: Geotechnology
+  active: true
+- id: '0546'
+  term: Industrial engineering
+  active: true
+- id: '0548'
+  term: Mechanical engineering
+  active: true
+- id: '0551'
+  term: Mining
+  active: true
+- id: '0468'
+  term: Naval engineering
+  active: true
+- id: '0652'
+  term: Nanotechnology
+  active: true
+- id: '0552'
+  term: Nuclear engineering
+  active: true
+- id: '0547'
+  term: Ocean engineering
+  active: true
+- id: '0796'
+  term: Operations research
+  active: true
+- id: '0549'
+  term: Packaging
+  active: true
+- id: '0765'
+  term: Petroleum engineering
+  active: true
+- id: '0795'
+  term: Plastics
+  active: true
+- id: '0467'
+  term: Geophysical engineering
+  active: true
+- id: '0218'
+  term: Hydraulic engineering
+  active: true
+- id: '0771'
+  term: Robotics
+  active: true
+- id: '0790'
+  term: System science
+  active: true
+- id: '0408'
+  term: Conservation biology
+  active: true
+- id: '0438'
+  term: Environmental economics
+  active: true
+- id: '0442'
+  term: Environmental education
+  active: true
+- id: '0775'
+  term: Environmental engineering
+  active: true
+- id: '0407'
+  term: Environmental geology
+  active: true
+- id: '0470'
+  term: Environmental health
+  active: true
+- id: '0619'
+  term: Environmental justice
+  active: true
+- id: '0439'
+  term: Environmental law
+  active: true
+- id: '0474'
+  term: Environmental management
+  active: true
+- id: '0392'
+  term: Environmental philosophy
+  active: true
+- id: '0768'
+  term: Environmental science
+  active: true
+- id: '0477'
+  term: Environmental studies
+  active: true
+- id: '0536'
+  term: Land use planning
+  active: true
+- id: '0528'
+  term: Natural resource management
+  active: true
+- id: '0595'
+  term: Water resources management
+  active: true
+- id: '0284'
+  term: Wildlife conservation
+  active: true
+- id: '0367'
+  term: Aeronomy
+  active: true
+- id: '0371'
+  term: Atmospheric chemistry
+  active: true
+- id: '0725'
+  term: Atmospheric sciences
+  active: true
+- id: '0425'
+  term: Biogeochemistry
+  active: true
+- id: '0416'
+  term: Biological oceanography
+  active: true
+- id: '0403'
+  term: Chemical oceanography
+  active: true
+- id: '0406'
+  term: Continental dynamics
+  active: true
+- id: '0483'
+  term: Geobiology
+  active: true
+- id: '0996'
+  term: Geochemistry
+  active: true
+- id: '0370'
+  term: Geographic information science
+  active: true
+- id: '0372'
+  term: Geology
+  active: true
+- id: '0484'
+  term: Geomorphology
+  active: true
+- id: '0373'
+  term: Geophysics
+  active: true
+- id: '0388'
+  term: Hydrologic sciences
+  active: true
+- id: '0556'
+  term: Marine geology
+  active: true
+- id: '0557'
+  term: Meteorology
+  active: true
+- id: '0411'
+  term: Mineralogy
+  active: true
+- id: '0653'
+  term: Paleoclimate science
+  active: true
+- id: '0418'
+  term: Paleontology
+  active: true
+- id: '0583'
+  term: Petroleum geology
+  active: true
+- id: '0584'
+  term: Petrology
+  active: true
+- id: '0368'
+  term: Physical geography
+  active: true
+- id: '0415'
+  term: Physical oceanography
+  active: true
+- id: '0590'
+  term: Planetology
+  active: true
+- id: '0592'
+  term: Plate tectonics
+  active: true
+- id: '0799'
+  term: Remote sensing
+  active: true
+- id: '0594'
+  term: Sedimentary geology
+  active: true
+- id: '0594'
+  term: Aging
+  active: true
+- id: '0496'
+  term: Alternative medicine
+  active: true
+- id: '0300'
+  term: Audiology
+  active: true
+- id: '0567'
+  term: Dentistry
+  active: true
+- id: '0766'
+  term: Epidemiology
+  active: true
+- id: '0351'
+  term: Gerontology
+  active: true
+- id: '0769'
+  term: Health care management
+  active: true
+- id: '0566'
+  term: Health sciences
+  active: true
+- id: '0982'
+  term: Immunology
+  active: true
+- id: '0575'
+  term: Kinesiology
+  active: true
+- id: '0497'
+  term: Medical ethics
+  active: true
+- id: '0574'
+  term: Medical imaging
+  active: true
+- id: '0207'
+  term: Medical personnel
+  active: true
+- id: '0564'
+  term: Medicine
+  active: true
+- id: '0347'
+  term: Mental health
+  active: true
+- id: '0209'
+  term: Music therapy
+  active: true
+- id: '0569'
+  term: Nursing
+  active: true
+- id: '0570'
+  term: Nutrition
+  active: true
+- id: '0380'
+  term: Obstetrics
+  active: true
+- id: '0354'
+  term: Occupational safety
+  active: true
+- id: '0498'
+  term: Occupational therapy
+  active: true
+- id: '0992'
+  term: Oncology
+  active: true
+- id: '0381'
+  term: Ophthalmology
+  active: true
+- id: '0210'
+  term: Optometry
+  active: true
+- id: '0499'
+  term: Osteopathic medicine
+  active: true
+- id: '0571'
+  term: Pathology
+  active: true
+- id: '0572'
+  term: Pharmaceutical sciences
+  active: true
+- id: '0419'
+  term: Pharmacology
+  active: true
+- id: '0382'
+  term: Physical therapy
+  active: true
+- id: '0573'
+  term: Public health
+  active: true
+- id: '0500'
+  term: Public health education
+  active: true
+- id: '0460'
+  term: Speech therapy
+  active: true
+- id: '0576'
+  term: Surgery
+  active: true
+- id: '0212'
+  term: Therapy
+  active: true
+- id: '0383'
+  term: Toxicology
+  active: true
+- id: '0778'
+  term: Veterinary services
+  active: true
+- id: '0986'
+  term: Acoustics
+  active: true
+- id: '0486'
+  term: Analytical chemistry
+  active: true
+- id: '0364'
+  term: Applied mathematics
+  active: true
+- id: '0215'
+  term: Applied physics
+  active: true
+- id: '0606'
+  term: Astronomy
+  active: true
+- id: '0596'
+  term: Astrophysics
+  active: true
+- id: '0748'
+  term: Atomic physics
+  active: true
+- id: '0485'
+  term: Chemistry
+  active: true
+- id: '0219'
+  term: Computational chemistry
+  active: true
+- id: '0216'
+  term: Computational physics
+  active: true
+- id: '0611'
+  term: Condensed matter physics
+  active: true
+- id: '0607'
+  term: Electromagnetics
+  active: true
+- id: '0204'
+  term: Fluid mechanics
+  active: true
+- id: '0798'
+  term: Particle physics
+  active: true
+- id: '0597'
+  term: High temperature physics
+  active: true
+- id: '0488'
+  term: Inorganic chemistry
+  active: true
+- id: '0598'
+  term: Low temperature physics
+  active: true
+- id: '0794'
+  term: Materials science
+  active: true
+- id: '0405'
+  term: Mathematics
+  active: true
+- id: '0346'
+  term: Mechanics
+  active: true
+- id: '0431'
+  term: Molecular chemistry
+  active: true
+- id: '0609'
+  term: Molecular physics
+  active: true
+- id: '0565'
+  term: Nanoscience
+  active: true
+- id: '0738'
+  term: Nuclear chemistry
+  active: true
+- id: '0756'
+  term: Nuclear physics
+  active: true
+- id: '0752'
+  term: Optics
+  active: true
+- id: '0490'
+  term: Organic chemistry
+  active: true
+- id: '0494'
+  term: Physical chemistry
+  active: true
+- id: '0605'
+  term: Physics
+  active: true
+- id: '0759'
+  term: Plasma physics
+  active: true
+- id: '0495'
+  term: Polymer chemistry
+  active: true
+- id: '0599'
+  term: Quantum physics
+  active: true
+- id: '0217'
+  term: Statistical physics
+  active: true
+- id: '0463'
+  term: Statistics
+  active: true
+- id: '0642'
+  term: Theoretical mathematics
+  active: true
+- id: '0753'
+  term: Theoretical physics
+  active: true
+- id: '0348'
+  term: Thermodynamics
+  active: true

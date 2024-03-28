@@ -20,6 +20,7 @@
 //= require popper
 //= require twitter/typeahead
 //= require bootstrap
+//= require bootstrap-select
 //= require jquery.dataTables
 //= require dataTables.bootstrap4
 //= require blacklight/blacklight

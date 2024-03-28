@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require dataTables.bootstrap4
+ *= require bootstrap-select
  *= require_self
  */
 
@@ -45,4 +46,15 @@ a.footer-link {
     color: #ffffff;
     /*line-height: 150%;*/
     /*margin-top: 3.5%;*/
+}
+
+.bootstrap-select .btn-light {
+  border-color: #fff;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+}
+
+.bootstrap-select .filter-option {
+  text-transform: none;
+  font-weight: normal;
 }

@@ -247,6 +247,15 @@ attributes:
     index_keys:
       - 'related_datasets_tesim'
     predicate: http://purl.org/dc/terms/relation#dataset
+  research_categories:
+    type: string
+    multiple: true
+    form:
+      primary: true
+      multiple: true
+    index_keys:
+      - 'research_categories_tesim'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#researchCategories
   series_title:
     type: string
     multiple: false
