@@ -1,9 +1,9 @@
 <% service = SelfDeposit::ResearchCategoriesService.new %>
-<%= f.input :research_categories, as: :multi_value_select,
+<%= f.input :research_categories,
     collection: service.select_active_options,
     include_blank: true,
     item_helper: service.method(:include_current_value),
-    input_html: { class: 'form-control selectpicker', data: { live_search: true, size: '10', title: 'Select a value'} } %>
+    input_html: { class: 'form-control selectpicker', data: { live_search: true, size: '10', title: 'Select a value', actions_box: true}, multiple: true } %>
 
 <script>
   $(document).ready(function() {

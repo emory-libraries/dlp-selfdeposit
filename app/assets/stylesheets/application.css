@@ -48,10 +48,11 @@ a.footer-link {
     /*margin-top: 3.5%;*/
 }
 
-.bootstrap-select .btn-light {
+.bootstrap-select .btn {
   border-color: #fff;
   background-color: #fff;
   border: 1px solid #ced4da;
+  white-space: normal;
 }
 
 .bootstrap-select .filter-option {

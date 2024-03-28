@@ -1,1301 +1,1734 @@
 ---
 terms:
-- id: '0729'
+- id: Architecture
   term: Architecture
   active: true
-- id: '0462'
+  reference: '0729'
+- id: Architectural engineering
   term: Architectural engineering
   active: true
-- id: '0390'
+  reference: '0462'
+- id: Landscape architecture
   term: Landscape architecture
   active: true
-- id: '0296'
+  reference: '0390'
+- id: African American studies
   term: African American studies
   active: true
-- id: '0293'
+  reference: '0296'
+- id: African studies
   term: African studies
   active: true
-- id: '0323'
+  reference: '0293'
+- id: American studies
   term: American studies
   active: true
-- id: '0343'
+  reference: '0323'
+- id: Asian American studies
   term: Asian American studies
   active: true
-- id: '0342'
+  reference: '0343'
+- id: Asian studies
   term: Asian studies
   active: true
-- id: '0361'
+  reference: '0342'
+- id: Baltic studies
   term: Baltic studies
   active: true
-- id: '0325'
+  reference: '0361'
+- id: Black studies
   term: Black studies
   active: true
-- id: '0385'
+  reference: '0325'
+- id: Canadian studies
   term: Canadian studies
   active: true
-- id: '0432'
+  reference: '0385'
+- id: Caribbean studies
   term: Caribbean studies
   active: true
-- id: '0434'
+  reference: '0432'
+- id: Classical studies
   term: Classical studies
   active: true
-- id: '0437'
+  reference: '0434'
+- id: East European studies
   term: East European studies
   active: true
-- id: '0631'
+  reference: '0437'
+- id: Ethnic studies
   term: Ethnic studies
   active: true
-- id: '0440'
+  reference: '0631'
+- id: European studies
   term: European studies
   active: true
-- id: '0482'
+  reference: '0440'
+- id: French Canadian culture
   term: French Canadian culture
   active: true
-- id: '0733'
+  reference: '0482'
+- id: Gender studies
   term: Gender studies
   active: true
-- id: '0492'
+  reference: '0733'
+- id: LGBTQ studies
   term: LGBTQ studies
   active: true
-- id: '0737'
+  reference: '0492'
+- id: Hispanic American studies
   term: Hispanic American studies
   active: true
-- id: '0507'
+  reference: '0737'
+- id: Holocaust studies
   term: Holocaust studies
   active: true
-- id: '0512'
+  reference: '0507'
+- id: Islamic studies
   term: Islamic studies
   active: true
-- id: '0751'
+  reference: '0512'
+- id: Judaic studies
   term: Judaic studies
   active: true
-- id: '0550'
+  reference: '0751'
+- id: Latin American studies
   term: Latin American studies
   active: true
-- id: '0555'
+  reference: '0550'
+- id: Middle Eastern studies
   term: Middle Eastern studies
   active: true
-- id: '0740'
+  reference: '0555'
+- id: Native American studies
   term: Native American studies
   active: true
-- id: '0559'
+  reference: '0740'
+- id: Near Eastern studies
   term: Near Eastern studies
   active: true
-- id: '0561'
+  reference: '0559'
+- id: Pacific Rim studies
   term: Pacific Rim studies
   active: true
-- id: '0604'
+  reference: '0561'
+- id: Regional studies
   term: Regional studies
   active: true
-- id: '0613'
+  reference: '0604'
+- id: Scandinavian studies
   term: Scandinavian studies
   active: true
-- id: '0211'
+  reference: '0613'
+- id: Sexuality
   term: Sexuality
   active: true
-- id: '0614'
+  reference: '0211'
+- id: Slavic studies
   term: Slavic studies
   active: true
-- id: '0654'
+  reference: '0614'
+- id: South African studies
   term: South African studies
   active: true
-- id: '0638'
+  reference: '0654'
+- id: South Asian studies
   term: South Asian studies
   active: true
-- id: '0560'
+  reference: '0638'
+- id: North African studies
   term: North African studies
   active: true
-- id: '0639'
+  reference: '0560'
+- id: Sub Saharan Africa studies
   term: Sub Saharan Africa studies
   active: true
-- id: '0453'
+  reference: '0639'
+- id: Womens studies
   term: Womens studies
   active: true
-- id: '0222'
+  reference: '0453'
+- id: Southeast Asian studies
   term: Southeast Asian studies
   active: true
-- id: '0272'
+  reference: '0222'
+- id: Accounting
   term: Accounting
   active: true
-- id: '0424'
+  reference: '0272'
+- id: Arts management
   term: Arts management
   active: true
-- id: '0770'
+  reference: '0424'
+- id: Banking
   term: Banking
   active: true
-- id: '0310'
+  reference: '0770'
+- id: Business administration
   term: Business administration
   active: true
-- id: '0429'
+  reference: '0310'
+- id: Entrepreneurship
   term: Entrepreneurship
   active: true
-- id: '0508'
+  reference: '0429'
+- id: Finance
   term: Finance
   active: true
-- id: '0454'
+  reference: '0508'
+- id: Management
   term: Management
   active: true
-- id: '0338'
+  reference: '0454'
+- id: Marketing
   term: Marketing
   active: true
-- id: '0430'
+  reference: '0338'
+- id: Sports management
   term: Sports management
   active: true
-- id: '0459'
+  reference: '0430'
+- id: Communication
   term: Communication
   active: true
-- id: '0723'
+  reference: '0459'
+- id: Information science
   term: Information science
   active: true
-- id: '0391'
+  reference: '0723'
+- id: Journalism
   term: Journalism
   active: true
-- id: '0399'
+  reference: '0391'
+- id: Library science
   term: Library science
   active: true
-- id: '0708'
+  reference: '0399'
+- id: Mass communication
   term: Mass communication
   active: true
-- id: '0643'
+  reference: '0708'
+- id: Technical communication
   term: Technical communication
   active: true
-- id: '0646'
+  reference: '0643'
+- id: Web studies
   term: Web studies
   active: true
-- id: '0516'
+  reference: '0646'
+- id: Adult education
   term: Adult education
   active: true
-- id: '0273'
+  reference: '0516'
+- id: Art education
   term: Art education
   active: true
-- id: '0282'
+  reference: '0273'
+- id: Bilingual education
   term: Bilingual education
   active: true
-- id: '0688'
+  reference: '0282'
+- id: Business education
   term: Business education
   active: true
-- id: '0275'
+  reference: '0688'
+- id: Community college education
   term: Community college education
   active: true
-- id: '0651'
+  reference: '0275'
+- id: Continuing education
   term: Continuing education
   active: true
-- id: '0727'
+  reference: '0651'
+- id: Curriculum development
   term: Curriculum development
   active: true
-- id: '0518'
+  reference: '0727'
+- id: Early childhood education
   term: Early childhood education
   active: true
-- id: '0515'
+  reference: '0518'
+- id: Education
   term: Education
   active: true
-- id: '0520'
+  reference: '0515'
+- id: Education history
   term: Education history
   active: true
-- id: '0458'
+  reference: '0520'
+- id: Education policy
   term: Education policy
   active: true
-- id: '0514'
+  reference: '0458'
+- id: Educational administration
   term: Educational administration
   active: true
-- id: '0443'
+  reference: '0514'
+- id: Educational evaluation
   term: Educational evaluation
   active: true
-- id: '0449'
+  reference: '0443'
+- id: Educational leadership
   term: Educational leadership
   active: true
-- id: '0998'
+  reference: '0449'
+- id: Education philosophy
   term: Education philosophy
   active: true
-- id: '0525'
+  reference: '0998'
+- id: Educational psychology
   term: Educational psychology
   active: true
-- id: '0340'
+  reference: '0525'
+- id: Educational sociology
   term: Educational sociology
   active: true
-- id: '0710'
+  reference: '0340'
+- id: Educational technology
   term: Educational technology
   active: true
-- id: '0288'
+  reference: '0710'
+- id: Educational tests & measurements
   term: Educational tests & measurements
   active: true
-- id: '0524'
+  reference: '0288'
+- id: Elementary education
   term: Elementary education
   active: true
-- id: '0456'
+  reference: '0524'
+- id: Pedagogy
   term: Pedagogy
   active: true
-- id: '0529'
+  reference: '0456'
+- id: Special education
   term: Special education
   active: true
-- id: '0745'
+  reference: '0529'
+- id: Higher education
   term: Higher education
   active: true
-- id: '0522'
+  reference: '0745'
+- id: Music education
   term: Music education
   active: true
-- id: '0441'
+  reference: '0522'
+- id: English as a second language---ESL
   term: English as a second language---ESL
   active: true
-- id: '0444'
+  reference: '0441'
+- id: Foreign language education
   term: Foreign language education
   active: true
-- id: '0445'
+  reference: '0444'
+- id: Gifted education
   term: Gifted education
   active: true
-- id: '0680'
+  reference: '0445'
+- id: Health education
   term: Health education
   active: true
-- id: '0446'
+  reference: '0680'
+- id: Higher education administration
   term: Higher education administration
   active: true
-- id: '0278'
+  reference: '0446'
+- id: Home economics education
   term: Home economics education
   active: true
-- id: '0521'
+  reference: '0278'
+- id: Industrial arts education
   term: Industrial arts education
   active: true
-- id: '0447'
+  reference: '0521'
+- id: Instructional design
   term: Instructional design
   active: true
-- id: '0279'
+  reference: '0447'
+- id: Language arts
   term: Language arts
   active: true
-- id: '0280'
+  reference: '0279'
+- id: Mathematics education
   term: Mathematics education
   active: true
-- id: '0450'
+  reference: '0280'
+- id: Middle school education
   term: Middle school education
   active: true
-- id: '0455'
+  reference: '0450'
+- id: Multicultural education
   term: Multicultural education
   active: true
-- id: '0457'
+  reference: '0455'
+- id: Performing arts education
   term: Performing arts education
   active: true
-- id: '0523'
+  reference: '0457'
+- id: Physical education
   term: Physical education
   active: true
-- id: '0535'
+  reference: '0523'
+- id: Reading instruction
   term: Reading instruction
   active: true
-- id: '0527'
+  reference: '0535'
+- id: Religious education
   term: Religious education
   active: true
-- id: '0519'
+  reference: '0527'
+- id: School counseling
   term: School counseling
   active: true
-- id: '0714'
+  reference: '0519'
+- id: Science education
   term: Science education
   active: true
-- id: '0533'
+  reference: '0714'
+- id: Secondary education
   term: Secondary education
   active: true
-- id: '0534'
+  reference: '0533'
+- id: Social sciences education
   term: Social sciences education
   active: true
-- id: '0530'
+  reference: '0534'
+- id: Teacher education
   term: Teacher education
   active: true
-- id: '0747'
+  reference: '0530'
+- id: Vocational education
   term: Vocational education
   active: true
-- id: '0365'
+  reference: '0747'
+- id: Art criticism
   term: Art criticism
   active: true
-- id: '0377'
+  reference: '0365'
+- id: Art history
   term: Art history
   active: true
-- id: '0435'
+  reference: '0377'
+- id: Cinematography
   term: Cinematography
   active: true
-- id: '0378'
+  reference: '0435'
+- id: Dance
   term: Dance
   active: true
-- id: '0389'
+  reference: '0378'
+- id: Design
   term: Design
   active: true
-- id: '0200'
+  reference: '0389'
+- id: Fashion
   term: Fashion
   active: true
-- id: '0900'
+  reference: '0200'
+- id: Film studies
   term: Film studies
   active: true
-- id: '0357'
+  reference: '0900'
+- id: Fine arts
   term: Fine arts
   active: true
-- id: '0413'
+  reference: '0357'
+- id: Music
   term: Music
   active: true
-- id: '0214'
+  reference: '0413'
+- id: Musical composition
   term: Musical composition
   active: true
-- id: '0943'
+  reference: '0214'
+- id: Musical performances
   term: Musical performances
   active: true
-- id: '0208'
+  reference: '0943'
+- id: Music history
   term: Music history
   active: true
-- id: '0221'
+  reference: '0208'
+- id: Music theory
   term: Music theory
   active: true
-- id: '0641'
+  reference: '0221'
+- id: Performing arts
   term: Performing arts
   active: true
-- id: '0465'
+  reference: '0641'
+- id: Theater
   term: Theater
   active: true
-- id: '0644'
+  reference: '0465'
+- id: Theater history
   term: Theater history
   active: true
-- id: '0331'
+  reference: '0644'
+- id: African history
   term: African history
   active: true
-- id: '0337'
+  reference: '0331'
+- id: American history
   term: American history
   active: true
-- id: '0579'
+  reference: '0337'
+- id: Ancient history
   term: Ancient history
   active: true
-- id: '0332'
+  reference: '0579'
+- id: Asian history
   term: Asian history
   active: true
-- id: '0328'
+  reference: '0332'
+- id: Black history
   term: Black history
   active: true
-- id: '0334'
+  reference: '0328'
+- id: Canadian history
   term: Canadian history
   active: true
-- id: '0335'
+  reference: '0334'
+- id: European history
   term: European history
   active: true
-- id: '0578'
+  reference: '0335'
+- id: History
   term: History
   active: true
-- id: '0504'
+  reference: '0578'
+- id: History of Oceania
   term: History of Oceania
   active: true
-- id: '0336'
+  reference: '0504'
+- id: Latin American history
   term: Latin American history
   active: true
-- id: '0581'
+  reference: '0336'
+- id: Medieval history
   term: Medieval history
   active: true
-- id: '0333'
+  reference: '0581'
+- id: Middle Eastern history
   term: Middle Eastern history
   active: true
-- id: '0722'
+  reference: '0333'
+- id: Military history
   term: Military history
   active: true
-- id: '0582'
+  reference: '0722'
+- id: Modern history
   term: Modern history
   active: true
-- id: '0724'
+  reference: '0582'
+- id: Russian history
   term: Russian history
   active: true
-- id: '0585'
+  reference: '0724'
+- id: Science history
   term: Science history
   active: true
-- id: '0506'
+  reference: '0585'
+- id: World history
   term: World history
   active: true
-- id: '0363'
+  reference: '0506'
+- id: Alternative energy
   term: Alternative energy
   active: true
-- id: '0304'
+  reference: '0363'
+- id: Biographies
   term: Biographies
   active: true
-- id: '0404'
+  reference: '0304'
+- id: Climate change
   term: Climate change
   active: true
-- id: '0436'
+  reference: '0404'
+- id: Cultural resources management
   term: Cultural resources management
   active: true
-- id: '0201'
+  reference: '0436'
+- id: Disability studies
   term: Disability studies
   active: true
-- id: '0791'
+  reference: '0201'
+- id: Energy
   term: Energy
   active: true
-- id: '0359'
+  reference: '0791'
+- id: Food science
   term: Food science
   active: true
-- id: '0386'
+  reference: '0359'
+- id: Home economics
   term: Home economics
   active: true
-- id: '0489'
+  reference: '0386'
+- id: Information technology
   term: Information technology
   active: true
-- id: '0558'
+  reference: '0489'
+- id: Multimedia communications
   term: Multimedia communications
   active: true
-- id: '0730'
+  reference: '0558'
+- id: Museum studies
   term: Museum studies
   active: true
-- id: '0640'
+  reference: '0730'
+- id: Sustainability
   term: Sustainability
   active: true
-- id: '0994'
+  reference: '0640'
+- id: Textile research
   term: Textile research
   active: true
-- id: '0746'
+  reference: '0994'
+- id: Wood sciences
   term: Wood sciences
   active: true
-- id: '0324'
+  reference: '0746'
+- id: Archaeology
   term: Archaeology
   active: true
-- id: '0341'
+  reference: '0324'
+- id: Area planning and development
   term: Area planning and development
   active: true
-- id: '0505'
+  reference: '0341'
+- id: Commerce-Business
   term: Commerce-Business
   active: true
-- id: '0627'
+  reference: '0505'
+- id: Criminology
   term: Criminology
   active: true
-- id: '0326'
+  reference: '0627'
+- id: Cultural anthropology
   term: Cultural anthropology
   active: true
-- id: '0938'
+  reference: '0326'
+- id: Demography
   term: Demography
   active: true
-- id: '0509'
+  reference: '0938'
+- id: Economic history
   term: Economic history
   active: true
-- id: '0511'
+  reference: '0509'
+- id: Economic theory
   term: Economic theory
   active: true
-- id: '0501'
+  reference: '0511'
+- id: Economics
   term: Economics
   active: true
-- id: '0358'
+  reference: '0501'
+- id: Folklore
   term: Folklore
   active: true
-- id: '0339'
+  reference: '0358'
+- id: Forensic anthropology
   term: Forensic anthropology
   active: true
-- id: '0366'
+  reference: '0339'
+- id: Geography
   term: Geography
   active: true
-- id: '0741'
+  reference: '0366'
+- id: Indigenous studies
   term: Indigenous studies
   active: true
-- id: '0628'
+  reference: '0741'
+- id: Individual & family studies
   term: Individual & family studies
   active: true
-- id: '0601'
+  reference: '0628'
+- id: International relations
   term: International relations
   active: true
-- id: '0510'
+  reference: '0601'
+- id: Labor economics
   term: Labor economics
   active: true
-- id: '0629'
+  reference: '0510'
+- id: Labor relations
   term: Labor relations
   active: true
-- id: '0750'
+  reference: '0629'
+- id: Military studies
   term: Military studies
   active: true
-- id: '0635'
+  reference: '0750'
+- id: Organization theory
   term: Organization theory
   active: true
-- id: '0703'
+  reference: '0635'
+- id: Organizational behavior
   term: Organizational behavior
   active: true
-- id: '0563'
+  reference: '0703'
+- id: Peace studies
   term: Peace studies
   active: true
-- id: '0327'
+  reference: '0563'
+- id: Physical anthropology
   term: Physical anthropology
   active: true
-- id: '0615'
+  reference: '0327'
+- id: Political science
   term: Political science
   active: true
-- id: '0617'
+  reference: '0615'
+- id: Public administration
   term: Public administration
   active: true
-- id: '0630'
+  reference: '0617'
+- id: Public policy
   term: Public policy
   active: true
-- id: '0814'
+  reference: '0630'
+- id: Recreation
   term: Recreation
   active: true
-- id: '0344'
+  reference: '0814'
+- id: Social research
   term: Social research
   active: true
-- id: '0700'
+  reference: '0344'
+- id: Social structure
   term: Social structure
   active: true
-- id: '0452'
+  reference: '0700'
+- id: Social work
   term: Social work
   active: true
-- id: '0636'
+  reference: '0452'
+- id: Sociolinguistics
   term: Sociolinguistics
   active: true
-- id: '0626'
+  reference: '0636'
+- id: Sociology
   term: Sociology
   active: true
-- id: '0709'
+  reference: '0626'
+- id: Transportation
   term: Transportation
   active: true
-- id: '0999'
+  reference: '0709'
+- id: Urban planning
   term: Urban planning
   active: true
-- id: '0316'
+  reference: '0999'
+- id: African literature
   term: African literature
   active: true
-- id: '0591'
+  reference: '0316'
+- id: American literature
   term: American literature
   active: true
-- id: '0289'
+  reference: '0591'
+- id: Ancient languages
   term: Ancient languages
   active: true
-- id: '0305'
+  reference: '0289'
+- id: Asian literature
   term: Asian literature
   active: true
-- id: '0356'
+  reference: '0305'
+- id: Australian literature
   term: Australian literature
   active: true
-- id: '0593'
+  reference: '0356'
+- id: British & Irish literature
   term: British & Irish literature
   active: true
-- id: '0352'
+  reference: '0593'
+- id: Canadian literature
   term: Canadian literature
   active: true
-- id: '0360'
+  reference: '0352'
+- id: Caribbean literature
   term: Caribbean literature
   active: true
-- id: '0294'
+  reference: '0360'
+- id: Classical literature
   term: Classical literature
   active: true
-- id: '0295'
+  reference: '0294'
+- id: Comparative literature
   term: Comparative literature
   active: true
-- id: '0203'
+  reference: '0295'
+- id: Creative writing
   term: Creative writing
   active: true
-- id: '0355'
+  reference: '0203'
+- id: French Canadian literature
   term: French Canadian literature
   active: true
-- id: '0205'
+  reference: '0355'
+- id: French literature
   term: French literature
   active: true
-- id: '0311'
+  reference: '0205'
+- id: German literature
   term: German literature
   active: true
-- id: '0362'
+  reference: '0311'
+- id: Icelandic & Scandinavian literature
   term: Icelandic & Scandinavian literature
   active: true
-- id: '0220'
+  reference: '0362'
+- id: Italian literature
   term: Italian literature
   active: true
-- id: '0679'
+  reference: '0220'
+- id: Language
   term: Language
   active: true
-- id: '0312'
+  reference: '0679'
+- id: Latin American literature
   term: Latin American literature
   active: true
-- id: '0290'
+  reference: '0312'
+- id: Linguistics
   term: Linguistics
   active: true
-- id: '0401'
+  reference: '0290'
+- id: Literature
   term: Literature
   active: true
-- id: '0297'
+  reference: '0401'
+- id: Medieval literature
   term: Medieval literature
   active: true
-- id: '0315'
+  reference: '0297'
+- id: Middle Eastern literature
   term: Middle Eastern literature
   active: true
-- id: '0291'
+  reference: '0315'
+- id: Modern language
   term: Modern language
   active: true
-- id: '0298'
+  reference: '0291'
+- id: Modern literature
   term: Modern literature
   active: true
-- id: '0681'
+  reference: '0298'
+- id: Rhetoric
   term: Rhetoric
   active: true
-- id: '0313'
+  reference: '0681'
+- id: Romance literature
   term: Romance literature
   active: true
-- id: '0314'
+  reference: '0313'
+- id: Slavic literature
   term: Slavic literature
   active: true
-- id: '0213'
+  reference: '0314'
+- id: Translation studies
   term: Translation studies
   active: true
-- id: '0649'
+  reference: '0213'
+- id: Alternative dispute resolution
   term: Alternative dispute resolution
   active: true
-- id: '0513'
+  reference: '0649'
+- id: Intellectual property
   term: Intellectual property
   active: true
-- id: '0616'
+  reference: '0513'
+- id: International law
   term: International law
   active: true
-- id: '0398'
+  reference: '0616'
+- id: Law
   term: Law
   active: true
-- id: '0206'
+  reference: '0398'
+- id: Law enforcement
   term: Law enforcement
   active: true
-- id: '0562'
+  reference: '0206'
+- id: Patent law
   term: Patent law
   active: true
-- id: '0650'
+  reference: '0562'
+- id: Aesthetics
   term: Aesthetics
   active: true
-- id: '0321'
+  reference: '0650'
+- id: Biblical studies
   term: Biblical studies
   active: true
-- id: '0375'
+  reference: '0321'
+- id: Canon law
   term: Canon law
   active: true
-- id: '0319'
+  reference: '0375'
+- id: Clergy
   term: Clergy
   active: true
-- id: '0618'
+  reference: '0319'
+- id: Comparative religion
   term: Comparative religion
   active: true
-- id: '0376'
+  reference: '0618'
+- id: Divinity
   term: Divinity
   active: true
-- id: '0393'
+  reference: '0376'
+- id: Epistemology
   term: Epistemology
   active: true
-- id: '0394'
+  reference: '0393'
+- id: Ethics
   term: Ethics
   active: true
-- id: '0395'
+  reference: '0394'
+- id: Logic
   term: Logic
   active: true
-- id: '0396'
+  reference: '0395'
+- id: Metaphysics
   term: Metaphysics
   active: true
-- id: '0397'
+  reference: '0396'
+- id: Pastoral counseling
   term: Pastoral counseling
   active: true
-- id: '0422'
+  reference: '0397'
+- id: Philosophy
   term: Philosophy
   active: true
-- id: '0322'
+  reference: '0422'
+- id: Philosophy of religion
   term: Philosophy of religion
   active: true
-- id: '0402'
+  reference: '0322'
+- id: Philosophy of science
   term: Philosophy of science
   active: true
-- id: '0318'
+  reference: '0402'
+- id: Religion
   term: Religion
   active: true
-- id: '0320'
+  reference: '0318'
+- id: Religious history
   term: Religious history
   active: true
-- id: '0647'
+  reference: '0320'
+- id: Spirituality
   term: Spirituality
   active: true
-- id: '0469'
+  reference: '0647'
+- id: Theology
   term: Theology
   active: true
-- id: '0473'
+  reference: '0469'
+- id: Agriculture
   term: Agriculture
   active: true
-- id: '0503'
+  reference: '0473'
+- id: Agriculture economics
   term: Agriculture economics
   active: true
-- id: '0517'
+  reference: '0503'
+- id: Agriculture education
   term: Agriculture education
   active: true
-- id: '0539'
+  reference: '0517'
+- id: Agriculture engineering
   term: Agriculture engineering
   active: true
-- id: '0285'
+  reference: '0539'
+- id: Agronomy
   term: Agronomy
   active: true
-- id: '0476'
+  reference: '0285'
+- id: Animal diseases
   term: Animal diseases
   active: true
-- id: '0475'
+  reference: '0476'
+- id: Animal sciences
   term: Animal sciences
   active: true
-- id: '0792'
+  reference: '0475'
+- id: Aquatic sciences
   term: Aquatic sciences
   active: true
-- id: '0478'
+  reference: '0792'
+- id: Forestry
   term: Forestry
   active: true
-- id: '0471'
+  reference: '0478'
+- id: Horticulture
   term: Horticulture
   active: true
-- id: '0480'
+  reference: '0471'
+- id: Plant pathology
   term: Plant pathology
   active: true
-- id: '0479'
+  reference: '0480'
+- id: Plant sciences
   term: Plant sciences
   active: true
-- id: '0777'
+  reference: '0479'
+- id: Range management
   term: Range management
   active: true
-- id: '0481'
+  reference: '0777'
+- id: Soil sciences
   term: Soil sciences
   active: true
-- id: '0281'
+  reference: '0481'
+- id: Urban forestry
   term: Urban forestry
   active: true
-- id: '0286'
+  reference: '0281'
+- id: Wildlife management
   term: Wildlife management
   active: true
-- id: '0384'
+  reference: '0286'
+- id: Behavioral psychology
   term: Behavioral psychology
   active: true
-- id: '0602'
+  reference: '0384'
+- id: Behavioral sciences
   term: Behavioral sciences
   active: true
-- id: '0622'
+  reference: '0602'
+- id: Clinical psychology
   term: Clinical psychology
   active: true
-- id: '0633'
+  reference: '0622'
+- id: Cognitive psychology
   term: Cognitive psychology
   active: true
-- id: '0603'
+  reference: '0633'
+- id: Counseling psychology
   term: Counseling psychology
   active: true
-- id: '0620'
+  reference: '0603'
+- id: Developmental psychology
   term: Developmental psychology
   active: true
-- id: '0623'
+  reference: '0620'
+- id: Experimental psychology
   term: Experimental psychology
   active: true
-- id: '0624'
+  reference: '0623'
+- id: Occupational psychology
   term: Occupational psychology
   active: true
-- id: '0625'
+  reference: '0624'
+- id: Personality psychology
   term: Personality psychology
   active: true
-- id: '0989'
+  reference: '0625'
+- id: Physiological psychology
   term: Physiological psychology
   active: true
-- id: '0349'
+  reference: '0989'
+- id: Psychobiology
   term: Psychobiology
   active: true
-- id: '0621'
+  reference: '0349'
+- id: Psychology
   term: Psychology
   active: true
-- id: '0632'
+  reference: '0621'
+- id: Quantitative psychology
   term: Quantitative psychology
   active: true
-- id: '0451'
+  reference: '0632'
+- id: Social psychology
   term: Social psychology
   active: true
-- id: '0487'
+  reference: '0451'
+- id: Biochemistry
   term: Biochemistry
   active: true
-- id: '0715'
+  reference: '0487'
+- id: Bioinformatics
   term: Bioinformatics
   active: true
-- id: '0306'
+  reference: '0715'
+- id: Biology
   term: Biology
   active: true
-- id: '0648'
+  reference: '0306'
+- id: Biomechanics
   term: Biomechanics
   active: true
-- id: '0786'
+  reference: '0648'
+- id: Biophysics
   term: Biophysics
   active: true
-- id: '0308'
+  reference: '0786'
+- id: Biostatistics
   term: Biostatistics
   active: true
-- id: '0309'
+  reference: '0308'
+- id: Botany
   term: Botany
   active: true
-- id: '0379'
+  reference: '0309'
+- id: Cellular biology
   term: Cellular biology
   active: true
-- id: '0758'
+  reference: '0379'
+- id: Developmental biology
   term: Developmental biology
   active: true
-- id: '0409'
+  reference: '0758'
+- id: Endocrinology
   term: Endocrinology
   active: true
-- id: '0353'
+  reference: '0409'
+- id: Entomology
   term: Entomology
   active: true
-- id: '0412'
+  reference: '0353'
+- id: Evolution & development
   term: Evolution & development
   active: true
-- id: '0369'
+  reference: '0412'
+- id: Genetics
   term: Genetics
   active: true
-- id: '0414'
+  reference: '0369'
+- id: Histology
   term: Histology
   active: true
-- id: '0793'
+  reference: '0414'
+- id: Limnology
   term: Limnology
   active: true
-- id: '0410'
+  reference: '0793'
+- id: Microbiology
   term: Microbiology
   active: true
-- id: '0307'
+  reference: '0410'
+- id: Molecular biology
   term: Molecular biology
   active: true
-- id: '0287'
+  reference: '0307'
+- id: Morphology
   term: Morphology
   active: true
-- id: '0317'
+  reference: '0287'
+- id: Neurosciences
   term: Neurosciences
   active: true
-- id: '0718'
+  reference: '0317'
+- id: Parasitology
   term: Parasitology
   active: true
-- id: '0719'
+  reference: '0718'
+- id: Physiology
   term: Physiology
   active: true
-- id: '0423'
+  reference: '0719'
+- id: Systematic biology
   term: Systematic biology
   active: true
-- id: '0720'
+  reference: '0423'
+- id: Virology
   term: Virology
   active: true
-- id: '0472'
+  reference: '0720'
+- id: Zoology
   term: Zoology
   active: true
-- id: '0329'
+  reference: '0472'
+- id: Ecology
   term: Ecology
   active: true
-- id: '0420'
+  reference: '0329'
+- id: Macroecology
   term: Macroecology
   active: true
-- id: '0426'
+  reference: '0420'
+- id: Paleoecology
   term: Paleoecology
   active: true
-- id: '0538'
+  reference: '0426'
+- id: Aerospace engineering
   term: Aerospace engineering
   active: true
-- id: '0800'
+  reference: '0538'
+- id: Artificial intelligence
   term: Artificial intelligence
   active: true
-- id: '0540'
+  reference: '0800'
+- id: Automotive engineering
   term: Automotive engineering
   active: true
-- id: '0202'
+  reference: '0540'
+- id: Bioengineering
   term: Bioengineering
   active: true
-- id: '0541'
+  reference: '0202'
+- id: Biomedical engineering
   term: Biomedical engineering
   active: true
-- id: '0542'
+  reference: '0541'
+- id: Chemical engineering
   term: Chemical engineering
   active: true
-- id: '0543'
+  reference: '0542'
+- id: Civil engineering
   term: Civil engineering
   active: true
-- id: '0464'
+  reference: '0543'
+- id: Computer engineering
   term: Computer engineering
   active: true
-- id: '0984'
+  reference: '0464'
+- id: Computer science
   term: Computer science
   active: true
-- id: '0544'
+  reference: '0984'
+- id: Electrical engineering
   term: Electrical engineering
   active: true
-- id: '0537'
+  reference: '0544'
+- id: Engineering
   term: Engineering
   active: true
-- id: '0466'
+  reference: '0537'
+- id: Geological engineering
   term: Geological engineering
   active: true
-- id: '0428'
+  reference: '0466'
+- id: Geotechnology
   term: Geotechnology
   active: true
-- id: '0546'
+  reference: '0428'
+- id: Industrial engineering
   term: Industrial engineering
   active: true
-- id: '0548'
+  reference: '0546'
+- id: Mechanical engineering
   term: Mechanical engineering
   active: true
-- id: '0551'
+  reference: '0548'
+- id: Mining
   term: Mining
   active: true
-- id: '0468'
+  reference: '0551'
+- id: Naval engineering
   term: Naval engineering
   active: true
-- id: '0652'
+  reference: '0468'
+- id: Nanotechnology
   term: Nanotechnology
   active: true
-- id: '0552'
+  reference: '0652'
+- id: Nuclear engineering
   term: Nuclear engineering
   active: true
-- id: '0547'
+  reference: '0552'
+- id: Ocean engineering
   term: Ocean engineering
   active: true
-- id: '0796'
+  reference: '0547'
+- id: Operations research
   term: Operations research
   active: true
-- id: '0549'
+  reference: '0796'
+- id: Packaging
   term: Packaging
   active: true
-- id: '0765'
+  reference: '0549'
+- id: Petroleum engineering
   term: Petroleum engineering
   active: true
-- id: '0795'
+  reference: '0765'
+- id: Plastics
   term: Plastics
   active: true
-- id: '0467'
+  reference: '0795'
+- id: Geophysical engineering
   term: Geophysical engineering
   active: true
-- id: '0218'
+  reference: '0467'
+- id: Hydraulic engineering
   term: Hydraulic engineering
   active: true
-- id: '0771'
+  reference: '0218'
+- id: Robotics
   term: Robotics
   active: true
-- id: '0790'
+  reference: '0771'
+- id: System science
   term: System science
   active: true
-- id: '0408'
+  reference: '0790'
+- id: Conservation biology
   term: Conservation biology
   active: true
-- id: '0438'
+  reference: '0408'
+- id: Environmental economics
   term: Environmental economics
   active: true
-- id: '0442'
+  reference: '0438'
+- id: Environmental education
   term: Environmental education
   active: true
-- id: '0775'
+  reference: '0442'
+- id: Environmental engineering
   term: Environmental engineering
   active: true
-- id: '0407'
+  reference: '0775'
+- id: Environmental geology
   term: Environmental geology
   active: true
-- id: '0470'
+  reference: '0407'
+- id: Environmental health
   term: Environmental health
   active: true
-- id: '0619'
+  reference: '0470'
+- id: Environmental justice
   term: Environmental justice
   active: true
-- id: '0439'
+  reference: '0619'
+- id: Environmental law
   term: Environmental law
   active: true
-- id: '0474'
+  reference: '0439'
+- id: Environmental management
   term: Environmental management
   active: true
-- id: '0392'
+  reference: '0474'
+- id: Environmental philosophy
   term: Environmental philosophy
   active: true
-- id: '0768'
+  reference: '0392'
+- id: Environmental science
   term: Environmental science
   active: true
-- id: '0477'
+  reference: '0768'
+- id: Environmental studies
   term: Environmental studies
   active: true
-- id: '0536'
+  reference: '0477'
+- id: Land use planning
   term: Land use planning
   active: true
-- id: '0528'
+  reference: '0536'
+- id: Natural resource management
   term: Natural resource management
   active: true
-- id: '0595'
+  reference: '0528'
+- id: Water resources management
   term: Water resources management
   active: true
-- id: '0284'
+  reference: '0595'
+- id: Wildlife conservation
   term: Wildlife conservation
   active: true
-- id: '0367'
+  reference: '0284'
+- id: Aeronomy
   term: Aeronomy
   active: true
-- id: '0371'
+  reference: '0367'
+- id: Atmospheric chemistry
   term: Atmospheric chemistry
   active: true
-- id: '0725'
+  reference: '0371'
+- id: Atmospheric sciences
   term: Atmospheric sciences
   active: true
-- id: '0425'
+  reference: '0725'
+- id: Biogeochemistry
   term: Biogeochemistry
   active: true
-- id: '0416'
+  reference: '0425'
+- id: Biological oceanography
   term: Biological oceanography
   active: true
-- id: '0403'
+  reference: '0416'
+- id: Chemical oceanography
   term: Chemical oceanography
   active: true
-- id: '0406'
+  reference: '0403'
+- id: Continental dynamics
   term: Continental dynamics
   active: true
-- id: '0483'
+  reference: '0406'
+- id: Geobiology
   term: Geobiology
   active: true
-- id: '0996'
+  reference: '0483'
+- id: Geochemistry
   term: Geochemistry
   active: true
-- id: '0370'
+  reference: '0996'
+- id: Geographic information science
   term: Geographic information science
   active: true
-- id: '0372'
+  reference: '0370'
+- id: Geology
   term: Geology
   active: true
-- id: '0484'
+  reference: '0372'
+- id: Geomorphology
   term: Geomorphology
   active: true
-- id: '0373'
+  reference: '0484'
+- id: Geophysics
   term: Geophysics
   active: true
-- id: '0388'
+  reference: '0373'
+- id: Hydrologic sciences
   term: Hydrologic sciences
   active: true
-- id: '0556'
+  reference: '0388'
+- id: Marine geology
   term: Marine geology
   active: true
-- id: '0557'
+  reference: '0556'
+- id: Meteorology
   term: Meteorology
   active: true
-- id: '0411'
+  reference: '0557'
+- id: Mineralogy
   term: Mineralogy
   active: true
-- id: '0653'
+  reference: '0411'
+- id: Paleoclimate science
   term: Paleoclimate science
   active: true
-- id: '0418'
+  reference: '0653'
+- id: Paleontology
   term: Paleontology
   active: true
-- id: '0583'
+  reference: '0418'
+- id: Petroleum geology
   term: Petroleum geology
   active: true
-- id: '0584'
+  reference: '0583'
+- id: Petrology
   term: Petrology
   active: true
-- id: '0368'
+  reference: '0584'
+- id: Physical geography
   term: Physical geography
   active: true
-- id: '0415'
+  reference: '0368'
+- id: Physical oceanography
   term: Physical oceanography
   active: true
-- id: '0590'
+  reference: '0415'
+- id: Planetology
   term: Planetology
   active: true
-- id: '0592'
+  reference: '0590'
+- id: Plate tectonics
   term: Plate tectonics
   active: true
-- id: '0799'
+  reference: '0592'
+- id: Remote sensing
   term: Remote sensing
   active: true
-- id: '0594'
+  reference: '0799'
+- id: Sedimentary geology
   term: Sedimentary geology
   active: true
-- id: '0594'
+  reference: '0594'
+- id: Aging
   term: Aging
   active: true
-- id: '0496'
+  reference: '0594'
+- id: Alternative medicine
   term: Alternative medicine
   active: true
-- id: '0300'
+  reference: '0496'
+- id: Audiology
   term: Audiology
   active: true
-- id: '0567'
+  reference: '0300'
+- id: Dentistry
   term: Dentistry
   active: true
-- id: '0766'
+  reference: '0567'
+- id: Epidemiology
   term: Epidemiology
   active: true
-- id: '0351'
+  reference: '0766'
+- id: Gerontology
   term: Gerontology
   active: true
-- id: '0769'
+  reference: '0351'
+- id: Health care management
   term: Health care management
   active: true
-- id: '0566'
+  reference: '0769'
+- id: Health sciences
   term: Health sciences
   active: true
-- id: '0982'
+  reference: '0566'
+- id: Immunology
   term: Immunology
   active: true
-- id: '0575'
+  reference: '0982'
+- id: Kinesiology
   term: Kinesiology
   active: true
-- id: '0497'
+  reference: '0575'
+- id: Medical ethics
   term: Medical ethics
   active: true
-- id: '0574'
+  reference: '0497'
+- id: Medical imaging
   term: Medical imaging
   active: true
-- id: '0207'
+  reference: '0574'
+- id: Medical personnel
   term: Medical personnel
   active: true
-- id: '0564'
+  reference: '0207'
+- id: Medicine
   term: Medicine
   active: true
-- id: '0347'
+  reference: '0564'
+- id: Mental health
   term: Mental health
   active: true
-- id: '0209'
+  reference: '0347'
+- id: Music therapy
   term: Music therapy
   active: true
-- id: '0569'
+  reference: '0209'
+- id: Nursing
   term: Nursing
   active: true
-- id: '0570'
+  reference: '0569'
+- id: Nutrition
   term: Nutrition
   active: true
-- id: '0380'
+  reference: '0570'
+- id: Obstetrics
   term: Obstetrics
   active: true
-- id: '0354'
+  reference: '0380'
+- id: Occupational safety
   term: Occupational safety
   active: true
-- id: '0498'
+  reference: '0354'
+- id: Occupational therapy
   term: Occupational therapy
   active: true
-- id: '0992'
+  reference: '0498'
+- id: Oncology
   term: Oncology
   active: true
-- id: '0381'
+  reference: '0992'
+- id: Ophthalmology
   term: Ophthalmology
   active: true
-- id: '0210'
+  reference: '0381'
+- id: Optometry
   term: Optometry
   active: true
-- id: '0499'
+  reference: '0210'
+- id: Osteopathic medicine
   term: Osteopathic medicine
   active: true
-- id: '0571'
+  reference: '0499'
+- id: Pathology
   term: Pathology
   active: true
-- id: '0572'
+  reference: '0571'
+- id: Pharmaceutical sciences
   term: Pharmaceutical sciences
   active: true
-- id: '0419'
+  reference: '0572'
+- id: Pharmacology
   term: Pharmacology
   active: true
-- id: '0382'
+  reference: '0419'
+- id: Physical therapy
   term: Physical therapy
   active: true
-- id: '0573'
+  reference: '0382'
+- id: Public health
   term: Public health
   active: true
-- id: '0500'
+  reference: '0573'
+- id: Public health education
   term: Public health education
   active: true
-- id: '0460'
+  reference: '0500'
+- id: Speech therapy
   term: Speech therapy
   active: true
-- id: '0576'
+  reference: '0460'
+- id: Surgery
   term: Surgery
   active: true
-- id: '0212'
+  reference: '0576'
+- id: Therapy
   term: Therapy
   active: true
-- id: '0383'
+  reference: '0212'
+- id: Toxicology
   term: Toxicology
   active: true
-- id: '0778'
+  reference: '0383'
+- id: Veterinary services
   term: Veterinary services
   active: true
-- id: '0986'
+  reference: '0778'
+- id: Acoustics
   term: Acoustics
   active: true
-- id: '0486'
+  reference: '0986'
+- id: Analytical chemistry
   term: Analytical chemistry
   active: true
-- id: '0364'
+  reference: '0486'
+- id: Applied mathematics
   term: Applied mathematics
   active: true
-- id: '0215'
+  reference: '0364'
+- id: Applied physics
   term: Applied physics
   active: true
-- id: '0606'
+  reference: '0215'
+- id: Astronomy
   term: Astronomy
   active: true
-- id: '0596'
+  reference: '0606'
+- id: Astrophysics
   term: Astrophysics
   active: true
-- id: '0748'
+  reference: '0596'
+- id: Atomic physics
   term: Atomic physics
   active: true
-- id: '0485'
+  reference: '0748'
+- id: Chemistry
   term: Chemistry
   active: true
-- id: '0219'
+  reference: '0485'
+- id: Computational chemistry
   term: Computational chemistry
   active: true
-- id: '0216'
+  reference: '0219'
+- id: Computational physics
   term: Computational physics
   active: true
-- id: '0611'
+  reference: '0216'
+- id: Condensed matter physics
   term: Condensed matter physics
   active: true
-- id: '0607'
+  reference: '0611'
+- id: Electromagnetics
   term: Electromagnetics
   active: true
-- id: '0204'
+  reference: '0607'
+- id: Fluid mechanics
   term: Fluid mechanics
   active: true
-- id: '0798'
+  reference: '0204'
+- id: Particle physics
   term: Particle physics
   active: true
-- id: '0597'
+  reference: '0798'
+- id: High temperature physics
   term: High temperature physics
   active: true
-- id: '0488'
+  reference: '0597'
+- id: Inorganic chemistry
   term: Inorganic chemistry
   active: true
-- id: '0598'
+  reference: '0488'
+- id: Low temperature physics
   term: Low temperature physics
   active: true
-- id: '0794'
+  reference: '0598'
+- id: Materials science
   term: Materials science
   active: true
-- id: '0405'
+  reference: '0794'
+- id: Mathematics
   term: Mathematics
   active: true
-- id: '0346'
+  reference: '0405'
+- id: Mechanics
   term: Mechanics
   active: true
-- id: '0431'
+  reference: '0346'
+- id: Molecular chemistry
   term: Molecular chemistry
   active: true
-- id: '0609'
+  reference: '0431'
+- id: Molecular physics
   term: Molecular physics
   active: true
-- id: '0565'
+  reference: '0609'
+- id: Nanoscience
   term: Nanoscience
   active: true
-- id: '0738'
+  reference: '0565'
+- id: Nuclear chemistry
   term: Nuclear chemistry
   active: true
-- id: '0756'
+  reference: '0738'
+- id: Nuclear physics
   term: Nuclear physics
   active: true
-- id: '0752'
+  reference: '0756'
+- id: Optics
   term: Optics
   active: true
-- id: '0490'
+  reference: '0752'
+- id: Organic chemistry
   term: Organic chemistry
   active: true
-- id: '0494'
+  reference: '0490'
+- id: Physical chemistry
   term: Physical chemistry
   active: true
-- id: '0605'
+  reference: '0494'
+- id: Physics
   term: Physics
   active: true
-- id: '0759'
+  reference: '0605'
+- id: Plasma physics
   term: Plasma physics
   active: true
-- id: '0495'
+  reference: '0759'
+- id: Polymer chemistry
   term: Polymer chemistry
   active: true
-- id: '0599'
+  reference: '0495'
+- id: Quantum physics
   term: Quantum physics
   active: true
-- id: '0217'
+  reference: '0599'
+- id: Statistical physics
   term: Statistical physics
   active: true
-- id: '0463'
+  reference: '0217'
+- id: Statistics
   term: Statistics
   active: true
-- id: '0642'
+  reference: '0463'
+- id: Theoretical mathematics
   term: Theoretical mathematics
   active: true
-- id: '0753'
+  reference: '0642'
+- id: Theoretical physics
   term: Theoretical physics
   active: true
-- id: '0348'
+  reference: '0753'
+- id: Thermodynamics
   term: Thermodynamics
   active: true
+  reference: '0348'
