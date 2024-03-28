@@ -1,4 +1,4 @@
-<div class="add-pub-info">
+<div class="add-pub-intro">
   <p class="">Please provide a description of your publication so that it can be properly cited by others. Next, click on the Files tab when you are ready to upload your content.</p>
   <hr class="my-4">
     <p>The Save Work menu will indicate when you have completed all required elements for your submission.
@@ -14,18 +14,18 @@ Please refer to our <%= link_to 'Help', help_path %> page for more guidance.</p>
 
 <div class="accordion" id="publication-form">
   <div class="card">
-    <div class="card-header" id="headingOne">
+    <div class="card-header" id="pubform-pub-info">
       <h2 class="mb-0">
-        <button class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Administrative Information
+        <button class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="#pubInfo" aria-expanded="true" aria-controls="pubInfo">
+          Publication Information
         </button>
       </h2>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#publication-form">
+    <div id="pubInfo" class="collapse show" aria-labelledby="pubform-pub-info" data-parent="#publication-form">
       <div class="card-body">
-        <div class="admin-terms form-group">
-                <% f.object.administrative_terms.each do |term| %>
+        <div class="pub-terms form-group">
+                <% f.object.publication_information.each do |term| %>
                 <%= render_edit_field_partial(term, f: f) %>
                 <% end %>
         </div>
@@ -33,17 +33,17 @@ Please refer to our <%= link_to 'Help', help_path %> page for more guidance.</p>
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingTwo">
+    <div class="card-header" id="pubform-add-info">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Publication Information
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#addInfo" aria-expanded="false" aria-controls="addInfo">
+            Additional Information
         </button>
       </h2>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#publication-form">
+    <div id="addInfo" class="collapse" aria-labelledby="pubform-add-info" data-parent="#publication-form">
       <div class="card-body">
-            <div class="publication-terms">
-                <% f.object.publication_information.each do |term| %>
+            <div class="add-terms">
+                <% f.object.additional_information.each do |term| %>
                 <%= render_edit_field_partial(term, f: f) %>
                 <% end %>
             </div>
@@ -51,17 +51,17 @@ Please refer to our <%= link_to 'Help', help_path %> page for more guidance.</p>
     </div>
   </div>
     <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="pubform-admin-info">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Additional Information
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#adminInfo" aria-expanded="false" aria-controls="adminInfo">
+            Administrative Information
         </button>
       </h2>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#publication-form">
+    <div id="adminInfo" class="collapse" aria-labelledby="pubform-admin-info" data-parent="#publication-form">
       <div class="card-body">
-            <div class="additional-terms">
-                <% f.object.additional_information.each do |term| %>
+            <div class="admin-terms">
+                <% f.object.administrative_terms.each do |term| %>
                 <%= render_edit_field_partial(term, f: f) %>
                 <% end %>
             </div>
