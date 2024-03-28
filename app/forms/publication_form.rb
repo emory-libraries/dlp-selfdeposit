@@ -23,12 +23,6 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
   #   to separate field groupings. Fields must be within an array in order of how they
   #   appear in the form, symbolized, and match the attribute names in their metadata YAMLS
   #   (e.g. config/metadata/publication_metadata.yaml).
-  def administrative_terms
-    [:emory_ark, :rights_statement, :internal_rights_note, :staff_notes, :access_right,
-     :system_of_record_ID, :emory_content_type, :holding_repository, :institution,
-     :data_classification, :date_created, :deduplication_key]
-  end
-
   def publication_information
     [:title, :creator, :language, :date_issued, :publisher, :publisher_version,
      :rights_statement, :license, :final_published_versions, :parent_title, :conference_name,
@@ -38,6 +32,12 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
 
   def additional_information
     [:abstract, :author_notes, :keyword, :subject, :research_categories]
+  end
+
+  def administrative_terms
+    [:emory_ark, :rights_statement, :internal_rights_note, :staff_notes, :access_right,
+     :system_of_record_ID, :emory_content_type, :holding_repository, :institution,
+     :data_classification, :date_created, :deduplication_key]
   end
 
   def genres_block
