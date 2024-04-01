@@ -1,14 +1,8 @@
-# app/forms/concerns/emory_file_set_metadata_extension.rb
+# frozen_string_literal: true
 module EmoryFileSetMetadataExtension
-    extend ActiveSupport::Concern
-    included do
-        if respond_to?(:include_hyrax_form_fields)
-          include Hyrax::FormFields(:emory_file_set_metadata)
-        end
-      
-          
-        if respond_to?(:terms)
-          self.terms += [:pcdm_use] unless terms.include?(:pcdm_use)
-        end
-    end
+  extend ActiveSupport::Concern
+  included do
+    include Hyrax::FormFields(:emory_file_set_metadata) if respond_to?(:include_hyrax_form_fields)
+    self.terms += [:pcdm_use] if respond_to?(:terms) && !terms.include?(:pcdm_use)
+  end
 end
