@@ -2,3 +2,9 @@ attributes:
   preservation_event_ids:
     type: string
     predicate: http://metadata.emory.edu/vocab/cor-terms#preservationEventIDs
+  pcdm_use:
+    type: string
+    multiple: false
+    predicate: http://pcdm.org/use
+    index_keys:
+      - "pcdm_use_tesim"
