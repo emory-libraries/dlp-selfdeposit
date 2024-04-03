@@ -17,7 +17,7 @@ class Publication < Hyrax::Work
 
   def remove_preservation_workflow(workflow)
     raise TypeError "can't convert #{workflow.class} into PreservationWorkflow" unless workflow.is_a? PreservationWorkflow
-    workflow_id = workflow.id
+    workflow_id = workflow.id.to_s
 
     Hyrax.persister.delete(resource: workflow)
     self.preservation_workflow_ids = preservation_workflow_ids.split(',').reject { |v| v == workflow_id }.join(',')
