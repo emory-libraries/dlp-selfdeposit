@@ -22,12 +22,13 @@ custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
                   Hyrax::CustomQueries::FindManyByAlternateIds,
                   Hyrax::CustomQueries::FindIdsByModel,
                   Hyrax::CustomQueries::FindFileMetadata,
-                  Hyrax::CustomQueries::Navigators::FindFiles]
+                  Hyrax::CustomQueries::Navigators::FindFiles,
+                  SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey]
 custom_queries.each do |handler|
   query_registration_target.register_query_handler(handler)
 end
 
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -36,7 +37,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-  config.fixture_path = Rails.root.join('spec', 'fixtures', 'fixtures').to_s
+  config.fixture_path = Rails.root.join('spec', 'fixtures').to_s
   config.use_transactional_fixtures = true
   # config.use_active_record = false
   config.infer_spec_type_from_file_location!

@@ -229,6 +229,9 @@ attributes:
   preservation_event_ids:
     type: string
     predicate: http://metadata.emory.edu/vocab/cor-terms#preservationEventIDs
+  preservation_workflow_ids:
+    type: string
+    predicate: http://metadata.emory.edu/vocab/cor-terms#preservationWorkflowIDs
   publisher_version:
     type: string
     multiple: false
