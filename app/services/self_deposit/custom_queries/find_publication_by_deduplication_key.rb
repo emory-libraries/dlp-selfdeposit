@@ -22,7 +22,7 @@ module SelfDeposit
       ##
       # @param deduplication_key for a Publication
       #
-      # @return [Enumerable<PcdmCollection>]
+      # @return Publication
       def find_publication_by_deduplication_key(deduplication_key:)
         query_service
           .find_all_of_model(model: ::Publication)
