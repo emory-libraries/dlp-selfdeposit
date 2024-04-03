@@ -31,10 +31,11 @@ Rails.application.config.to_prepare do
     # create preservation_event for fileset creation (method in PreservationEvents module)
     def file_set_preservation_event(file_set, event_start, file_name, user)
       outcome = file_set.persisted? ? 'Success' : 'Failure'
+      formatted_file_name = file_name.to_s.split('/').last
       details = if file_set.persisted?
-                  "#{file_name} submitted for preservation storage"
+                  "#{formatted_file_name} submitted for preservation storage"
                 else
-                  "#{file_name} could not be submitted for preservation storage"
+                  "#{formatted_file_name} could not be submitted for preservation storage"
                 end
       event = { 'type' => 'File submission', 'start' => event_start, 'outcome' => outcome, 'details' => details,
                 'software_version' => 'Fedora v6', 'user' => user }

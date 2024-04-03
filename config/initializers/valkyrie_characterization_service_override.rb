@@ -39,7 +39,7 @@ Rails.application.config.to_prepare do
         'start' => event_start,
         'outcome' => metadata_populated ? 'Success' : 'Failure',
         'details' => pres_event_details(metadata_populated, metadata, file_set),
-        'software_version' => 'FITS Servlet',
+        'software_version' => 'FITS Servlet v1.6.0',
         'user' => user.presence || file_set.depositor
       }
       create_preservation_event(file_set, event)

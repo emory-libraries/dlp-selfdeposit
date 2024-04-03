@@ -59,17 +59,17 @@ module Hyrax
 
     def work_creation
       { 'type' => 'Validation', 'start' => @event_start, 'outcome' => 'Success', 'details' => 'Submission package validated',
-        'software_version' => 'SelfDeposit pre', 'user' => current_user.email }
+        'software_version' => 'SelfDeposit v.1', 'user' => current_user.email }
     end
 
     def work_policy
-      { 'type' => 'Policy Assignment', 'start' => @event_start, 'outcome' => 'Success', 'software_version' => 'SelfDeposit pre',
+      { 'type' => 'Policy Assignment', 'start' => @event_start, 'outcome' => 'Success', 'software_version' => 'SelfDeposit v.1',
         'details' => "Visibility/access controls assigned: #{@curation_concern.visibility}", 'user' => current_user.email }
     end
 
     def work_update
       { 'type' => 'Modification', 'start' => @event_start, 'outcome' => 'Success', 'details' => 'Object updated',
-        'software_version' => 'SelfDeposit pre', 'user' => current_user.email }
+        'software_version' => 'SelfDeposit v.1', 'user' => current_user.email }
     end
   end
 end
