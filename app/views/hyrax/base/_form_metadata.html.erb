@@ -72,7 +72,7 @@ Please refer to our <%= link_to 'Help', help_path %> page for more guidance.</p>
 
 
 
-<% if f.object.display_additional_fields? %>
+<% if f.object.persisted? && f.object.member_ids.present? %>
     <%= link_to t('hyrax.works.form.additional_fields'),
                 '#extended-terms',
                 class: 'btn btn-secondary additional-fields',
@@ -82,8 +82,5 @@ Please refer to our <%= link_to 'Help', help_path %> page for more guidance.</p>
                 'aria-controls'=> "extended-terms" %>
     <div id="extended-terms" class='collapse'>
     <%= render 'form_media', f: f %>
-    <% f.object.secondary_terms.each do |term| %>
-        <%= render_edit_field_partial(term, f: f) %>
-    <% end %>
     </div>
 <% end %>
