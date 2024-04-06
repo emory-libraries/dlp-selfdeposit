@@ -9,6 +9,7 @@
 html,
 body {
   height: 100%;
+  scroll-behavior: smooth;
 }
 body {
   font-family: "Open Sans";
@@ -84,12 +85,10 @@ h3 {
   height: 30px;
 }
 
-
 /**** Dashboard General ****/
 body.dashboard {
   padding-top: 0;
 }
-
 
 /**** New Publication Form ****/
 .add-pub-intro {
@@ -113,26 +112,31 @@ body.dashboard {
   }
 }
 
-#publication-form {
+.pub-accordion-wrapper {
   .card {
+    transition: 0.3s;
     border-radius: 0;
-    border: 2px solid $base-blue; 
+    border: 2px solid $base-blue;
 
     //minor field layout cleanup
-    select, input {
+    select,
+    input {
       border-radius: 0;
     }
     textarea {
       border-radius: 0;
       height: 120px;
     }
-    .multi_value .listing, .controlled_vocabulary .listing {
+    .multi_value .listing,
+    .controlled_vocabulary .listing {
       max-width: initial;
     }
-    .multi_value .listing .input-group, .controlled_vocabulary .listing .input-group {
+    .multi_value .listing .input-group,
+    .controlled_vocabulary .listing .input-group {
       width: 100%;
     }
-    .multi_value .field-controls, .controlled_vocabulary .field-controls {
+    .multi_value .field-controls,
+    .controlled_vocabulary .field-controls {
       margin: 0;
     }
 
@@ -142,33 +146,50 @@ body.dashboard {
     }
     .card-header {
       padding: 0;
+      text-decoration: underline;
+      width: 100%;
+      padding: 20px 10px;
+      background-color: $base-blue;
+      font-family: $font-family-serif;
+      text-transform: none;
+      color: $white;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 0;
+      // padding: 30px 10px 15px 10px;
 
-      button {
-        &.collapsed {
-          text-decoration: none;
-        }
-
-        text-decoration: underline;
-        width: 100%;
-        padding: 20px 10px;
-        background-color: $base-blue;
-        font-family: $font-family-serif;
-        text-transform: none;
+      &::after {
+        content: "❯";
+        float: right;
+        transform: rotate(90deg);
         color: $white;
-        font-size: 1.5rem;
-        border: none;
-        // padding: 30px 10px 15px 10px;
-
-        &::after {
-          content: "❯";
-          float: right;
-          transform: rotate(90deg);
-          color: $white;
-          padding-left: 15px;
-          margin-top: -7px;
-        }
+        padding-left: 15px;
+        margin-top: -7px;
       }
     }
   }
+
+  .card-body {
+    transition: opacity .25s,
+    font-size .5s .25s,
+    padding .001s .001s;
+    transition: grid-template-rows 500ms;
+    display: grid;
+    grid-template-rows: 0fr;
+    padding: 0;
+    min-height: 0;
+
+    > div {
+      overflow: hidden;
+    }
+
+    &.open {
+      grid-template-rows: 1fr;
+      min-height: auto;
+      padding: 1rem;
+      // transition: opacity .25s;
+    }
+  }
 }
+
 /**** End Publication Form ****/
