@@ -155,6 +155,7 @@ body.dashboard {
       font-size: 1.5rem;
       border: none;
       border-radius: 0;
+      cursor: pointer;
 
       &::after {
         content: "❯";
