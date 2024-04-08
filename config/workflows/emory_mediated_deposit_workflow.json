@@ -1,0 +1,29 @@
+{
+    "workflows": [
+        {
+            "name": "emory_mediated_deposit",
+            "label": "SelfDeposit's mediated deposit workflow",
+            "description": "Emory's workflow for mediated deposit within SelfDeposit in which all deposits made through the UI must be approved by a reviewer. Reviewer will make changes to Publication (if needed) and approve it.",
+            "allows_access_grant": false,
+            "actions": [
+                {
+                    "name": "deposit",
+                    "from_states": [],
+                    "transition_to": "under_review",
+                    "methods": [
+                        "Hyrax::Workflow::GrantReadToDepositor",
+                        "Hyrax::Workflow::RevokeEditFromDepositor",
+                        "Hyrax::Workflow::ActivateObject"
+                    ]
+                }, {
+                    "name": "approve",
+                    "from_states": [{"names": ["under_review"], "roles": ["approving"]}],
+                    "transition_to": "deposited",
+                    "methods": [
+                        "SelfDeposit::Workflow::RegisterApprovalPreservationEvent"
+                    ]
+                }
+            ]
+        }
+    ]
+}
