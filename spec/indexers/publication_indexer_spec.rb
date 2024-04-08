@@ -1,12 +1,9 @@
 # frozen_string_literal: true
-
-# Generated via
-#  `rails generate hyrax:work_resource Monograph`
 require 'rails_helper'
 require 'hyrax/specs/shared_specs/indexers'
 
 RSpec.describe PublicationIndexer do
-  shared_context 'with typical indexer and preservation_event' do
+  shared_context 'with typical preservation_event' do
     before do
       allow(resource).to receive(:preservation_events).and_return([preservation_event])
     end
@@ -28,7 +25,7 @@ RSpec.describe PublicationIndexer do
   it_behaves_like 'a Hyrax::Resource indexer'
 
   context 'preservation_events_tesim' do
-    include_context 'with typical indexer and preservation_event'
+    include_context 'with typical preservation_event'
 
     it 'contains a json object of the PreservationEvent' do
       expect(indexer.to_solr['preservation_events_tesim']).to eq(
@@ -40,7 +37,7 @@ RSpec.describe PublicationIndexer do
 
   context 'failed_preservation_events_ssim' do
     let(:preservation_event) { PreservationEvent.new(attributes.merge(outcome: 'Failure')) }
-    include_context 'with typical indexer and preservation_event'
+    include_context 'with typical preservation_event'
 
     it 'contains a failure-formatted json object of the PreservationEvent' do
       expect(indexer.to_solr['failed_preservation_events_ssim']).to eq(
