@@ -1,10 +1,13 @@
 attributes:
+  file_set_use:
+    type: string
+    multiple: false
+    form:
+      required: false
+      primary: false
+    predicate: http://metadata.emory.edu/vocab/cor-terms#fileSetUse
+    index_keys:
+      - "file_set_use_ssi"
   preservation_event_ids:
     type: string
     predicate: http://metadata.emory.edu/vocab/cor-terms#preservationEventIDs
-  pcdm_use:
-    type: string
-    multiple: false
-    predicate: http://pcdm.org/use
-    index_keys:
-      - "pcdm_use_tesim"

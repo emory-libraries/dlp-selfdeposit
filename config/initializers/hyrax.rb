@@ -263,6 +263,9 @@ Hyrax.config do |config|
   # Identify the indexer that will be used for File Sets
   config.file_set_indexer = SelfDeposit::Indexers::FileSetIndexer
 
+  # Identify the form that will be used for File Sets
+  config.file_set_form = SelfDeposit::Forms::FileSetForm
+
   # When your application is ready to use the valkyrie index instead of the one
   # maintained by active fedora, you will need to set this to true. You will
   # also need to update your Blacklight configuration.

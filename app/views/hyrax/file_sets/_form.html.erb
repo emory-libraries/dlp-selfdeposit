@@ -5,10 +5,12 @@
     </span>
     <%= text_field_tag 'file_set[title][]', curation_concern.title.first, class: 'form-control', required: true %>
      <span class="control-label">
-      <%= label_tag 'file_set[pcdm_use]', t('.pcdm_use'),  class: "string optional" %>
+      <%= label_tag 'file_set[file_set_use]', 'Fileset Use',  class: "string optional" %>
     </span>
     <div>
-      <%= select_tag 'file_set[pcdm_use]', options_for_select(["#{FileSet::PRIMARY}", "#{FileSet::SUPPLEMENTAL}", "#{FileSet::PRESERVATION}"], curation_concern.pcdm_use), class: 'form-control' %>
+      <%= select_tag 'file_set[file_set_use]',
+          options_for_select([FileSet::PRIMARY, FileSet::SUPPLEMENTAL, FileSet::PRESERVATION], curation_concern&.file_set_use&.presence || FileSet::PRIMARY),
+          class: 'form-control' %>
     </div>
   </fieldset>
 

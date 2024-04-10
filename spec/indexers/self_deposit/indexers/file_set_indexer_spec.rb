@@ -34,4 +34,10 @@ RSpec.describe SelfDeposit::Indexers::FileSetIndexer do
       )
     end
   end
+
+  context 'file_set_use_ssi' do
+    let(:resource) { ::FileSet.new(file_set_use: ::FileSet::PRIMARY) }
+
+    it('contains the expected text') { expect(indexer.to_solr['file_set_use_ssi']).to eq('Primary Content') }
+  end
 end
