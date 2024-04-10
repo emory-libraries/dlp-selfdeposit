@@ -42,5 +42,21 @@ Rails.application.config.to_prepare do
 
       create_preservation_event(file_set, event)
     end
+
+    private
+
+    ##
+    # @api private
+    #
+    # @return [Hash{Symbol => Object}]
+    def file_set_args(file)
+      { depositor: file.user.user_key,
+        creator: file.user.user_key,
+        date_uploaded: file.created_at,
+        date_modified: Hyrax::TimeService.time_in_utc,
+        label: file.uploader.filename,
+        title: file.uploader.filename,
+        file_set_use: FileSet::PRIMARY }
+    end
   end
 end
