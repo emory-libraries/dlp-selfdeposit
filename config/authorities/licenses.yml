@@ -1,46 +1,125 @@
+---
 terms:
-    - id: http://creativecommons.org/licenses/by/3.0/us/
-      term: Attribution 3.0 United States
-      active: false
-    - id: http://creativecommons.org/licenses/by-sa/3.0/us/
-      term: Attribution-ShareAlike 3.0 United States
-      active: false
-    - id: http://creativecommons.org/licenses/by-nc/3.0/us/
-      term: Attribution-NonCommercial 3.0 United States
-      active: false
-    - id: http://creativecommons.org/licenses/by-nd/3.0/us/
-      term: Attribution-NoDerivs 3.0 United States
-      active: false
-    - id: http://creativecommons.org/licenses/by-nc-nd/3.0/us/
-      term: Attribution-NonCommercial-NoDerivs 3.0 United States
-      active: false
-    - id: http://creativecommons.org/licenses/by-nc-sa/3.0/us/
-      term: Attribution-NonCommercial-ShareAlike 3.0 United States
-      active: false
-    - id: http://www.europeana.eu/portal/rights/rr-r.html
-      term: All rights reserved
-      active: false
-    - id: https://creativecommons.org/licenses/by/4.0/
-      term: Creative Commons BY Attribution 4.0 International
-      active: true
-    - id: https://creativecommons.org/licenses/by-sa/4.0/
-      term: Creative Commons BY-SA Attribution-ShareAlike 4.0 International
-      active: true
-    - id: https://creativecommons.org/licenses/by-nd/4.0/
-      term: Creative Commons BY-ND Attribution-NoDerivatives 4.0 International
-      active: true
-    - id: https://creativecommons.org/licenses/by-nc/4.0/
-      term: Creative Commons BY-NC Attribution-NonCommercial 4.0 International
-      active: true
-    - id: https://creativecommons.org/licenses/by-nc-nd/4.0/
-      term: Creative Commons BY-NC-ND Attribution-NonCommercial-NoDerivs 4.0 International
-      active: true
-    - id: https://creativecommons.org/licenses/by-nc-sa/4.0/
-      term: Creative Commons BY-NC-SA Attribution-NonCommercial-ShareAlike 4.0 International
-      active: true
-    - id: http://creativecommons.org/publicdomain/zero/1.0/
-      term: Creative Commons CC0 1.0 Universal
-      active: true
-    - id: http://creativecommons.org/publicdomain/mark/1.0/
-      term: Creative Commons Public Domain Mark 1.0
-      active: true
+- id: https://creativecommons.org/licenses/by/4.0/
+  term: Creative Commons Attribution 4.0 International
+  active: true
+- id: https://creativecommons.org/licenses/by-sa/4.0/
+  term: Creative Commons Attribution-ShareAlike 4.0 International
+  active: true
+- id: https://creativecommons.org/licenses/by-nc/4.0/
+  term: Creative Commons Attribution-NonCommercial 4.0 International
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-nd/4.0/
+  term: Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-sa/4.0/
+  term: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+  active: true
+- id: https://creativecommons.org/licenses/by-nd/4.0/
+  term: Creative Commons Attribution-NoDerivs 4.0 International
+  active: true
+- id: http://creativecommons.org/licenses/by-nc-nd/3.0/us/
+  term: Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States
+  active: true
+- id: http://creativecommons.org/licenses/by-nc-sa/3.0/us/
+  term: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 United States
+  active: true
+- id: http://creativecommons.org/licenses/by-nc/3.0/us/
+  term: Creative Commons Attribution-NonCommercial 3.0 United States
+  active: true
+- id: http://creativecommons.org/licenses/by-nd/3.0/us/
+  term: Creative Commons Attribution-NoDerivs 3.0 United States
+  active: true
+- id: http://creativecommons.org/licenses/by-sa/3.0/us/
+  term: Creative Commons Attribution-ShareAlike 3.0 United States
+  active: true
+- id: http://creativecommons.org/licenses/by/3.0/us/
+  term: Creative Commons Attribution 3.0 United States
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-nd/3.0/
+  term: Creative Commons Attribution-NonCommerical-NoDerivs 3.0 Unported
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-sa/3.0/
+  term: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported
+  active: true
+- id: https://creativecommons.org/licenses/by-nc/3.0/
+  term: Creative Commons Attribution-Noncommercial 3.0 Unported
+  active: true
+- id: https://creativecommons.org/licenses/by-nd/3.0/
+  term: Creative Commons Attribution-NoDerivs 3.0 Unported
+  active: true
+- id: https://creativecommons.org/licenses/by-sa/3.0/
+  term: Creative Commons Attribution-ShareAlike 3.0 Unported
+  active: true
+- id: https://creativecommons.org/licenses/by/3.0/
+  term: Creative Commons Attribution 3.0 Unported
+  active: true
+- id: https://creativecommons.org/licenses/by/3.0/igo/
+  term: Creative Commons Attribution 3.0 IGO License
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-nd/2.5/
+  term: Creative Commons Attribution-NonCommercial-NoDerivs 2.5 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-sa/2.5/
+  term: Creative Commons Attribution-NonCommerical-ShareAlike 2.5 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nc/2.5/
+  term: Creative Commons Attribution-NonCommercial 2.5 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nd/2.5/
+  term: Creative Commons Attribution-NoDerivs 2.5 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-sa/2.5/
+  term: Creative Commons Attribution-ShareAlike 2.5 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by/2.5/
+  term: Creative Commons Attribution 2.5 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-nd/2.0/
+  term: Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-sa/2.0/
+  term: Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nc/2.0/
+  term: Creative Commons Attribution-NonCommercial 2.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nc/2.0/de/
+  term: Creative Commons Attribution NonCommercial License 2.0 Germany
+  active: true
+- id: https://creativecommons.org/licenses/by-nd/2.0/
+  term: Creative Commons Attribution-NoDerivs 2.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-sa/2.0/
+  term: Creative Commons Attribution-ShareAlike 2.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by/2.0/
+  term: Creative Commons Attribution 2.0 Generic
+  active: true
+- id: http://creativecommons.org/publicdomain/mark/1.0/
+  term: Creative Commons Creative Commons Public Domain Mark 1.0
+  active: true
+- id: http://creativecommons.org/publicdomain/zero/1.0/
+  term: Creative Commons Creative Commons CC0 1.0 Universal
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-nd/1.0/
+  term: Creative Commons Attribution-NoDerivs-NonCommercial 1.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nc-sa/1.0/
+  term: Creative Commons Attribution-NonCommercial-ShareAlike 1.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nc/1.0/
+  term: Creative Commons Attribution-NonCommercial 1.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-nd/1.0/
+  term: Creative Commons Attribution-NoDerivs 1.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by-sa/1.0/
+  term: Creative Commons Attribution-ShareAlike 1.0 Generic
+  active: true
+- id: https://creativecommons.org/licenses/by/1.0/
+  term: Creative Commons Attribution 1.0 Generic
+  active: true
+- id: https://creativecommons.org/publicdomain/zero/1.0/
+  term: 'Creative Commons Universal : Public Domain Dedication'
+  active: true
