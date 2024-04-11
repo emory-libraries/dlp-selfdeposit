@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Hyrax
-  module FileSet
+  class FileSet
     module CharacterizationExtension
       extend ActiveSupport::Concern
 
