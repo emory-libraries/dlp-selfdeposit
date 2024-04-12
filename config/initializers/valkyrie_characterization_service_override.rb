@@ -32,6 +32,30 @@ Rails.application.config.to_prepare do
                               path_hint: saved.file_identifier.to_s)
     end
 
+    ##
+    # @api private
+    #
+    # Coerce given source into a type that can be passed to Hydra::FileCharacterization
+    # Use Hydra::FileCharacterization to extract metadata (an OM XML document)
+    # Get the terms (and their values) from the extracted metadata
+    # Assign the values of the terms to the properties of the metadata object
+    #
+    # @return [void]
+    def characterize
+      terms = parse_metadata(extract_metadata(content))
+      transform_original_checksum(terms)
+      apply_metadata(terms)
+    end
+
+    def transform_original_checksum(terms)
+      value = terms[:original_checksum]
+      return if value.empty?
+      value.first.prepend("urn:md5:").to_s
+      sha256 = Digest::SHA256.file(metadata.file.io.path).hexdigest.prepend("urn:sha256:")
+      sha1 = Digest::SHA1.file(metadata.file.io.path).hexdigest.prepend("urn:sha1:")
+      value.push(sha1, sha256)
+    end
+
     def process_preservation_event(metadata, user, file_set, event_start)
       metadata_populated = check_for_populated_metadata(metadata)
       event = {
