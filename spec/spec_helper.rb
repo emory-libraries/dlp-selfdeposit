@@ -27,6 +27,7 @@ RSpec.configure do |config|
   config.order = :random
   Kernel.srand config.seed
 
+  # The following behaviors are copied from Hyrax v5.0.1's spec_helper.rb
   config.before :suite do
     User.group_service = TestHydraGroupService.new
   end
@@ -35,7 +36,6 @@ RSpec.configure do |config|
     User.group_service.clear
   end
 
-  # Prepend this before block to ensure that it runs before other before blocks like clean_repo
   config.prepend_before(:example, :storage_adapter) do |example|
     adapter_name = example.metadata[:storage_adapter]
 
@@ -44,7 +44,6 @@ RSpec.configure do |config|
       .and_return(Valkyrie::StorageAdapter.find(adapter_name))
   end
 
-  # Prepend this before block to ensure that it runs before other before blocks like clean_repo
   config.prepend_before(:example, :valkyrie_adapter) do |example|
     adapter_name = example.metadata[:valkyrie_adapter]
 

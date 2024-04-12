@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Hyrax v5.0.1 Override: We have to point the FileSet class to the one we're using.
+#
+# NOTE: If using trait `with_files`, the fixture files will have to be imported as well and the path changed.
 FactoryBot.define do
   factory :hyrax_file_set, class: '::FileSet' do
     transient do
