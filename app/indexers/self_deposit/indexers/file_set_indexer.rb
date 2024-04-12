@@ -10,6 +10,11 @@ module SelfDeposit
       def to_solr
         super.tap do |solr_doc|
           solr_doc['preservation_events_tesim'] = resource&.preservation_events&.map(&:preservation_event_terms)
+        end
+      end
+
+      def generate_solr_document
+        super.tap do |solr_doc|
           solr_doc['file_path_ssim'] = object.file_path if object.file_path.present?
           solr_doc['creating_application_name_ssim'] = object.creating_application_name if object.creating_application_name.present?
           solr_doc['puid_ssim'] = object.puid if object.puid.present?
