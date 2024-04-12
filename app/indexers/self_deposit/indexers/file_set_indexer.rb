@@ -10,14 +10,12 @@ module SelfDeposit
       def to_solr
         super.tap do |solr_doc|
           solr_doc['preservation_events_tesim'] = resource&.preservation_events&.map(&:preservation_event_terms)
-        end
-      end
+          file_metadata = Hyrax.config.file_set_file_service.new(file_set: resource).primary_file
+          return solr_doc unless file_metadata
 
-      def generate_solr_document
-        super.tap do |solr_doc|
-          solr_doc['file_path_ssim'] = object.file_path if object.file_path.present?
-          solr_doc['creating_application_name_ssim'] = object.creating_application_name if object.creating_application_name.present?
-          solr_doc['puid_ssim'] = object.puid if object.puid.present?
+          solr_doc['file_path_ssim'] = file_metadata.file_path if file_metadata.file_path.present?
+          solr_doc['creating_application_name_ssim'] = file_metadata.creating_application_name if file_metadata.creating_application_name.present?
+          solr_doc['puid_ssim'] = file_metadata.puid if file_metadata.puid.present?
         end
       end
     end
