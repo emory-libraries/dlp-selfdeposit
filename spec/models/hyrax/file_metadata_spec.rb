@@ -7,4 +7,16 @@ RSpec.describe Hyrax::FileMetadata do
   describe '#original_checksum' do
     it { is_expected.to respond_to(:original_checksum) }
   end
+  describe '#file_path' do
+    it { is_expected.to respond_to(:file_path) }
+  end
+  describe '#puid' do
+    it { is_expected.to respond_to(:puid) }
+  end
+  describe '#creating_application_name' do
+    it { is_expected.to respond_to(:creating_application_name) }
+  end
+  describe '#creating_os' do
+    it { is_expected.to respond_to(:creating_os) }
+  end
 end
