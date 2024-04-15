@@ -26,4 +26,36 @@ RSpec.configure do |config|
   config.profile_examples = 10
   config.order = :random
   Kernel.srand config.seed
+
+  # The following behaviors are copied from Hyrax v5.0.1's spec_helper.rb
+  config.before :suite do
+    User.group_service = TestHydraGroupService.new
+  end
+
+  config.after :suite do
+    User.group_service.clear
+  end
+
+  config.prepend_before(:example, :storage_adapter) do |example|
+    adapter_name = example.metadata[:storage_adapter]
+
+    allow(Hyrax)
+      .to receive(:storage_adapter)
+      .and_return(Valkyrie::StorageAdapter.find(adapter_name))
+  end
+
+  config.prepend_before(:example, :valkyrie_adapter) do |example|
+    adapter_name = example.metadata[:valkyrie_adapter]
+
+    if adapter_name == :wings_adapter
+      skip("Don't test Wings when it is dasabled") if Hyrax.config.disable_wings
+    else
+      allow(Hyrax.config).to receive(:disable_wings).and_return(true)
+      hide_const("Wings") # disable_wings=true removes the Wings constant
+    end
+
+    allow(Hyrax)
+      .to receive(:metadata_adapter)
+      .and_return(Valkyrie::MetadataAdapter.find(adapter_name))
+  end
 end
