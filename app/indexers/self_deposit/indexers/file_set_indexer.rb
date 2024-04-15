@@ -16,6 +16,7 @@ module SelfDeposit
           solr_doc['file_path_ssim'] = file_metadata.file_path if file_metadata.file_path.present?
           solr_doc['creating_application_name_ssim'] = file_metadata.creating_application_name if file_metadata.creating_application_name.present?
           solr_doc['puid_ssim'] = file_metadata.puid if file_metadata.puid.present?
+          solr_doc['original_checksum_ssim'] = file_metadata.original_checksum if file_metadata.original_checksum.present?
         end
       end
     end
