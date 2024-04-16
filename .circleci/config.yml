@@ -93,7 +93,8 @@ jobs:
           key: v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
           paths:
             - ~/project/node_modules
-      - samvera/install_solr_core
+      - samvera/install_solr_core:
+          solr_port: << parameters.solr_port >>
       - run:
           name: Install Code Climate test reporter
           command: |
