@@ -152,7 +152,7 @@ services:
     command:
       - sh
       - "-c"
-      - "solr-precreate dlp-selfdeposit-test /opt/solr/server/configsets/hyraxconf"
+      - "solr-precreate dlp-selfdeposit /opt/solr/server/configsets/hyraxconf; solr-precreate dlp-selfdeposit-test /opt/solr/server/configsets/hyraxconf"
     volumes:
       - solr:/var/solr/data:cached
       - ./solr/conf:/opt/solr/server/configsets/hyraxconf

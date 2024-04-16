@@ -95,6 +95,7 @@ jobs:
             - ~/project/node_modules
       - samvera/install_solr_core:
           solr_port: << parameters.solr_port >>
+          core_name: << parameters.core_name >>
       - run:
           name: Install Code Climate test reporter
           command: |
