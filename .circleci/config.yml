@@ -52,7 +52,7 @@ jobs:
       HYRAX_VALKYRIE: true
       RACK_ENV: test
       RAILS_ENV: test
-      SOLR_TEST_URL: http://127.0.0.1:8985/solr/dlp-selfdeposit-test
+      SOLR_TEST_URL: http://127.0.0.1:8983/solr/dlp-selfdeposit-test
       SPEC_OPTS: >-
         --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
         --format progress
@@ -66,7 +66,7 @@ jobs:
         default: "2.5.6"
         type: string
       solr_port:
-        default: "8985"
+        default: "8983"
         type: string
       solr_version:
         default: "8.11-slim"
@@ -93,7 +93,9 @@ jobs:
           key: v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
           paths:
             - ~/project/node_modules
-      - samvera/install_solr_core
+      - samvera/install_solr_core:
+          solr_port: << parameters.solr_port >>
+          core_name: << parameters.core_name >>
       - run:
           name: Install Code Climate test reporter
           command: |
