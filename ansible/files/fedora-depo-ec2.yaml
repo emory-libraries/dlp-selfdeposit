@@ -5,16 +5,50 @@ Parameters:
     Default: arch
     Description: arch, test, or production
 Resources:
+  IAMRoleForS3:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub "fedora-depo-${EnvironmentParameter}-s3" 
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal: 
+              Service: "ec2.amazonaws.com"        
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: !Sub "fedora-depo-s3-${EnvironmentParameter}-policy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow" 
+                Action: 
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:AbortMultipartUpload
+                  - s3:ListBucket
+                  - s3:DeleteObject
+                Resource:
+                  - !Sub "arn:aws:s3:::fedora-depo-binaries-${EnvironmentParameter}"
+                  - !Sub "arn:aws:s3:::fedora-depo-binaries-${EnvironmentParameter}/*"
+  FedoraInstanceProfile: 
+    Type: "AWS::IAM::InstanceProfile"
+    Properties: 
+      Path: "/"
+      Roles: 
+        - Ref: "IAMRoleForS3"  
   FedoraServer:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: "ami-0cf10cdf9fcd62d37"
       InstanceType: "t3.large"
+      IamInstanceProfile: !Ref FedoraInstanceProfile
       KeyName: "library_team.pem"
       PropagateTagsToVolumeOnCreation: True
       SecurityGroupIds: 
         - "sg-0d01f29e22a683661"
-        - "sg-0b12ad1019be6c5a3"
         - "sg-0f9a0b8bf4d1639d8"
       SubnetId: "subnet-0289823249b0d4c77"
       Tags: 
@@ -33,9 +67,14 @@ Resources:
       ImageId: "ami-0cf10cdf9fcd62d37"
       InstanceType: "t3.medium"
       KeyName: "library_team.pem"
+      BlockDeviceMappings:
+      - DeviceName: "/dev/xvda"
+        Ebs:
+          VolumeSize: 80
       PropagateTagsToVolumeOnCreation: True
       SecurityGroupIds:
         - "sg-05d9c90cf588fbf55"
+        - "sg-00e0f950d60629f7e"
       SubnetId: "subnet-0289823249b0d4c77"
       Tags:
         - Key: "Name"
@@ -47,3 +86,6 @@ Resources:
           Value: "Openemory"
         - Key: "AnsibleDesignation"
           Value: "OE24hyrax"
+        - Key: "AnsibleEnvironment"
+          Value: !Sub '${EnvironmentParameter}'
+

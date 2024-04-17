@@ -31,10 +31,11 @@
      dest: /opt/solr/server/solr/configsets/self-deposit/conf/solrconfig.xml
      owner: solr
      group: solr
-  - name: check existence of core
-    uri:
-      url: http://localhost:8983/solr/OE24_collection/schema?
-    register: _result
-  - name: create solr
-    command: /opt/solr/bin/solr create_collection -c OE24_collection -d self-deposit -s 1 -rf 3
-    when: _result.status == 404
+  - name: check existence of core and create if absent
+    block:
+      - name: check existence
+        uri:
+          url: http://localhost:8983/solr/OE24_collection/schema?
+    rescue: 
+      - name: create solr
+        command: /opt/solr/bin/solr create_collection -c OE24_collection -d self-deposit -s 1 -rf 3

@@ -1,17 +1,17 @@
 ---
 - name: create cloudformation resources
   hosts: localhost
-  vars:
-    rdsname: |-
-      {%- if ENV != "prod" -%}
-      fedora-depo-arch-rds
-      {%- else -%}
-      fedora-depo-prod-rds
-      {%- endif -%}
   tasks:
+  - name: globals, shib ec2
+    cloudformation:
+      stack_name: "ansible-OE-cloudformation-global"
+      disable_rollback: true
+      state: present
+      region: "us-east-1"
+      template: "files/fedora-depo-globals.yaml"
   - name: Create the Open Emory ec2s
     cloudformation: 
-      stack_name: "ansible-OE-cloudformationformation-ec2"
+      stack_name: "ansible-OE-cloudformation-{{ ENV }}"
       disable_rollback: true
       state: "{{ STATE }}"
       region: "us-east-1"
@@ -22,20 +22,20 @@
   - name: add to correct target group
     community.aws.elb_target:
       target_group_name: "oe24-fedora-{{ ENV }}-instances"
-      target_id: "{{ ec2.stack_resources[0].physical_resource_id }}"
+      target_id: "{{ ec2.stack_resources[1].physical_resource_id }}"
       state: "{{ STATE }}"
       target_port: 8080
     when: STATE != 'absent'
   - name: add hyrax to correct target group
     community.aws.elb_target:
       target_group_name: "oe24-{{ ENV }}-hyrax-instances"
-      target_id: "{{ ec2.stack_resources[1].physical_resource_id }}"
+      target_id: "{{ ec2.stack_resources[2].physical_resource_id }}"
       state: "{{ STATE }}"
       target_port: 80
     when: STATE != 'absent'
   - name: create s3 backup
     cloudformation:
-      stack_name: "ansible-OE-cloudformation-s3"
+      stack_name: "ansible-OE-cloudformation-{{ENV}}-s3"
       disable_rollback: true
       state: "{{ STATE }}"
       region: "us-west-2"
@@ -45,31 +45,63 @@
         BackupParameter: 'true' 
   - name: create main s3 bucket with replication
     cloudformation:
-      stack_name: "ansible-OE-cloudformation-s3"
+      stack_name: "ansible-OE-cloudformation-{{ ENV }}-s3"
       disable_rollback: true
       state: "{{ STATE }}"
-      region: "us-east-1" 
+      region: "us-east-1"  
       template: "files/fedora-depo-s3.yaml"
       template_parameters:
         EnvironmentParameter: "{{ ENV }}"
         BackupParameter: 'false'
+  - name: create s3 policy 
+    template: 
+      src: files/bucketpolicy.json.j2
+      dest: "files/bucketpolicy.json" 
+  - name: assign policy because cloudformation breaks
+    s3_bucket:
+      name: "fedora-depo-{{ ENV }}-binaries" 
+      policy: "{{ lookup('file','files/bucketpolicy.json') }}"   
+  - name: clean up policy file
+    file:
+      path: files/bucketpolicy.json
+      state: absent    
+  - name: create rds
+    cloudformation:
+      stack_name: "ansible-OE-cloudformation-{{ ENV }}-rds"
+      disable_rollback: true
+      state: "{{ STATE }}"
+      region: "us-east-1"
+      template: "files/fedora-depo-rds.yaml"
+      template_parameters:
+        EnvironmentParameter: "{{ ENV }}"
+        MasterPassParameter: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-{{ ENV }}.postgres', nested=true) }}"
   - name: Get RDS info
     rds_instance_info:
-      db_instance_identifier: "{{ rdsname }}" 
+      db_instance_identifier: "fedora-depo-{{ ENV  }}"
     register: db_info
-  - name: create DB
-    community.postgresql.postgresql_db:
-      name: "oe24-{{ ENV }}"
-      state: present
-      login_host: "{{ db_info.instances[0].endpoint.address }}"
-      login_user: postgres
-      login_password: "{{ lookup('amazon.aws.aws_secret','rds!db-4789b990-9571-430b-9d5a-7a07cdb50e8e.password', nested=true) }}"
   - name: create User for DB
     community.postgresql.postgresql_user:
-      db: "oe24-{{ ENV }}"
-      name: "oe24-{{ ENV }}"
-      password: "{{ lookup('amazon.aws.aws_secret','oe24-{{ ENV }}-dbuser-password') }}"
-      priv: 'ALL'
+      db: "oe24{{ ENV }}"
+      name: "oe24{{ ENV }}"
+      password: "{{ lookup('amazon.aws.aws_secret','oe24-{{ ENV }}-dbuser-password.password',nested=true) }}"
       login_user: postgres
-      login_password: "{{ lookup('amazon.aws.aws_secret','rds!db-4789b990-9571-430b-9d5a-7a07cdb50e8e.password', nested=true) }}"
-      login_host: "{{ db_info.instances[0].endpoint.address }}" 
+      login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-test.postgres', nested=true) }}"
+      login_host: "{{ db_info.instances[0].endpoint.address }}"
+  - name: grant privs
+    community.postgresql.postgresql_privs:
+      login_user: postgres
+      login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-test.postgres', nested=true) }}"
+      login_host: "{{ db_info.instances[0].endpoint.address }}"
+      db: "oe24{{ ENV }}"
+      role: "oe24{{ ENV }}"
+      objs: ALL_IN_SCHEMA
+      privs: SELECT,INSERT,UPDATE,DELETE
+  - name: create Redis node
+    cloudformation:
+      stack_name: "ansible-OE-cloudformation-redis-{{ ENV }}"
+      disable_rollback: true
+      state: "{{ STATE }}"
+      region: "us-east-1"
+      template: "files/fedora-depo-redis.yaml"
+      template_parameters:
+        EnvironmentParameter: "{{ ENV }}"

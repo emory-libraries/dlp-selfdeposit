@@ -14,8 +14,11 @@ ansible-playbook -i aws_ec2.yaml main.yaml -e "ENV=arch STATE=present"
 
 
 This will create:
-2 ec2 instances
+1 shib instance that exists across all 3 environments
+2 ec2 instances	
 1 solr collection
-1 database and user
+1 rds instance
 2 s3 buckets with replication
+
+
 

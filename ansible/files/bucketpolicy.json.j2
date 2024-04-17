@@ -1,0 +1,23 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1546414471931",
+            "Effect": "Allow",
+            "Principal":{
+                "AWS": "arn:aws:iam::556359784184:role/fedora-depo-{{ ENV }}-s3"
+            },
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:AbortMultipartUpload",
+                "s3:ListBucket",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::fedora-depo-{{ ENV }}-binaries",
+                "arn:aws:s3:::fedora-depo-{{ ENV }}-binaries/*"
+            ]
+        }
+    ]
+}

@@ -1,14 +1,17 @@
 --- 
-- name: install apache and ruby
-  hosts: tag_AnsibleDesignation_OE24hyrax
+- name: install hyrax dependencies
+  hosts: 
+    - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}"
   user: ec2-user
   become: yes
   vars:
     hyrax_packages:
       - httpd
       - git
+      - redis
       - libyaml-devel   
       - perl-IPC-Cmd
+      - ImageMagick
       - gcc
       - zlib-devel
       - libffi-devel
@@ -19,6 +22,13 @@
       - httpd-devel
       - apr-devel
       - apr-util-devel
+      - http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-rh-2-3.el7.centos.noarch.rpm
+      - http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-2-3.el7.centos.noarch.rpm
+ #     - http://mirror.centos.org/centos/7/sclo/x86_64/rh/Packages/l/llvm-toolset-7-clang-4.0.1-1.el7.x86_64.rpm  
+      - postgresql15
+      - postgresql15-devel
+    gems_to_install:
+      - nokogiri
     profile_files:
       - /root/.bash_profile
       - /home/deploy/.bash_profile
@@ -27,16 +37,110 @@
    - name: create deploy user
      user: 
        name: deploy
+       groups: 
+        - wheel
    - name: add key to deploy user
      authorized_key:
        user: deploy
        state: present
        key: "{{ lookup('file', 'files/deploy.pub') }}"
+   - name: insstall epel-release
+     command:
+       cmd: amazon-linux-extras install epel -y
+       creates: /etc/yum.repos.d/epel.repo
+   - name: add postgresqlrepo
+     copy:
+       src: files/pgdg.repo
+       dest: /etc/yum.repos.d/pgdg-15.repo
    - name: install package "{{ item }}
      yum: 
        name: "{{ item }}"
        state: latest
      loop: "{{ hyrax_packages }}"
+   - name: install via amazon-linux-extras
+     command:
+       cmd: amazon-linux-extras install libreoffice -y
+       creates: /usr/lib64/libreoffice/share/gallery
+   - name: install java
+     command: amazon-linux-extras install java-openjdk11 -y
+     args:
+       creates: /usr/lib/jvm/
+   - name: create tomcat user
+     user:
+       name: tomcat
+   - name: Create a Tomcat Group
+     group:
+       name: tomcat
+   - name: Create a Tomcat Directory
+     file:
+       path: /opt/tomcat9
+       owner: tomcat
+       group: tomcat
+       mode: 0755
+       recurse: yes
+   - name: Check if we need to download tomcat
+     stat:
+       path: /opt/tomcat9/apache-tomcat-9.0.73
+     register: filesFound
+   - name: download & unarchive tomcat
+     unarchive:
+       src: https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
+       dest: /opt/tomcat9
+       remote_src: yes
+     when: filesFound.stat.exists == False
+   - name: Change ownership of tomcat directory
+     file:
+       path: /opt/tomcat9
+       owner: tomcat
+       group: tomcat
+       mode: "u+rwx,g+rx,o=rx"
+       recurse: yes
+       state: directory
+   - name: create symbolic link for ease
+     file:
+       src: /opt/tomcat9/apache-tomcat-9.0.73
+       dest: /opt/tomcat
+       owner: tomcat
+       group: tomcat
+       state: link
+   - name: Copy Tomcat service from local to remote
+     copy:
+       src: files/tomcat.service
+       dest: /etc/systemd/system/
+       mode: 0755
+   - name: create fits folder
+     file: 
+       path: /opt/fits
+       state: directory
+       owner: tomcat
+       group: tomcat
+   - name: Check if we need to download fits
+     stat:
+       path: /opt/fits/fits-env.sh
+     register: fitsfilesFound
+   - name: download & unarchive fits
+     unarchive:
+       src:  https://github.com/harvard-lts/fits/releases/download/1.5.1/fits-1.5.1.zip
+       dest: /opt/fits
+       remote_src: yes
+     when: fitsfilesFound.stat.exists == False
+   - name: copy fits war file
+     copy:
+       src: files/fits-1.2.1.war
+       dest: /opt/tomcat9/apache-tomcat-9.0.73/webapps/fits.war
+       owner: tomcat
+       group: tomcat
+   - name: add fits home to catalina properties
+     blockinfile: 
+       path: /opt/tomcat9/apache-tomcat-9.0.73/conf/catalina.properties
+       block: |
+         fits.home=/opt/fits
+         shared.loader=${fits.home}/lib/*.jar
+   - name: Start and Enable Tomcat 9 on sever
+     systemd:
+       name: tomcat
+       state: started
+       daemon_reload: true 
    - name: start and enable apache
      service:
        name: httpd
@@ -89,7 +193,32 @@
        ruby /usr/local/rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/passenger-6.0.20/bin/passenger-install-apache2-module -a 
      args:
        creates: /usr/local/rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/passenger-6.0.20/buildout/apache2/mod_passenger.so
+   - name: create deployment directory
+     file:
+       path: /opt/dlp-selfdeposit
+       state: directory
+       owner: deploy
+       group: deploy
+   - name: drop in apache config
+     copy:
+       dest: /etc/httpd/conf.d/oe24.conf
+       src: files/oe24.conf 
    - name: restart apache
      service:
        name: httpd
        state: restarted
+   - name: create pg_config symlink
+     file: 
+       dest: /usr/bin/pg_config
+       src: /usr/pgsql-15/bin/pg_config
+       state: link
+   - name: create gem symlink
+     file:
+       dest: /usr/bin/gem
+       src: /usr/local/rbenv/shims/gem
+       state: link
+   - name: install gem "{{ item }}
+     gem: 
+       name: "{{ item }}"
+       state: latest
+     loop: "{{ gems_to_install }}"
