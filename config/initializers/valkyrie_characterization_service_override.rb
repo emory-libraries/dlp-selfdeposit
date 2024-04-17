@@ -51,8 +51,8 @@ Rails.application.config.to_prepare do
       value = terms[:original_checksum]
       return if value.empty?
       value.first.prepend("urn:md5:").to_s
-      sha256 = Digest::SHA256.file(metadata.file.io.path).hexdigest.prepend("urn:sha256:")
-      sha1 = Digest::SHA1.file(metadata.file.io.path).hexdigest.prepend("urn:sha1:")
+      sha256 = digest_sha256
+      sha1 = digest_sha1
       value.push(sha1, sha256)
     end
 
@@ -76,6 +76,28 @@ Rails.application.config.to_prepare do
     def pres_event_details(metadata_populated, metadata, file_set)
       return "#{file_set.characterization_proxy}: #{metadata.original_filename} - Technical metadata extracted from file, format identified, and file validated" if metadata_populated
       "The Characterization Service failed."
+    end
+
+    def digest_sha256
+      sha = Digest::SHA256.new
+      file = metadata.file
+
+      file.rewind
+      while (chunk = file.read(256))
+        sha << chunk
+      end
+      sha.hexdigest.prepend("urn:sha256:")
+    end
+
+    def digest_sha1
+      sha = Digest::SHA1.new
+      file = metadata.file
+
+      file.rewind
+      while (chunk = file.read(1))
+        sha << chunk
+      end
+      sha.hexdigest.prepend("urn:sha1:")
     end
   end
 end

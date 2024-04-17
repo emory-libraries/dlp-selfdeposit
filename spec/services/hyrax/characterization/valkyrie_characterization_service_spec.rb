@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe Hyrax::Characterization::ValkyrieCharacterizationService do
   describe "#transform_original_checksum" do
-    let(:file) { "spec/fixtures/world.png" }
+    let(:file) { File.open("spec/fixtures/world.png") }
     let(:file_metadata) { instance_double(Hyrax::FileMetadata) }
 
     it 'produces three SHA digests' do
@@ -20,7 +20,7 @@ RSpec.describe Hyrax::Characterization::ValkyrieCharacterizationService do
                 width: ["145"],
                 height: ["150"],
                 color_space: ["BlackIsZero"] }.to_h
-      allow(file_metadata).to receive_message_chain(:file, :io, :path).and_return(file)
+      allow(file_metadata).to receive(:file).and_return(file)
       described_class.new(metadata: file_metadata, file:, **Hyrax.config.characterization_options).transform_original_checksum(terms)
 
       expect(terms[:original_checksum].size).to eq(3)
