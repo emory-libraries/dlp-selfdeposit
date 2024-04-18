@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09 
+Parameters:
+  EnvironmentParameter:
+    Type: String
+Resources:
+  FedoraDepoRedis:
+    Type: AWS::ElastiCache::CacheCluster
+    Properties:
+      ClusterName: !Sub 'OE24-redis-${EnvironmentParameter}'
+      Engine: Redis
+      EngineVersion: 6.2
+      NumCacheNodes: 1
+      CacheNodeType: cache.t3.micro
+      CacheSubnetGroupName: elasticache-redis-test
+      VpcSecurityGroupIds:
+        - sg-00e0f950d60629f7e
+        - sg-00e0f950d60629f7e

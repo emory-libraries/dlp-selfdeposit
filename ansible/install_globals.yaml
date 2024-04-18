@@ -1,0 +1,21 @@
+--- 
+- name: install shibboleth
+  hosts: tag_AnsibleDesignation_OE24shib
+  user: ec2-user
+  become: yes
+  tasks:
+   - name: copy shibboleth repo
+     copy: 
+       src: files/shib.repo
+       dest: /etc/yum.repos.d/shib.repo
+       owner: root
+       group: root
+   - name: install shibboleth
+     yum:
+      name: shibboleth
+      state: present
+   - name: start shibd
+     service:
+       name: shibd
+       state: started
+       enabled: yes

@@ -1,6 +1,7 @@
 --- 
 - name: install tomcat and fedora
-  hosts: tag_AnsibleDesignation_OE24fedora
+  hosts: 
+    - "tag_AnsibleDesignation_OE24fedora:&tag_EmoryEnvironment_{{ ENV }}"
   user: ec2-user
   become: yes
   tasks:
@@ -57,12 +58,12 @@
        state: started
        daemon_reload: true
    - name: set custom java opts
-     copy:
+     template:
        dest: /opt/tomcat/bin/setenv.sh
        owner: tomcat
        group: tomcat
        mode: 0755
-       src: files/setenv.sh
+       src: files/setenv.j2
    - name: disable auth
      copy:
        dest: /opt/tomcat/conf/Catalina/localhost/fcrepo.xml
@@ -70,19 +71,18 @@
        group: tomcat
        mode: 0755
        src: files/fcrepo.xml
+   - name: copy in server.xml
+     copy:
+       dest: /opt/tomcat/conf/server.xml
+       src: files/server.xml
+       owner: tomcat
+       group: tomcat
    - name: download fedora war
      get_url:
        owner: tomcat
        group: tomcat
-       url: https://github.com/fcrepo/fcrepo/releases/download/fcrepo-6.4.0/fcrepo-webapp-6.4.0.war
+       url: https://github.com/fcrepo/fcrepo/releases/download/fcrepo-6.5.0/fcrepo-webapp-6.5.0.war
        dest: /opt/tomcat/webapps/fcrepo.war
-   - name: setup fedora data home
-     file:
-       path: /opt/fedora
-       owner: tomcat
-       group: tomcat
-       mode: 0755
-       recurse: yes 
    - name: Start and Enable Tomcat 9 on sever
      systemd:
        name: tomcat

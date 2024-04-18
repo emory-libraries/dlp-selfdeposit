@@ -19,6 +19,11 @@ Resources:
       BucketName: !Sub 'fedora-depo-${EnvironmentParameter}-binaries'
       VersioningConfiguration:
         Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
       ReplicationConfiguration:
         Role: arn:aws:iam::556359784184:role/replicationrole
         Rules: 
@@ -32,3 +37,4 @@ Resources:
       BucketName: !Sub 'backup-fedora-depo-${EnvironmentParameter}-binaries'
       VersioningConfiguration:
         Status: Enabled
+         
