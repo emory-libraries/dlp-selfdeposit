@@ -25,6 +25,9 @@ Rails.application.config.to_prepare do
       file_set = Hyrax.query_service.find_by(id: saved.file_set_id)
 
       characterizer_obj.process_preservation_event(saved, user, file_set, event_start)
+      characterizer_obj.process_digest_preservation_event(
+        saved.file_set_id, user, event_start, saved.original_checksum
+      )
       Hyrax.publisher.publish('file.metadata.updated', metadata: saved, user:)
       Hyrax.publisher.publish('file.characterized',
                               file_set:,
@@ -49,6 +52,7 @@ Rails.application.config.to_prepare do
 
     def transform_original_checksum(terms)
       value = terms[:original_checksum]
+
       return if value.empty?
       value.first.prepend("urn:md5:").to_s
       sha256 = digest_sha256
@@ -64,7 +68,7 @@ Rails.application.config.to_prepare do
         'outcome' => metadata_populated ? 'Success' : 'Failure',
         'details' => pres_event_details(metadata_populated, metadata, file_set),
         'software_version' => 'FITS Servlet v1.6.0',
-        'user' => user.presence || file_set.depositor
+        'user' => user&.email&.presence || file_set.depositor
       }
       create_preservation_event(file_set, event)
     end
@@ -98,6 +102,17 @@ Rails.application.config.to_prepare do
         sha << chunk
       end
       sha.hexdigest.prepend("urn:sha1:")
+    end
+
+    def process_digest_preservation_event(file_set_id, user, event_start, value)
+      file_set = Hyrax.query_service.find_by(id: file_set_id)
+      # create event for digest calculation/failure
+      event = { 'type' => 'Message Digest Calculation', 'start' => event_start, 'details' => value,
+                'software_version' => 'FITS Servlet v1.6.0, Fedora v6.5, Ruby Digest library',
+                'user' => user&.email&.presence || file_set.depositor }
+      event['outcome'] = value.size == 3 ? 'Success' : 'Failure'
+
+      create_preservation_event(file_set, event)
     end
   end
 end
