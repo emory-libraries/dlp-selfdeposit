@@ -67,7 +67,7 @@ Rails.application.config.to_prepare do
         'start' => event_start,
         'outcome' => metadata_populated ? 'Success' : 'Failure',
         'details' => pres_event_details(metadata_populated, metadata, file_set),
-        'software_version' => 'FITS Servlet v1.6.0',
+        'software_version' => "FITS Servlet #{ENV.fetch('FITS_SERVLET_VERSION', 'v1.6.0')}",
         'user' => user&.email&.presence || file_set.depositor
       }
       create_preservation_event(file_set, event)
@@ -108,7 +108,7 @@ Rails.application.config.to_prepare do
       file_set = Hyrax.query_service.find_by(id: file_set_id)
       # create event for digest calculation/failure
       event = { 'type' => 'Message Digest Calculation', 'start' => event_start, 'details' => value,
-                'software_version' => 'FITS Servlet v1.6.0, Fedora v6.5, Ruby Digest library',
+                'software_version' => "FITS Servlet #{ENV.fetch('FITS_SERVLET_VERSION', 'v1.6.0')}, Fedora #{ENV.fetch('FEDORA_VERSION', 'v6.5.0')}, Ruby Digest library",
                 'user' => user&.email&.presence || file_set.depositor }
       event['outcome'] = value.size == 3 ? 'Success' : 'Failure'
 

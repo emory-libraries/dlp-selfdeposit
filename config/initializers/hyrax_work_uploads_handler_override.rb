@@ -38,7 +38,7 @@ Rails.application.config.to_prepare do
                   "#{formatted_file_name} could not be submitted for preservation storage"
                 end
       event = { 'type' => 'File submission', 'start' => event_start, 'outcome' => outcome, 'details' => details,
-                'software_version' => 'Fedora v6', 'user' => user }
+                'software_version' => "Fedora #{ENV.fetch('FEDORA_VERSION', 'v6.5.0')}", 'user' => user }
 
       create_preservation_event(file_set, event)
     end
