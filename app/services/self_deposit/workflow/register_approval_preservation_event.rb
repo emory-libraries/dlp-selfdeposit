@@ -14,12 +14,12 @@ module SelfDeposit
       # @param target: Publication instance
       #
       # @return Publication Instance
-      def self.call(target:, user:, **)
+      def self.call(target:, user:, comment:, **)
         approval_event = {
           'type' => 'Metadata modification',
           'start' => DateTime.current,
           'outcome' => 'Success',
-          'details' => 'Deposit reviewed and approved',
+          'details' => "Deposit reviewed and approved. #{comment&.comment}",
           'software_version' => 'SelfDeposit v.1',
           'user' => user.email
         }
