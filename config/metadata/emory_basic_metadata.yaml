@@ -115,12 +115,13 @@ attributes:
     multiple: true
     form:
       primary: true
+      required: true
     index_keys:
       - "language_tesim"
     predicate: http://purl.org/dc/elements/1.1/language
   license:
     type: string
-    multiple: true
+    multiple: false
     form:
       primary: false
     index_keys:
