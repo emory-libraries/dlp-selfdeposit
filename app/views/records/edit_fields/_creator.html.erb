@@ -1,0 +1,69 @@
+<h6>Creators</h6>
+<div id="creators-container">
+  <% f.object.creator.each do |creator| %>
+    <div id="creator-<%= SecureRandom.uuid %>">
+      <%= f.simple_fields_for :creators do |creator_form| %>
+        <% creator_form.object = creator %>
+        <%= render 'creator_fields', f: creator_form %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <button type="button" class="btn btn-link add-creator"><span class="glyphicon glyphicon-plus"></span><span class="controls-add-text">Add another Creator</span></button>
+</div>
+
+<div id="template-creator-fields" style="display: none;">
+  <%= f.simple_fields_for :creators do |creator_form| %>
+    <%= render 'creator_fields', f: creator_form %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    const addCreatorButton = document.querySelector('.add-creator');
+
+    addCreatorButton.addEventListener('click', function() {
+      const creatorsContainer = document.getElementById('creators-container');
+      const uuid = crypto.randomUUID();
+      const creatorFieldsTemplate = `<div id=\"creator-${uuid}\">` + document.getElementById('template-creator-fields').innerHTML + "</div>";
+      creatorsContainer.insertAdjacentHTML('beforeend', creatorFieldsTemplate);
+    });
+
+    const form = document.getElementById('new_publication_') || document.querySelectorAll('form[id^="edit_publication_"]')[0]
+
+    form.addEventListener("submit", function(event) {
+      let creators = convertCreatorsToString();
+      console.log(creators)
+
+      for (let i = 0; i < creators.length; i++) {
+        const creator_field = document.createElement('input');
+        creator_field.type = 'hidden'
+        creator_field.name = 'publication[creator][]';
+        creator_field.value = creators[i];
+        form.appendChild(creator_field);
+      }
+    });
+  });
+
+  function convertCreatorsToString() {
+    const creatorEntries = document.querySelectorAll('div[id^="creator-"]');
+    const creatorStrings = [];
+
+    creatorEntries.forEach(creatorEntry => {
+        const firstName = creatorEntry.querySelector('input[name="publication[creators][first_name]"]').value.trim();
+        const lastName = creatorEntry.querySelector('input[name="publication[creators][last_name]"]').value.trim();
+        const affiliation = creatorEntry.querySelector('input[name="publication[creators][affiliation]"]').value.trim();
+        const creatorString = `${lastName}, ${firstName}, ${affiliation}`;
+        creatorStrings.push(creatorString);
+    });
+
+    return creatorStrings;
+}
+
+  function removeCreator() {
+    const creator = event.target.closest('div[id^="creator-"]');
+    creator.remove();
+  }
+</script>

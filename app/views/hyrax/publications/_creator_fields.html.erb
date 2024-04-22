@@ -1,0 +1,15 @@
+<div class="nested-fields row">
+  <% last_name, first_name, affiliation = f.object&.split(',') %>
+  <div class="col-md-3">
+    <%= f.input :first_name, label: 'First Name', :input_html => { :value => first_name&.strip || '' }, required: false %>
+  </div>
+  <div class="col-md-3">
+    <%= f.input :last_name, label: 'Last Name', :input_html => { :value => last_name&.strip || '' }, required: false %>
+  </div>
+  <div class="col-md-3">
+    <%= f.input :affiliation, label: 'Affiliation', :input_html => { :value => affiliation&.strip || '' }, required: false %>
+  </div>
+  <div class="col-md-3">
+    <span class="input-group-btn field-controls"><button type="button" onClick="removeCreator()" class="btn btn-link remove-creator"><span class="glyphicon glyphicon-remove"></span><span class="controls-remove-text">Remove</span>
+  </div>
+</div>
