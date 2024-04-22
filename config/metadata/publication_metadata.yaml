@@ -51,6 +51,7 @@ attributes:
     type: string
     form:
       primary: true
+      required: true
     index_keys:
       - 'content_genres_sim'
       - 'content_genres_tesim'
