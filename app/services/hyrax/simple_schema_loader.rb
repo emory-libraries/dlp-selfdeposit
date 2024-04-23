@@ -89,7 +89,7 @@ module Hyrax
                           else
                             Identity
                           end
-        
+
         config['ordered'] ? collection_type.of(type_for(config['type'])).meta(ordered: true) : collection_type.of(type_for(config['type']))
       end
 
