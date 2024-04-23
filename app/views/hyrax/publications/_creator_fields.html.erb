@@ -1,5 +1,5 @@
 <div class="nested-fields row">
-  <% last_name, first_name, institution, orcid_id = f.object&.split(',') %>
+  <% first_name, last_name, institution, orcid_id = f.object&.split(',') %>
   <div class="col-md-3">
     <%= f.input :first_name, label: 'First Name', :input_html => { class: 'form-control', value: first_name&.strip || '' }, required: true %>
   </div>
