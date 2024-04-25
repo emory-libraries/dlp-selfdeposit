@@ -124,6 +124,7 @@ attributes:
     multiple: false
     form:
       primary: false
+      required: true
     index_keys:
       - "license_tesim"
     predicate: http://purl.org/dc/terms/license
