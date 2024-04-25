@@ -47,14 +47,16 @@ attributes:
     index_keys:
       - 'conference_name_tesi'
     predicate: http://purl.org/dc/terms/relation#conferenceOrMeeting
-  content_genres:
+  content_genre:
     type: string
+    multiple: false
     form:
       primary: true
+      multiple: false
       required: true
     index_keys:
-      - 'content_genres_sim'
-      - 'content_genres_tesim'
+      - 'content_genre_si'
+      - 'content_genre_tesi'
     predicate: http://www.europeana.edu/schemas/edm/hasType
   data_classification:
     type: string
