@@ -32,6 +32,16 @@
 
     }
 
+    &.remove {
+      text-transform: uppercase;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: underline;
+      cursor: pointer;
+      color: #d33a35;
+      box-sizing: border-box;
+    }
+
     // &.pill {
     //     border-radius: 360px;
     //     // padding: 10px 28px;

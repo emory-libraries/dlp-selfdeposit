@@ -1,0 +1,16 @@
+<div class="nested-fields row">
+  <% first_name, last_name, institution, orcid_id = f.object&.split(',') %>
+  <div class="col-md-3">
+    <%= f.input :first_name, label: 'First Name', :input_html => { class: 'form-control', value: first_name&.strip || '' }, required: true %>
+  </div>
+  <div class="col-md-3">
+    <%= f.input :last_name, label: 'Last Name', :input_html => { class: 'form-control', value: last_name&.strip || '' }, required: true %>
+  </div>
+  <div class="col-md-3">
+    <%= f.input :institution, label: 'Institution', :input_html => { class: 'form-control', value: institution&.strip || '' }, required: true %>
+  </div>
+  <div class="col-md-3">
+    <%= f.input :orcid_id, label: 'ORCID ID', :input_html => { class: 'form-control', value: orcid_id&.strip || '' }, required: false %>
+  </div>
+  <span class="input-group-btn field-controls"><button type="button" onClick="removeCreator()" class="btn btn-link remove"><span class="glyphicon glyphicon-remove"></span><span class="controls-remove-text">Remove</span></span></button></span>
+</div>

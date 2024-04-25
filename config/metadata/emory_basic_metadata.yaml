@@ -59,6 +59,7 @@ attributes:
   creator:
     type: string
     multiple: true
+    ordered: true
     form:
       required: true
       primary: true

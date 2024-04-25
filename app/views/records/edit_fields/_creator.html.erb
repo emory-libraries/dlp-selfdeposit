@@ -1,0 +1,94 @@
+<h6>Authors</h6>
+<div id="creators-container">
+  <% if f.object.creator.count > 0 %>
+    <% f.object.creator.each do |creator| %>
+      <div id="creator-<%= SecureRandom.uuid %>">
+        <%= f.simple_fields_for :creators do |creator_form| %>
+          <% creator_form.object = creator %>
+          <%= render 'creator_fields', f: creator_form %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <div id="creator-<%= SecureRandom.uuid %>">
+      <%= f.simple_fields_for :creators do |creator_form| %>
+        <%= render 'creator_fields', f: creator_form %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <button type="button" class="btn btn-link add-creator"><span class="glyphicon glyphicon-plus"></span><span class="controls-add-text">Add another Creator</span></button>
+</div>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    const addCreatorButton = document.querySelector('.add-creator');
+    const form = document.getElementById('new_publication_') || document.querySelectorAll('form[id^="edit_publication_"]')[0]
+
+    addCreatorButton.addEventListener('click', function() {
+      const creatorsContainer = document.getElementById('creators-container');
+      const lastCreator = creatorsContainer.querySelector('div[id^="creator-"]:last-child');
+      const uuid = crypto.randomUUID();
+      const newCreator = lastCreator.cloneNode(true);
+      newCreator.id = `creator-${uuid}`;
+      const inputs = newCreator.querySelectorAll('input');
+      inputs.forEach(input => input.value = '');
+      creatorsContainer.appendChild(newCreator);
+      toggleRemoveButtons();
+    });
+
+    form.addEventListener("submit", function(event) {
+      let creators = convertCreatorsToString();
+
+      for (let i = 0; i < creators.length; i++) {
+        const creator_field = document.createElement('input');
+        creator_field.type = 'hidden'
+        creator_field.name = 'publication[creator][]';
+        creator_field.value = creators[i];
+        form.appendChild(creator_field);
+      }
+    });
+
+    toggleRemoveButtons();
+  });
+
+  function convertCreatorsToString() {
+    const creatorEntries = document.querySelectorAll('div[id^="creator-"]');
+    const creatorStrings = [];
+
+    creatorEntries.forEach(creatorEntry => {
+        const firstName = creatorEntry.querySelector('input[name="publication[creators][first_name]"]').value.trim();
+        const lastName = creatorEntry.querySelector('input[name="publication[creators][last_name]"]').value.trim();
+        const institution = creatorEntry.querySelector('input[name="publication[creators][institution]"]').value.trim();
+        const orcidId = creatorEntry.querySelector('input[name="publication[creators][orcid_id]"]').value.trim();
+        let creatorString = `${firstName}, ${lastName}, ${institution}`;
+        if (orcidId.trim() !== '') {
+          creatorString += `, ${orcidId}`;
+        }
+        creatorStrings.push(creatorString);
+    });
+
+    return creatorStrings;
+}
+
+  
+  function toggleRemoveButtons() {
+    const creatorEntries = document.querySelectorAll('div[id^="creator-"]');
+    
+    creatorEntries.forEach((creatorEntry, index) => {
+        const removeButton = creatorEntry.querySelector('.remove');
+        if (index === 0) {
+            removeButton.style.display = 'none';
+        } else {
+            removeButton.style.display = 'inline-block';
+        }
+    });
+  }
+
+  function removeCreator() {
+    const creator = event.target.closest('div[id^="creator-"]');
+    creator.remove();
+  }
+</script>
