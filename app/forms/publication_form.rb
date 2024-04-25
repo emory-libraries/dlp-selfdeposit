@@ -41,6 +41,6 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
   end
 
   def genres_block
-    [:content_genres]
+    [:content_genre]
   end
 end
