@@ -69,8 +69,6 @@ attributes:
   date_created:
     type: date_time
     multiple: true
-    form:
-      primary: false
     index_keys:
       - "date_created_tesim"
     predicate: http://purl.org/dc/terms/created

@@ -26,7 +26,7 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
   def publication_information
     [:title, :creator, :language, :date_issued, :publisher, :publisher_version,
      :rights_statement, :license, :final_published_versions, :parent_title, :conference_name,
-     :issn, :series_title, :edition, :volume, :issue, :page_range_start, :page_range_end,
+     :issn, :isbn, :series_title, :edition, :volume, :issue, :page_range_start, :page_range_end,
      :place_of_production, :sponsor, :grant_agencies, :grant_information, :related_datasets]
   end
 
@@ -35,9 +35,9 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
   end
 
   def administrative_terms
-    [:emory_ark, :rights_statement, :internal_rights_note, :staff_notes, :access_right,
+    [:emory_ark, :internal_rights_note, :staff_notes, :access_right,
      :system_of_record_ID, :emory_content_type, :holding_repository, :institution,
-     :data_classification, :date_created, :deduplication_key]
+     :data_classification, :deduplication_key]
   end
 
   def genres_block

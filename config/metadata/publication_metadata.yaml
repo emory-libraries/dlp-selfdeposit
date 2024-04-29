@@ -31,9 +31,6 @@ attributes:
   conference_dates:
     type: string
     multiple: false
-    form:
-      primary: false
-      multiple: false
     index_keys:
       - 'conference_dates_si'
       - 'conference_dates_tesi'
@@ -176,6 +173,15 @@ attributes:
     index_keys:
       - 'issn_tesi'
     predicate: http://id.loc.gov/vocabulary/identifiers/issn
+  isbn:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    index_keys:
+      - 'isbn_tesi'
+    predicate: http://id.loc.gov/vocabulary/identifiers/isbn
   issue:
     type: string
     multiple: false
