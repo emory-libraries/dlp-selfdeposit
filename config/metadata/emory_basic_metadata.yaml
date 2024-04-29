@@ -123,9 +123,9 @@ attributes:
     multiple: false
     form:
       primary: false
-      required: true
+      required: false
     index_keys:
-      - "license_tesim"
+      - "license_tesi"
     predicate: http://purl.org/dc/terms/license
   relative_path:
     type: string
