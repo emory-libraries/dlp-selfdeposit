@@ -816,7 +816,7 @@ GEM
     rdf-xsd (3.3.0)
       rdf (~> 3.3)
       rexml (~> 3.2)
-    rdoc (6.3.3)
+    rdoc (6.3.4.1)
     redic (1.5.3)
       hiredis
     redis (4.8.1)
