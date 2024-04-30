@@ -853,6 +853,10 @@ GEM
     rsolr (2.5.0)
       builder (>= 2.1.2)
       faraday (>= 0.9, < 3, != 2.0.0)
+    rspec-activemodel-mocks (1.2.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.0)
@@ -1108,6 +1112,7 @@ DEPENDENCIES
   rails (~> 6.1)
   riiif (~> 2.1)
   rsolr (>= 1.0, < 3)
+  rspec-activemodel-mocks
   rspec-rails
   rspec_junit_formatter
   rubocop
