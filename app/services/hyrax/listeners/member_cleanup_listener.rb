@@ -21,7 +21,7 @@ module Hyrax
           parent.member_ids -= [object.id]
           Hyrax.persister.save(resource: parent)
           Hyrax.index_adapter.save(resource: parent)
-          Hyrax.publisher.publish('object.membership.updated', object: parent, user: user)
+          Hyrax.publisher.publish('object.membership.updated', object: parent, user:)
         end
       end
 
