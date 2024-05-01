@@ -25,12 +25,15 @@ RSpec.describe PreservationWorkflowImporter do
 
   describe "#import" do
     before do
-      persister.wipe!
       described_class.instance_variable_set(:@persister, persister)
       allow(Hyrax).to receive(:query_service).and_return(query_service)
       allow(Hyrax).to receive(:persister).and_return(persister)
-      publication
+      Hyrax.index_adapter.save(resource: publication)
       described_class.import(csv)
+    end
+
+    after do
+      Hyrax.index_adapter.wipe!
     end
 
     context "with new preservation_workflow for the work" do
