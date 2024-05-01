@@ -16,10 +16,20 @@ module Hyrax
     # forms.
     self.work_form_service = Hyrax::FormFactory.new
 
+    # Hyrax v5.0.1 Override - L#26 defaults visibility in the form to Public.
+    def new
+      @admin_set_options = available_admin_sets
+      # TODO: move these lines to the work form builder in Hyrax
+      curation_concern.depositor = current_user.user_key
+      curation_concern.admin_set_id = admin_set_id_for_new
+      build_form
+      @form.visibility = 'open'
+    end
+
     private
 
     ##
-    # Hyrax v5.0.0 Override - inserts PreservationEvents if Publication is created successfully.
+    # Hyrax v5.0.1 Override - inserts PreservationEvents if Publication is created successfully.
     # @return [#errors]
     # rubocop:disable Metrics/MethodLength
     def create_valkyrie_work
@@ -42,7 +52,7 @@ module Hyrax
     end
     # rubocop:enable Metrics/MethodLength
 
-    # Hyrax v5.0.0 Override - inserts PreservationEvents if Publication is updated successfully.
+    # Hyrax v5.0.1 Override - inserts PreservationEvents if Publication is updated successfully.
     def update_valkyrie_work
       @event_start = DateTime.current
       form = build_form
