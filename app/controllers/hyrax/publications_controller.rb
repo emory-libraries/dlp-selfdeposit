@@ -44,6 +44,7 @@ module Hyrax
 
     # Hyrax v5.0.0 Override - inserts PreservationEvents if Publication is updated successfully.
     def update_valkyrie_work
+      @event_start = DateTime.current
       form = build_form
       return after_update_error(form_err_msg(form)) unless form.validate(params[hash_key_for_curation_concern])
       result =
