@@ -14,6 +14,11 @@ AllCops:
     - node_modules/**/*
     - bundle/**/*
 
+
+Metrics/MethodLength:
+  Exclude:
+    - lib/preservation_events.rb
+
 Rails/Exit:
   Exclude:
     - config/deploy.rb
@@ -22,3 +27,4 @@ Rails/Exit:
 Style/MultilineBlockChain:
   Exclude:
     - config/environments/development.rb
+

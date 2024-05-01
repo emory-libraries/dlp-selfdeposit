@@ -20,6 +20,7 @@ module PreservationEvents
     event = persister.save(resource: event)
     object.add_preservation_event(event)
     persister.save(resource: object)
+    Hyrax.index_adapter.save(resource: object)
     event
   end
 end
