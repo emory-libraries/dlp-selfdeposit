@@ -2,7 +2,7 @@
 module SelfDeposit
   module CustomQueries
     # @example
-    #   resource = Valkyrie Object
+    #   resource = Valkyrie Work Object
     #
     #   Hyrax.custom_queries.find_parent_works(resource:)
     #
@@ -20,29 +20,28 @@ module SelfDeposit
       attr_reader :query_service
 
       ##
-      # @param Valkyrie object for a Hyrax::Work
+      # @param Valkyrie object for a Hyrax Work type
       #
-      # @return Work Objects
+      # @return enumerator of Hyrax Work objects
       def find_parent_works(resource:)
         @resource = resource
         enum_for(:each)
       end
 
-      # Queries for all Documents in the Solr index
-      # For each Document, it yields the Valkyrie Resource which was converted from it
+      # Queries the Solr index for parent works of the provided resource
+      # For each Document, it yields the pulled Hyrax Work object
       # @yield [Valkyrie::Resource]
       def each
         docs = Valkyrie::Persistence::Solr::Queries::DefaultPaginator.new
         while docs.has_next?
           docs = @connection.paginate(docs.next_page, docs.per_page, "select", params: { q: query })["response"]["docs"]
           docs.each do |doc|
-            yield Hyrax.query_service.find_by(id: doc['id'])
+            yield query_service.find_by(id: doc['id'])
           end
         end
       end
 
-      # Query Solr for for all documents with the ID in the requested field
-      # @note the field used here is a _ssim dynamic field and the value is prefixed by "id-"
+      # Query Solr for for all documents with the ID in the member_ids_ssim field
       # @return [Hash]
       def query
         "member_ids_ssim:#{@resource.id}"
