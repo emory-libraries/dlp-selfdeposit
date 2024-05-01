@@ -25,9 +25,6 @@ module SelfDeposit
       # @return Work Objects
       def find_parent_works(resource:)
         @resource = resource
-        # query_service
-        #   .find_all_of_model(model: resource.internal_resource.constantize)
-        #   .find_all { |obj| obj.member_ids.map(&:to_s).include? resource.id.to_s }
         enum_for(:each)
       end
 
