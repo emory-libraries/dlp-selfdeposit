@@ -26,13 +26,13 @@ module SelfDeposit
       def find_publication_by_deduplication_key(deduplication_key:)
         @deduplication_key = deduplication_key
         raise ::Valkyrie::Persistence::ObjectNotFoundError unless resource
-        query_service.find_by(id: resource['id'])
+        @query_service.find_by(id: resource['id'])
       end
 
       # Queries Solr for a document that matches the provided key
       # @yield [Publication]
       def resource
-        @resource ||= @connection.get("select", params: { q: query, fl: "*", rows: 1 })["response"]["docs"].first
+        @connection.get("select", params: { q: query, fl: "*", rows: 1 })["response"]["docs"].first
       end
 
       # Solr query for for a Publication with a deduplication_key_tesi that matches the provided key
