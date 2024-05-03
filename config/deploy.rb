@@ -62,7 +62,7 @@ set :local_user, -> { `git config user.name`.chomp }
 
 # Restart apache
 namespace :deploy do
-  after :finishing, :restart_apache do
+  after :log_revision, :restart_apache do
     on roles(:ubuntu) do
       execute :sudo, :systemctl, :restart, :httpd
     end
