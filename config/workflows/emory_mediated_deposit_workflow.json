@@ -10,6 +10,13 @@
                     "name": "deposit",
                     "from_states": [],
                     "transition_to": "under_review",
+                    "notifications": [
+                        {
+                            "notification_type": "email",
+                            "name": "Hyrax::Workflow::PendingReviewNotification",
+                            "to": ["approving"]
+                        }
+                    ],
                     "methods": [
                         "Hyrax::Workflow::GrantReadToDepositor",
                         "Hyrax::Workflow::RevokeEditFromDepositor",
@@ -19,6 +26,13 @@
                     "name": "approve",
                     "from_states": [{"names": ["under_review"], "roles": ["approving"]}],
                     "transition_to": "deposited",
+                    "notifications": [
+                        {
+                            "notification_type": "email",
+                            "name": "Hyrax::Workflow::DepositedNotification",
+                            "to": ["approving"]
+                        }
+                    ],
                     "methods": [
                         "SelfDeposit::Workflow::RegisterApprovalPreservationEvent"
                     ]
