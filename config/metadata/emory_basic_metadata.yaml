@@ -49,6 +49,7 @@ attributes:
     multiple: true
     form:
       primary: false
+      required: true
     index_keys:
       - "access_right_tesim"
     predicate: http://purl.org/dc/terms/accessRights
