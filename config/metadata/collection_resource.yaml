@@ -22,19 +22,41 @@
 #  `rails generate hyrax:collection_resource CollectionResource`
 
 attributes:
+  administrative_unit:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    predicate: http://id.loc.gov/vocabulary/relators/cur
+  contact_information:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+    predicate: http://www.rdaregistry.info/Elements/u/#P60490
+  course:
+    type: string
+    form:
+      primary: false
+    predicate: http://hyrax-example.com/course
+  department:
+    type: string
+    form:
+      primary: true
+    predicate: http://hyrax-example.com/department
+  notes:
+    type: string
+    multiple: true
+    form:
+      primary: false
+      multiple: true
+    predicate: http://www.w3.org/2004/02/skos/core#note
   target_audience:
     type: string
     form:
       primary: true
       multiple: true
     predicate: http://hyrax-example.com/target_audience
-  department:
-    type: string
-    form:
-      primary: true
-    predicate: http://hyrax-example.com/department
-  course:
-    type: string
-    form:
-      primary: false
-    predicate: http://hyrax-example.com/course
+
