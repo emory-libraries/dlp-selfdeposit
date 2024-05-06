@@ -20,4 +20,14 @@ RSpec.describe CollectionResourceForm do
       )
     )
   end
+
+  it 'lacks the unnecessary fields' do
+    expect(change_set.primary_terms + change_set.secondary_terms).not_to(
+      include(
+        'rights_statement', 'target_audience', 'department', 'access_right', 'alternative_title',
+        'arkivo_checksum', 'abstract', 'identifier', 'publisher', 'label', 'language', 'license',
+        'related_url', 'resource_type', 'source', 'course'
+      )
+    )
+  end
 end
