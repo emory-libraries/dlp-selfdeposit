@@ -19,8 +19,14 @@ module PreservationEvents
 
     event = persister.save(resource: event)
     object.add_preservation_event(event)
+
+    # Persist preservation events to Fedora and Solr
+    # Hyrax relies on listeners to persist data to Solr
+    # Persisting data directly to Solr in this method was added for simplicity
+    # If preservation event logic becomes more complex, consider adding another listener
     persister.save(resource: object)
     Hyrax.index_adapter.save(resource: object)
+
     event
   end
 end
