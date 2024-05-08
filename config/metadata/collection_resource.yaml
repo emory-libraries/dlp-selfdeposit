@@ -38,3 +38,12 @@ attributes:
     form:
       primary: false
     predicate: http://hyrax-example.com/course
+  subject:
+    type: string
+    multiple: true
+    index_keys:
+      - "subject_sim"
+      - "subject_tesim"
+    form:
+      primary: false
+    predicate: http://purl.org/dc/elements/1.1/subject
