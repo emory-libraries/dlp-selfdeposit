@@ -19,6 +19,15 @@
 # @see config/metadata/basic_metadata.yaml for an example configuration
 
 attributes:
+  access_right:
+    type: string
+    multiple: true
+    form:
+      primary: false
+      required: true
+    index_keys:
+      - "access_right_tesim"
+    predicate: http://purl.org/dc/terms/accessRights
   author_notes:
     type: string
     multiple: false
@@ -155,6 +164,15 @@ attributes:
     index_keys:
       - 'issue_tesi'
     predicate: http://purl.org/ontology/bibo/issue
+  language:
+    type: string
+    multiple: true
+    form:
+      primary: true
+      required: true
+    index_keys:
+      - "language_tesim"
+    predicate: http://purl.org/dc/elements/1.1/language
   other_identifiers:
     type: string
     multiple: true
@@ -232,6 +250,15 @@ attributes:
     index_keys:
       - 'research_categories_tesim'
     predicate: http://metadata.emory.edu/vocab/cor-terms#researchCategories
+  rights_statement:
+    type: string
+    multiple: true
+    form:
+      primary: true
+      required: true
+    index_keys:
+      - "rights_statement_tesim"
+    predicate: http://www.europeana.eu/schemas/edm/rights
   series_title:
     type: string
     multiple: false

@@ -44,15 +44,6 @@ attributes:
     index_keys:
       - "abstract_tesim"
     predicate: http://purl.org/dc/terms/abstract
-  access_right:
-    type: string
-    multiple: true
-    form:
-      primary: false
-      required: true
-    index_keys:
-      - "access_right_tesim"
-    predicate: http://purl.org/dc/terms/accessRights
   alternative_title:
     type: string
     multiple: true
@@ -170,15 +161,6 @@ attributes:
     index_keys:
       - "label_tesim"
     predicate: info:fedora/fedora-system:def/model#downloadFilename
-  language:
-    type: string
-    multiple: true
-    form:
-      primary: true
-      required: true
-    index_keys:
-      - "language_tesim"
-    predicate: http://purl.org/dc/elements/1.1/language
   license:
     type: string
     multiple: false
@@ -212,15 +194,6 @@ attributes:
     index_keys:
       - "rights_notes_tesim"
     predicate: http://purl.org/dc/elements/1.1/rights
-  rights_statement:
-    type: string
-    multiple: true
-    form:
-      primary: true
-      required: true
-    index_keys:
-      - "rights_statement_tesim"
-    predicate: http://www.europeana.eu/schemas/edm/rights
   source:
     type: string
     multiple: true
