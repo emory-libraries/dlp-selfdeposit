@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 Hyrax.config do |config|
-  # Injected via `rails g hyrax:work_resource Monograph`
-  # config.register_curation_concern :monograph
-  # Injected via `rails g hyrax:work_resource GenericWork`
-  # config.register_curation_concern :generic_work
   # Injected via `rails g hyrax:work_resource Publication`
   config.register_curation_concern :publication
 
