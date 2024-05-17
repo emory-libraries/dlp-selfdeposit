@@ -502,7 +502,8 @@ module Hyrax
         @saved_permissions != curation_concern.permissions.map(&:to_hash)
       else 
         new_permissions = Hyrax::AccessControl.for(resource: curation_concern).permissions
-        new_permissions.size != @saved_permissions.size || new_permissions.any? { |e| !@saved_permissions.include? e }
+        saved_permissions_set = @saved_permissions.to_set
+        new_permissions.size != @saved_permissions.size || new_permissions.any? { |e| !saved_permissions_set.include? e }
       end
     end
 
