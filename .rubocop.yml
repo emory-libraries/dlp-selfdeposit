@@ -13,7 +13,7 @@ AllCops:
     - vendor/**/*
     - node_modules/**/*
     - bundle/**/*
-
+    - app/controllers/concerns/hyrax/works_controller_behavior.rb # Hyrax override
 
 Metrics/MethodLength:
   Exclude:
