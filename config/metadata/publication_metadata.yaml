@@ -51,6 +51,7 @@ attributes:
       primary: true
       multiple: false
     index_keys:
+      - 'conference_name_ssi'
       - 'conference_name_tesi'
     predicate: http://purl.org/dc/terms/relation#conferenceOrMeeting
   content_genre:
@@ -61,7 +62,7 @@ attributes:
       multiple: false
       required: true
     index_keys:
-      - 'content_genre_si'
+      - 'content_genre_ssi'
       - 'content_genre_tesi'
     predicate: http://www.europeana.edu/schemas/edm/hasType
   data_classification:
@@ -72,6 +73,7 @@ attributes:
       primary: true
       required: true
     index_keys:
+      - 'data_classification_ssi'
       - 'data_classification_tesi'
     predicate: http://metadata.emory.edu/vocab/cor-terms#dataClassification
   date_issued:
@@ -82,7 +84,7 @@ attributes:
       multiple: false
     index_keys:
       - 'date_issued_tesi'
-      - 'date_issued_si'
+      - 'date_issued_ssi'
     predicate: http://purl.org/dc/terms/issued
   deduplication_key:
     type: string
@@ -127,6 +129,7 @@ attributes:
     form:
       primary: true
     index_keys:
+      - 'grant_agencies_ssim'
       - 'grant_agencies_tesim'
     predicate: http://id.loc.gov/vocabulary/relators/fnd
   grant_information:
@@ -135,6 +138,7 @@ attributes:
     form:
       primary: true
     index_keys:
+      - 'grant_information_ssim'
       - 'grant_information_tesim'
     predicate: http://metadata.emory.edu/vocab/cor-terms#grantOrFundingNote
   issn:
@@ -206,6 +210,7 @@ attributes:
       primary: true
       multiple: false
     index_keys:
+      - 'parent_title_ssi'
       - 'parent_title_tesi'
     predicate: http://rdaregistry.info/Elements/u/P60101
   place_of_production:
@@ -215,6 +220,7 @@ attributes:
       primary: true
       multiple: false
     index_keys:
+      - 'place_of_production_ssi'
       - 'place_of_production_tesi'
     predicate: http://id.loc.gov/vocabulary/relators/pup
   preservation_event_ids:
@@ -230,6 +236,7 @@ attributes:
       primary: true
       multiple: false
     index_keys:
+      - 'publisher_version_ssi'
       - 'publisher_version_tesi'
     predicate: http://metadata.emory.edu/vocab/cor-terms#publicationStage
   related_datasets:
@@ -239,6 +246,7 @@ attributes:
       primary: false
       multiple: true
     index_keys:
+      - 'related_datasets_ssim'
       - 'related_datasets_tesim'
     predicate: http://purl.org/dc/terms/relation#dataset
   research_categories:
@@ -248,6 +256,7 @@ attributes:
       primary: true
       multiple: true
     index_keys:
+      - 'research_categories_ssim'
       - 'research_categories_tesim'
     predicate: http://metadata.emory.edu/vocab/cor-terms#researchCategories
   rights_statement:
@@ -266,6 +275,7 @@ attributes:
       primary: false
       multiple: false
     index_keys:
+      - 'series_title_ssi'
       - 'series_title_tesi'
     predicate: http://id.loc.gov/ontologies/bibframe/seriesStatement
   sponsor:
@@ -275,6 +285,7 @@ attributes:
       primary: false
       multiple: false
     index_keys:
+      - 'sponsor_ssi'
       - 'sponsor_tesi'
     predicate: http://id.loc.gov/vocabulary/relators/spn
   volume:
