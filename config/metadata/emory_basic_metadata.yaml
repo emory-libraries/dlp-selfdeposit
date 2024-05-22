@@ -81,6 +81,7 @@ attributes:
       primary: true
     index_keys:
       - "creator_tesim"
+      - "creator_ssim"
     predicate: http://purl.org/dc/elements/1.1/creator
   date_created:
     type: date_time
@@ -110,6 +111,7 @@ attributes:
       required: true
       multiple: false
     index_keys:
+      - 'holding_repository_ssi'
       - 'holding_repository_tesi'
     predicate: http://id.loc.gov/vocabulary/relators/rps
   identifier:
@@ -128,6 +130,7 @@ attributes:
       primary: true
       multiple: false
     index_keys:
+      - 'institution_ssi'
       - 'institution_tesi'
     predicate: http://rdaregistry.info/Elements/u/P60402
   internal_rights_note:
@@ -224,5 +227,6 @@ attributes:
       primary: true
       multiple: false
     index_keys:
+      - 'system_of_record_ID_ssi'
       - 'system_of_record_ID_tesi'
     predicate: http://metadata.emory.edu/vocab/cor-terms#descriptiveSystemID
