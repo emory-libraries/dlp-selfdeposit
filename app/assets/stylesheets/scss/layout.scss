@@ -113,6 +113,11 @@ body.dashboard {
 }
 
 .pub-accordion-wrapper {
+  label {
+    font-weight: bold;
+    color: $black;
+  }
+
   .card {
     border-radius: 0;
     border: 2px solid $base-blue;
@@ -138,6 +143,9 @@ body.dashboard {
     .controlled_vocabulary .field-controls {
       margin: 0;
     }
+    .input-group:not(.has-validation) > .form-control:not(:last-child) {
+      border-radius: 0;
+    }
 
     &:not(:last-child) {
       border-bottom: 2px solid $dark-blue;
@@ -156,6 +164,11 @@ body.dashboard {
       border: none;
       border-radius: 0;
       cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: $mid-blue;
+      }
 
       &::after {
         content: "❯";
@@ -174,13 +187,24 @@ body.dashboard {
     min-height: 0;
     overflow: hidden;
 
+    .form-group,
+    form.new_user .field {
+      padding: 0 0.75rem;
+    }
+
+    h6 {
+      padding: 0 0.75rem;
+      font-weight: bold;
+      color: black;
+    }
+
     > div {
       overflow: hidden;
     }
 
     &.open {
-      max-height: initial;
-      padding: 1rem;
+      margin-top: 2rem;
+      padding: 0;
     }
   }
 }
