@@ -93,3 +93,12 @@ namespace :sidekiq do
     end
   end
 end
+
+namespace :deploy do
+  desc "Add symlink for branding folder"
+  before :finishing, :create_branding_path_symlink do
+    on roles(:app) do
+      execute "ln -sf /opt/uploads/dlp-selfdeposit/branding #{release_path}/public"
+    end
+  end
+end
