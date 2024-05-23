@@ -58,6 +58,18 @@ RSpec.describe CollectionResource do
       .to contain_exactly 'moomin', 'snork'
   end
 
+  it 'has geographic subjects' do
+    expect { collection.subject_geo = ['Subject Geographic I', 'Subject Geographic II'] }
+      .to change { collection.subject_geo }
+      .to contain_exactly 'Subject Geographic I', 'Subject Geographic II'
+  end
+
+  it 'has subject names' do
+    expect { collection.subject_names = ['Subject Name I', 'Subject Name II'] }
+      .to change { collection.subject_names }
+      .to contain_exactly 'Subject Name I', 'Subject Name II'
+  end
+
   it 'does not have language' do
     expect(collection).not_to respond_to(:language)
   end
@@ -68,7 +80,7 @@ RSpec.describe CollectionResource do
 
   ["administrative_unit", "contact_information", "notes", "holding_repository",
    "institution", "internal_rights_note", "system_of_record_ID", "emory_ark",
-   "staff_notes"].each do |attr|
+   "staff_notes", "description", "subject_geo", "subject_names"].each do |attr|
     include_examples('checks model for new attribute response', attr)
   end
 end

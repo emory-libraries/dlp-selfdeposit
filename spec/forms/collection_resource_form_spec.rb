@@ -16,7 +16,7 @@ RSpec.describe CollectionResourceForm do
       include(
         "administrative_unit", "contact_information", "notes", "holding_repository",
         "institution", "internal_rights_note", "system_of_record_ID", "emory_ark",
-        "staff_notes"
+        "staff_notes", "description", "subject_geo", "subject_names"
       )
     )
   end

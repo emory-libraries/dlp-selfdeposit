@@ -72,3 +72,5 @@ en:
         emory_content_type: Format
         holding_repository: Library
         language: Primary Language
+        subject_geo: Subject - Geographic
+        subject_names: Subject - Names
