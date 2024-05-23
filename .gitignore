@@ -82,4 +82,8 @@ spec/reports
 /spec/examples.txt
 node_modules
 .env.*
-public/
+# ignore branding path
+public/branding
+
+public/uv/
+public/assets/
