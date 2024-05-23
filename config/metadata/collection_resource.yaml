@@ -51,7 +51,7 @@ attributes:
       multiple: true
     predicate: http://purl.org/dc/elements/1.1/coverage
     index_keys:
-      - 'subject_geo_sim'
+      - 'subject_geo_ssim'
   subject_names:
     type: string
     multiple: false
@@ -60,4 +60,4 @@ attributes:
       multiple: true
     predicate: http://purl.org/dc/elements/1.1/subject#names
     index_keys:
-      - 'subject_names_sim'
+      - 'subject_names_ssim'
