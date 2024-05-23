@@ -43,4 +43,21 @@ attributes:
       primary: false
       multiple: true
     predicate: http://www.w3.org/2004/02/skos/core#note
-
+  subject_geo:
+    type: string
+    multiple: false
+    form:
+      primary: false
+      multiple: true
+    predicate: http://purl.org/dc/elements/1.1/coverage
+    index_keys:
+      - 'subject_geo_sim'
+  subject_names:
+    type: string
+    multiple: false
+    form:
+      primary: false
+      multiple: true
+    predicate: http://purl.org/dc/elements/1.1/subject#names
+    index_keys:
+      - 'subject_names_sim'
