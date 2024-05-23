@@ -58,7 +58,7 @@ RSpec.describe CollectionResource do
       .to contain_exactly 'moomin', 'snork'
   end
 
-  it 'has subject geographic values' do
+  it 'has geographic subjects' do
     expect { collection.subject_geo = ['Subject Geographic I', 'Subject Geographic II'] }
       .to change { collection.subject_geo }
       .to contain_exactly 'Subject Geographic I', 'Subject Geographic II'
