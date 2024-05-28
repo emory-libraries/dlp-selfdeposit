@@ -89,15 +89,6 @@ attributes:
     index_keys:
       - "date_created_tesim"
     predicate: http://purl.org/dc/terms/created
-  description:
-    type: string
-    multiple: true
-    form:
-      required: true
-      primary: true
-    index_keys:
-      - "description_tesim"
-    predicate: http://purl.org/dc/elements/1.1/description
   emory_ark:
     type: string
     multiple: true

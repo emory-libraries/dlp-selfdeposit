@@ -36,6 +36,15 @@ attributes:
       primary: true
       multiple: false
     predicate: http://www.rdaregistry.info/Elements/u/#P60490
+  description:
+    type: string
+    multiple: true
+    form:
+      required: true
+      primary: true
+    index_keys:
+      - "description_tesim"
+    predicate: http://purl.org/dc/elements/1.1/description
   notes:
     type: string
     multiple: true
