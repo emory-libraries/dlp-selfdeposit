@@ -98,6 +98,11 @@ body.dashboard {
 }
 
 .genres-block {
+  label {
+    font-weight: bold;
+    color: $black;
+  }
+
   .listing {
     max-width: 100%;
     li.field-wrapper {
@@ -203,6 +208,7 @@ body.dashboard {
     }
 
     &.open {
+      max-height: initial;
       margin-top: 2rem;
       padding: 0;
     }
