@@ -203,6 +203,7 @@ body.dashboard {
     }
 
     &.open {
+      max-height: initial;
       margin-top: 2rem;
       padding: 0;
     }
