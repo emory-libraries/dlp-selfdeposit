@@ -1,0 +1,61 @@
+---
+# This internal metadata config is used to define predicates for emory/hyrax internals only
+attributes:
+  aspect_ratio:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#aspectRatio
+  bit_depth:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#bitDepth
+  bit_rate:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#bitRate
+  capture_device:
+    predicate: http://metadata.emory.edu/vocab/cor-terms#captureDevice
+  channels:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#audioChannelNumber
+  character_count:
+    predicate: https://www.semanticdesktop.org/ontologies/2007/03/22/nfo/#characterCount
+  character_set:
+    predicate: http://www.w3.org/2011/content#characterEncoding
+  creating_application_name:
+    predicate: http://www.loc.gov/premis/rdf/v1#hasCreatingApplicationName
+  creating_os:
+    predicate: http://metadata.emory.edu/vocab/cor-terms#creatingOS
+  duration:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#duration
+  file_path:
+    predicate: http://metadata.emory.edu/vocab/cor-terms#filePath
+  frame_rate:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#frameRate
+  graphics_count:
+    predicate: http://projecthydra.org/ns/odf/graphicsCount
+  latitude:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#locationLatitude
+  line_count:
+    predicate: https://www.semanticdesktop.org/ontologies/2007/03/22/nfo/#lineCount
+  longitude:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#locationLongitude
+  markup_basis:
+    predicate: http://www.w3.org/2011/content#doctypeName
+  markup_language:
+    predicate: http://www.w3.org/2011/content#systemId
+  offset:
+    predicate: http://projecthydra.org/ns/audio/offset
+  orientation:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#orientation
+  original_checksum:
+    predicate: https://www.semanticdesktop.org/ontologies/2007/03/22/nfo/#hashValue
+  page_count:
+    predicate: http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#pageCount
+  paragraph_count:
+    predicate: http://projecthydra.org/ns/odf/paragraphCount
+  profile_name:
+    predicate: http://projecthydra.org/ns/mix/colorProfileName
+  profile_version:
+    predicate: http://projecthydra.org/ns/mix/colorProfileVersion
+  puid:
+    predicate: http://metadata.emory.edu/vocab/cor-terms#PUID
+  sample_rate:
+    predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#sampleRate
+  table_count:
+    predicate: http://projecthydra.org/ns/odf/tableCount
+  word_count:
+    predicate: https://www.semanticdesktop.org/ontologies/2007/03/22/nfo/#wordCount
