@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
     var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
     var series = document.getElementsByClassName("form-group string optional publication_series_title");
     var edition = document.getElementsByClassName("form-group string optional publication_edition");
-    var publisherVersion = document.querySelector("label.control-label.select.optional");
+    var publisherVersion = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
+    var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
+    console.log(parTitle);
 
     //initial check on load for existing works
     var p = document.getElementById("publication_content_genre");
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 series[0].style.display = "none";
                 edition[0].style.display = "none";
                 publisherVersion.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                parTitle.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
 
                 // validateForm();
 
@@ -144,8 +147,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
         isbn[0].style.display = "block";
         series[0].style.display = "block";
         edition[0].style.display = "block";
-        var pubform = document.getElementById("pubform-pubver");
-        if (pubform) { pubform.remove(); }
+        var pubformPubver = document.getElementById("pubform-pubver");
+        if (pubformPubver) { pubformPubver.remove(); }
+        var pubformPubTitle = document.getElementById("pubform-partitle");
+        if (pubformPubTitle) { pubformPubTitle.remove(); }
 
 
     }
