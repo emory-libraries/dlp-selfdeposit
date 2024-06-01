@@ -5,17 +5,34 @@
 
         switch (validationLabel) {
             case 'Article':
+
+            //publisher version
             var pubverCheck = document.getElementById("publication_publisher_version").selectedOptions[0].label;
             console.log(pubverCheck);
+            
             if( pubverCheck == ' ' ) {
-              alert("Publisher version required.");
+              var pubverCheckModal = document.getElementById("publication_content_genre");
+              var text = '<div class=modal id=pubvalidatemodal><div class="modal-dialog modal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Validation Error</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>Publisher version is required.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';              
+              pubverCheckModal.insertAdjacentHTML("afterend", text);
               return false;
-            } else {
-                return true;
-                break;
             }
-            var pubverCheck = document.getElementById("publication_publisher_version").selectedOptions[0].label;
-            console.log(pubverCheck);
+
+            var parentTitleCheck = document.getElementById("publication_parent_title")
+            console.log(parentTitleCheck);
+
+            //parent title
+            if( !parentTitleCheck ) {
+              var parentTitleModal = document.getElementById("publication_content_genre");
+              var text = '<div class=modal id=pubvalidatemodal><div class="modal-dialog modal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Validation Error</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>Parent title is required.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';              
+              parentTitleModal.insertAdjacentHTML("afterend", text);
+              return false;
+            }
+
+            if (pubverCheck != ' ' && parentTitleCheck != "") {
+              console.log("article is good");
+              return true;
+            }
+
 
             case 'Book':
                 resetForm();
@@ -108,7 +125,7 @@
     <%# TODO: If we start using ActionCable, we could listen for object updates and
               alert the user that the object has changed by someone else %>
     <%= f.input Hyrax::Actors::OptimisticLockValidator.version_field, as: :hidden if f.object.persisted? %>
-    <%= f.submit class: 'btn btn-primary', onclick: "return validateForm();", id: "with_files_submit", name: "save_with_files" %>
+    <%= f.submit data: { toggle: "modal", target: "#pubvalidatemodal" }, class: 'btn btn-primary', onclick: "return validateForm();", id: "with_files_submit", name: "save_with_files" %>
   </div>
 
   <%# Provide immediate feedback after the form is submitted while the subsequent page is loading %>
