@@ -26,6 +26,16 @@ document.addEventListener('DOMContentLoaded', function (event) {
     //initial check on load for existing works
     var p = document.getElementById("publication_content_genre");
     if (p != null) {
+        formSetup();
+    }
+
+    //get select element and watch if it changes
+    p.addEventListener("change", function () {
+        formSetup();
+    });
+
+
+    function formSetup() {
         var selectedValue = p.selectedOptions[0].label;
         switch (selectedValue) {
             case 'Article': {
@@ -84,69 +94,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
             }
         }
     }
-
-    //get select element and watch if it changes
-    var e = document.getElementById("publication_content_genre");
-    e.addEventListener("change", function () {
-        var selectedValue = e.selectedOptions[0].label;
-
-        switch (selectedValue) {
-            case 'Article': {
-                resetForm();
-                console.log("Chose: Article");
-                confName[0].style.display = "none";
-                isbn[0].style.display = "none";
-                series[0].style.display = "none";
-                edition[0].style.display = "none";
-                publisherVersion.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                parTitle.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
-                break;
-            }
-
-            case 'Book': {
-                resetForm();
-                console.log("Chose: Book");
-                break;
-            }
-
-            case 'Book Chapter': {
-                resetForm();
-                console.log('Selected: Book Chapter');
-                break;
-            }
-
-            case 'Conference Paper': {
-                resetForm();
-                console.log('Selected: Conference Paper');
-                break;
-            }
-
-            case 'Poster': {
-                resetForm();
-                console.log('Selected: Poster');
-                break;
-            }
-
-            case 'Presentation': {
-                resetForm();
-                console.log('Selected: Presentation');
-                break;
-            }
-
-            case 'Report': {
-                resetForm();
-                console.log('Selected: Report');
-                break;
-            }
-
-            case ' ': {
-                resetForm();
-                console.log('none selected');
-                break;
-            }
-        }
-    });
-
 
     function resetForm() {
         //reset the form at the beginning every time we switch
