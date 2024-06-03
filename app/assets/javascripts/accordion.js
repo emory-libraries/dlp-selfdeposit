@@ -22,14 +22,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
     var edition = document.getElementsByClassName("form-group string optional publication_edition");
     var publisherVersion = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
     var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
-    console.log(parTitle);
 
     //initial check on load for existing works
     var p = document.getElementById("publication_content_genre");
     if (p != null) {
         var selectedValue = p.selectedOptions[0].label;
         switch (selectedValue) {
-            case 'Article':
+            case 'Article': {
                 resetForm();
                 console.log("Chose: Article");
                 confName[0].style.display = "none";
@@ -38,45 +37,51 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 edition[0].style.display = "none";
                 publisherVersion.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
                 parTitle.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
-
-                // validateForm();
-
                 break;
+            }
 
-            case 'Book':
+            case 'Book': {
                 resetForm();
                 console.log("Chose: Book");
                 break;
+            }
 
-            case 'Book Chapter':
+            case 'Book Chapter': {
                 resetForm();
                 console.log('Selected: Book Chapter');
                 break;
+            }
 
-            case 'Conference Paper':
+            case 'Conference Paper': {
                 resetForm();
                 console.log('Selected: Conference Paper');
                 break;
+            }
 
-            case 'Poster':
+            case 'Poster': {
                 resetForm();
                 console.log('Selected: Poster');
                 break;
 
-            case 'Presentation':
+            }
+
+            case 'Presentation': {
                 resetForm();
                 console.log('Selected: Presentation');
                 break;
+            }
 
-            case 'Report':
+            case 'Report': {
                 resetForm();
                 console.log('Selected: Report');
                 break;
+            }
 
-            case ' ':
+            case ' ': {
                 resetForm();
                 console.log('none selected');
                 break;
+            }
         }
     }
 
@@ -86,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         var selectedValue = e.selectedOptions[0].label;
 
         switch (selectedValue) {
-            case 'Article':
+            case 'Article': {
                 resetForm();
                 console.log("Chose: Article");
                 confName[0].style.display = "none";
@@ -94,47 +99,52 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 series[0].style.display = "none";
                 edition[0].style.display = "none";
                 publisherVersion.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-
-                // validateForm();
-
+                parTitle.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
                 break;
+            }
 
-            case 'Book':
+            case 'Book': {
                 resetForm();
                 console.log("Chose: Book");
                 break;
+            }
 
-            case 'Book Chapter':
+            case 'Book Chapter': {
                 resetForm();
                 console.log('Selected: Book Chapter');
                 break;
+            }
 
-            case 'Conference Paper':
+            case 'Conference Paper': {
                 resetForm();
                 console.log('Selected: Conference Paper');
                 break;
+            }
 
-            case 'Poster':
+            case 'Poster': {
                 resetForm();
                 console.log('Selected: Poster');
                 break;
+            }
 
-            case 'Presentation':
+            case 'Presentation': {
                 resetForm();
                 console.log('Selected: Presentation');
                 break;
+            }
 
-            case 'Report':
+            case 'Report': {
                 resetForm();
                 console.log('Selected: Report');
                 break;
+            }
 
-            case ' ':
+            case ' ': {
                 resetForm();
                 console.log('none selected');
                 break;
+            }
         }
-
     });
 
 

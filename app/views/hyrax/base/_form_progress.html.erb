@@ -1,75 +1,93 @@
 <script>
-    function validateForm() {
-        var validationLabel = document.getElementById("publication_content_genre").selectedOptions[0].label;
-        console.log("validating");
+function validateForm() {
+    var validationLabel = document.getElementById("publication_content_genre").selectedOptions[0].label;
+    // console.log("validating " + validationLabel);
 
-        switch (validationLabel) {
-            case 'Article':
+    switch (validationLabel) {
+        case 'Article': {
 
-            //publisher version
             var pubverCheck = document.getElementById("publication_publisher_version").selectedOptions[0].label;
-            console.log(pubverCheck);
-            
-            if( pubverCheck == ' ' ) {
-              var pubverCheckModal = document.getElementById("publication_content_genre");
-              var text = '<div class=modal id=pubvalidatemodal><div class="modal-dialog modal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Validation Error</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>Publisher version is required.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';              
-              pubverCheckModal.insertAdjacentHTML("afterend", text);
-              return false;
+            if (pubverCheck == ' ') {
+                var pubverLabel = "Publisher Version";
+                validateModal(pubverLabel);
+                return false;
+            }
+            var parTitle = document.getElementById("publication_parent_title").value;
+            if (!parTitle) {
+                var parTitleLabel = "Parent Title";
+                validateModal(parTitleLabel);
+                return false;
             }
 
-            var parentTitleCheck = document.getElementById("publication_parent_title")
-            console.log(parentTitleCheck);
-
-            //parent title
-            if( !parentTitleCheck ) {
-              var parentTitleModal = document.getElementById("publication_content_genre");
-              var text = '<div class=modal id=pubvalidatemodal><div class="modal-dialog modal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Validation Error</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>Parent title is required.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';              
-              parentTitleModal.insertAdjacentHTML("afterend", text);
-              return false;
+            if (pubverCheck != ' ' && parTitle) {
+                removeModal();
+                console.log("form filled out correctly");
+                return true;
             }
 
-            if (pubverCheck != ' ' && parentTitleCheck != "") {
-              console.log("article is good");
-              return true;
-            }
+            alert("Please contact LTDS");
+            break;
+        }
 
+        case 'Book': {
+            console.log("Chose: Book");
+            break;
+        }
 
-            case 'Book':
-                resetForm();
-                console.log("Chose: Book");
-                break;
+        case 'Book Chapter': {
+            console.log('Selected: Book Chapter');
+            break;
+        }
 
-            case 'Book Chapter':
-                resetForm();
-                console.log('Selected: Book Chapter');
-                break;
+        case 'Conference Paper': {
+            console.log('Selected: Conference Paper');
+            break;
+        }
 
-            case 'Conference Paper':
-                resetForm();
-                console.log('Selected: Conference Paper');
-                break;
+        case 'Poster': {
+            console.log('Selected: Conference Paper');
+            break;
+        }
 
-            case 'Poster':
-                resetForm();
-                console.log('Selected: Poster');
-                break;
+        case 'Presentation': {
+            console.log('Selected: Presentation');
+            break;
+        }
 
-            case 'Presentation':
-                resetForm();
-                console.log('Selected: Presentation');
-                break;
+        case 'Report': {
+            console.log('Selected: Report');
+            break;
+        }
 
-            case 'Report':
-                resetForm();
-                console.log('Selected: Report');
-                break;
-
-            case ' ':
-                resetForm();
-                console.log('none selected');
-                break;
+        case ' ': {
+            console.log('Selected: Report');
+            break;
         }
     }
+}
+
+function validateModal(x) {
+    // console.log("var x is typeof: " + typeof (x) + " var x value: " + x);
+    console.log("MODAL TIME");
+
+    var modal = document.getElementById("publication_content_genre");
+    var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + ' is required.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
+    modal.insertAdjacentHTML("afterend", text);
+    return false;
+
+}
+
+function removeModal() {
+    console.log("modal remove");
+    var modal = document.getElementsByClassName("modal pubform");
+    console.log(modal);
+
+    if (modal) {
+        while (modal[0]) {
+            modal[0].parentNode.removeChild(modal[0]);
+        }
+    }
+}
 </script>
 <aside id="form-progress" class="form-progress card">
   <div class="card-header">
