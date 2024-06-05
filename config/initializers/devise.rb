@@ -308,4 +308,20 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  config.saml_route_helper_prefix = 'saml'
+
+  # Configure with your SAML settings (see ruby-saml's README for more information: https://github.com/onelogin/ruby-saml).
+  config.saml_configure do |settings|
+    settings.assertion_consumer_service_url     = "https://shib.open.library.emory.edu/Shibboleth.sso/SAML2/POST"
+    settings.assertion_consumer_service_binding = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+    settings.name_identifier_format             = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient" # unchanged
+    settings.sp_entity_id                       = "https://shib.open.library.emory.edu"
+    settings.authn_context                      = "" # unchanged
+    settings.idp_slo_service_url                = "https://shib.open.library.emory.edu/Shibboleth.sso/SLO/POST"
+    settings.idp_sso_service_url                = "https://shib.open.library.emory.edu/Shibboleth.sso/Login"
+    # used the use="signing" key below
+    settings.idp_cert_fingerprint               = ENV['IDP_CERT_FINGERPRINT']
+    settings.idp_cert_fingerprint_algorithm     = "http://www.w3.org/2000/09/xmldsig#sha1" # unchanged
+  end
 end

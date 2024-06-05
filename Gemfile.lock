@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/apokalipto/devise_saml_authenticatable
+  revision: f8a85c3f3ed069fd40701424e2eef075219ef17f
+  specs:
+    devise_saml_authenticatable (1.9.1)
+      devise (> 2.0.0)
+      ruby-saml (~> 1.7)
+
+GIT
   remote: https://github.com/brentd/xray-rails
   revision: f121814718c9907b20058dc9357b80a53afab821
   branch: bugs/ruby-3.0.0
@@ -912,6 +920,9 @@ GEM
       multipart-post
       oauth2
     ruby-progressbar (1.13.0)
+    ruby-saml (1.16.0)
+      nokogiri (>= 1.13.10)
+      rexml
     ruby2_keywords (0.0.5)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -1097,6 +1108,7 @@ DEPENDENCIES
   debug (>= 1.0.0)
   devise
   devise-guests (~> 0.8)
+  devise_saml_authenticatable!
   dotenv-rails
   ed25519 (>= 1.2, < 2.0)
   factory_bot_rails
