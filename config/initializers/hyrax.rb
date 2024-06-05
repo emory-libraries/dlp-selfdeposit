@@ -343,3 +343,6 @@ custom_queries.each do |handler|
 end
 
 ActiveFedora.init(solr_config_path: Rails.root.join('config', 'solr.yml'))
+
+# set bulkrax default work type to first curation_concern if it isn't already set
+Bulkrax.default_work_type = Hyrax.config.curation_concerns.first.to_s if Bulkrax.default_work_type.blank?

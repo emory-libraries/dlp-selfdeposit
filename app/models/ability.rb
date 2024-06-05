@@ -10,4 +10,12 @@ class Ability
     return unless current_user.admin?
     can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role
   end
+
+  def can_import_works?
+    admin?
+  end
+
+  def can_export_works?
+    admin?
+  end
 end

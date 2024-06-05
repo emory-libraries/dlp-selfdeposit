@@ -1,15 +1,24 @@
 ---
 :queues:
+  - [import, 4]
   - [ingest, 4]
   - [batch, 2]
   - [default, 1]
+  - [export, 1]
+
+:limits:
+  import: 7
+
+:timeout: 300
+
+:max_retries: 3
 
 test: # n/a
   :concurrency: 1
 
 development:
-  :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 1 %>
+  :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 2 %>
   :logfile: ./log/sidekiq_development.log
 
 production:
-  :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 2 %>
+  :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 15 %>
