@@ -147,9 +147,10 @@ attributes:
     predicate: http://schema.org/keywords
   publisher:
     type: string
-    multiple: true
+    multiple: false
     form:
       primary: false
+      required: true
     index_keys:
       - "publisher_tesim"
     predicate: http://purl.org/dc/elements/1.1/publisher
