@@ -1,3 +1,5 @@
+// TO DO: Remove console.log statements
+
 // wait for page to load (ruby seems to act weird if we don't)
 document.addEventListener('DOMContentLoaded', function (event) {
     // get accordion elements
