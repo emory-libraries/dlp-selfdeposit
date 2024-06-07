@@ -93,6 +93,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     console.log('none selected');
                     break;
                 }
+                default: {
+                    resetForm();
+                    console.log('default selected');
+                    break;
+                }
+
             }
         }
 
@@ -186,6 +192,12 @@ function validateForm() {
             removeModal();
             break;
         }
+
+        default: {
+            resetForm();
+            console.log('validate default');
+            break;
+        }
     }
 }
 
@@ -201,12 +213,5 @@ function validateModal(x) {
 
 function removeModal() {
     console.log("modal remove");
-    var modal = document.getElementsByClassName("modal pubform");
-    console.log(modal);
-
-    if (modal) {
-        while (modal[0]) {
-            modal[0].parentNode.removeChild(modal[0]);
-        }
-    }
+    $(".modal.pubform").remove();
 }
