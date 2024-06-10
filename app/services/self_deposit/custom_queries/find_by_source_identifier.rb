@@ -45,7 +45,7 @@ module SelfDeposit
       # Solr query for for a Publication with a deduplication_key_tesi that matches the provided key
       # @return [Hash]
       def query
-        "has_model_ssim:#{@model.to_s} && #{@property}:#{@value}"
+        "has_model_ssim:#{@model} && #{@property}:#{@value}"
       end
     end
   end
