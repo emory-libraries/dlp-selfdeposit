@@ -27,7 +27,7 @@
   <script>
     document.addEventListener('turbolinks:load', function() {
       var addCreatorButton = document.querySelector('.add-creator');
-      var form = document.getElementById('new_publication_') || document.querySelectorAll('form[id^="edit_publication_"]')[0]
+      var form = document.getElementById('new_publication_') || document.querySelectorAll('form[id^="edit_publication_"]')[0];
 
       addCreatorButton.addEventListener('click', function() {
         var creatorsContainer = document.getElementById('creators-container');
