@@ -19,22 +19,23 @@
         <% end %>
       </div>
     <% end %>
+  </div>
 
     <button type="button" class="btn btn-link add-creator"><span class="glyphicon glyphicon-plus"></span><span class="controls-add-text">Add another Creator</span></button>
-    </div>
+
 
   <script>
     document.addEventListener('turbolinks:load', function() {
-      const addCreatorButton = document.querySelector('.add-creator');
-      const form = document.getElementById('new_publication_') || document.querySelectorAll('form[id^="edit_publication_"]')[0]
+      var addCreatorButton = document.querySelector('.add-creator');
+      var form = document.getElementById('new_publication_') || document.querySelectorAll('form[id^="edit_publication_"]')[0]
 
       addCreatorButton.addEventListener('click', function() {
-        const creatorsContainer = document.getElementById('creators-container');
-        const lastCreator = creatorsContainer.querySelector('div[id^="creator-"]:last-child');
+        var creatorsContainer = document.getElementById('creators-container');
+        var lastCreator = creatorsContainer.querySelector('div[id^="creator-"]').lastElementChild;
         const uuid = crypto.randomUUID();
-        const newCreator = lastCreator.cloneNode(true);
+        var newCreator = lastCreator.cloneNode(true);
         newCreator.id = `creator-${uuid}`;
-        const inputs = newCreator.querySelectorAll('input');
+        var inputs = newCreator.querySelectorAll('input');
         inputs.forEach(input => input.value = '');
         creatorsContainer.appendChild(newCreator);
         toggleRemoveButtons();
@@ -44,7 +45,7 @@
         let creators = convertCreatorsToString();
 
         for (let i = 0; i < creators.length; i++) {
-          const creator_field = document.createElement('input');
+          var creator_field = document.createElement('input');
           creator_field.type = 'hidden'
           creator_field.name = 'publication[creator][]';
           creator_field.value = creators[i];
@@ -57,7 +58,7 @@
 
     function convertCreatorsToString() {
       const creatorEntries = document.querySelectorAll('div[id^="creator-"]');
-      const creatorStrings = [];
+      var creatorStrings = [];
 
       creatorEntries.forEach(creatorEntry => {
           const firstName = creatorEntry.querySelector('input[name="publication[creators][first_name]"]').value.trim();
