@@ -36,7 +36,51 @@ Bulkrax.setup do |config|
   # Field mappings
   # Create a completely new set of mappings by replacing the whole set as follows
   config.field_mappings = {
-    "Bulkrax::CsvParser" => {}
+    "Bulkrax::CsvParser" => {
+      "abstract" => { from: ["abstract"], split: '\|', join: '|' },
+      "access_right" => { from: ["access_right"], split: '\|', join: '|' },
+      "author_notes" => { from: ["author_notes"] },
+      "conference_name" => { from: ["conference_name"] },
+      "content_genre" => { from: ["content_genre"] },
+      "creator" => { from: ["creator"], split: '\|', join: '|' },
+      "data_classification" => { from: ["data_classification"] },
+      "date_issued" => { from: ["date_issued"] },
+      "deduplication_key" => { from: ["deduplication_key"], source_identifier: true, search_field: 'deduplication_key_ssi' },
+      "edition" => { from: ["edition"] },
+      "emory_content_type" => { from: ["emory_content_type"] },
+      "emory_ark" => { from: ["emory_ark"], split: '\|', join: '|' },
+      "file" => { from: ["file"], split: '\;', join: ';' },
+      "final_published_versions" => { from: ["final_published_versions"], split: '\|', join: '|' },
+      "grant_agencies" => { from: ["grant_agencies"], split: '\|', join: '|' },
+      "grant_information" => { from: ["grant_information"], split: '\|', join: '|' },
+      "holding_repository" => { from: ["holding_repository"] },
+      "institution" => { from: ["institution"] },
+      "internal_rights_note" => { from: ["internal_rights_note"] },
+      "isbn" => { from: ["isbn"] },
+      "issn" => { from: ["issn"] },
+      "issue" => { from: ["issue"] },
+      "keyword" => { from: ["keyword"], split: '\|', join: '|' },
+      "language" => { from: ["language"] },
+      "license" => { from: ["license"] },
+      "model" => { from: ["model"], join: '|' },
+      "page_range_end" => { from: ["page_range_end"] },
+      "page_range_start" => { from: ["page_range_start"] },
+      "parent" => { from: ["parent"], related_parents_field_mapping: true },
+      "parent_title" => { from: ["parent_title"] },
+      "place_of_production" => { from: ["place_of_production"] },
+      "publisher" => { from: ["publisher"], split: '\|', join: '|' },
+      "publisher_version" => { from: ["publisher_version"] },
+      "related_datasets" => { from: ["related_datasets"], split: '\|', join: '|' },
+      "research_categories" => { from: ["research_categories"], split: '\|', join: '|' },
+      "rights_statement" => { from: ["rights_statement"], split: '\|', join: '|' },
+      "series_title" => { from: ["series_title"] },
+      "sponsor" => { from: ["sponsor"] },
+      "staff_notes" => { from: ["staff_notes"], split: '\|', join: '|' },
+      "subject" => { from: ["subject"], split: '\|', join: '|' },
+      "system_of_record_ID" => { from: ["system_of_record_ID"] },
+      "title" => { from: ["title"], split: '\|', join: '|' },
+      "volume" => { from: ["volume"] }
+    }
   }
 
   # Add to, or change existing mappings as follows
@@ -60,9 +104,7 @@ Bulkrax.setup do |config|
   # and download errored entries to still work, but does mean if you upload the
   # same source record in two different files you WILL get duplicates.
   # It is given two aruguments, self at the time of call and the index of the reocrd
-  #    config.fill_in_blank_source_identifiers = ->(parser, index) { "b-#{parser.importer.id}-#{index}"}
-  # or use a uuid
-  #    config.fill_in_blank_source_identifiers = ->(parser, index) { SecureRandom.uuid }
+  config.fill_in_blank_source_identifiers = ->(obj, index) { "SelfDeposit-#{obj.importerexporter.id}-#{index}" }
 
   # Properties that should not be used in imports/exports. They are reserved for use by Hyrax.
   # config.reserved_properties += ['my_field']
@@ -79,4 +121,50 @@ Bulkrax.setup do |config|
   # Specify the delimiter for joining an attribute's multi-value array into a string.  Note: the
   # specific delimeter should likely be present in the multi_value_element_split_on expression.
   # config.multi_value_element_join_on = ' | '
+end
+
+# Bulkrax v8.1.0 Override - L#147 had a typo (custom_query instead of custom_queries). `find_by_model_and_property_value` as
+#   it currently exists in Bulkrax uses SQL, which makes it Postgres-only. It originally used `name_field` to pass to that query,
+#   but we prefer `search_field`, since it contains the Solr field we'll be querying (in this case, almost always `deduplication_key_ssi`).
+Bulkrax::ValkyrieObjectFactory.class_eval do
+  ##
+  # @param value [String]
+  # @param klass [Class, #where]
+  # @param field [String, Symbol] A convenience parameter where we pass the
+  #        same value to search_field.
+  # @param name_field [String] the ActiveFedora::Base property name
+  #        (e.g. "title")
+  # @return [NilClass] when no object is found.
+  # @return [Valkyrie::Resource] when a match is found, an instance of given
+  #         :klass
+  # rubocop:disable Metrics/ParameterLists
+  def self.search_by_property(value:, klass:, field: nil, search_field: nil, **)
+    search_field ||= field
+    raise "Expected search_field or field got nil" if search_field.blank?
+    return if value.blank?
+    # Return nil or a single object.
+    Hyrax.query_service.custom_queries.find_by_model_and_property_value(model: klass, property: search_field, value:)
+  end
+  # rubocop:enable Metrics/ParameterLists
+end
+
+# Hyrax v5.0.1 Override - since Bulkrax introduces the Wings constant when it installs, the first test to determine query type passes,
+#   but the `is_a?` method produces an error because `Wings::Valkyrie` constant doesn't exist. This provides that test, as well.
+Rails.application.config.to_prepare do
+  Hyrax::DownloadsController.class_eval do
+    def file_set_parent(file_set_id)
+      file_set = if defined?(Wings) && defined?(Wings::Valkyrie) && Hyrax.metadata_adapter.is_a?(Wings::Valkyrie::MetadataAdapter)
+                   Hyrax.query_service.find_by_alternate_identifier(alternate_identifier: file_set_id, use_valkyrie: Hyrax.config.use_valkyrie?)
+                 else
+                   Hyrax.query_service.find_by(id: file_set_id)
+                 end
+      @parent ||=
+        case file_set
+        when Hyrax::Resource
+          Hyrax.query_service.find_parents(resource: file_set).first
+        else
+          file_set.parent
+        end
+    end
+  end
 end

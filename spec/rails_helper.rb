@@ -23,7 +23,8 @@ custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
                   Hyrax::CustomQueries::FindIdsByModel,
                   Hyrax::CustomQueries::FindFileMetadata,
                   Hyrax::CustomQueries::Navigators::FindFiles,
-                  SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey]
+                  SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,
+                  SelfDeposit::CustomQueries::FindBySourceIdentifier]
 custom_queries.each do |handler|
   query_registration_target.register_query_handler(handler)
 end
