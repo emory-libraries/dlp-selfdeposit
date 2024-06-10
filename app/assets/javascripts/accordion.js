@@ -21,11 +21,19 @@ document.addEventListener('DOMContentLoaded', function (event) {
     var p = document.getElementById("publication_content_genre");
     if (p != null) {
 
-        //article fields
+        //fields
         var confName = document.getElementsByClassName("form-group string optional publication_conference_name");
         var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
         var series = document.getElementsByClassName("form-group string optional publication_series_title");
         var edition = document.getElementsByClassName("form-group string optional publication_edition");
+        var issn = document.getElementsByClassName("form-group string optional publication_issn");
+        var volume = document.getElementsByClassName("form-group string optional publication_volume");
+        var issue = document.getElementsByClassName("form-group string optional publication_issue");
+        var pageStart = document.getElementsByClassName("form-group string optional publication_page_range_start");
+        var pageEnd = document.getElementsByClassName("form-group string optional publication_page_range_end");
+
+
+        //labels (for required badged)
         var publisherVersion = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
         var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
 
@@ -54,6 +62,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 case 'Book': {
                     resetForm();
                     console.log("Chose: Book");
+
+                    issn[0].style.display = "none";
+                    volume[0].style.display = "none";
+                    issue[0].style.display = "none";
+                    pageStart[0].style.display = "none";
+                    pageEnd[0].style.display = "none";
+
                     break;
                 }
 
@@ -104,14 +119,16 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 
         function resetForm() {
-            //reset the form at the beginning every time we switch
-
-            //article reset
             console.log('RESET FORM!');
             confName[0].style.display = "block";
             isbn[0].style.display = "block";
             series[0].style.display = "block";
             edition[0].style.display = "block";
+            issn[0].style.display = "block";
+            volume[0].style.display = "block";
+            issue[0].style.display = "block";
+            pageStart[0].style.display = "block";
+            pageEnd[0].style.display = "block";
             var pubformPubver = document.getElementById("pubform-pubver");
             if (pubformPubver) { pubformPubver.remove(); }
             var pubformPubTitle = document.getElementById("pubform-partitle");
@@ -134,14 +151,14 @@ function validateForm() {
                 validateModal(pubverLabel);
                 return false;
             }
-            var parTitle = document.getElementById("publication_parent_title").value;
-            if (!parTitle) {
+            var parTitleValue = document.getElementById("publication_parent_title").value;
+            if (!parTitleValue) {
                 var parTitleLabel = "Parent Title";
                 validateModal(parTitleLabel);
                 return false;
             }
 
-            if (pubverCheck != ' ' && parTitle) {
+            if (pubverCheck != ' ' && parTitleValue) {
                 removeModal();
                 console.log("form filled out correctly");
                 return true;
