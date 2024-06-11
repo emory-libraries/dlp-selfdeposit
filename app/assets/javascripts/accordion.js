@@ -21,13 +21,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
     var p = document.getElementById("publication_content_genre");
     if (p != null) {
 
-        //article fields
+        //fields
+        var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title");
         var confName = document.getElementsByClassName("form-group string optional publication_conference_name");
         var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
         var series = document.getElementsByClassName("form-group string optional publication_series_title");
         var edition = document.getElementsByClassName("form-group string optional publication_edition");
-        var publisherVersion = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
-        var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
+        var issn = document.getElementsByClassName("form-group string optional publication_issn");
+        var volume = document.getElementsByClassName("form-group string optional publication_volume");
+        var issue = document.getElementsByClassName("form-group string optional publication_issue");
+        var pageStart = document.getElementsByClassName("form-group string optional publication_page_range_start");
+        var pageEnd = document.getElementsByClassName("form-group string optional publication_page_range_end");
+
+        //labels (for required badged)
+        var pubVersionLabel = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
+        var parTitleLabel = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
 
         formSetup();
 
@@ -46,14 +54,23 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     isbn[0].style.display = "none";
                     series[0].style.display = "none";
                     edition[0].style.display = "none";
-                    publisherVersion.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitle.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    parTitleLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
                     break;
                 }
 
                 case 'Book': {
                     resetForm();
                     console.log("Chose: Book");
+                    parTitle[0].style.display = "none";
+                    confName[0].style.display = "none";
+                    issn[0].style.display = "none";
+                    volume[0].style.display = "none";
+                    issue[0].style.display = "none";
+                    pageStart[0].style.display = "none";
+                    pageEnd[0].style.display = "none";
+                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+
                     break;
                 }
 
@@ -104,14 +121,17 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 
         function resetForm() {
-            //reset the form at the beginning every time we switch
-
-            //article reset
             console.log('RESET FORM!');
+            parTitle[0].style.display = "block";
             confName[0].style.display = "block";
             isbn[0].style.display = "block";
             series[0].style.display = "block";
             edition[0].style.display = "block";
+            issn[0].style.display = "block";
+            volume[0].style.display = "block";
+            issue[0].style.display = "block";
+            pageStart[0].style.display = "block";
+            pageEnd[0].style.display = "block";
             var pubformPubver = document.getElementById("pubform-pubver");
             if (pubformPubver) { pubformPubver.remove(); }
             var pubformPubTitle = document.getElementById("pubform-partitle");
@@ -128,22 +148,22 @@ function validateForm() {
     switch (validationLabel) {
         case 'Article': {
 
-            var pubverCheck = document.getElementById("publication_publisher_version").selectedOptions[0].label;
-            if (pubverCheck == ' ') {
-                var pubverLabel = "Publisher Version";
-                validateModal(pubverLabel);
+            var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
+            if (pubverValue == ' ') {
+                var publisherVersion = "Publisher Version";
+                validateModal(publisherVersion);
                 return false;
             }
-            var parTitle = document.getElementById("publication_parent_title").value;
-            if (!parTitle) {
-                var parTitleLabel = "Parent Title";
-                validateModal(parTitleLabel);
+            var parTitleValue = document.getElementById("publication_parent_title").value;
+            if (!parTitleValue) {
+                var parentTitle = "Parent Title";
+                validateModal(parentTitle);
                 return false;
             }
 
-            if (pubverCheck != ' ' && parTitle) {
+            if (pubverValue != ' ' && parTitleValue) {
                 removeModal();
-                console.log("form filled out correctly");
+                console.log("article filled out correctly");
                 return true;
             }
 
@@ -152,8 +172,21 @@ function validateForm() {
         }
 
         case 'Book': {
-            console.log("Validating: Book");
-            removeModal();
+
+            var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
+            if (pubverValue == ' ') {
+                var publisherVersion = "Publisher Version";
+                validateModal(publisherVersion);
+                return false;
+            }
+
+            if (pubverValue) {
+                removeModal();
+                console.log("book filled out correctly");
+                return true;
+            }
+
+            alert("Please contact LTDS");
             break;
         }
 
