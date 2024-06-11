@@ -77,6 +77,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 case 'Book Chapter': {
                     resetForm();
                     console.log('Selected: Book Chapter');
+
+                    confName[0].style.display = "none";
+                    issn[0].style.display = "none";
+                    volume[0].style.display = "none";
+                    issue[0].style.display = "none";
+                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    parTitleLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+
                     break;
                 }
 
@@ -142,28 +150,33 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 
 function validateForm() {
-    var validationLabel = document.getElementById("publication_content_genre").selectedOptions[0].label;
-    // console.log("validating " + validationLabel);
+    var validationValue = document.getElementById("publication_content_genre").selectedOptions[0].label;
+    var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
+    var parTitleValue = document.getElementById("publication_parent_title").value;
 
-    switch (validationLabel) {
-        case 'Article': {
+    var publisherVersion = "Publisher Version";
+    var parentTitle = "Parent Title";
 
-            var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
+    // console.log("validating " + validationValue);
+
+    switch (validationValue) {
+
+        case 'Article':
+        case 'Book Chapter': {
+
+            console.log('Validating: Article/Book Chapter');
             if (pubverValue == ' ') {
-                var publisherVersion = "Publisher Version";
                 validateModal(publisherVersion);
                 return false;
             }
-            var parTitleValue = document.getElementById("publication_parent_title").value;
             if (!parTitleValue) {
-                var parentTitle = "Parent Title";
                 validateModal(parentTitle);
                 return false;
             }
 
             if (pubverValue != ' ' && parTitleValue) {
                 removeModal();
-                console.log("article filled out correctly");
+                console.log("article/book title filled out correctly");
                 return true;
             }
 
@@ -173,7 +186,7 @@ function validateForm() {
 
         case 'Book': {
 
-            var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
+            console.log('Validating: Book');
             if (pubverValue == ' ') {
                 var publisherVersion = "Publisher Version";
                 validateModal(publisherVersion);
@@ -187,12 +200,6 @@ function validateForm() {
             }
 
             alert("Please contact LTDS");
-            break;
-        }
-
-        case 'Book Chapter': {
-            console.log('Validating: Book Chapter');
-            removeModal();
             break;
         }
 
