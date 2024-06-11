@@ -66,11 +66,12 @@ en:
   simple_form:
     hints:
       defaults:
-        language: ''
+        language: ""
     labels:
       defaults:
         emory_content_type: Format
         holding_repository: Library
         language: Primary Language
+        publisher_version: Publication Version
         subject_geo: Subject - Geographic
         subject_names: Subject - Names
