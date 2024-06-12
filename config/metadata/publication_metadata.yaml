@@ -95,6 +95,7 @@ attributes:
       multiple: false
     index_keys:
       - 'deduplication_key_tesi'
+      - 'deduplication_key_ssi'
     predicate: http://metadata.emory.edu/vocab/predicates#deduplicationKey
   edition:
     type: string

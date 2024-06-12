@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'devise'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
@@ -23,7 +24,8 @@ custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
                   Hyrax::CustomQueries::FindIdsByModel,
                   Hyrax::CustomQueries::FindFileMetadata,
                   Hyrax::CustomQueries::Navigators::FindFiles,
-                  SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey]
+                  SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,
+                  SelfDeposit::CustomQueries::FindBySourceIdentifier]
 custom_queries.each do |handler|
   query_registration_target.register_query_handler(handler)
 end
@@ -46,4 +48,5 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include Devise::Test::ControllerHelpers, type: :view
 end

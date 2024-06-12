@@ -1,0 +1,29 @@
+  <%# Hyrax v5.0.1 Override: the Bulkrax assignment of Hyrax::DashboardController.sidebar_partials[:repository_content] no longer works, so
+        we have to call the partial here. %>
+
+  <li class="h5 nav-item"><%= t('hyrax.admin.sidebar.repository_objects') %></li>
+
+  <%= menu.nav_link(hyrax.my_collections_path,
+                    class: "nav-link",
+                    onclick: "dontChangeAccordion(event);",
+                    also_active_for: hyrax.dashboard_collections_path) do %>
+    <span class="fa fa-folder-open" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.collections') %></span>
+  <% end %>
+
+  <%= menu.nav_link(hyrax.my_works_path,
+                    class: "nav-link",
+                    onclick: "dontChangeAccordion(event);",
+                    also_active_for: hyrax.dashboard_works_path) do %>
+    <span class="fa fa-file" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
+  <% end %>
+
+  <% if current_ability.can_import_works? %>
+    <%= menu.nav_link(bulkrax.importers_path) do %>
+      <span class="fa fa-cloud-upload" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('bulkrax.admin.sidebar.importers') %></span>
+    <% end %>
+  <% end %>
+  <% if current_ability.can_export_works? %>
+    <%= menu.nav_link(bulkrax.exporters_path) do %>
+      <span class="fa fa-cloud-download" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('bulkrax.admin.sidebar.exporters') %></span>
+    <% end %>
+  <% end %>

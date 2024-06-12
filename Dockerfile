@@ -21,6 +21,7 @@ RUN apk --no-cache upgrade && \
   imagemagick-svg \
   imagemagick-tiff \
   imagemagick-webp \
+  libxml2-dev \
   jemalloc \
   tzdata \
   nodejs \
