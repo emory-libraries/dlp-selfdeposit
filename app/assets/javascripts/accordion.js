@@ -123,6 +123,17 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 case 'Report': {
                     resetForm();
                     console.log('Selected: Report');
+
+                    confName[0].style.display = "none";
+                    issn[0].style.display = "none";
+                    isbn[0].style.display = "none";
+                    series[0].style.display = "none";
+                    edition[0].style.display = "none";
+                    volume[0].style.display = "none";
+                    issue[0].style.display = "none";
+                    pageStart[0].style.display = "none";
+                    pageEnd[0].style.display = "none"
+
                     break;
                 }
 
@@ -224,7 +235,7 @@ function validateForm() {
         }
 
         case ' ': {
-            console.log('Selected: Report');
+            console.log('Selected: none');
             removeModal();
             break;
         }
