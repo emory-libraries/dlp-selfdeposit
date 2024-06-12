@@ -2,6 +2,7 @@
 # [Hyrax-overwrite-v5.0.0] - We take over #make_file_set_and_ingest to create a
 #   PreservationEvent registering the creation of a Publication's FileSet.
 require './lib/preservation_events'
+require 'noid-rails'
 
 Rails.application.config.to_prepare do
   Hyrax::WorkUploadsHandler.class_eval do
@@ -53,6 +54,7 @@ Rails.application.config.to_prepare do
       { depositor: file.user.user_key,
         creator: file.user.user_key,
         date_uploaded: file.created_at,
+        alternate_ids: ["#{Noid::Rails::Service.new.mint}-emory"],
         date_modified: Hyrax::TimeService.time_in_utc,
         label: file.uploader.filename,
         title: file.uploader.filename,
