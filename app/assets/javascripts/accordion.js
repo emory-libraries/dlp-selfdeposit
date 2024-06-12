@@ -102,17 +102,22 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     break;
                 }
 
-                case 'Poster': {
-                    resetForm();
-                    console.log('Selected: Poster');
-                    break;
-
-                }
-
+                case 'Poster':
                 case 'Presentation': {
                     resetForm();
-                    console.log('Selected: Presentation');
+                    console.log('Selected: Poster || Presentation');
+
+                    issn[0].style.display = "none";
+                    isbn[0].style.display = "none";
+                    series[0].style.display = "none";
+                    edition[0].style.display = "none";
+                    volume[0].style.display = "none";
+                    issue[0].style.display = "none";
+                    pageStart[0].style.display = "none";
+                    pageEnd[0].style.display = "none";
+
                     break;
+
                 }
 
                 case 'Report': {
@@ -209,18 +214,6 @@ function validateForm() {
             }
 
             alert("Please contact LTDS");
-            break;
-        }
-
-        case 'Poster': {
-            console.log('Validating: Conference Paper');
-            removeModal();
-            break;
-        }
-
-        case 'Presentation': {
-            console.log('Validating: Presentation');
-            removeModal();
             break;
         }
 
