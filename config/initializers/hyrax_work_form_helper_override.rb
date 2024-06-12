@@ -1,5 +1,7 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] - blocks non-admins from seeing the relationships tab.
+# [Hyrax-overwrite-v5.0.1]
+#   - #form_tabs_for: blocks non-admins from seeing the relationships tab.
+#   - #admin_set_options: returns empty array is user's not an admin.
 
 Rails.application.config.to_prepare do
   Hyrax::WorkFormHelper.module_eval do
