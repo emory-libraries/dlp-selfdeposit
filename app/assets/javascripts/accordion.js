@@ -91,14 +91,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 case 'Conference Paper': {
                     resetForm();
                     console.log('Selected: Conference Paper');
-
-                    issn[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-
                     break;
                 }
 
@@ -192,10 +184,9 @@ function validateForm() {
             break;
         }
 
-        case 'Book':
-        case 'Conference Paper': {
+        case 'Book': {
 
-            console.log('Validating: Book || Conference Paper');
+            console.log('Validating: Book');
             if (pubverValue == ' ') {
                 var publisherVersion = "Publisher Version";
                 validateModal(publisherVersion);
@@ -209,6 +200,12 @@ function validateForm() {
             }
 
             alert("Please contact LTDS");
+            break;
+        }
+
+        case 'Conference Paper': {
+            console.log('Validating: Conference Paper');
+            removeModal();
             break;
         }
 
