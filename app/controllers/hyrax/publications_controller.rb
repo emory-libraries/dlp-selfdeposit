@@ -35,6 +35,7 @@ module Hyrax
     def create_valkyrie_work
       @event_start = DateTime.current # record event_start timestamp
       form = build_form
+      assign_defaults_for_non_admins(form)
       action = create_valkyrie_work_action.new(form:,
                                                transactions:,
                                                user: current_user,
@@ -81,6 +82,13 @@ module Hyrax
     def work_update
       { 'type' => 'Modification', 'start' => @event_start, 'outcome' => 'Success', 'details' => 'Object updated',
         'software_version' => 'SelfDeposit v.1', 'user' => current_user.email }
+    end
+
+    def assign_defaults_for_non_admins(form)
+      return if current_user.admin?
+
+      form.admin_set_id = ENV.fetch('OPENEMORY_WORKFLOW_ADMIN_SET_ID', Hyrax::AdminSetCreateService.find_or_create_default_admin_set.id.to_s)
+      form.member_of_collection_ids = [ENV.fetch('OPENEMORY_COLLECTION_ID', nil)]
     end
   end
 end
