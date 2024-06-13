@@ -11,9 +11,9 @@ module Hyrax
       class SetNoidId
         ##
         # @param [Hyrax::ChangeSet] change_set
-        # @param alternate_ids for the collection
+        # @param alternate_ids for the collection, file_set, publication
         def call(change_set, alternate_ids: [new_noid_id])
-          return Failure[:no_alternate_ids, collection] unless
+          return Failure[:no_alternate_ids, change_set] unless
             change_set.respond_to?(:alternate_ids=)
           return Success(change_set) if
             change_set.alternate_ids.present?
