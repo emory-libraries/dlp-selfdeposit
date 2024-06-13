@@ -27,6 +27,10 @@ module DlpSelfDeposit
       config.logger = ActiveSupport::TaggedLogging.new(logger)
     end
 
+    config.to_prepare do
+      Hyrax::Dashboard::CollectionsController.prepend Hyrax::Dashboard::CollectionsControllerOverride
+    end
+
     # The locale is set by a query parameter, so if it's not found render 404
     config.action_dispatch.rescue_responses.merge!(
       'I18n::InvalidLocale' => :not_found
