@@ -93,7 +93,7 @@ end
 
 if ARGV.empty?
   puts "Exiting -- This script must be in the following format:"
-  puts "./lib/fedora/migrate_fedora3_objects.rb <full path to the MODS XML file> <optional: desired name of returned CSV file>"
+  puts "./dlp-selfdeposit/lib/metadata/extract_mods_metadata_to_csv.rb <full path to the MODS XML file> <optional: desired name of returned CSV file>"
   puts "NOTE: desired CSV filename must end with the .csv extension. example: my_desired_filename.csv"
   exit 1
 end
