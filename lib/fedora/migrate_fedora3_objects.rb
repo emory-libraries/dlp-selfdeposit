@@ -90,10 +90,10 @@ class MigrateFedoraThreeObjects
 end
 
 if ARGV.length != 4
-  Rails.logger.debug "Exiting -- This script must be in the following format:"
-  Rails.logger.debug "./lib/fedora/migrate_fedora3_objects.rb <a list of pids separated by commas> <Fedora 3 path> <Fedora 3 username> <Fedora 3 password>"
-  Rails.logger.debug "NOTES: pids must be entered without the 'emory:' substring and the Fedora path must follow the following format:"
-  Rails.logger.debug "http://example.com:1234"
+  puts "Exiting -- This script must be in the following format:"
+  puts "./lib/fedora/migrate_fedora3_objects.rb <a list of pids separated by commas> <Fedora 3 path> <Fedora 3 username> <Fedora 3 password>"
+  puts "NOTES: pids must be entered without the 'emory:' substring and the Fedora path must follow the following format:"
+  puts "http://example.com:1234"
   exit 1
 end
 
