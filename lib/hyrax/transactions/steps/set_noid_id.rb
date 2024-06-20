@@ -9,6 +9,8 @@ module Hyrax
       #
       # @since 3.2.0
       class SetNoidId
+        include Dry::Monads[:result]
+
         ##
         # @param [Hyrax::ChangeSet] change_set
         # @param alternate_ids for the collection, file_set, publication
@@ -26,7 +28,7 @@ module Hyrax
         private
 
         def new_noid_id
-          "#{Noid::Rails::Service.new.mint}-emory"
+          "#{::Noid::Rails::Service.new.mint}-emory"
         end
       end
     end

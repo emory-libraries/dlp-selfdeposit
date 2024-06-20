@@ -11,7 +11,7 @@ module Hyrax
         result =
           transactions['change_set.create_collection']
           .with_step_args(
-            'change_set.set_noid_id' => { alternate_ids: [] },
+            'change_set.set_noid_id' => {},
             'change_set.set_user_as_depositor' => { user: current_user },
             'change_set.add_to_collections' => { collection_ids: Array(params[:parent_id]) },
             'collection_resource.apply_collection_type_permissions' => { user: current_user }
