@@ -71,7 +71,7 @@ Hyrax.config do |config|
   config.enable_noids = false
 
   # Template for your repository's NOID IDs
-  # config.noid_template = ".reeddeeddk"
+  config.noid_template = ".rdddeeeeeee"
 
   # Use the database-backed minter class
   # config.noid_minter_class = Noid::Rails::Minter::Db

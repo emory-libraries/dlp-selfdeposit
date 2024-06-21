@@ -1,6 +1,8 @@
 ---
 # This internal metadata config is used to define predicates for emory/hyrax internals only
 attributes:
+  alternate_ids:
+    predicate: http://id.loc.gov/vocabulary/identifiers/local#emory
   aspect_ratio:
     predicate: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#aspectRatio
   bit_depth:
