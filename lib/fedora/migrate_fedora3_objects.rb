@@ -82,7 +82,7 @@ class MigrateFedoraThreeObjects
     binary_id = datastream['ID']
     binary_filename = datastream.elements.first['LABEL']
     binary_ext = ALLOWED_TYPES[:"#{datastream.elements.first['MIMETYPE']}"]
-    binary_save_name = binary_filename.empty? ? ["content_#{@pid}", binary_ext].join('.') : binary_filename
+    binary_save_name = binary_filename.empty? || binary_filename.include?('/') ? ["content_#{@pid}", binary_ext].join('.') : binary_filename
     download = URI.open("#{@fedora_three_path}/fedora/get/emory:#{@pid}/#{binary_id}")
 
     IO.copy_stream(download, "./emory_#{@pid}/#{binary_save_name}")

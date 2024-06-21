@@ -4,6 +4,7 @@ require 'fileutils'
 require 'nokogiri'
 require 'open-uri'
 require 'csv'
+require 'pry'
 
 class ExtractModsMetadataToCsv
   MULTIPLE_VALUE_PROCESSOR = ->(el) { el.children.map(&:text).join('|') }
@@ -29,7 +30,7 @@ class ExtractModsMetadataToCsv
     issn: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:identifier[@type="issn"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     conference_name: { xpath: '//mods:relatedItem[@type="host"]/mods:name[@type="conference"]/mods:namePart', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     author_notes: { xpath: '/mods:mods/mods:note[@type="author notes"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    rights_statements: { xpath: '/mods:mods/mods:accessCondition[@displayLabel="copyright"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
+    rights_statements: { xpath: nil, processor: nil, ext_method: 'rights_statements_value' },
     emory_ark: { xpath: '/mods:mods/mods:identifier[@type="ark"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     research_categories: { xpath: '/mods:mods/mods:subject[@authority="proquestresearchfield"]/mods:topic', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil }
   }.freeze
@@ -78,16 +79,16 @@ class ExtractModsMetadataToCsv
     'Emory University. Library'
   end
 
-  def creator_values
-    first_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="given"]').text
-    last_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="family"]').text
-    affiliation_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:affiliation').text
+  def rights_statements_value
+    'http://rightsstatements.org/vocab/InC/1.0/'
+  end
 
-    if first_name_values.is_a?(Array)
-      first_name_values.each_with_index.map { |v, i| [v, last_name_values[i], affiliation_values[i]].compact.join(', ') }.join('|')
-    elsif first_name_values.is_a?(String)
-      [first_name_values, last_name_values, affiliation_values].compact.join(', ')
-    end
+  def creator_values
+    first_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="given"]').map { |v| v.text.strip }
+    last_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="family"]').map { |v| v.text.strip }
+    affiliation_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:affiliation').map { |v| v.text.strip }
+
+    first_name_values.each_with_index.map { |v, i| [v, last_name_values[i], affiliation_values[i]].compact.join(', ') }.join('|')
   end
 end
 
