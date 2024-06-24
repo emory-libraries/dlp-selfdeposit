@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'viewing the root page', type: :system do
+RSpec.describe 'viewing the root page' do
   it 'has the welcome text' do
     visit root_path
 
