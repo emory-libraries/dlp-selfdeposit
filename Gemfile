@@ -59,6 +59,7 @@ end
 
 group :development, :test do
   gem 'bixby'
+  gem 'capybara-screenshot'
   gem 'coveralls', require: false
   gem 'debug', '>= 1.0.0'
   gem 'factory_bot_rails'
@@ -71,6 +72,7 @@ group :development, :test do
   gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'selenium-webdriver', '~> 4.4'
 end
 
 group :test do

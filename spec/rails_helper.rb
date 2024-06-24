@@ -13,6 +13,8 @@ require 'valkyrie'
 Valkyrie::MetadataAdapter.register(Valkyrie::Persistence::Memory::MetadataAdapter.new, :test_adapter)
 Valkyrie::StorageAdapter.register(Valkyrie::Storage::Memory.new, :memory)
 
+require 'hyrax/specs/capybara'
+
 query_registration_target =
   Valkyrie::MetadataAdapter.find(:test_adapter).query_service.custom_queries
 custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
