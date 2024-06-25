@@ -313,7 +313,7 @@ Devise.setup do |config|
 
   # Configure with your SAML settings (see ruby-saml's README for more information: https://github.com/onelogin/ruby-saml).
   config.saml_configure do |settings|
-    settings.assertion_consumer_service_url     = "https://shib.open.library.emory.edu/Shibboleth.sso/SAML2/POST"
+    settings.assertion_consumer_service_url     = ENV.fetch('HOME_PATH', 'http://localhost:3000') + '/users/saml/auth'
     settings.assertion_consumer_service_binding = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
     settings.name_identifier_format             = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient" # unchanged
     settings.sp_entity_id                       = "https://shib.open.library.emory.edu"
