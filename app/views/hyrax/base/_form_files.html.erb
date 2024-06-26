@@ -68,7 +68,7 @@
 
         formData.append("fileset_name", fsn);
         formData.append("file", pcf);
-        formData.append("fileset_use", "<%= FileSet::SUPPLEMENTAL %>");
+        formData.append("fileset_use", "<%= FileSet::PRIMARY %>");
 
         $.ajax({
             url: '/uploads/',
