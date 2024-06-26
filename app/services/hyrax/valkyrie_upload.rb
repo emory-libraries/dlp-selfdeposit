@@ -22,8 +22,8 @@ class Hyrax::ValkyrieUpload
     use: Hyrax::FileMetadata::Use::ORIGINAL_FILE,
     user: nil
   )
-    new(storage_adapter: storage_adapter)
-      .upload(filename: filename, file_set: file_set, io: io, use: use, user: user)
+    new(storage_adapter:)
+      .upload(filename:, file_set:, io:, use:, user:)
   end
 
   ##
@@ -39,7 +39,7 @@ class Hyrax::ValkyrieUpload
   end
 
   def upload(filename:, file_set:, io:, use: Hyrax::FileMetadata::Use::ORIGINAL_FILE, user: nil, mime_type: nil) # rubocop:disable Metrics/AbcSize
-    return version_upload(file_set: file_set, io: io, user: user) if use == Hyrax::FileMetadata::Use::ORIGINAL_FILE && file_set.original_file_id && storage_adapter.supports?(:versions)
+    return version_upload(file_set:, io:, user:) if use == Hyrax::FileMetadata::Use::ORIGINAL_FILE && file_set.original_file_id && storage_adapter.supports?(:versions)
     streamfile = storage_adapter.upload(file: io, original_filename: filename, resource: file_set)
     file_metadata = Hyrax::FileMetadata(streamfile)
     file_metadata.file_set_id = file_set.id
@@ -51,18 +51,18 @@ class Hyrax::ValkyrieUpload
     saved_metadata = Hyrax.persister.save(resource: file_metadata)
     saved_metadata.original_filename = filename if saved_metadata.original_filename.blank?
 
-    add_file_to_file_set(file_set: file_set,
+    add_file_to_file_set(file_set:,
                          file_metadata: saved_metadata,
-                         user: user)
+                         user:)
 
     Hyrax.publisher.publish("file.uploaded", metadata: saved_metadata)
-    Hyrax.publisher.publish('file.metadata.updated', metadata: saved_metadata, user: user)
+    Hyrax.publisher.publish('file.metadata.updated', metadata: saved_metadata, user:)
 
     saved_metadata
   end
 
   def version_upload(file_set:, io:, user:)
-    file_metadata = @file_set_file_service.primary_file_for(file_set: file_set)
+    file_metadata = @file_set_file_service.primary_file_for(file_set:)
 
     Hyrax::VersioningService.create(file_metadata, user, io)
     Hyrax.publisher.publish("file.uploaded", metadata: file_metadata)
@@ -78,6 +78,6 @@ class Hyrax::ValkyrieUpload
   def add_file_to_file_set(file_set:, file_metadata:, user:)
     file_set.file_ids += [file_metadata.id]
     Hyrax.persister.save(resource: file_set)
-    Hyrax.publisher.publish('object.membership.updated', object: file_set, user: user)
+    Hyrax.publisher.publish('object.membership.updated', object: file_set, user:)
   end
 end
