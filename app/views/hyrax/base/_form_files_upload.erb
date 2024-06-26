@@ -1,0 +1,124 @@
+<div class="<%= fs_use %>-fileset">
+  <table class="table table-hover">
+    <tr>
+      <td><input id="<%= fs_use %>0" type="file" /></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><input id="<%= fs_use %>-name0" type="text" /></td>
+    </tr>
+    <tr>
+      <td>Upload Status</td>
+      <td><progress id="<%= fs_use %>-progress0" max="100" value="0"></progress></td>
+    </tr>
+  </table>
+  <div><button id="<%= fs_use %>-upload0" class="<%= fs_use %>-upload">Attach File</button></div>
+  <br>
+</div>
+
+<% if fs_use != "primary" %>
+  <div class="<%= fs_use %>-fileset-append"></div>
+  <div><button id="<%= fs_use %>-add">+ Add Another File</button></div>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    var count = 1;
+
+    $("#<%= fs_use %>-add").click(function(event) {
+        event.preventDefault();
+        addFileUploadField();
+    });
+
+    function addFileUploadField() {
+        var source = $(".<%= fs_use %>-fileset:first"),
+            clone = source.clone();
+
+        clone.find(':input').each(function() {
+            var newId = this.id.replace(/\d+/g, '') + count;
+            $(this).attr('id', newId).val('');
+        });
+
+        clone.find("#<%= fs_use %>-progress0").attr('id', '<%= fs_use %>-progress' + count).val(0);
+        clone.find("#<%= fs_use %>-upload0").attr('id', "<%= fs_use %>-upload" + count).prop('disabled', false);
+        clone.appendTo(".<%= fs_use %>-fileset-append");
+
+        count++;
+    }
+
+    $(document).on('click', ".<%= fs_use %>-upload", function(event) {
+        event.preventDefault();
+        var i = this.id.match(/\d+/);
+        uploadFile(i);
+    });
+
+    function uploadFile(i) {
+        var formData = new FormData();
+        var name = $("#<%= fs_use %>-name" + i).val();
+        var file = $("#<%= fs_use %>" + i)[0].files[0];
+
+        if (!file) {
+            return;
+        }
+
+        formData.append("fileset_name", name);
+        formData.append("file", file);
+
+        switch ("<%= fs_use %>") {
+          case "primary":
+            formData.append("fileset_use", "<%= FileSet::PRIMARY %>");
+            break;
+          case "supplemental":
+            formData.append("fileset_use", "<%= FileSet::SUPPLEMENTAL %>");
+            break;
+          case "preservation":
+            formData.append("fileset_use", "<%= FileSet::PRESERVATION %>");
+            break;
+        }
+
+        $.ajax({
+            url: '/uploads/',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: formData,
+            success: function(data) {
+                handleUploadSuccess(data, i);
+            },
+            xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    myXhr.upload.addEventListener('progress', function(e) {
+                        updateProgress(e, i);
+                    }, false);
+                }
+                return myXhr;
+            }
+        });
+    }
+
+    function handleUploadSuccess(data, i) {
+        var uf = data.files[0].id;
+        var wrapper = ".uploaded_files";
+        $(wrapper).append("<input id='uf" + i + "' type='hidden' name='uploaded_files[]' value='" + uf + "' />");
+        updateFormStatus();
+    }
+
+    function updateProgress(e, i) {
+        if (e.lengthComputable) {
+            $("#<%= fs_use %>-progress" + i).attr({
+                value: e.loaded,
+                max: e.total
+            });
+        }
+    }
+
+    function updateFormStatus() {
+        $('li#required-files').removeClass('incomplete').addClass('complete');
+        $('input#agreement').prop('checked', false);
+        $('li#required-agreement').removeClass('complete').addClass('incomplete');
+        $('input#with_files_submit').prop('disabled', true);
+    } 
+  });
+</script>
