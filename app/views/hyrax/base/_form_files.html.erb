@@ -25,83 +25,96 @@
 <div class="uploaded_files"></div>
 
 <script>
+  $(document).ready(function() {
     var count = 1;
-    $('#add').click(function() {
+
+    $('#add').click(function(event) {
         event.preventDefault();
-        var source = $('.fileset:first'), clone = source.clone();
-        clone.find(':input').attr('id', function(i, val) {
-            return val.replace(/\d+/g, '') + count;
-        });
-        clone.find(':input').val("");
-        clone.find("#message0").attr('id', function(i, val) {
-            return val.replace(/\d+/g, '') + count;
-        });
-        clone.find("#message" + count).text("");
-        clone.find("#progress0").attr('id', function(i, val) {
-            return val.replace(/\d+/g, '') + count;
-        });
-        clone.find("#progress" + count).val(0);
-        clone.find("#upload0").attr('id', function(i, val) {
-            return val.replace(/\d+/g, '') + count;
-        });
-        clone.find("#upload" + count).prop("disabled", false);
-        clone.appendTo('.fileset-append');
-        count++;
+        addFileUploadField();
     });
-    $(document).on("click", ".upload", function() {
-        "use strict";
-        event.stopPropagation();
-        event.stopImmediatePropagation();
+
+    function addFileUploadField() {
+        var source = $('.fileset:first'),
+            clone = source.clone();
+
+        clone.find(':input').each(function() {
+            var newId = this.id.replace(/\d+/g, '') + count;
+            $(this).attr('id', newId).val('');
+        });
+
+        clone.find('#message0').attr('id', 'message' + count).text('');
+        clone.find('#progress0').attr('id', 'progress' + count).val(0);
+        clone.find('#upload0').attr('id', 'upload' + count).prop('disabled', false);
+        clone.appendTo('.fileset-append');
+
+        count++;
+    }
+
+    $(document).on('click', '.upload', function(event) {
         event.preventDefault();
         var i = this.id.match(/\d+/);
+        uploadFile(i);
+    });
+
+    function uploadFile(i) {
         var formData = new FormData();
         var fsn = $("#fsn" + i).val();
         var pcf = $("#pcf" + i)[0].files[0];
-        var fs_use = "<%= FileSet::SUPPLEMENTAL %>";
+
+        if (!pcf) {
+            $("#message" + i).html("<b style='color: red;'>Preservation Master File cannot be empty</b>");
+            return;
+        }
+
         formData.append("fileset_name", fsn);
         formData.append("file", pcf);
-        formData.append("fileset_use", fs_use);
+        formData.append("fileset_use", "<%= FileSet::SUPPLEMENTAL %>");
 
-        if(($("#pcf" + i)[0].files.length > 0)) {
-            if (($("#uf" + i).length < 1)) {
-                $.ajax({
-                    url: '/uploads/',
-                    type: 'POST',
-                    processData: false,
-                    contentType: false,
-                    dataType: 'json',
-                    data: formData,
-                    success: function(data) {
-                        var uf = data.files[0].id;
-                        $("#message" + i).html("Files uploaded");
-                        var wrapper = (".uploaded_files");
-                        $(wrapper).append("<input id='uf"+ i +"' type='hidden' name='uploaded_files[]' value='"+ uf +"' />");
-                        $('li#required-files').removeClass('incomplete').addClass('complete');
-                        $('input#agreement').prop("checked", false);
-                        $('li#required-agreement').removeClass('complete').addClass('incomplete');
-                        $('input#with_files_submit').prop("disabled", true);
-                        $("#upload" + i).prop("disabled", true);
-                    },
-                    xhr: function () {
-                        var myXhr = $.ajaxSettings.xhr();
-                        if (myXhr.upload) {
-                            // For handling the progress of the upload
-                            myXhr.upload.addEventListener('progress', function (e) {
-                                if (e.lengthComputable) {
-                                    $("#progress" + i).attr({
-                                        value: e.loaded,
-                                        max: e.total,
-                                    });
-                                }
-                            }, false);
-                        }
-                        return myXhr;
-                    }
-                });
+        $.ajax({
+            url: '/uploads/',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: formData,
+            success: function(data) {
+                handleUploadSuccess(data, i);
+            },
+            xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    myXhr.upload.addEventListener('progress', function(e) {
+                        updateProgress(e, i);
+                    }, false);
+                }
+                return myXhr;
             }
+        });
+    }
+
+    function handleUploadSuccess(data, i) {
+        var uf = data.files[0].id;
+        $("#message" + i).html("Files uploaded");
+        var wrapper = ".uploaded_files";
+        $(wrapper).append("<input id='uf" + i + "' type='hidden' name='uploaded_files[]' value='" + uf + "' />");
+        updateFormStatus();
+        $("#upload" + i).prop("disabled", true);
+    }
+
+    function updateProgress(e, i) {
+        if (e.lengthComputable) {
+            $("#progress" + i).attr({
+                value: e.loaded,
+                max: e.total
+            });
         }
-        else {
-            $("#message" + i).html("<b style='color: red;'>Preservation Master File cannot be empty</b>");
-        }
-    });
+    }
+
+    function updateFormStatus() {
+        $('li#required-files').removeClass('incomplete').addClass('complete');
+        $('input#agreement').prop('checked', false);
+        $('li#required-agreement').removeClass('complete').addClass('incomplete');
+        $('input#with_files_submit').prop('disabled', true);
+    }
+  });
 </script>
