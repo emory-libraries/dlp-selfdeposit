@@ -98,7 +98,6 @@
         var wrapper = ".uploaded_files";
         $(wrapper).append("<input id='uf" + i + "' type='hidden' name='uploaded_files[]' value='" + uf + "' />");
         updateFormStatus();
-        $("#upload" + i).prop("disabled", true);
     }
 
     function updateProgress(e, i) {
