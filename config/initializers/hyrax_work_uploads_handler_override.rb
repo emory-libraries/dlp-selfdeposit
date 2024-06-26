@@ -56,9 +56,9 @@ Rails.application.config.to_prepare do
         date_uploaded: file.created_at,
         alternate_ids: ["#{Noid::Rails::Service.new.mint}-emory"],
         date_modified: Hyrax::TimeService.time_in_utc,
-        label: file.uploader.filename,
-        title: file.uploader.filename,
-        file_set_use: FileSet::PRIMARY }
+        label: file.fileset_name.present? ? file.fileset_name : file.uploader.filename,
+        title: file.fileset_name.present? ? file.fileset_name : file.uploader.filename,
+        file_set_use: file.fileset_use }
     end
   end
 end

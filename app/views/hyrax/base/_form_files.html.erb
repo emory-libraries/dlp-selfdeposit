@@ -1,0 +1,107 @@
+<% # [Hyrax-overwrite-v5.0.1] %>
+<p>Please upload the primary publication file for your work. PDF is recommended for best long-term access to your material, but other formats are also accepted.</p>
+<p> Files containing sensitive data (PII, etc.) are not accepted. You can also provide a link to supplemental files/datasets stored in other sites in the Description tab. If you need assistance with your supplemental files, please view our Help page.</p>
+
+<h4>Primary Content File (Required)</h4>
+<div class="fileset">
+  <table class="table table-hover">
+    <tr>
+      <td><input id="pcf0" type="file" /></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><input id="fsn0" type="text" /></td>
+    </tr>
+    <tr>
+      <td>Upload Status</td>
+      <td><progress id="progress0" max="100" value="0"></progress></td>
+    </tr>
+  </table>
+  <div><button id="upload0" class="upload">Attach File</button></div>
+  <br>
+</div>
+<div class="fileset-append"></div>
+<div><button id="add">+ Add Another File</button></div>
+<div class="uploaded_files"></div>
+
+<script>
+    var count = 1;
+    $('#add').click(function() {
+        event.preventDefault();
+        var source = $('.fileset:first'), clone = source.clone();
+        clone.find(':input').attr('id', function(i, val) {
+            return val.replace(/\d+/g, '') + count;
+        });
+        clone.find(':input').val("");
+        clone.find("#message0").attr('id', function(i, val) {
+            return val.replace(/\d+/g, '') + count;
+        });
+        clone.find("#message" + count).text("");
+        clone.find("#progress0").attr('id', function(i, val) {
+            return val.replace(/\d+/g, '') + count;
+        });
+        clone.find("#progress" + count).val(0);
+        clone.find("#upload0").attr('id', function(i, val) {
+            return val.replace(/\d+/g, '') + count;
+        });
+        clone.find("#upload" + count).prop("disabled", false);
+        clone.appendTo('.fileset-append');
+        count++;
+    });
+    $(document).on("click", ".upload", function() {
+        "use strict";
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        var i = this.id.match(/\d+/);
+        var formData = new FormData();
+        var fsn = $("#fsn" + i).val();
+        var pcf = $("#pcf" + i)[0].files[0];
+        var fs_use = "<%= FileSet::SUPPLEMENTAL %>";
+        formData.append("fileset_name", fsn);
+        formData.append("file", pcf);
+        formData.append("fileset_use", fs_use);
+
+        if(($("#pcf" + i)[0].files.length > 0)) {
+            if (($("#uf" + i).length < 1)) {
+                $.ajax({
+                    url: '/uploads/',
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    data: formData,
+                    success: function(data) {
+                        var uf = data.files[0].id;
+                        $("#message" + i).html("Files uploaded");
+                        var wrapper = (".uploaded_files");
+                        $(wrapper).append("<input id='uf"+ i +"' type='hidden' name='uploaded_files[]' value='"+ uf +"' />");
+                        $('li#required-files').removeClass('incomplete').addClass('complete');
+                        $('input#agreement').prop("checked", false);
+                        $('li#required-agreement').removeClass('complete').addClass('incomplete');
+                        $('input#with_files_submit').prop("disabled", true);
+                        $("#upload" + i).prop("disabled", true);
+                    },
+                    xhr: function () {
+                        var myXhr = $.ajaxSettings.xhr();
+                        if (myXhr.upload) {
+                            // For handling the progress of the upload
+                            myXhr.upload.addEventListener('progress', function (e) {
+                                if (e.lengthComputable) {
+                                    $("#progress" + i).attr({
+                                        value: e.loaded,
+                                        max: e.total,
+                                    });
+                                }
+                            }, false);
+                        }
+                        return myXhr;
+                    }
+                });
+            }
+        }
+        else {
+            $("#message" + i).html("<b style='color: red;'>Preservation Master File cannot be empty</b>");
+        }
+    });
+</script>
