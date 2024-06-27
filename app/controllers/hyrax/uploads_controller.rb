@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+# Hyrax v5.0.1 override: add fileset_name and fileset_use to #create attributes
+
 module Hyrax
   class UploadsController < ApplicationController
     load_and_authorize_resource class: Hyrax::UploadedFile
