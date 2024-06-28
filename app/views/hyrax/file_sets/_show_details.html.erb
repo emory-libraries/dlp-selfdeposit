@@ -8,7 +8,7 @@
   </div>
   <div class="row">
     <dt class="col-5"><%= t(".file_set_use") %></dt>
-    <dd class="col-7"><span><%= @presenter.solr_document&.fetch("file_set_use_ssi", nil) %></span></dd>
+    <dd class="col-7"><span><%= @presenter.solr_document&.fetch("file_set_use_ssi", '') %></span></dd>
   </div>
   <div class="row">
     <dt class="col-5"><%= t(".date_uploaded") %></dt>
