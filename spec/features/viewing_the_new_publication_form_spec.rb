@@ -41,7 +41,7 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
   context 'when admin logged in' do
     before do
       # the below code adds the admin role to user
-      user.roles << Role.first
+      user.roles << Role.find_or_create_by(name: Hyrax.config.admin_user_group_name)
       user.save
       visit new_hyrax_publication_path
     end
