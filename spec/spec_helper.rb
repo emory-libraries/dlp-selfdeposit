@@ -2,6 +2,7 @@
 require 'factory_bot'
 require 'hyrax/specs/shared_specs/factories/strategies/json_strategy'
 require 'hyrax/specs/shared_specs/factories/strategies/valkyrie_resource'
+require 'hyrax/specs/shared_specs/factories/users'
 require 'coveralls'
 require 'rspec/active_model/mocks'
 
