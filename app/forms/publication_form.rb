@@ -25,7 +25,7 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
   #   (e.g. config/metadata/publication_metadata.yaml).
   def publication_information
     [:title, :creator, :language, :date_issued, :publisher, :publisher_version,
-     :access_right, :license, :final_published_versions, :parent_title, :conference_name,
+     :rights_notes, :license, :final_published_versions, :parent_title, :conference_name,
      :issn, :isbn, :series_title, :edition, :volume, :issue, :page_range_start, :page_range_end,
      :place_of_production, :sponsor, :grant_agencies, :grant_information, :related_datasets]
   end

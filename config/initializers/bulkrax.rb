@@ -38,7 +38,6 @@ Bulkrax.setup do |config|
   config.field_mappings = {
     "Bulkrax::CsvParser" => {
       "abstract" => { from: ["abstract"], split: '\|', join: '|' },
-      "access_right" => { from: ["access_right"], split: '\|', join: '|' },
       "author_notes" => { from: ["author_notes"] },
       "conference_name" => { from: ["conference_name"] },
       "content_genre" => { from: ["content_genre"] },
@@ -72,6 +71,7 @@ Bulkrax.setup do |config|
       "publisher_version" => { from: ["publisher_version"] },
       "related_datasets" => { from: ["related_datasets"], split: '\|', join: '|' },
       "research_categories" => { from: ["research_categories"], split: '\|', join: '|' },
+      "rights_notes" => { from: ["rights_notes"], split: '\|', join: '|' },
       "rights_statement" => { from: ["rights_statement"], split: '\|', join: '|' },
       "series_title" => { from: ["series_title"] },
       "sponsor" => { from: ["sponsor"] },
