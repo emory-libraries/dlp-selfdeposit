@@ -12,6 +12,7 @@ class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
       index_document[:failed_preservation_events_ssim] = failed_preservation_events
       index_document[:preservation_events_tesim] = resource&.preservation_events&.map(&:preservation_event_terms)
       index_document[:preservation_workflow_terms_tesim] = preservation_workflow_terms
+      index_document[:alternate_ids_ssim] = find_alternate_ids
     end
   end
 
@@ -21,6 +22,10 @@ class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
     failures = resource.preservation_events.select { |event| event.outcome == "Failure" }
     return if failures.blank?
     failures.map(&:failed_event_json)
+  end
+
+  def find_alternate_ids
+    resource.alternate_ids.first
   end
 
   def preservation_workflow_terms
