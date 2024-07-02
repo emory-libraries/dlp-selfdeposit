@@ -338,6 +338,7 @@ custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
                   Hyrax::CustomQueries::FindByDateRange,
                   SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,
                   SelfDeposit::CustomQueries::FindParentWorks,
+                  SelfDeposit::CustomQueries::FindByAlternateId,
                   SelfDeposit::CustomQueries::FindBySourceIdentifier]
 custom_queries.each do |handler|
   Hyrax.query_service.custom_queries.register_query_handler(handler)
