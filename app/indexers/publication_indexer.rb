@@ -25,7 +25,7 @@ class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
   end
 
   def find_alternate_ids
-    resource.alternate_ids.first
+    resource.alternate_ids.map(&:id)
   end
 
   def preservation_workflow_terms

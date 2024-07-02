@@ -16,6 +16,6 @@ class CollectionResourceIndexer < Hyrax::PcdmCollectionIndexer
   private
 
   def find_alternate_ids
-    resource.alternate_ids.first
+    resource.alternate_ids.map(&:id)
   end
 end

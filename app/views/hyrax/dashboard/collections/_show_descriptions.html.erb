@@ -5,9 +5,9 @@
   <div class='metadata-line'>
     <div class='col-xs-12 col-sm-4'><dt >Persistent URL</dt></div>
     <div class='col-xs-12 col-sm-8'><dd>
-    <% if @presenter.solr_document[:alternate_ids] %>
-        <% url = "#{request.base_url}/purl/#{@presenter.solr_document.alternate_ids.first}" %>
-        <a href="<%= url %>" target="_blank"><%= url %></a>
+    <% if @presenter.solr_document['alternate_ids_ssim'].present? %>
+        <% url = "#{request.base_url}/purl/#{@presenter.solr_document['alternate_ids_ssim'].first}" %>
+        <a href="<%= url %>"><%= url %></a>
     <% else %>
         No alternate ID available
     <% end %>
