@@ -15,8 +15,10 @@ class ExtractModsMetadataToCsv
     emory_content_type: { xpath: '//mods:typeOfResource', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     content_genres: { xpath: '//mods:genre[@authority="marcgt"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     creator: { xpath: nil, processor: nil, ext_method: 'creator_values' },
+    creator_last_first: { xpath: nil, processor: nil, ext_method: 'extract_creator_last_first' },
     abstract: { xpath: '//mods:abstract', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     date_issued: { xpath: '/mods:mods/mods:originInfo/mods:dateIssued', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
+    date_issued_year: { xpath: '/mods:mods/mods:originInfo/mods:dateIssued', processor: nil, ext_method: 'extract_date_issued_year' },
     keyword: { xpath: '/mods:mods/mods:subject[@authority="keywords"]/mods:topic', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     parent_title: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     publisher: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:originInfo/mods:publisher', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
@@ -89,6 +91,17 @@ class ExtractModsMetadataToCsv
     affiliation_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:affiliation').map { |v| v.text.strip }
 
     first_name_values.each_with_index.map { |v, i| [v, last_name_values[i], affiliation_values[i]].compact.join(', ') }.join('|')
+  end
+
+  def extract_creator_last_first
+    first_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="given"]').map { |v| v.text.strip }
+    last_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="family"]').map { |v| v.text.strip }
+
+    first_name_values.each_with_index.map { |v, i| [last_name_values[i], v].compact.join(', ') }.join('|')
+  end
+
+  def extract_date_issued_year
+    @mods_xml.xpath('/mods:mods/mods:originInfo/mods:dateIssued')&.text&.strip&.split('-')&.first
   end
 end
 
