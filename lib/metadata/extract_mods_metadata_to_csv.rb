@@ -36,7 +36,9 @@ class ExtractModsMetadataToCsv
     rights_notes: { xpath: '/mods:mods/mods:accessCondition[@displayLabel="copyright"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     publisher_version: { xpath: nil, processor: nil, ext_method: 'publisher_version_value' },
     language: { xpath: '/mods:mods/mods:language/mods:languageTerm[@type="text"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    related_datasets: { xpath: '/mods:mods/mods:relatedItem[@type="references"]/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
+    related_datasets: { xpath: '/mods:mods/mods:relatedItem[@type="references"]/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]',
+                        processor: MULTIPLE_VALUE_PROCESSOR,
+                        ext_method: nil },
     license: { xpath: '/mods:mods/mods:accessCondition/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil }
   }.freeze
 
