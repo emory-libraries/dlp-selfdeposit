@@ -26,6 +26,24 @@ module Hyrax
       @form.visibility = 'open'
     end
 
+    def add_custom_facet_params(form)
+      add_custom_date_issued_facet(form)
+      add_custom_creator_facet(form)
+    end
+
+    def add_custom_date_issued_facet(form)
+      form.date_issued_year = params[:publication][:date_issued]&.split('-')&.first
+    end
+
+    def add_custom_creator_facet(form)
+      form.creator_last_first = params[:publication][:creator]&.map do |v|
+        return nil if v.nil?
+        nv = v&.split(',')&.first(2)&.reverse
+        nv = nv&.map { |i| i&.strip }
+        nv&.join(', ')
+      end
+    end
+
     private
 
     ##
@@ -91,24 +109,6 @@ module Hyrax
 
       form.admin_set_id = ENV.fetch('OPENEMORY_WORKFLOW_ADMIN_SET_ID', Hyrax::AdminSetCreateService.find_or_create_default_admin_set.id.to_s)
       form.member_of_collection_ids = [ENV.fetch('OPENEMORY_COLLECTION_ID', nil)]
-    end
-
-    def add_custom_facet_params(form)
-      add_custom_date_issued_facet(form)
-      add_custom_creator_facet(form)
-    end
-
-    def add_custom_date_issued_facet(form)
-      form.date_issued_year = params[:publication][:date_issued]&.split('-')&.first
-    end
-
-    def add_custom_creator_facet(form)
-      form.creator_last_first = params[:publication][:creator]&.map do |v|
-        return nil if v.nil?
-        nv = v&.split(',')&.first(2)&.reverse
-        nv = nv&.map { |i| i&.strip }
-        nv&.join(', ')
-      end
     end
   end
 end
