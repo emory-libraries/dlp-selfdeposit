@@ -101,7 +101,7 @@ class ExtractModsMetadataToCsv
   end
 
   def extract_date_issued_year
-    @mods_xml.xpath('/mods:mods/mods:originInfo/mods:dateIssued')&.split('-')&.first
+    @mods_xml.xpath('/mods:mods/mods:originInfo/mods:dateIssued')&.text&.strip&.split('-')&.first
   end
 end
 
