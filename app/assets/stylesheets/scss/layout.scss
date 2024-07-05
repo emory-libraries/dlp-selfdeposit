@@ -244,18 +244,15 @@ body.dashboard {
     color: $bright-blue;
   }
   .list-group-item a{
-   color: $bright-blue;
-  }
-  div#citation-actions {
-    border: none;
+    color: $bright-blue;
   }
  .dropdown-toggle::after {
-  content: "❯";
-  transform: rotate(90deg);
-  color: $bright-blue;
-  padding-left: 15px;
-  margin-top: -7px;
-  border-top: none;
-  margin-left: -0.255em;
-}
+    content: "❯";
+    transform: rotate(90deg);
+    color: $bright-blue;
+    padding-left: 15px;
+    margin-top: -7px;
+    border-top: none;
+    margin-left: -0.255em;
+  }
 }

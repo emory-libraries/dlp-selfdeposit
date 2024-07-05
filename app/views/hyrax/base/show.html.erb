@@ -64,7 +64,7 @@
       <div class="card-header">
         <h2 class="card-title"><%= t('.items') %></h2>
       </div>
-      <div class="card-body">
+      <div class="table-responsive card-body" role="region" aria-label="Items Table" tabindex="0">
         <%= render 'items', presenter: @presenter %>
       </div>
     </div>
