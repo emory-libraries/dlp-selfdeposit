@@ -15,6 +15,13 @@ AllCops:
     - bundle/**/*
     - app/controllers/concerns/hyrax/works_controller_behavior.rb # Hyrax override
 
+Metrics/AbcSize:
+  Exclude:
+    - app/controllers/concerns/hyrax/works_controller_behavior.rb
+    - app/indexers/self_deposit/indexers/file_set_indexer.rb
+    - app/services/hyrax/valkyrie_upload.rb
+    - config/initializers/hyrax_edit_permissions_service_override.rb
+
 Metrics/MethodLength:
   Exclude:
     - lib/preservation_events.rb

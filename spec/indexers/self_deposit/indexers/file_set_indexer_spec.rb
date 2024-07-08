@@ -61,4 +61,21 @@ RSpec.describe SelfDeposit::Indexers::FileSetIndexer do
       expect(indexer.to_solr['original_checksum_ssim']).to match_array(checksums)
     end
   end
+
+  context 'creating_os_ssim', storage_adapter: :memory do
+    let(:file) { FactoryBot.create(:uploaded_file, file: File.open('spec/fixtures/world.png')) }
+    let(:saved_file) do
+      Hyrax.storage_adapter.upload(resource:,
+                                   file: file.uploader.file,
+                                   original_filename: file.uploader.filename)
+    end
+    let(:os) { ['MacOSX Sapphire'] }
+    let(:file_metadata) { Hyrax.persister.save(resource: Hyrax::FileMetadata.new(creating_os: os, file_identifier: saved_file.id)) }
+
+    it 'contains the expected checksums' do
+      Hyrax::ValkyrieUpload.new.add_file_to_file_set(file_set: resource, file_metadata:, user: User.new)
+
+      expect(indexer.to_solr['creating_os_ssim']).to match_array(os)
+    end
+  end
 end

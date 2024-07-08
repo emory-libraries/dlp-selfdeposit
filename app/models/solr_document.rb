@@ -24,4 +24,28 @@ class SolrDocument
   # Do content negotiation for AF models.
 
   use_extension(Hydra::ContentNegotiation)
+
+  def file_path
+    self['file_path_ssim']
+  end
+
+  def creating_application_name
+    self['creating_application_name_ssim']
+  end
+
+  def creating_os
+    self['creating_os_ssim']
+  end
+
+  def persistent_unique_identification
+    self['puid_ssim']
+  end
+
+  def original_checksum
+    self['original_checksum_ssim']
+  end
+
+  def preservation_events
+    self['preservation_events_tesim']
+  end
 end

@@ -76,7 +76,6 @@ module Hyrax
 
     # Finds a solr document matching the id and sets @presenter
     # @raise CanCan::AccessDenied if the document is not found or the user doesn't have access to it.
-    # rubocop:disable Metrics/AbcSize
     def show
       @user_collections = user_collections
 
@@ -91,7 +90,6 @@ module Hyrax
         additional_response_formats(wants)
       end
     end
-    # rubocop:enable Metrics/AbcSize
 
     def edit
       @admin_set_options = available_admin_sets

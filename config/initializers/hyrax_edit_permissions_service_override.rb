@@ -31,7 +31,7 @@ Rails.application.config.to_prepare do
     #    * form_object.object.model = FileSet
     #    * use work the file_set is in
     #    No other object types are supported by this view.
-    def self.build_service_object_from(form:, ability:) # rubocop:disable Metrics/AbcSize
+    def self.build_service_object_from(form:, ability:)
       if form.object.respond_to?(:model) && form.object.model.work?
         # The provided form object is a work form.
         new(object: form.object, ability:)
@@ -50,6 +50,6 @@ Rails.application.config.to_prepare do
         # The provided form object is a FileSet.
         new(object: form.object.in_works.first, ability:)
       end
-    end # rubocop:enable Metrics/AbcSize
+    end
   end
 end
