@@ -35,7 +35,7 @@
                 <h2 class="mb-0 h6">Tools</h2>
               </div>
               <ul class="list-group list-group-flush">
-                <% unless @presenter.iiif_viewer? %>
+                <% unless @presenter.iiif_viewer? || @presenter.representative_presenter.nil? %>
                 <li class="list-group-item direct_link">
                   <%= link_to "Download Item",
                   hyrax.download_path(@presenter.representative_presenter),
