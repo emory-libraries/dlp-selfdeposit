@@ -216,3 +216,43 @@ body.dashboard {
 }
 
 /**** End Publication Form ****/
+
+/*** View Work Page (/concerns/publications/) ***/
+#view-work-page {
+  .sidebar-media > div > img {
+    border: 1px solid $base-slate;
+    border-radius: 0.25rem;
+  }
+  .sidebar-media > div > a {
+    display: none;
+  }
+  .viewer-actions {
+    margin-top: 20px;
+  }
+  .viewer-actions.card-header h2 {
+    font-family: $font-family-sans-serif;
+    color: $gold;
+    background-color: $base-blue;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .viewer-actions div.card-header {
+    background-color: $base-blue;
+  }
+  .list-group-item {
+    text-align: left;
+    color: $bright-blue;
+  }
+  .list-group-item a{
+    color: $bright-blue;
+  }
+ .dropdown-toggle::after {
+    content: "❯";
+    transform: rotate(90deg);
+    color: $bright-blue;
+    padding-left: 15px;
+    margin-top: -7px;
+    border-top: none;
+    margin-left: -0.255em;
+  }
+}

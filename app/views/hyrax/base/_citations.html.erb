@@ -1,0 +1,20 @@
+<%# Hyrax v5.0.1 Override: institutes our own layout. Starts line 1. %>
+
+<li class="list-group-item direct_link">
+    <% if Hyrax.config.citations? %>
+      <%= link_to "Cite", hyrax.citations_work_path(presenter), id: 'citations' %>
+    <% end %>
+</li>
+
+<li class="list-group-item direct_link>
+  <div class="btn-group">
+    <div type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= "Citation Management Tools" %>
+    </div>
+    <ul class="dropdown-menu">
+        <li class="dropdown-item"><%= link_to t('.endnote'), polymorphic_path([main_app, presenter], format: 'endnote') %></li>
+        <li class="dropdown-item"><%= link_to t('.zotero'), hyrax.zotero_path, id: 'zoteroLink', name: 'zotero' %></li>
+        <li class="dropdown-item"><%= link_to t('.mendeley'), hyrax.mendeley_path, id: 'mendeleyLink', name: 'mendeley' %></li>
+      </ul>
+  </div>
+</li>
