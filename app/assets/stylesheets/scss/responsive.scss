@@ -75,3 +75,15 @@
         }   
     }
 }
+
+/*** View Work Page (/concerns/publications/) ***/
+@media (max-width: 991px) {
+  #view-work-page {
+    .dropdown-toggle {
+        white-space: normal;
+    }
+  }
+  .table-responsive {
+    overflow-x: scroll;
+}
+}

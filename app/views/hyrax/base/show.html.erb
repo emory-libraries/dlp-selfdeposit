@@ -1,0 +1,84 @@
+<%# Hyrax v5.0.1 Override: institutes our own layout. Starts line 7, through line 69. %>
+
+<% provide :page_title, @presenter.page_title %>
+
+<%= render 'shared/citations' %>
+
+<div id="view-work-page" class="row work-type">
+  
+  <div class="col-sm-12">
+    <%= render 'work_type', presenter: @presenter %>
+  </div>
+
+  <div itemscope itemtype="http://schema.org/CreativeWork" class="col-12">
+    <%= render 'work_title', presenter: @presenter %>
+    <%= render 'show_actions', presenter: @presenter %>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <%= render 'workflow_actions_widget', presenter: @presenter %>
+          <% if @presenter.iiif_viewer? %>
+            <div class="col-sm-12">
+              <%= render 'representative_media', presenter: @presenter, viewer: true %>
+            </div>
+          <% end %>
+          <div class="col-sm-8">
+            <%= render 'work_description', presenter: @presenter %>
+            <%= render 'metadata', presenter: @presenter %>
+          </div>
+          <div class="col-sm-4 text-center">
+            <div class="sidebar-media">
+              <%= render 'representative_media', presenter: @presenter, viewer: false unless @presenter.iiif_viewer? %>
+            </div>
+            <div class="card viewer-actions">
+              <div class="card-header">
+                <h2 class="mb-0 h6">Tools</h2>
+              </div>
+              <ul class="list-group list-group-flush">
+                <% unless @presenter.iiif_viewer? %>
+                <li class="list-group-item direct_link">
+                  <%= link_to "Download Item",
+                  hyrax.download_path(@presenter.representative_presenter),
+                  data: { label: @presenter.representative_presenter.id.to_s, work_id: @presenter.id, collection_ids: @presenter.member_of_collection_ids },
+                  target: :_blank,
+                  id: "file_download" %>
+                </li>
+                <% end %>
+
+                <%= render 'citations', presenter: @presenter %>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div><!-- /.card -->
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title"><%= t('hyrax.base.show.relationships') %></h2>
+      </div>
+      <div class="card-body">
+        <%= render 'relationships', presenter: @presenter %>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title"><%= t('.items') %></h2>
+      </div>
+      <div class="table-responsive card-body" role="region" aria-label="Items Table" tabindex="0">
+        <%= render 'items', presenter: @presenter %>
+      </div>
+    </div>
+
+    <%# TODO: we may consider adding these partials in the future %>
+    <%# = render 'sharing_with', presenter: @presenter %>
+    <%# = render 'user_activity', presenter: @presenter %>
+
+    <span class='hide analytics-event' data-category="work" data-action="work-view" data-name="<%= @presenter.id %>" ></span>
+    <% @presenter.member_of_collection_ids.each do |collection_id| %>
+    <span class='hide analytics-event' data-category="work-in-collection" data-action="work-in-collection-view" data-name="<%= collection_id %>" ></span>
+    <% end %>
+
+  </div>
+</div>
