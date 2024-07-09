@@ -38,13 +38,14 @@ Bulkrax.setup do |config|
   config.field_mappings = {
     "Bulkrax::CsvParser" => {
       "abstract" => { from: ["abstract"], split: '\|', join: '|' },
-      "access_right" => { from: ["access_right"], split: '\|', join: '|' },
       "author_notes" => { from: ["author_notes"] },
       "conference_name" => { from: ["conference_name"] },
       "content_genre" => { from: ["content_genre"] },
       "creator" => { from: ["creator"], split: '\|', join: '|' },
+      "creator_last_first" => { from: ["creator_last_first"], split: '\|', join: '|' },
       "data_classification" => { from: ["data_classification"] },
       "date_issued" => { from: ["date_issued"] },
+      "date_issue_year" => { from: ["date_issued_year"] },
       "deduplication_key" => { from: ["deduplication_key"], source_identifier: true, search_field: 'deduplication_key_ssi' },
       "edition" => { from: ["edition"] },
       "emory_content_type" => { from: ["emory_content_type"] },
@@ -72,6 +73,7 @@ Bulkrax.setup do |config|
       "publisher_version" => { from: ["publisher_version"] },
       "related_datasets" => { from: ["related_datasets"], split: '\|', join: '|' },
       "research_categories" => { from: ["research_categories"], split: '\|', join: '|' },
+      "rights_notes" => { from: ["rights_notes"], split: '\|', join: '|' },
       "rights_statement" => { from: ["rights_statement"], split: '\|', join: '|' },
       "series_title" => { from: ["series_title"] },
       "sponsor" => { from: ["sponsor"] },

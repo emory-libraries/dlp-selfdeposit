@@ -22,9 +22,6 @@ attributes:
   access_right:
     type: string
     multiple: true
-    form:
-      primary: false
-      required: true
     index_keys:
       - "access_right_tesim"
     predicate: http://purl.org/dc/terms/accessRights
@@ -65,6 +62,18 @@ attributes:
       - 'content_genre_ssi'
       - 'content_genre_tesi'
     predicate: http://www.europeana.edu/schemas/edm/hasType
+  creator_last_first:
+    type: string
+    multiple: true
+    ordered: true
+    form:
+      required: false
+      primary: true
+      multiple: true
+    index_keys:
+      - "creator_last_first_tesim"
+      - "creator_last_first_ssim"
+    predicate: http://metadata.emory.edu/vocab/cor-terms#creatorLastFirst
   data_classification:
     type: string
     multiple: false
@@ -87,6 +96,17 @@ attributes:
       - 'date_issued_tesi'
       - 'date_issued_ssi'
     predicate: http://purl.org/dc/terms/issued
+  date_issued_year:
+    type: string
+    multiple: false
+    form:
+      primary: true
+      multiple: false
+      required: false
+    index_keys:
+      - 'date_issued_year_tesi'
+      - 'date_issued_year_ssi'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#issuedYear
   deduplication_key:
     type: string
     multiple: false

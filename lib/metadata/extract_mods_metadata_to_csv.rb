@@ -12,11 +12,13 @@ class ExtractModsMetadataToCsv
   METADATA_FIELDS_LEGEND = {
     title: { xpath: '/mods:mods/mods:titleInfo/mods:title', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     holding_repository: { xpath: nil, processor: nil, ext_method: 'holding_repository_value' },
-    emory_content_type: { xpath: '//mods:typeOfResource', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
+    emory_content_type: { xpath: '//mods:typeOfResource', processor: ->(el) { el&.children&.first&.text&.capitalize }, ext_method: nil },
     content_genres: { xpath: '//mods:genre[@authority="marcgt"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     creator: { xpath: nil, processor: nil, ext_method: 'creator_values' },
+    creator_last_first: { xpath: nil, processor: nil, ext_method: 'extract_creator_last_first' },
     abstract: { xpath: '//mods:abstract', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     date_issued: { xpath: '/mods:mods/mods:originInfo/mods:dateIssued', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
+    date_issued_year: { xpath: '/mods:mods/mods:originInfo/mods:dateIssued', processor: nil, ext_method: 'extract_date_issued_year' },
     keyword: { xpath: '/mods:mods/mods:subject[@authority="keywords"]/mods:topic', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     parent_title: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     publisher: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:originInfo/mods:publisher', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
@@ -32,7 +34,14 @@ class ExtractModsMetadataToCsv
     author_notes: { xpath: '/mods:mods/mods:note[@type="author notes"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     rights_statements: { xpath: nil, processor: nil, ext_method: 'rights_statements_value' },
     emory_ark: { xpath: '/mods:mods/mods:identifier[@type="ark"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    research_categories: { xpath: '/mods:mods/mods:subject[@authority="proquestresearchfield"]/mods:topic', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil }
+    research_categories: { xpath: '/mods:mods/mods:subject[@authority="proquestresearchfield"]/mods:topic', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
+    rights_notes: { xpath: '/mods:mods/mods:accessCondition[@displayLabel="copyright"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
+    publisher_version: { xpath: nil, processor: nil, ext_method: 'publisher_version_value' },
+    language: { xpath: '/mods:mods/mods:language/mods:languageTerm[@type="text"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
+    related_datasets: { xpath: '/mods:mods/mods:relatedItem[@type="references"]/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]',
+                        processor: MULTIPLE_VALUE_PROCESSOR,
+                        ext_method: nil },
+    license: { xpath: '/mods:mods/mods:accessCondition/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil }
   }.freeze
 
   def initialize(xml_path:, desired_csv_filename: 'mods_parsed_metadata.csv')
@@ -89,6 +98,32 @@ class ExtractModsMetadataToCsv
     affiliation_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:affiliation').map { |v| v.text.strip }
 
     first_name_values.each_with_index.map { |v, i| [v, last_name_values[i], affiliation_values[i]].compact.join(', ') }.join('|')
+  end
+
+  def publisher_version_value
+    unparsed_value = @mods_xml.xpath('//mods:genre[@authority="local"]')&.first&.text&.downcase
+
+    return unless unparsed_value
+    parsed_value = if unparsed_value.include? 'final'
+                     'Final Published Version'
+                   elsif unparsed_value.include? 'preprint'
+                     'Preprint (Prior to Peer Review)'
+                   elsif unparsed_value.include? 'post'
+                     'Author Accepted Manuscript (After Peer Review)'
+                   end
+
+    parsed_value
+  end
+
+  def extract_creator_last_first
+    first_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="given"]').map { |v| v.text.strip }
+    last_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="family"]').map { |v| v.text.strip }
+
+    first_name_values.each_with_index.map { |v, i| [last_name_values[i], v].compact.join(', ') }.join('|')
+  end
+
+  def extract_date_issued_year
+    @mods_xml.xpath('/mods:mods/mods:originInfo/mods:dateIssued')&.text&.strip&.split('-')&.first
   end
 end
 
