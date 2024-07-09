@@ -1,0 +1,6 @@
+<% publication_check = f.object.model.is_a?(Publication) %>
+<% if f.object.multiple? key %>
+  <%= f.input key, as: :multi_value, input_html: { class: 'form-control' }, required: publication_check ? true : f.object.required?(key) %>
+<% else %>
+  <%= f.input key, required: publication_check ? true : f.object.required?(key) %>
+<% end %>

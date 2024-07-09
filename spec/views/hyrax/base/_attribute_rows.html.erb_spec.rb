@@ -20,7 +20,7 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
       staff_notes_tesim: ['Oy, this staff!'],
       subject_tesim: ['Mathematics'],
       system_of_record_ID_ssi: '12345abcde',
-      access_right_tesim: ['Access rights a-go-go.'],
+      rights_notes_tesim: ['Rights notes a-go-go.'],
       author_notes_tesi: 'A note from the author.',
       conference_name_ssi: 'Samvera Connect',
       content_genre_ssi: 'Article',

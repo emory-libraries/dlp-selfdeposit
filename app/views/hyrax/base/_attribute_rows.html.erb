@@ -23,7 +23,7 @@
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 <%= facet_renderer.new(:publisher_version, presenter.solr_document['publisher_version_ssi'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, html_dl: true) %>
-<%= presenter.attribute_to_html(:access_right, html_dl: true) %>
+<%= presenter.attribute_to_html(:rights_notes, html_dl: true) %>
 <%= ::Hyrax::Renderers::LicenseAttributeRenderer.new(:license, presenter.solr_document['license_tesi'], {}).render_dl_row %>
 <%= generic_renderer.new(:final_published_versions, presenter.solr_document['final_published_versions_tesim'], {}).render_dl_row  %>
 <%= facet_renderer.new(:parent_title, presenter.solr_document['parent_title_ssi'], {}).render_dl_row  %>

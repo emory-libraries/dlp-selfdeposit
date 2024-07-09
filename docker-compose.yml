@@ -41,6 +41,8 @@ services:
     entrypoint: ./scripts/entrypoint.sh
     command: sh -c 'bundle exec sidekiq'
     user: root
+    stdin_open: true
+    tty: true
     env_file:
       - .env.development
     depends_on:
