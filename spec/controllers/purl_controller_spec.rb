@@ -5,17 +5,17 @@ RSpec.describe PurlController, type: :controller do
   describe 'GET #redirect_to_original' do
     let(:base_url) { 'test.host' }
     let(:alternate_ids) { 'test-alternate-id' }
-    let(:solr_object) { double('solr_object') }
+    let(:purl_object) { double('purl_object') }
 
     before do
-      allow(Hyrax.custom_queries).to receive(:find_by_alternate_id).and_return(solr_object)
+      allow(Hyrax.custom_queries).to receive(:find_by_alternate_id).and_return(purl_object)
       request.host = base_url
     end
 
-    context 'when solr_object is a Publication' do
+    context 'when purl_object is a Publication' do
       before do
-        allow(solr_object).to receive(:has_model).and_return(['Publication'])
-        allow(solr_object).to receive(:id).and_return('123')
+        allow(purl_object).to receive(:has_model).and_return(['Publication'])
+        allow(purl_object).to receive(:id).and_return('123')
         get :redirect_to_original, params: { alternate_ids: }
       end
 
@@ -24,12 +24,12 @@ RSpec.describe PurlController, type: :controller do
       end
     end
 
-    context 'when solr_object is a Collection' do
+    context 'when purl_object is a Collection' do
       before do
-        allow(solr_object).to receive(:has_model).and_return(nil)
-        allow(solr_object).to receive(:respond_to?).with(:collection_type_gid).and_return(true)
-        allow(solr_object).to receive(:collection_type_gid).and_return('gid://internal/Collection')
-        allow(solr_object).to receive(:id).and_return('456')
+        allow(purl_object).to receive(:has_model).and_return(nil)
+        allow(purl_object).to receive(:respond_to?).with(:collection_type_gid).and_return(true)
+        allow(purl_object).to receive(:collection_type_gid).and_return('gid://internal/Collection')
+        allow(purl_object).to receive(:id).and_return('456')
         get :redirect_to_original, params: { alternate_ids: }
       end
 
@@ -38,10 +38,10 @@ RSpec.describe PurlController, type: :controller do
       end
     end
 
-    context 'when solr_object is not found' do
+    context 'when purl_object is not found' do
       before do
-        allow(solr_object).to receive(:has_model).and_return(nil)
-        allow(solr_object).to receive(:respond_to?).with(:collection_type_gid).and_return(false)
+        allow(purl_object).to receive(:has_model).and_return(nil)
+        allow(purl_object).to receive(:respond_to?).with(:collection_type_gid).and_return(false)
         get :redirect_to_original, params: { alternate_ids: }
       end
 
