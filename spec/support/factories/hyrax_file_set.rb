@@ -107,7 +107,7 @@ FactoryBot.define do
 
     trait :with_files do
       transient do
-        ios { [File.open(Hyrax::Engine.root + 'spec/fixtures/image.png'), File.open(Hyrax::Engine.root + 'spec/fixtures/Example.ogg')] }
+        ios { [File.open(Rails.root + 'spec/fixtures/image.png'), File.open(Rails.root + 'spec/fixtures/Example.ogg')] }
 
         after(:create) do |file_set, evaluator|
           evaluator.ios.each do |file|

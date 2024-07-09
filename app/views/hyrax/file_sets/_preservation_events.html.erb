@@ -1,0 +1,33 @@
+<div class="file-set-pres-events">
+  <h2 class="fs-preservation-events-header">Preservation Events</h2>
+  <% if pres_events.present? %>
+    <table id="fs-preservation-event-table" class="table table-striped table-bordered">
+      <thead>
+        <th>Event</th>
+        <th>Timestamp</th>
+        <th>Outcome</th>
+        <th>Detail</th>
+        <th>User</th>
+        <th>Software</th>
+      </thead>
+      <tbody>
+        <% pres_events.each do |event| %>
+          <tr>
+            <td><%= event['event_type'] %></td>
+            <td>
+                Start: <%= DateTime.parse(event['event_start']).strftime('%FT%T%:z') %><br>
+                End: <%= DateTime.parse(event['event_end']).strftime('%FT%T%:z') %>
+            </td>
+            <td><%= event['outcome'] %></td>
+            <td><%= event['event_details'] %></td>
+            <td><%= event['initiating_user'] %></td>
+            <td><%= event['software_version'] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="no-preservation-events">No Preservation Events found.</p>
+  <% end %>
+</div>
+
