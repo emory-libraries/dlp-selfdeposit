@@ -5,6 +5,7 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
   let(:solr_doc) do
     SolrDocument.new(
       id: '123445-cor',
+      alternate_ids_ssim: ['904dncjsz6-emory'],
       date_modified_dtsi: "2024-05-12 20:26:26 UTC",
       title_tesim: ["Test Publication"],
       abstract_tesim: ['an abstraction'],
@@ -56,7 +57,7 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
   end
 
   it "shows a publication's labels" do
-    ["Last modified", "Content genre", "Creator", "Language", "Date issued", "Publisher", "Publisher version", "Rights statement",
+    ["Persistent URL", "Last modified", "Content genre", "Creator", "Language", "Date issued", "Publisher", "Publisher version", "Rights statement",
      "Access right", "License", "Final published versions", "Parent title", "Conference name", "Issn", "Isbn", "Series title",
      "Edition", "Volume", "Issue", "Page range start", "Page range end", "Place of production", "Sponsor", "Grant agencies",
      "Grant information", "Related datasets", "Abstract", "Author notes", "Keyword", "Subject", "Research categories", "Emory ark",
@@ -67,7 +68,7 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
   end
 
   it "shows a publication's values" do
-    ["05/12/2024", "Article", "Tom, Collins, Gin University", "English", "2004", "Simon & Schusters", "Final Publisher PDF",
+    ["904dncjsz6-emory", "05/12/2024", "Article", "Tom, Collins, Gin University", "English", "2004", "Simon & Schusters", "Final Publisher PDF",
      "In Copyright", "Access rights a-go-go.", "Creative Commons Attribution-ShareAlike 4.0 International", "1020", "Parent title",
      "Samvera Connect", "fqefeefe2fed", "dvqegr3gvfw", "Series Title", "1", "4", "3", "1", "134", "Boston", "NEA", "Rockfeller", "Granted",
      "A Dataset", "an abstraction", "A note from the author.", "keywordbooks", "Mathematics", "Asian studies", "867-5309",
