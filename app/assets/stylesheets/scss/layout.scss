@@ -219,6 +219,9 @@ body.dashboard {
 
 /*** View Work Page (/concerns/publications/) ***/
 #view-work-page {
+  a {
+    color: $bright-blue;
+  }
   .sidebar-media > div > img {
     border: 1px solid $base-slate;
     border-radius: 0.25rem;
@@ -241,11 +244,11 @@ body.dashboard {
   }
   .list-group-item {
     text-align: left;
-    color: $bright-blue;
+    // color: $bright-blue;
   }
-  .list-group-item a{
-    color: $bright-blue;
-  }
+  // .list-group-item a{
+  //   color: $bright-blue;
+  // }
  .dropdown-toggle::after {
     content: "❯";
     transform: rotate(90deg);
