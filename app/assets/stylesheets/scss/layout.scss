@@ -219,6 +219,12 @@ body.dashboard {
 
 /*** View Work Page (/concerns/publications/) ***/
 #view-work-page {
+  a {
+    color: $bright-blue;
+  }
+  a.btn-danger {
+    color: $white;
+  }
   .sidebar-media > div > img {
     border: 1px solid $base-slate;
     border-radius: 0.25rem;
@@ -229,7 +235,7 @@ body.dashboard {
   .viewer-actions {
     margin-top: 20px;
   }
-  .viewer-actions.card-header h2 {
+  h2.show-tools-card-title {
     font-family: $font-family-sans-serif;
     color: $gold;
     background-color: $base-blue;
@@ -241,10 +247,6 @@ body.dashboard {
   }
   .list-group-item {
     text-align: left;
-    color: $bright-blue;
-  }
-  .list-group-item a{
-    color: $bright-blue;
   }
  .dropdown-toggle::after {
     content: "❯";
