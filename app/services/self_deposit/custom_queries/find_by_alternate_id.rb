@@ -1,18 +1,14 @@
 # frozen_string_literal: true
-module SelfDeposit
-  module CustomQueries
-    class FindByAlternateId < SolrDocumentQuery
-      self.queries = [:find_by_alternate_id]
+class SelfDeposit::CustomQueries::FindByAlternateId < ::SelfDeposit::CustomQueries::SolrDocumentQuery
+  self.queries = [:find_by_alternate_id]
 
-      def find_by_alternate_id(alternate_ids:)
-        @alternate_id = alternate_ids
-        raise ::Valkyrie::Persistence::ObjectNotFoundError unless resource
-        @query_service.find_by(id: resource['id'])
-      end
+  def find_by_alternate_id(alternate_ids:)
+    @alternate_id = alternate_ids
+    raise ::Valkyrie::Persistence::ObjectNotFoundError unless resource
+    @query_service.find_by(id: resource['id'])
+  end
 
-      def query
-        "alternate_ids_ssim:#{@alternate_id}"
-      end
-    end
+  def query
+    "alternate_ids_ssim:#{@alternate_id}"
   end
 end
