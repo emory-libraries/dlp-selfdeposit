@@ -29,21 +29,31 @@ en:
           rights_statement_tesim: Rights Statement
           subject_tesim: Subject
         show:
+          author_notes: Author Notes
           based_near_tesim: Location
+          conference_name: Conference or Event Name
           contributor_tesim: Contributor
           creator_tesim: Creator
           date_created_tesim: Date Created
           date_modified_dtsi: Date Modified
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
+          emory_content_type: Type of Material
           file_format_tesim: File Format
+          final_published_versions: Final Published Version (URL)
           identifier_tesim: Identifier
-          keyword_tesim: Keyword
+          isbn: ISBN
+          issn: ISSN
+          keyword: Keywords
           language_tesim: Language
           license_tesim: License
+          parent_title: Title of Journal or Parent Work
           publisher_tesim: Publisher
-          rights_statement_tesim: Rights Statement
-          subject_tesim: Subject
+          research_categories: Research Categories
+          rights_notes: Copyright Statement
+          rights_statement: Copyright Status
+          series_title: Series Title
+          subject: Subject - Topics
           title_tesim: Title
   hyrax:
     account_name: My Institution Account Id
@@ -69,9 +79,21 @@ en:
         language: ""
     labels:
       defaults:
-        emory_content_type: Format
+        author_notes: Author Notes
+        conference_name: Conference or Event Name
+        emory_content_type: Type of Material
+        final_published_versions: Final Published Version (URL)
         holding_repository: Library
+        isbn: ISBN
+        issn: ISSN
+        keyword: Keywords
         language: Primary Language
+        parent_title: Title of Journal or Parent Work
         publisher_version: Publication Version
+        research_categories: Research Categories
+        rights_notes: Copyright Statement
+        rights_statement: Copyright Status
+        series_title: Series Title
+        subject: Subject - Topics
         subject_geo: Subject - Geographic
         subject_names: Subject - Names
