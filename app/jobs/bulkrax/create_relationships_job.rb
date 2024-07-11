@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # Bulkrax v8.1.0 Override - Have to override full class because newer Ruby on Rails requires the exact reference of an
-#   instance variable to deliver the value (@importer_run instead of importer_run--see lines 61, 86, 108, and 175).
+#   instance variable to deliver the value (@importer_run instead of importer_run--see lines 61, 85, 107, and 174).
 
 module Bulkrax
   ##
@@ -58,7 +58,7 @@ module Bulkrax
     # rubocop:disable Metrics/MethodLength
     def perform(parent_identifier:, importer_run_id:) # rubocop:disable Metrics/AbcSize
       @importer_run = Bulkrax::ImporterRun.find(importer_run_id)
-      ability = Ability.new(importer_run.user)
+      ability = Ability.new(@importer_run.user)
 
       parent_entry, parent_record = find_record(parent_identifier, importer_run_id)
 
