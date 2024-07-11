@@ -8,17 +8,10 @@ module SelfDeposit
     #   Hyrax.query_service.custom_queries.find_by_model_and_property_value(model:, property: :deduplication_key, value: 'jhqsdhdwhcolh')
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
-    class FindBySourceIdentifier
+    class FindBySourceIdentifier < SolrDocumentQuery
       def self.queries
         [:find_by_model_and_property_value]
       end
-
-      def initialize(query_service:)
-        @query_service = query_service
-        @connection = Hyrax.index_adapter.connection
-      end
-
-      attr_reader :query_service
 
       ##
       # @param model [Class, #internal_resource]
@@ -34,12 +27,6 @@ module SelfDeposit
 
         return if resource.blank?
         @query_service.find_by(id: resource['id'])
-      end
-
-      # Queries Solr for a document that matches the provided key
-      # @yield [Publication]
-      def resource
-        @connection.get("select", params: { q: query, fl: "*", rows: 1 })["response"]["docs"]&.first
       end
 
       # Solr query for for a Publication with a deduplication_key_tesi that matches the provided key
