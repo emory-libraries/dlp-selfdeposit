@@ -23,12 +23,12 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
     expected_labels = [
       "Content genre required", "Title required", "First Name required", "Last Name required", "Institution required",
       "ORCID ID", "Primary Language required", "Date issued required", "Publisher required", "Publication Version",
-      "Rights notes required", "License", "Final published versions", "Parent title", "Conference name", "Issn", "Isbn",
-      "Series title", "Edition", "Volume", "Issue", "Page range start", "Page range end", "Place of production", "Sponsor",
-      "Grant agencies", "Grant information", "Related datasets", "Abstract", "Author notes", "Keyword", "Subject",
-      "Research categories", "Rights statement required", "Emory ark", "Internal rights note", "Staff notes", "System of record id",
-      "Format required", "Library required", "Institution", "Data classification required", "Deduplication key", "Restricted to",
-      "then open it up to"
+      "Copyright Statement required", "License", "Final Published Version (URL)", "Title of Journal or Parent Work",
+      "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Page range start",
+      "Page range end", "Place of production", "Sponsor", "Grant agencies", "Grant information", "Related datasets",
+      "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories", "Copyright Status required",
+      "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Type of Material required", "Library required",
+      "Institution", "Data classification required", "Deduplication key", "Restricted to", "then open it up to"
     ]
 
     expect(field_labels).to match_array(expected_labels)

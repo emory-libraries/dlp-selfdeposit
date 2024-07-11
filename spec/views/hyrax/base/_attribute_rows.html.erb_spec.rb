@@ -57,12 +57,11 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
   end
 
   it "shows a publication's labels" do
-    ["Persistent URL", "Last modified", "Content genre", "Creator", "Language", "Date issued", "Publisher", "Publisher version", "Rights statement",
-     "License", "Final published versions", "Parent title", "Conference name", "Issn", "Isbn", "Series title",
-     "Edition", "Volume", "Issue", "Page range start", "Page range end", "Place of production", "Sponsor", "Grant agencies",
-     "Grant information", "Related datasets", "Abstract", "Author notes", "Keyword", "Subject", "Research categories", "Emory ark",
-     "Internal rights note", "Staff notes", "System of record id", "Emory content type", "Holding repository", "Institution",
-     "Data classification", "Deduplication key"].each do |label|
+    ["Persistent URL", "Last modified", "Content genre", "Creator", "Language", "Date issued", "Publisher", "Publisher version", "Copyright Status",
+     "License", "Final Published Version (URL)", "Title of Journal or Parent Work", "Conference or Event Name", "ISSN", "ISBN", "Series Title",
+     "Edition", "Volume", "Issue", "Page range start", "Page range end", "Place of production", "Sponsor", "Grant agencies", "Grant information",
+     "Related datasets", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories", "Emory ark", "Internal rights note",
+     "Staff notes", "System of record id", "Type of Material", "Holding repository", "Institution", "Data classification", "Deduplication key"].each do |label|
       expect(page).to have_selector 'dt', text: label
     end
   end
