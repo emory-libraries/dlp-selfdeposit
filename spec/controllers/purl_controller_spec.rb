@@ -1,48 +1,48 @@
 # frozen_string_literal: true
 require 'rails_helper'
+require 'hyrax/specs/shared_specs/factories/administrative_sets'
+require 'hyrax/specs/shared_specs/factories/hyrax_collection'
+require 'hyrax/specs/shared_specs/factories/permission_templates'
+require 'hyrax/specs/shared_specs/factories/workflows'
 
-RSpec.describe PurlController, type: :controller do
+RSpec.describe PurlController, :clean_repo, type: :controller do
   describe 'GET #redirect_to_original' do
     let(:base_url) { 'test.host' }
-    let(:alternate_ids) { 'test-alternate-id' }
-    let(:purl_object) { double('purl_object') }
+    let(:user) { FactoryBot.create(:user) }
+    let(:admin_set) { FactoryBot.valkyrie_create(:hyrax_admin_set) }
+    let(:permission_template) { FactoryBot.create(:permission_template, source_id: admin_set.id) }
+    let(:workflow) { FactoryBot.create(:workflow, allows_access_grant: true, active: true, permission_template_id: permission_template.id) }
+    let(:publication_alt_ids) { ['1234567-emory'] }
+    let!(:publication) { FactoryBot.valkyrie_create(:publication, with_index: true, admin_set_id: admin_set.id, depositor: user.user_key, alternate_ids: publication_alt_ids) }
+    let(:collection_alt_ids) { ['89abcef-emory'] }
+    let!(:collection) { FactoryBot.valkyrie_create(:hyrax_collection, alternate_ids: collection_alt_ids) }
 
     before do
-      allow(Hyrax.custom_queries).to receive(:find_by_alternate_id).and_return(purl_object)
+      Hyrax.index_adapter.wipe!
       request.host = base_url
     end
 
     context 'when purl_object is a Publication' do
-      before do
-        allow(purl_object).to receive(:has_model).and_return(['Publication'])
-        allow(purl_object).to receive(:id).and_return('123')
-        get :redirect_to_original, params: { alternate_ids: }
-      end
-
       it 'redirects to the publication URL' do
-        expect(response).to redirect_to("http://test.host/concern/publications/123")
+        Hyrax.index_adapter.save(resource: publication)
+        get :redirect_to_original, params: { alternate_ids: publication_alt_ids.first }
+
+        expect(response).to redirect_to("http://test.host/concern/publications/#{publication.id}")
       end
     end
 
     context 'when purl_object is a Collection' do
-      before do
-        allow(purl_object).to receive(:has_model).and_return(nil)
-        allow(purl_object).to receive(:respond_to?).with(:collection_type_gid).and_return(true)
-        allow(purl_object).to receive(:collection_type_gid).and_return('gid://internal/Collection')
-        allow(purl_object).to receive(:id).and_return('456')
-        get :redirect_to_original, params: { alternate_ids: }
-      end
-
       it 'redirects to the collection URL' do
-        expect(response).to redirect_to("http://test.host/collections/456")
+        Hyrax.index_adapter.save(resource: collection)
+        get :redirect_to_original, params: { alternate_ids: collection_alt_ids.first }
+
+        expect(response).to redirect_to("http://test.host/collections/#{collection.id}")
       end
     end
 
     context 'when purl_object is not found' do
       before do
-        allow(purl_object).to receive(:has_model).and_return(nil)
-        allow(purl_object).to receive(:respond_to?).with(:collection_type_gid).and_return(false)
-        get :redirect_to_original, params: { alternate_ids: }
+        get :redirect_to_original, params: { alternate_ids: admin_set.id }
       end
 
       it 'returns a 404 not found status' do

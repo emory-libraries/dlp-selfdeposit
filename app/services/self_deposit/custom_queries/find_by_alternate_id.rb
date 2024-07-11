@@ -20,7 +20,7 @@ module SelfDeposit
       end
 
       def resource
-        @connection.get("select", params: { q: "*:*", fl: "*", rows: 1 })["response"]["docs"].first
+        @connection.get("select", params: { q: query, fl: "*", rows: 1 })["response"]["docs"].first
       end
 
       def query
