@@ -2,9 +2,7 @@
 module SelfDeposit
   module CustomQueries
     class FindByAlternateId < SolrDocumentQuery
-      def self.queries
-        [:find_by_alternate_id]
-      end
+      self.queries = [:find_by_alternate_id]
 
       def find_by_alternate_id(alternate_ids:)
         @alternate_id = alternate_ids

@@ -8,9 +8,7 @@ module SelfDeposit
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
     class FindPublicationByDeduplicationKey < SolrDocumentQuery
-      def self.queries
-        [:find_publication_by_deduplication_key]
-      end
+      self.queries = [:find_publication_by_deduplication_key]
 
       ##
       # @param deduplication_key for a Publication

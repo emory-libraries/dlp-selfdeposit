@@ -9,9 +9,7 @@ module SelfDeposit
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
     class FindBySourceIdentifier < SolrDocumentQuery
-      def self.queries
-        [:find_by_model_and_property_value]
-      end
+      self.queries = [:find_by_model_and_property_value]
 
       ##
       # @param model [Class, #internal_resource]
