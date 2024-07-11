@@ -71,9 +71,8 @@ module Bulkrax
       if parent_record
         conditionally_acquire_lock_for(parent_record.id) do
           ActiveRecord::Base.uncached do
-            Bulkrax::PendingRelationship.where(parent_id: parent_identifier, importer_run_id: importer_run_id)
-                                        .ordered.find_each do |rel|
-              process(relationship: rel, importer_run_id: importer_run_id, parent_record: parent_record, ability: ability)
+            Bulkrax::PendingRelationship.where(parent_id: parent_identifier, importer_run_id:).ordered.find_each do |rel|
+              process(relationship: rel, importer_run_id:, parent_record:, ability:)
               number_of_successes += 1
             rescue => e
               number_of_failures += 1
@@ -108,8 +107,8 @@ module Bulkrax
         parent_entry&.set_status_info(errors.last, @importer_run)
 
         # TODO: This can create an infinite job cycle, consider a time to live tracker.
-        reschedule(parent_identifier: parent_identifier, importer_run_id: importer_run_id)
-        return false # stop current job from continuing to run after rescheduling
+        reschedule(parent_identifier:, importer_run_id:)
+        false # stop current job from continuing to run after rescheduling
       else
         # rubocop:disable Rails/SkipsModelValidations
         ImporterRun.update_counters(importer_run_id, processed_relationships: number_of_successes)
@@ -186,10 +185,7 @@ module Bulkrax
     end
 
     def reschedule(parent_identifier:, importer_run_id:)
-      CreateRelationshipsJob.set(wait: 10.minutes).perform_later(
-        parent_identifier: parent_identifier,
-        importer_run_id: importer_run_id
-      )
+      CreateRelationshipsJob.set(wait: 10.minutes).perform_later(parent_identifier:, importer_run_id:)
     end
   end
 end
