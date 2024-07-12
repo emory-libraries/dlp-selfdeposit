@@ -51,6 +51,8 @@ Bulkrax.setup do |config|
       "emory_content_type" => { from: ["emory_content_type"] },
       "emory_ark" => { from: ["emory_ark"], split: '\|', join: '|' },
       "file" => { from: ["file"], split: '\;', join: ';' },
+      "file_uses" => { from: ['file_uses'], split: '\;', join: ';' },
+      "file_labels" => { from: ['file_labels'], split: '\;', join: ';' },
       "final_published_versions" => { from: ["final_published_versions"], split: '\|', join: '|' },
       "grant_agencies" => { from: ["grant_agencies"], split: '\|', join: '|' },
       "grant_information" => { from: ["grant_information"], split: '\|', join: '|' },
@@ -125,9 +127,7 @@ Bulkrax.setup do |config|
   # config.multi_value_element_join_on = ' | '
 end
 
-# Bulkrax v8.1.0 Override - L#147 had a typo (custom_query instead of custom_queries). `find_by_model_and_property_value` as
-#   it currently exists in Bulkrax uses SQL, which makes it Postgres-only. It originally used `name_field` to pass to that query,
-#   but we prefer `search_field`, since it contains the Solr field we'll be querying (in this case, almost always `deduplication_key_ssi`).
+# Bulkrax v8.1.0 Override
 Bulkrax::ValkyrieObjectFactory.class_eval do
   ##
   # @param value [String]
@@ -140,6 +140,10 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   # @return [Valkyrie::Resource] when a match is found, an instance of given
   #         :klass
   # rubocop:disable Metrics/ParameterLists
+  #
+  # This method had a typo (custom_query instead of custom_queries). `find_by_model_and_property_value` as
+  #   it currently exists in Bulkrax uses SQL, which makes it Postgres-only. It originally used `name_field` to pass to that query,
+  #   but we prefer `search_field`, since it contains the Solr field we'll be querying (in this case, almost always `deduplication_key_ssi`).
   def self.search_by_property(value:, klass:, field: nil, search_field: nil, **)
     search_field ||= field
     raise "Expected search_field or field got nil" if search_field.blank?
@@ -148,6 +152,85 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
     Hyrax.query_service.custom_queries.find_by_model_and_property_value(model: klass, property: search_field, value:)
   end
   # rubocop:enable Metrics/ParameterLists
+
+  # Overridden to include our custom method that alters the UploadFile objects with our FileSet metatdata passed into the CSV line items.
+  def create_work(attrs)
+    apply_emory_fileset_metatdata(attrs)
+    # NOTE: We do not add relationships here; that is part of the create
+    # relationships job.
+    perform_transaction_for(object:, attrs:) do
+      transactions["change_set.create_work"]
+        .with_step_args(
+          'work_resource.add_file_sets' => { uploaded_files: uploaded_files_from(attrs) },
+          "change_set.set_user_as_depositor" => { user: @user },
+          "work_resource.change_depositor" => { user: @user },
+          'work_resource.save_acl' => { permissions_params: [attrs['visibility'] || 'open'].compact }
+        )
+    end
+  end
+
+  # Overridden to include our custom method that alters the UploadFile objects with our FileSet metatdata passed into the CSV line items.
+  def update_work(attrs)
+    apply_emory_fileset_metatdata(attrs)
+    perform_transaction_for(object:, attrs:) do
+      transactions["change_set.update_work"]
+        .with_step_args(
+          'work_resource.add_file_sets' => { uploaded_files: uploaded_files_from(attrs) },
+          'work_resource.save_acl' => { permissions_params: [attrs.try('visibility') || 'open'].compact }
+        )
+    end
+  end
+
+  # A brand new function that assigns the values passed into the Publication CSV line to the ingested FileSets created from the line.
+  def apply_emory_fileset_metatdata(attrs)
+    importer = Bulkrax::Importer.find(Bulkrax::ImporterRun.find(@importer_run_id).importer_id)
+    pertinent_entry = importer.entries.find { |e| e.raw_metadata['deduplication_key'] == attributes['deduplication_key'] }
+
+    raise "No associated Entry was found" unless pertinent_entry
+
+    file_names, file_uses, file_labels = extract_values_from_entry(pertinent_entry)
+    return if file_uses.empty? || file_labels.empty?
+
+    uploaded_files_from(attrs).each do |file|
+      values_index = file_names.index { |fn| file.file_identifier == fn }
+
+      file.fileset_use = file_uses[values_index]
+      file.fileset_name = file_labels[values_index]
+      file.save
+    end
+  end
+
+  # A helper method that pulls the needed FileSet values from the CSV Entry and returns an array or arrays.
+  def extract_values_from_entry(entry)
+    file_names = entry.raw_metadata['file'].split(';')
+    file_uses = entry.raw_metadata['file_uses'].split(';')
+    file_labels = entry.raw_metadata['file_labels'].split(';')
+
+    [file_names, file_uses, file_labels]
+  end
+
+  ##
+  # @!group Class Method Interface
+
+  ##
+  # @note This does not save either object.  We need to do that in another
+  #       loop.  Why?  Because we might be adding many items to the parent.
+  #
+  # Bulkrax BUG: With newer ruby versions, shoveling (<<) to a variable set with an array produces a frozen array error.
+  #   The += methods seems to work fine, though.
+  def self.add_child_to_parent_work(parent:, child:)
+    return true if parent.member_ids.include?(child.id)
+
+    parent.member_ids += Array(child.id)
+    parent.save
+  end
+
+  # Bulkrax BUG: With newer ruby versions, shoveling (<<) to a variable set with an array produces a frozen array error.
+  #   The += methods seems to work fine, though.
+  def self.add_resource_to_collection(collection:, resource:, user:)
+    resource.member_of_collection_ids += Array(collection.id)
+    save!(resource:, user:)
+  end
 end
 
 # Hyrax v5.0.1 Override - since Bulkrax introduces the Wings constant when it installs, the first test to determine query type passes,
