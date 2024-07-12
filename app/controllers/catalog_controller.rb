@@ -56,22 +56,12 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field "human_readable_type_sim", label: "Type", limit: 5
-    config.add_facet_field "resource_type_sim", label: "Resource Type", limit: 5
-    config.add_facet_field "creator_sim", limit: 5
-    config.add_facet_field "contributor_sim", label: "Contributor", limit: 5
-    config.add_facet_field "keyword_sim", limit: 5
-    config.add_facet_field "subject_sim", limit: 5
-    config.add_facet_field "language_sim", limit: 5
-    config.add_facet_field "based_near_label_sim", limit: 5
-    config.add_facet_field "publisher_sim", limit: 5
-    config.add_facet_field "file_format_sim", limit: 5
-    config.add_facet_field "member_of_collection_ids_ssim", limit: 5, label: 'Collections', helper_method: :collection_title_by_id
-
-    # The generic_type and depositor are not displayed on the facet list
-    # They are used to give a label to the filters that comes from the user profile
-    config.add_facet_field "generic_type_sim", if: false
-    config.add_facet_field "depositor_ssim", label: "Depositor", if: false
+    config.add_facet_field "creator_last_first_ssim", label: "Author"
+    config.add_facet_field "date_issued_year_ssi", label: "Date"
+    config.add_facet_field "parent_title_ssi", label: "Journal or Parent Publication Title"
+    config.add_facet_field "content_genre_ssi", label: "Type"
+    config.add_facet_field "publisher_version_ssi", label: "Publisher Version"
+    config.add_facet_field "keyword_sim", label: 'Keyword'
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
