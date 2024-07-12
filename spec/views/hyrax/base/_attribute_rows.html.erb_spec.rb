@@ -61,7 +61,7 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
      "License", "Final Published Version (URL)", "Title of Journal or Parent Work", "Conference or Event Name", "ISSN", "ISBN", "Series Title",
      "Edition", "Volume", "Issue", "Page range start", "Page range end", "Place of production", "Sponsor", "Grant agencies", "Grant information",
      "Related datasets", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories", "Emory ark", "Internal rights note",
-     "Staff notes", "System of record id", "Type of Material", "Holding repository", "Institution", "Data classification", "Deduplication key"].each do |label|
+     "Staff notes", "System of record id", "Format", "Holding repository", "Institution", "Data classification", "Deduplication key"].each do |label|
       expect(page).to have_selector 'dt', text: label
     end
   end
