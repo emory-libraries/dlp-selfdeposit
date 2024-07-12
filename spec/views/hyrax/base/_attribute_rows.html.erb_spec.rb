@@ -9,7 +9,7 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
       date_modified_dtsi: "2024-05-12 20:26:26 UTC",
       title_tesim: ["Test Publication"],
       abstract_tesim: ['an abstraction'],
-      creator_tesim: ['Tom, Collins, Gin University'],
+      creator_ssim: ['Tom, Collins, Gin University, 22222-22222-22222'],
       emory_ark_tesim: ['867-5309'],
       holding_repository_ssi: 'Emory University. Library',
       institution_ssi: 'Emory University',
