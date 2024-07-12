@@ -5,11 +5,12 @@ require 'nokogiri'
 require 'open-uri'
 require 'csv'
 require 'pry'
+require_relative 'mods_metadata_extraction_methods'
 
 class ExtractModsMetadataToCsv
-  MULTIPLE_VALUE_PROCESSOR = ->(el) { el.children.map(&:text).join('|') }
-  SINGLE_VALUE_PROCESSOR = ->(el) { el&.children&.first&.text }
-  METADATA_FIELDS_LEGEND = {
+  ::MULTIPLE_VALUE_PROCESSOR = ->(el) { el.children.map(&:text).join('|') }
+  ::SINGLE_VALUE_PROCESSOR = ->(el) { el&.children&.first&.text }
+  ::METADATA_FIELDS_LEGEND = {
     title: { xpath: '/mods:mods/mods:titleInfo/mods:title', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     holding_repository: { xpath: nil, processor: nil, ext_method: 'holding_repository_value' },
     emory_content_type: { xpath: '//mods:typeOfResource', processor: ->(el) { el&.children&.first&.text&.capitalize }, ext_method: nil },
@@ -41,8 +42,12 @@ class ExtractModsMetadataToCsv
     related_datasets: { xpath: '/mods:mods/mods:relatedItem[@type="references"]/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]',
                         processor: MULTIPLE_VALUE_PROCESSOR,
                         ext_method: nil },
-    license: { xpath: '/mods:mods/mods:accessCondition/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil }
+    license: { xpath: '/mods:mods/mods:accessCondition/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
+    grant_information: { xpath: '//mods:name[mods:role/mods:roleTerm="funder"]/mods:namePart', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
+    internal_rights_note: { xpath: nil, processor: nil, ext_method: 'internal_rights_note_value' }
   }.freeze
+
+  include ::ModsMetadataExtractionMethods
 
   def initialize(xml_path:, desired_csv_filename: 'mods_parsed_metadata.csv')
     @xml_path = xml_path
@@ -55,75 +60,6 @@ class ExtractModsMetadataToCsv
 
     assign_values_to_ret_hash
     create_csv_from_ret_hash
-  end
-
-  private
-
-  def pull_mods_xml
-    file = File.open(@xml_path)
-    Nokogiri::XML(file)
-  end
-
-  def assign_values_to_ret_hash
-    METADATA_FIELDS_LEGEND.keys.each do |k|
-      @ret_hash[k.to_s] = if METADATA_FIELDS_LEGEND[k][:ext_method].nil?
-                            el = @mods_xml.xpath(METADATA_FIELDS_LEGEND[k][:xpath])
-                            METADATA_FIELDS_LEGEND[k][:processor].call(el)
-                          else
-                            send(METADATA_FIELDS_LEGEND[k][:ext_method])
-                          end
-    end
-  end
-
-  def create_csv_from_ret_hash
-    CSV.open(@desired_csv_filename, "wb") do |csv|
-      keys = @ret_hash.keys
-      # header_row
-      csv << keys
-      csv << @ret_hash.values_at(*keys)
-    end
-  end
-
-  def holding_repository_value
-    'Emory University. Library'
-  end
-
-  def rights_statements_value
-    'http://rightsstatements.org/vocab/InC/1.0/'
-  end
-
-  def creator_values
-    first_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="given"]').map { |v| v.text.strip }
-    last_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="family"]').map { |v| v.text.strip }
-    affiliation_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:affiliation').map { |v| v.text.strip }
-
-    first_name_values.each_with_index.map { |v, i| [v, last_name_values[i], affiliation_values[i]].compact.join(', ') }.join('|')
-  end
-
-  def publisher_version_value
-    unparsed_value = @mods_xml.xpath('//mods:genre[@authority="local"]')&.first&.text&.downcase
-
-    return unless unparsed_value
-    parsed_value = if unparsed_value.include? 'final'
-                     'Final Published Version'
-                   elsif unparsed_value.include? 'preprint'
-                     'Preprint (Prior to Peer Review)'
-                   elsif unparsed_value.include? 'post'
-                     'Author Accepted Manuscript (After Peer Review)'
-                   end
-
-    parsed_value
-  end
-
-  def extract_creator_last_first
-    first_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="given"]').map { |v| v.text.strip }
-    last_name_values = @mods_xml.xpath('//mods:name[@type="personal"]/mods:namePart[@type="family"]').map { |v| v.text.strip }
-
-    first_name_values.each_with_index.map { |v, i| [last_name_values[i], v].compact.join(', ') }.join('|')
-  end
-
-  def extract_date_issued_year
-    @mods_xml.xpath('/mods:mods/mods:originInfo/mods:dateIssued')&.text&.strip&.split('-')&.first
   end
 end
 
