@@ -2,6 +2,7 @@
     Instead, they are hard coded here. We, in turn, have overridden this partial so we can institute our own choices/order. %>
 <% generic_renderer = ::Hyrax::Renderers::AttributeRenderer %>
 <% facet_renderer = ::Hyrax::Renderers::FacetedAttributeRenderer %>
+<% content_type_term = SelfDeposit::ContentTypesService.label(presenter.solr_document['emory_content_type_tesi']) %>
 <!-- Persistent URL block start -->
 <dt>Persistent URL</dt>
 <dd>
@@ -17,7 +18,25 @@
 <!-- Persistent URL block end -->
 <%= presenter.attribute_to_html(:date_modified, label: t('hyrax.base.show.last_modified'), html_dl: true) %>
 <%= facet_renderer.new(:content_genre, presenter.solr_document['content_genre_ssi'], {}).render_dl_row  %>
-<%= presenter.attribute_to_html(:creator, render_as: :faceted, html_dl: true) %>
+<dt>Creator</dt>
+<dd>
+  <ul class="tabular">
+  <% presenter.solr_document['creator_ssim'].each do |author| %>
+    <% author_array = author.split(',').map(&:strip) %>
+        <li itemprop="creator" itemscope="" itemtype="http://schema.org/Person" class="attribute attribute-creator">
+            <span itemprop="name">
+            <%= author_array[0] %> <%= author_array[1] %> 
+            <% if author_array.length > 3 %> 
+              <a href="https://orcid.org/<%= author_array[3] %>">
+                <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+              </a>
+            <% end %>, 
+            <%= author_array[2] %>
+            </span>
+        </li>
+  <% end %>
+  </ul>
+</dd>
 <%= presenter.attribute_to_html(:language, render_as: :faceted, html_dl: true) %>
 <%= facet_renderer.new(:date_issued, presenter.solr_document['date_issued_ssi'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
@@ -50,7 +69,7 @@
 <%= generic_renderer.new(:internal_rights_note, presenter.solr_document['internal_rights_note_tesi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:staff_notes, presenter.solr_document['staff_notes_tesim'], {}).render_dl_row  %>
 <%= facet_renderer.new(:system_of_record_ID, presenter.solr_document['system_of_record_ID_ssi'], {}).render_dl_row  %>
-<%= ::Hyrax::Renderers::ExternalLinkAttributeRenderer.new(:emory_content_type, presenter.solr_document['emory_content_type_tesi'], {}).render_dl_row  %>
+<%= ::Hyrax::Renderers::ExternalLinkAttributeRenderer.new(:emory_content_type, content_type_term, {}).render_dl_row  %>
 <%= facet_renderer.new(:holding_repository, presenter.solr_document['holding_repository_ssi'], {}).render_dl_row  %>
 <%= facet_renderer.new(:institution, presenter.solr_document['institution_ssi'], {}).render_dl_row  %>
 <%= facet_renderer.new(:data_classification, presenter.solr_document['data_classification_ssi'], {}).render_dl_row  %>
