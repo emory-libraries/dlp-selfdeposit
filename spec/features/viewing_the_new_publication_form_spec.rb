@@ -27,7 +27,7 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
       "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Page range start",
       "Page range end", "Place of production", "Sponsor", "Grant agencies", "Grant information", "Related datasets",
       "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories", "Copyright Status required",
-      "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Type of Material required", "Library required",
+      "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Format required", "Library required",
       "Institution", "Data classification required", "Deduplication key", "Restricted to", "then open it up to"
     ]
 
