@@ -55,6 +55,7 @@ module Hyrax
       form = build_form
       assign_defaults_for_non_admins(form)
       add_custom_facet_params(form)
+      clean_id_arrays(form)
       action = create_valkyrie_work_action.new(form:,
                                                transactions:,
                                                user: current_user,
@@ -76,8 +77,10 @@ module Hyrax
     def update_valkyrie_work
       @event_start = DateTime.current
       form = build_form
+
       add_custom_facet_params(form)
       return after_update_error(form_err_msg(form)) unless form.validate(params[hash_key_for_curation_concern])
+      clean_id_arrays(form)
       result =
         transactions['change_set.update_work']
         .with_step_args('work_resource.add_file_sets' => { uploaded_files:, file_set_params: params[hash_key_for_curation_concern][:file_set] },
@@ -109,6 +112,10 @@ module Hyrax
 
       form.admin_set_id = ENV.fetch('OPENEMORY_WORKFLOW_ADMIN_SET_ID', Hyrax::AdminSetCreateService.find_or_create_default_admin_set.id.to_s)
       form.member_of_collection_ids = [ENV.fetch('OPENEMORY_COLLECTION_ID', nil)]
+    end
+
+    def clean_id_arrays(form)
+      ['rendering_ids', 'member_of_collection_ids'].each { |f| form.fields[f] = form.fields[f].reject(&:empty?) }
     end
   end
 end
