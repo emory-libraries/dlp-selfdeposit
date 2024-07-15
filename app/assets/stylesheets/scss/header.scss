@@ -39,6 +39,10 @@ header {
     font-size: 0.6875rem;
     line-height: 1.6111;
     color: $base-blue;
+
+    &:hover {
+      color: $bright-blue;
+    }
   }
 
   .navbar .navbar-light .navbar-nav .nav-link {
