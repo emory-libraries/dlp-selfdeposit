@@ -32,5 +32,3 @@ Rails.application.config.to_prepare do
   #   end
   # end
 end
-
-
