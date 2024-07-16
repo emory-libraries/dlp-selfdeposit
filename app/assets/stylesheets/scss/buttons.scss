@@ -9,13 +9,13 @@
 
     &.btn-primary {
         background-color: $bright-blue;
-        border-color: 1px solid $bright-blue;
+        border: 1px solid $bright-blue;
     //     // padding: 14px 28px;
     //     color: $white;
     
     &:hover {
         background-color: $mid-blue;
-        border-color: 1px solid $mid-blue;
+        border: 1px solid $mid-blue;
     }
     }
 
