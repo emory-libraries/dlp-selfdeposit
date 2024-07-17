@@ -80,6 +80,10 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
     end
   end
 
+  it "does not display an ORCID link when none is provided" do
+    expect(page).not_to have_selector("a[href^='https://orcid.org/']")
+  end
+
   it "updates and displays the orcid" do
     updated_attributes = solr_doc_attributes.merge(creator_ssim: ["Tom, Collins, Gin University, #{orcid_id}"])
     solr_doc = SolrDocument.new(updated_attributes)
