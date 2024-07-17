@@ -35,7 +35,7 @@ RSpec.describe "viewing the search results page", :clean_repo, :perform_enqueued
     it 'contains the expected facet labels' do
       expect(facets_pulled.count).to eq(6)
       expect(facets_pulled.map { |f| f.find('h3 button').text }).to match_array(
-        ["Author", "Date", "Journal or Parent Publication Title", "Type", "Publisher Version", 'Keyword']
+        ["Author", "Date", "Journal or Parent Publication Title", "Type", "Publication Version", 'Keyword']
       )
     end
 
