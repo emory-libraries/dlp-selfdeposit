@@ -1,0 +1,18 @@
+<dt>Creator</dt>
+<dd>
+  <ul class="tabular">
+  <% presenter.solr_document['creator_ssim'].each do |author| %>
+    <% author_array = author.split(',').map(&:strip) %>
+        <li itemprop="creator" itemscope="" itemtype="http://schema.org/Person" class="attribute attribute-creator"> 
+            <% if author_array.length > 3 %>
+            <span itemprop="name"><%= author_array[0] %> <%= author_array[1] %>
+              <a href="https://orcid.org/<%= author_array[3] %>">
+                <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+              </a>, <%= author_array[2] %></span>
+            <% else %>
+                <span itemprop="name"><%= author_array[0] %> <%= author_array[1] %>, <%= author_array[2] %></span>
+            <% end %>
+        </li>
+    <% end %>
+  </ul>
+</dd>

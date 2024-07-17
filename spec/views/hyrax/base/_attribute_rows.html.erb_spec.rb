@@ -2,14 +2,14 @@
 require 'rails_helper'
 
 RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
-  let(:solr_doc) do
-    SolrDocument.new(
+  let(:solr_doc_attributes) do
+    {
       id: '123445-cor',
       alternate_ids_ssim: ['904dncjsz6-emory'],
       date_modified_dtsi: "2024-05-12 20:26:26 UTC",
       title_tesim: ["Test Publication"],
       abstract_tesim: ['an abstraction'],
-      creator_tesim: ['Tom, Collins, Gin University'],
+      creator_ssim: ['Tom, Collins, Gin University'],
       emory_ark_tesim: ['867-5309'],
       holding_repository_ssi: 'Emory University. Library',
       institution_ssi: 'Emory University',
@@ -47,9 +47,12 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
       series_title_ssi: 'Series Title',
       sponsor_ssi: 'NEA',
       volume_tesi: '4'
-    )
+    }
   end
+
+  let(:solr_doc) { SolrDocument.new(solr_doc_attributes) }
   let(:ability) { double }
+  let(:orcid_id) { '2222-2222-2222-2222' }
   let(:presenter) { Hyrax::WorkShowPresenter.new(solr_doc, ability) }
   let(:page) do
     render('hyrax/base/attribute_rows', presenter:)
@@ -67,13 +70,26 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
   end
 
   it "shows a publication's values" do
-    ["904dncjsz6-emory", "05/12/2024", "Article", "Tom, Collins, Gin University", "English", "2004", "Simon & Schusters", "Final Publisher PDF",
+    ["904dncjsz6-emory", "05/12/2024", "Article", "Tom Collins, Gin University", "English", "2004", "Simon & Schusters", "Final Publisher PDF",
      "In Copyright", "Creative Commons Attribution-ShareAlike 4.0 International", "1020", "Parent title",
      "Samvera Connect", "fqefeefe2fed", "dvqegr3gvfw", "Series Title", "1", "4", "3", "1", "134", "Boston", "NEA", "Rockfeller", "Granted",
      "A Dataset", "an abstraction", "A note from the author.", "keywordbooks", "Mathematics", "Asian studies", "867-5309",
-     "A note about internal rights.", "Oy, this staff!", "12345abcde", " http://id.loc.gov/vocabulary/resourceTypes/txt",
+     "A note about internal rights.", "Oy, this staff!", "12345abcde", "Text",
      "Emory University. Library", "Emory University", "Public", "83jhcf734jhg93g"].each do |value|
       expect(page).to have_selector 'dd', text: value
     end
+  end
+
+  it "does not display an ORCID link when none is provided" do
+    expect(page).not_to have_selector("a[href^='https://orcid.org/']")
+  end
+
+  it "updates and displays the orcid" do
+    updated_attributes = solr_doc_attributes.merge(creator_ssim: ["Tom, Collins, Gin University, #{orcid_id}"])
+    solr_doc = SolrDocument.new(updated_attributes)
+    presenter = Hyrax::WorkShowPresenter.new(solr_doc, ability)
+    render('hyrax/base/attribute_rows', presenter:)
+    Capybara::Node::Simple.new(rendered)
+    expect(rendered).to have_selector("a[href='https://orcid.org/#{orcid_id}']")
   end
 end
