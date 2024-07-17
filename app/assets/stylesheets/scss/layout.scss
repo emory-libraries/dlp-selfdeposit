@@ -89,9 +89,22 @@ a {
   height: 30px;
 }
 
+/**** Home Page ****/
+.media-heading > a, .terms-of-use > a, .recent-item a {
+  color: $bright-blue;
+} 
+
 /**** Dashboard General ****/
 body.dashboard {
   padding-top: 0;
+}
+
+.dashboard a {
+  color: $bright-blue;
+}
+
+.dashboard .sidebar a {
+  color: $white
 }
 
 /**** New Publication Form ****/
@@ -219,6 +232,10 @@ body.dashboard {
   }
 }
 
+#savewidget a {
+  color: $bright-blue;
+}
+
 /**** End Publication Form ****/
 
 /*** View Work Page (/concerns/publications/) ***/
@@ -292,9 +309,21 @@ section.pagination > div.page-links > a {
 .media-left {
   margin-right: 0.5rem;
 }
+
+a.document-title {
+  color: $bright-blue;
+}
 /*** end Works List ***/
 
 /*** Collections ***/
 .thumbnail-title-wrapper a {
   color: $bright-blue;
 }
+
+.nav-tabs a {
+  color: $bright-blue;
+}
+/**** end Collections ****/
+
+/**** Dashboard and Admin ****/
+// .list-group-item a {
