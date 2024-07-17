@@ -2,8 +2,8 @@
 require 'rails_helper'
 
 RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
-  let(:solr_doc) do
-    SolrDocument.new(
+  let(:solr_doc_attributes) do
+    {
       id: '123445-cor',
       alternate_ids_ssim: ['904dncjsz6-emory'],
       date_modified_dtsi: "2024-05-12 20:26:26 UTC",
@@ -47,9 +47,12 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
       series_title_ssi: 'Series Title',
       sponsor_ssi: 'NEA',
       volume_tesi: '4'
-    )
+    }
   end
+
+  let(:solr_doc) { SolrDocument.new(solr_doc_attributes) }
   let(:ability) { double }
+  let(:orcid_id) { '2222-2222-2222-2222' }
   let(:presenter) { Hyrax::WorkShowPresenter.new(solr_doc, ability) }
   let(:page) do
     render('hyrax/base/attribute_rows', presenter:)
@@ -75,5 +78,14 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
      "Emory University. Library", "Emory University", "Public", "83jhcf734jhg93g"].each do |value|
       expect(page).to have_selector 'dd', text: value
     end
+  end
+
+  it "updates and displays the orcid" do
+    updated_attributes = solr_doc_attributes.merge(creator_ssim: ["Tom, Collins, Gin University, #{orcid_id}"])
+    solr_doc = SolrDocument.new(updated_attributes)
+    presenter = Hyrax::WorkShowPresenter.new(solr_doc, ability)
+    render('hyrax/base/attribute_rows', presenter:)
+    Capybara::Node::Simple.new(rendered)
+    expect(rendered).to have_selector("a[href='https://orcid.org/#{orcid_id}']")
   end
 end
