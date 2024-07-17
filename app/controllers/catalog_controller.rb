@@ -60,7 +60,7 @@ class CatalogController < ApplicationController
     config.add_facet_field "date_issued_year_ssi", label: "Date"
     config.add_facet_field "parent_title_ssi", label: "Journal or Parent Publication Title"
     config.add_facet_field "content_genre_ssi", label: "Type"
-    config.add_facet_field "publisher_version_ssi", label: "Publisher Version"
+    config.add_facet_field "publisher_version_ssi", label: "Publication Version"
     config.add_facet_field "keyword_sim", label: 'Keyword'
 
     # Have BL send all facet field names to Solr, which has been the default

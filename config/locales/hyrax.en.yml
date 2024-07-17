@@ -32,7 +32,7 @@ en:
           author_notes: Author Notes
           based_near_tesim: Location
           conference_name: Conference or Event Name
-          content_genres: Type of Material
+          content_genre: Type of Material
           contributor_tesim: Contributor
           creator_tesim: Creator
           date_created_tesim: Date Created
@@ -82,7 +82,7 @@ en:
       defaults:
         author_notes: Author Notes
         conference_name: Conference or Event Name
-        content_genres: Type of Material
+        content_genre: Type of Material
         emory_content_type: Format
         final_published_versions: Final Published Version (URL)
         holding_repository: Library
