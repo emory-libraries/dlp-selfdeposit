@@ -21,7 +21,7 @@ RSpec.describe "viewing the search results page", :clean_repo, :perform_enqueued
                                parent_title: 'Father',
                                content_genre: 'Book',
                                publisher_version: 'Author Accepted Manuscript (After Peer Review)',
-                               keyword: ['Godfather', 'Scent of a Woman'])
+                               keyword: ['Godfather', 'Scent of a Woman', ""])
   end
   let(:facets_pulled) { find_all('.facets-collapse .card') }
 
@@ -46,6 +46,13 @@ RSpec.describe "viewing the search results page", :clean_repo, :perform_enqueued
       expect(card_contents.map { |c| c.find('span .facet-select').text }).to match_array(
         ["Pacino, Al", "1975", "Father", "Book", "Author Accepted Manuscript (After Peer Review)", "Godfather", "Scent of a Woman"]
       )
+    end
+
+    it 'does not contain an empty value facet when the object does' do
+      pulled_keyword_facet_items = find_all('#facet-keyword_sim div ul li span.facet-label')
+
+      expect(pulled_keyword_facet_items.count).to eq(2)
+      expect(pulled_keyword_facet_items.map(&:text)).not_to include('')
     end
   end
 end

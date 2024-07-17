@@ -24,6 +24,7 @@ Metrics/AbcSize:
 
 Metrics/MethodLength:
   Exclude:
+    - config/initializers/blacklight_facets_helper_behavior_override.rb
     - lib/preservation_events.rb
 
 Rails/Exit:
