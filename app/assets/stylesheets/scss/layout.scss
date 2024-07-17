@@ -43,6 +43,10 @@ h3 {
   font-size: 1.75rem;
 }
 
+a {
+  color: $bright-blue;
+}
+
 /**** Helper Classes ****/
 
 /** Padding 10 **/
@@ -270,9 +274,27 @@ body.dashboard {
   margin: 0 1.5625rem;
 }
 
+section.pagination > div.page-links > a {
+  color: $bright-blue;
+}
+
+.page-link {
+  color: $bright-blue;
+}
+
+#search-results a {
+  color: $bright-blue;
+}
+
 /*** end Search Results ***/
 
 /*** Works List _list_works ***/
 .media-left {
   margin-right: 0.5rem;
+}
+/*** end Works List ***/
+
+/*** Collections ***/
+.thumbnail-title-wrapper a {
+  color: $bright-blue;
 }
