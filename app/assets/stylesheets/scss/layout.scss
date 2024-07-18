@@ -89,8 +89,15 @@ a {
   height: 30px;
 }
 
+/**** Login Page ****/
+form.new_user ~ a {
+  color: $bright-blue;
+}
+
 /**** Home Page ****/
-.media-heading > a, .terms-of-use > a, .recent-item a {
+.media-heading > a,
+.terms-of-use > a,
+.recent-item a {
   color: $bright-blue;
 } 
 
@@ -99,12 +106,12 @@ body.dashboard {
   padding-top: 0;
 }
 
-.dashboard a {
+.dashboard a :not(.btn-danger) :not(.sidebar) {
   color: $bright-blue;
 }
 
-.dashboard .sidebar a {
-  color: $white
+div.list-group > .list-group-item a {
+  color: $bright-blue;
 }
 
 /**** New Publication Form ****/
@@ -232,7 +239,10 @@ body.dashboard {
   }
 }
 
-#savewidget a {
+#savewidget a,
+.switch-upload-type > a,
+.add-pub-intro > a,
+#file_owner > a  {
   color: $bright-blue;
 }
 
@@ -291,14 +301,8 @@ body.dashboard {
   margin: 0 1.5625rem;
 }
 
-section.pagination > div.page-links > a {
-  color: $bright-blue;
-}
-
-.page-link {
-  color: $bright-blue;
-}
-
+section.pagination > div.page-links > a,
+.page-link,
 #search-results a {
   color: $bright-blue;
 }
@@ -316,14 +320,10 @@ a.document-title {
 /*** end Works List ***/
 
 /*** Collections ***/
-.thumbnail-title-wrapper a {
-  color: $bright-blue;
-}
-
-.nav-tabs a {
+.thumbnail-title-wrapper a,
+.nav-tabs a,
+a.facet-select,
+.batch_document_selector_all a {
   color: $bright-blue;
 }
 /**** end Collections ****/
-
-/**** Dashboard and Admin ****/
-// .list-group-item a {
