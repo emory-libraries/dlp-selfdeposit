@@ -56,7 +56,7 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field "creator_last_first_ssim", label: "Author"
+    config.add_facet_field "creator_last_first_ssim", label: "Authors"
     config.add_facet_field "date_issued_year_ssi", label: "Date"
     config.add_facet_field "parent_title_ssi", label: "Journal or Parent Publication Title"
     config.add_facet_field "content_genre_ssi", label: "Type"
