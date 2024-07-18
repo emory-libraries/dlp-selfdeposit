@@ -173,15 +173,27 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 
+
 function validateForm() {
+
+    var relatedDataCheck = relatedDataValidation();
+    console.log(relatedDataCheck);
+    if (!relatedDataCheck) { return false; }
+
+    var finalPubVerCheck = finalPubVerValidation();
+    console.log(finalPubVerCheck);
+    if (!finalPubVerCheck) { return false; }
+
+    var dateIssuedCheck = dateIssuedValidation();
+    console.log(dateIssuedCheck);
+    if (!dateIssuedCheck) { return false; }
+
     var validationValue = document.getElementById("publication_content_genre").selectedOptions[0].label;
     var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
     var parTitleValue = document.getElementById("publication_parent_title").value;
 
-    var publisherVersion = "Publisher Version";
-    var parentTitle = "Parent Title";
-
-    // console.log("validating " + validationValue);
+    var publisherVersion = 'The Publisher Version field is required';
+    var parentTitle = "The Parent Title field is required";
 
     switch (validationValue) {
 
@@ -213,7 +225,7 @@ function validateForm() {
 
             console.log('Validating: Book || Conference Paper');
             if (pubverValue == ' ') {
-                var publisherVersion = "Publisher Version";
+                var publisherVersion = "The field Publisher Version is required";
                 validateModal(publisherVersion);
                 return false;
             }
@@ -249,10 +261,9 @@ function validateForm() {
 }
 
 function validateModal(x) {
-    // console.log("var x is typeof: " + typeof (x) + " var x value: " + x);
 
     var modal = document.getElementById("publication_content_genre");
-    var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + ' is required.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
+    var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
     modal.insertAdjacentHTML("afterend", text);
     return false;
 
@@ -261,4 +272,97 @@ function validateModal(x) {
 function removeModal() {
     console.log("modal remove");
     $(".modal.pubform").remove();
+}
+
+function dateIssuedValidation() {
+    console.log("Date Issued Validation");
+
+    var dateIssueValue = document.getElementById("publication_date_issued").value;
+    var dateIssuedBool = isDateValid(dateIssueValue);
+    var dateIssueTitle = "The field Date Issued must be in a proper format (YYYY/MM/DD, YYYY/MM or YYYY)"
+
+    //check if value is empty
+    if (dateIssueValue !== "") {
+        console.log('value is not empty, value is: ' + dateIssueValue);
+        if (!dateIssuedBool) {
+            console.log('dateIssued is: ' + dateIssueTitle);
+            validateModal(dateIssueTitle);
+            return false;
+        }
+        console.log('do nothing');
+        return true;
+    } else {
+        console.log('value is empty!');
+        return true;
+    }
+
+}
+
+
+function relatedDataValidation() {
+    console.log("relatedData URL Validation");
+
+    var relatedData = document.getElementById("publication_related_datasets").value;
+    var relatedDataBool = isUrlValid(relatedData);
+    var relatedDataTitle = 'The field Related datasets requires a full URL entry (starting with http://, https:// etc)';
+
+    //first check if related is not empty
+    if (relatedData !== "") {
+        console.log('value is not empty, related date: ' + relatedData);
+        if (!relatedDataBool) {
+            console.log('relatedDataTitle is: ' + relatedDataTitle);
+            validateModal(relatedDataTitle);
+            return false;
+        }
+
+        console.log('do nothing');
+        return true;
+    } else {
+        console.log("value is empty!");
+        return true;
+    }
+}
+
+function finalPubVerValidation() {
+    console.log("finalPubVer URL Validation");
+
+    var finalPubVer = document.getElementById("publication_final_published_versions").value;
+    var finalPubVerBool = isUrlValid(finalPubVer);
+    var finalPubVerTitle = 'The field Final published versions requires a full URL entry (starting with http://, https:// etc)';
+
+    //first check if related is not empty
+    if (finalPubVer !== "") {
+        console.log('value is not empty, final published version: ' + finalPubVer);
+
+        if (!finalPubVerBool) {
+            console.log('finalPubVerTitle is: ' + finalPubVerTitle);
+            validateModal(finalPubVerTitle);
+            return false;
+        }
+
+        console.log('do nothing');
+        return true;
+    } else {
+        console.log("value is empty!");
+        return true;
+    }
+}
+
+function isUrlValid(url) {
+    try {
+        new URL(url);
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+
+function isDateValid(date) {
+
+    var longDateRegex = /^(19|20)\d{2}\/(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])$/; //YYYY/MM/DD 
+    var monthYearDateRegex = /^(19|20)\d{2}\/(0[1-9]|1[0-2])$/; //YYYY/MM
+    var yearDateRegex = /^(12|13|14|15|16|17|18|19|20)\d{2}$/ //YYYY
+    if (longDateRegex.test(date) || monthYearDateRegex.test(date) || yearDateRegex.test(date)) {
+        return true;
+    } else { return false; }
 }
