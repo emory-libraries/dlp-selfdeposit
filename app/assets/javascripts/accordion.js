@@ -213,9 +213,7 @@ function validateForm() {
             if (pubverValue != ' ' && parTitleValue) {
                 removeModal();
                 console.log("article/book title filled out correctly");
-                // need to turn back on before submitting lol
-                // return true;
-                return false;
+                return true;
             }
 
             alert("Please contact LTDS");
@@ -263,7 +261,6 @@ function validateForm() {
 }
 
 function validateModal(x) {
-    console.log("var x is typeof: " + typeof (x) + " var x value: " + x);
 
     var modal = document.getElementById("publication_content_genre");
     var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
