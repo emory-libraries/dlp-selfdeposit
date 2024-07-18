@@ -5,7 +5,7 @@ en:
       fields:
         facet:
           based_near_label_sim: Location
-          creator_sim: Creator
+          creator_sim: Authors
           file_format_sim: Format
           generic_type_sim: Type
           keyword_sim: Keyword
@@ -15,7 +15,7 @@ en:
         index:
           based_near_tesim: Location
           contributor_tesim: Contributor
-          creator_tesim: Creator
+          creator_tesim: Authors
           date_created_tesim: Date Created
           date_modified_dtsi: Date Modified
           date_uploaded_dtsi: Date Uploaded
@@ -34,22 +34,30 @@ en:
           conference_name: Conference or Event Name
           content_genre: Type of Material
           contributor_tesim: Contributor
-          creator_tesim: Creator
+          creator_tesim: Authors
           date_created_tesim: Date Created
+          date_issued: Date
           date_modified_dtsi: Date Modified
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           emory_content_type: Format
           file_format_tesim: File Format
           final_published_versions: Final Published Version (URL)
+          grant_agencies: Grant/Funding Agency
+          grant_information: Grant/Funding Information
           identifier_tesim: Identifier
           isbn: ISBN
           issn: ISSN
           keyword: Keywords
           language_tesim: Language
           license_tesim: License
+          page_range_end: End Page
+          page_range_start: Start Page
           parent_title: Title of Journal or Parent Work
+          place_of_production:  Place of Publication or Presentation
           publisher_tesim: Publisher
+          publisher_version: Publication Version
+          related_datasets: Supplemental Material (URL)
           research_categories: Research Categories
           rights_notes: Copyright Statement
           rights_statement: Copyright Status
@@ -83,15 +91,22 @@ en:
         author_notes: Author Notes
         conference_name: Conference or Event Name
         content_genre: Type of Material
+        date_issued: Date
         emory_content_type: Format
         final_published_versions: Final Published Version (URL)
+        grant_agencies: Grant/Funding Agency
+        grant_information: Grant/Funding Information
         holding_repository: Library
         isbn: ISBN
         issn: ISSN
         keyword: Keywords
         language: Primary Language
+        page_range_end: End Page
+        page_range_start: Start Page
+        place_of_production:  Place of Publication or Presentation
         parent_title: Title of Journal or Parent Work
         publisher_version: Publication Version
+        related_datasets: Supplemental Material (URL)
         research_categories: Research Categories
         rights_notes: Copyright Statement
         rights_statement: Copyright Status

@@ -14,7 +14,7 @@ class ExtractModsMetadataToCsv
     title: { xpath: '/mods:mods/mods:titleInfo/mods:title', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
     holding_repository: { xpath: nil, processor: nil, ext_method: 'holding_repository_value' },
     emory_content_type: { xpath: '//mods:typeOfResource', processor: ->(el) { el&.children&.first&.text&.capitalize }, ext_method: nil },
-    content_genres: { xpath: '//mods:genre[@authority="marcgt"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
+    content_genre: { xpath: '//mods:genre[@authority="marcgt"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
     creator: { xpath: nil, processor: nil, ext_method: 'creator_values' },
     creator_last_first: { xpath: nil, processor: nil, ext_method: 'extract_creator_last_first' },
     abstract: { xpath: '//mods:abstract', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },

@@ -22,13 +22,13 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
     field_labels = find_all('label.control-label').map(&:text)
     expected_labels = [
       "Type of Material required", "Title required", "First Name required", "Last Name required", "Institution required",
-      "ORCID ID", "Primary Language required", "Date issued required", "Publisher required", "Publication Version",
+      "ORCID ID", "Primary Language required", "Date required", "Publisher required", "Publication Version",
       "Copyright Statement required", "License", "Final Published Version (URL)", "Title of Journal or Parent Work",
-      "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Page range start",
-      "Page range end", "Place of production", "Sponsor", "Grant agencies", "Grant information", "Related datasets",
-      "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories", "Copyright Status required",
-      "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Format required", "Library required",
-      "Institution", "Data classification required", "Deduplication key", "Restricted to", "then open it up to"
+      "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Start Page",
+      "End Page", "Place of Publication or Presentation", "Sponsor", "Grant/Funding Agency", "Grant/Funding Information",
+      "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories",
+      "Copyright Status required", "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Format required",
+      "Library required", "Institution", "Data classification required", "Deduplication key", "Restricted to", "then open it up to"
     ]
 
     expect(field_labels).to match_array(expected_labels)
