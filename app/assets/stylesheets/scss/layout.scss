@@ -241,8 +241,10 @@ div.list-group > .list-group-item a {
 
 #savewidget a,
 .switch-upload-type > a,
-.add-pub-intro > a,
-#file_owner > a  {
+.add-pub-intro p a,
+#file_owner > a,
+.fa-refresh,
+#content_block_page * a {
   color: $bright-blue;
 }
 
