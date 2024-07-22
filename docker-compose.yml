@@ -24,11 +24,11 @@ services:
       - 3000:3000
     volumes:
       - .:/app
+      - ./public:/app/public
       - bundle:/app/bundle
       - hyrax-storage:/app/storage
       - hyrax-derivatives:/app/derivatives
       - hyrax-uploads:/app/uploads
-      - rails-public:/app/public
       - rails-tmp:/app/tmp
     networks:
       - dlp
