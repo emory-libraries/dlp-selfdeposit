@@ -39,6 +39,10 @@ header {
     font-size: 0.6875rem;
     line-height: 1.6111;
     color: $base-blue;
+
+    &:hover {
+      color: $bright-blue;
+    }
   }
 
   .navbar .navbar-light .navbar-nav .nav-link {
@@ -100,15 +104,15 @@ header {
   .organization {
     text-transform: uppercase;
     font-family: $font-family-sans-serif;
-    color: $gold-metallic;
     font-weight: bold;
     font-size: 0.875rem;
+    color: $gold-metallic !important;
   }
 
   .division {
     font-family: $font-family-sans-serif;
     font-weight: bold;
-    color: $base-blue;
+    color: $base-blue !important;
     font-size: 1.5rem;
   }
 
@@ -141,4 +145,7 @@ body.dashboard {
   .emory-masthead {
     position: relative;
   }
+}/**** Breadcrumbs ****/
+.breadcrumb a {
+  color: $bright-blue;
 }
