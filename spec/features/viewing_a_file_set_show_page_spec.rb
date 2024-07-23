@@ -19,13 +19,12 @@ RSpec.describe "viewing a FileSet's show page", :clean_repo, :perform_enqueued, 
        "event_end" => "2024-07-08T22:11:37.535+00:00",
        "event_start" => "2024-07-08T22:11:34.964+00:00",
        "event_type" => "Message Digest Calculation",
-       "initiating_user" => "systemuser@example.com",
+       "initiating_user" => "admin@example.com",
        "outcome" => "Failure",
        "software_version" => "FITS Servlet v1.6.0, Fedora v6.5.0, Ruby Digest library" }.to_json]
   end
 
   before do
-    publication
     allow_any_instance_of(SolrDocument).to receive(:file_path).and_return(['/path/to/image.png'])
     allow_any_instance_of(SolrDocument).to receive(:persistent_unique_identification).and_return(['fmt/12'])
     allow_any_instance_of(SolrDocument).to receive(:creating_application_name).and_return(['ImageMagick'])
@@ -34,6 +33,8 @@ RSpec.describe "viewing a FileSet's show page", :clean_repo, :perform_enqueued, 
                                                                                    'urn:sha256:3f97a01efdd0ea847a24aecad6f4bfa8640838d393e35cc553408908ace0928e'])
     allow_any_instance_of(SolrDocument).to receive(:creating_os).and_return(['MacOSX Sapphire'])
     allow_any_instance_of(SolrDocument).to receive(:preservation_events).and_return(preservation_events)
+    Hyrax.index_adapter.wipe!
+    Hyrax.index_adapter.save(resource: file_set)
     login_as user
     visit hyrax_file_set_path(file_set)
   end
@@ -51,7 +52,7 @@ RSpec.describe "viewing a FileSet's show page", :clean_repo, :perform_enqueued, 
   end
 
   it 'contains a table of Preservation Events' do
-    expect(page).to have_css('h2.fs-preservation-events-header', text: 'Preservation Events')
-    expect(find_all('table#fs-preservation-event-table tbody tr')).to be_present
+    expect(page).to have_css('h2.card-title', text: 'Preservation Events')
+    expect(find_all('table#preservation-event-table tbody tr')).to be_present
   end
 end
