@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_21_192828) do
+ActiveRecord::Schema.define(version: 2024_07_22_184704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -648,6 +648,7 @@ ActiveRecord::Schema.define(version: 2024_06_21_192828) do
     t.datetime "updated_at", null: false
     t.string "fileset_name"
     t.string "fileset_use"
+    t.string "desired_visibility"
     t.index ["file_set_uri"], name: "index_uploaded_files_on_file_set_uri"
     t.index ["user_id"], name: "index_uploaded_files_on_user_id"
   end
