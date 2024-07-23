@@ -3,6 +3,8 @@ require 'rails_helper'
 require 'hyrax/specs/shared_specs/factories/administrative_sets'
 require 'hyrax/specs/shared_specs/factories/permission_templates'
 require 'hyrax/specs/shared_specs/factories/workflows'
+require './lib/preservation_events'
+include PreservationEvents
 include Warden::Test::Helpers
 
 RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued, type: :feature do
@@ -25,18 +27,19 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
                                keyword: ['Godfather', 'Scent of a Woman', ""])
   end
   let(:preservation_events) do
-    [{ "event_details" => "Modification",
-       "event_end" => "2024-07-08T22:11:37.535+00:00",
-       "event_start" => "2024-07-08T22:11:34.964+00:00",
-       "event_type" => "Object updated",
-       "initiating_user" => "systemuser@example.com",
-       "outcome" => "Success",
-       "software_version" => "SelfDeposit v.1" }.to_json]
+    { "details" => "Modification",
+      "end" => "2024-07-08T22:11:37.535+00:00",
+      "start" => "2024-07-08T22:11:34.964+00:00",
+      "type" => "Object updated",
+      "user" => "systemuser@example.com",
+      "outcome" => "Success",
+      "software_version" => "SelfDeposit v.1" }
   end
 
   before do
     allow_any_instance_of(SolrDocument).to receive(:preservation_events).and_return(preservation_events)
-    Hyrax.index_adapter.wipe!
+    create_preservation_event(publication, preservation_events)
+    Hyrax.persister.save(resource: publication)
     Hyrax.index_adapter.save(resource: publication)
     login_as user
     visit hyrax_publication_path(publication)
