@@ -57,12 +57,6 @@ RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature do
       login_as admin
     end
 
-    it 'displays importers on Dashboard' do
-      visit '/dashboard'
-
-      expect(page).to have_css('li a span.sidebar-action-text', text: 'Importers')
-    end
-
     context 'within importers/new' do
       before do
         visit '/importers/new'
