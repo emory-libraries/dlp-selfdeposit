@@ -19,3 +19,6 @@
 - Solr: http://localhost:8983/solr/#/
 - Fedora Commons: http://localhost:8080/fcrepo/rest
 
+#### Documentation
+
+- [PDF Viewer](/public/PDF_README.md)
