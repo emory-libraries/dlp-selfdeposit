@@ -192,8 +192,8 @@ function validateForm() {
     var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
     var parTitleValue = document.getElementById("publication_parent_title").value;
 
-    var publisherVersion = 'The Publisher Version field is required';
-    var parentTitle = "The Parent Title field is required";
+    var publisherVersion = 'The Publication Version field is required';
+    var parentTitle = "The Title of Journal or Parent Work field is required";
 
     switch (validationValue) {
 
@@ -225,7 +225,7 @@ function validateForm() {
 
             console.log('Validating: Book || Conference Paper');
             if (pubverValue == ' ') {
-                var publisherVersion = "The field Publisher Version is required";
+                var publisherVersion = "The Publication Version field is required";
                 validateModal(publisherVersion);
                 return false;
             }
@@ -279,7 +279,7 @@ function dateIssuedValidation() {
 
     var dateIssueValue = document.getElementById("publication_date_issued").value;
     var dateIssuedBool = isDateValid(dateIssueValue);
-    var dateIssueTitle = "The field Date Issued must be in a proper format (YYYY/MM/DD, YYYY/MM or YYYY)"
+    var dateIssueTitle = "The Date field must be in a proper format (YYYY/MM/DD, YYYY/MM or YYYY)"
 
     //check if value is empty
     if (dateIssueValue !== "") {
@@ -304,7 +304,7 @@ function relatedDataValidation() {
 
     var relatedData = document.getElementById("publication_related_datasets").value;
     var relatedDataBool = isUrlValid(relatedData);
-    var relatedDataTitle = 'The field Related datasets requires a full URL entry (starting with http://, https:// etc)';
+    var relatedDataTitle = 'The Supplemental Material field requires a full URL entry (starting with http://, https:// etc)';
 
     //first check if related is not empty
     if (relatedData !== "") {
@@ -328,7 +328,7 @@ function finalPubVerValidation() {
 
     var finalPubVer = document.getElementById("publication_final_published_versions").value;
     var finalPubVerBool = isUrlValid(finalPubVer);
-    var finalPubVerTitle = 'The field Final published versions requires a full URL entry (starting with http://, https:// etc)';
+    var finalPubVerTitle = 'The Final Published Version field requires a full URL entry (starting with http://, https:// etc)';
 
     //first check if related is not empty
     if (finalPubVer !== "") {
