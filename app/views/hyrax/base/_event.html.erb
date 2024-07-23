@@ -1,0 +1,11 @@
+<tr>
+  <td class="attribute attribute-event-type"><%= event_data['event_type'] %></td>
+  <td class="attribute attribute-date">
+        Start: <%= DateTime.parse(event_data['event_start']).strftime('%FT%T%:z') %> <br>
+        End: <%= DateTime.parse(event_data['event_end']).strftime('%FT%T%:z') %>
+  </td>
+  <td class="attribute attribute-details"><%= event_data['event_details'] %></td>
+  <td class="attribute attribute-outcome"><%= event_data['outcome'] %></td>
+  <td class="attribute attribute-user"><%= event_data['initiating_user'] %></td>
+  <td class="attribute attribute-software"><%= event_data['software_version'] %></td>
+</tr>

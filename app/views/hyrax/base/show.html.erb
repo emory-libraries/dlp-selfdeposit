@@ -73,7 +73,14 @@
         <%= render 'items', presenter: @presenter %>
       </div>
     </div>
-
+    <div class="card card-verflow">
+      <div class="card-header">
+        <h2 class="card-title"><%= t('.preservation_events') %></h2>
+      </div>
+      <div class="event-table card-body" role="region" aria-label="Preservation Events" tabindex="0">
+        <%= render 'preservation_events', presenter: @presenter %>
+      </div>
+    </div>
     <%# TODO: we may consider adding these partials in the future %>
     <%# = render 'sharing_with', presenter: @presenter %>
     <%# = render 'user_activity', presenter: @presenter %>
