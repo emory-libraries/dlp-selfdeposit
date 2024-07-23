@@ -37,10 +37,7 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
   end
 
   before do
-    allow_any_instance_of(SolrDocument).to receive(:preservation_events).and_return(preservation_events)
     create_preservation_event(publication, preservation_events)
-    Hyrax.persister.save(resource: publication)
-    Hyrax.index_adapter.save(resource: publication)
     login_as user
     visit hyrax_publication_path(publication)
   end
