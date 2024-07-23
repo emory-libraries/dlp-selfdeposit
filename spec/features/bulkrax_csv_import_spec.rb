@@ -51,6 +51,7 @@ RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature do
 
     before do
       # the below code adds the admin role to user
+      Hyrax.index_adapter.wipe!
       admin.roles << Role.find_or_create_by(name: Hyrax.config.admin_user_group_name)
       admin.save
       login_as admin
