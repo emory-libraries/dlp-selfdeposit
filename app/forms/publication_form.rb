@@ -27,7 +27,7 @@ class PublicationForm < Hyrax::Forms::PcdmObjectForm(Publication)
     [:title, :creator, :language, :date_issued, :publisher, :publisher_version,
      :rights_notes, :license, :final_published_versions, :parent_title, :conference_name,
      :issn, :isbn, :series_title, :edition, :volume, :issue, :page_range_start, :page_range_end,
-     :place_of_production, :sponsor, :grant_agencies, :grant_information, :related_datasets]
+     :place_of_production, :grant_agencies, :grant_information, :related_datasets]
   end
 
   def additional_information
