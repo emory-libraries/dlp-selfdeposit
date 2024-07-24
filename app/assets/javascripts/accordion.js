@@ -279,7 +279,7 @@ function dateIssuedValidation() {
 
     var dateIssueValue = document.getElementById("publication_date_issued").value;
     var dateIssuedBool = isDateValid(dateIssueValue);
-    var dateIssueTitle = "The field Date Issued must be in a proper format (YYYY/MM/DD, YYYY/MM or YYYY)"
+    var dateIssueTitle = "The field Date Issued must be in a proper format (YYYY-MM-DD, YYYY-MM or YYYY)"
 
     //check if value is empty
     if (dateIssueValue !== "") {
@@ -359,8 +359,8 @@ function isUrlValid(url) {
 
 function isDateValid(date) {
 
-    var longDateRegex = /^(19|20)\d{2}\/(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])$/; //YYYY/MM/DD 
-    var monthYearDateRegex = /^(19|20)\d{2}\/(0[1-9]|1[0-2])$/; //YYYY/MM
+    var longDateRegex = /^(19|20)\d{2}\-(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])$/; //YYYY-MM-DD 
+    var monthYearDateRegex = /^(19|20)\d{2}\-(0[1-9]|1[0-2])$/; //YYYY-MM
     var yearDateRegex = /^(12|13|14|15|16|17|18|19|20)\d{2}$/ //YYYY
     if (longDateRegex.test(date) || monthYearDateRegex.test(date) || yearDateRegex.test(date)) {
         return true;
