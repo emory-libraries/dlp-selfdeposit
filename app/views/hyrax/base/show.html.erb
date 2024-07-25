@@ -13,6 +13,9 @@
   <div itemscope itemtype="http://schema.org/CreativeWork" class="col-12">
     <%= render 'work_title', presenter: @presenter %>
     <%= render 'show_actions', presenter: @presenter %>
+    <% if @presenter.representative_presenter&.pdf? %>
+      <%= render 'representative_media', presenter: @presenter, viewer: false %>
+    <% end %>
     <div class="card">
       <div class="card-body">
         <div class="row">
@@ -28,7 +31,7 @@
           </div>
           <div class="col-sm-4 text-center">
             <div class="sidebar-media">
-              <%= render 'representative_media', presenter: @presenter, viewer: false unless @presenter.iiif_viewer? %>
+              <%= render 'representative_media', presenter: @presenter, viewer: false unless @presenter.iiif_viewer? || @presenter.representative_presenter&.pdf? %>
             </div>
             <div class="card viewer-actions">
               <div class="card-header">
@@ -70,7 +73,14 @@
         <%= render 'items', presenter: @presenter %>
       </div>
     </div>
-
+    <div class="card card-verflow">
+      <div class="card-header">
+        <h2 class="card-title"><%= t('.preservation_events') %></h2>
+      </div>
+      <div class="event-table card-body" role="region" aria-label="Preservation Events" tabindex="0">
+        <%= render 'preservation_events', presenter: @presenter %>
+      </div>
+    </div>
     <%# TODO: we may consider adding these partials in the future %>
     <%# = render 'sharing_with', presenter: @presenter %>
     <%# = render 'user_activity', presenter: @presenter %>

@@ -43,6 +43,10 @@ h3 {
   font-size: 1.75rem;
 }
 
+a {
+  color: $bright-blue;
+}
+
 /**** Helper Classes ****/
 
 /** Padding 10 **/
@@ -85,9 +89,29 @@ h3 {
   height: 30px;
 }
 
+/**** Login Page ****/
+form.new_user ~ a {
+  color: $bright-blue;
+}
+
+/**** Home Page ****/
+.media-heading > a,
+.terms-of-use > a,
+.recent-item a {
+  color: $bright-blue;
+} 
+
 /**** Dashboard General ****/
 body.dashboard {
   padding-top: 0;
+}
+
+.dashboard a :not(.btn-danger) :not(.sidebar) {
+  color: $bright-blue;
+}
+
+div.list-group > .list-group-item a {
+  color: $bright-blue;
 }
 
 /**** New Publication Form ****/
@@ -215,6 +239,15 @@ body.dashboard {
   }
 }
 
+#savewidget a,
+.switch-upload-type > a,
+.add-pub-intro p a,
+#file_owner > a,
+.fa-refresh,
+#content_block_page * a {
+  color: $bright-blue;
+}
+
 /**** End Publication Form ****/
 
 /*** View Work Page (/concerns/publications/) ***/
@@ -238,15 +271,19 @@ body.dashboard {
   h2.show-tools-card-title {
     font-family: $font-family-sans-serif;
     color: $gold;
-    background-color: $base-blue;
+    background-color: $dark-blue;
     font-weight: 700;
     text-transform: uppercase;
   }
   .viewer-actions div.card-header {
-    background-color: $base-blue;
+    background-color: $dark-blue;
+    text-align: left;
   }
   .list-group-item {
     text-align: left;
+  }
+  .list-group-item * {
+    padding: 0.25rem 1rem;
   }
  .dropdown-toggle::after {
     content: "❯";
@@ -258,3 +295,37 @@ body.dashboard {
     margin-left: -0.255em;
   }
 }
+
+/**** End View Work Page (/concerns/publications/) ****/
+
+/*** Search Results ***/
+.badge {
+  margin: 0 1.5625rem;
+}
+
+section.pagination > div.page-links > a,
+.page-link,
+#search-results a {
+  color: $bright-blue;
+}
+
+/*** end Search Results ***/
+
+/*** Works List _list_works ***/
+.media-left {
+  margin-right: 0.5rem;
+}
+
+a.document-title {
+  color: $bright-blue;
+}
+/*** end Works List ***/
+
+/*** Collections ***/
+.thumbnail-title-wrapper a,
+.nav-tabs a,
+a.facet-select,
+.batch_document_selector_all a {
+  color: $bright-blue;
+}
+/**** end Collections ****/

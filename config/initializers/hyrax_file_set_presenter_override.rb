@@ -14,9 +14,5 @@ Rails.application.config.to_prepare do
     end
 
     delegate(*characterization_terms, to: :solr_document)
-
-    def pres_events
-      solr_document&.preservation_events&.map { |pe| JSON.parse(pe) }&.sort_by { |e| e["event_start"] }&.reverse
-    end
   end
 end

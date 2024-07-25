@@ -18,7 +18,14 @@
       <% end %>
 
       <%= render 'hyrax/users/activity_log', events: @presenter.events %>
-      <%= render 'preservation_events', pres_events: @presenter.pres_events %>
+      <div class="card card-overflow">
+        <div class="card-header">
+          <h2 class="card-title"><%= t('.preservation_events') %></h2>
+        </div>
+        <div class="card-body event-table" role="region" aria-label="Preservation Events" tabindex="0">
+          <%= render 'hyrax/base/preservation_events', presenter: @presenter %>
+        </div>
+    </div>
     </div><!-- /columns second -->
   </div> <!-- /.row -->
 </div><!-- /.container-fluid -->

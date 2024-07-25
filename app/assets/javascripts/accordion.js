@@ -359,8 +359,8 @@ function isUrlValid(url) {
 
 function isDateValid(date) {
 
-    var longDateRegex = /^(19|20)\d{2}\/(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])$/; //YYYY/MM/DD 
-    var monthYearDateRegex = /^(19|20)\d{2}\/(0[1-9]|1[0-2])$/; //YYYY/MM
+    var longDateRegex = /^(19|20)\d{2}\-(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])$/; //YYYY-MM-DD 
+    var monthYearDateRegex = /^(19|20)\d{2}\-(0[1-9]|1[0-2])$/; //YYYY-MM
     var yearDateRegex = /^(12|13|14|15|16|17|18|19|20)\d{2}$/ //YYYY
     if (longDateRegex.test(date) || monthYearDateRegex.test(date) || yearDateRegex.test(date)) {
         return true;
