@@ -279,7 +279,7 @@ function dateIssuedValidation() {
 
     var dateIssueValue = document.getElementById("publication_date_issued").value;
     var dateIssuedBool = isDateValid(dateIssueValue);
-    var dateIssueTitle = "The Date field must be in a proper format (YYYY/MM/DD, YYYY/MM or YYYY)"
+    var dateIssueTitle = "The Date field must be in a proper format (YYYY-MM-DD, YYYY-MM or YYYY)"
 
     //check if value is empty
     if (dateIssueValue !== "") {
