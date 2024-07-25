@@ -17,6 +17,8 @@ attributes:
     predicate: https://www.semanticdesktop.org/ontologies/2007/03/22/nfo/#characterCount
   character_set:
     predicate: http://www.w3.org/2011/content#characterEncoding
+  created_at:
+    predicate: http://vocabulary.samvera.org/ns#created_at
   creating_application_name:
     predicate: http://www.loc.gov/premis/rdf/v1#hasCreatingApplicationName
   creating_os:
