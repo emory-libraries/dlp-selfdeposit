@@ -51,6 +51,7 @@ class MigrateFedoraThreeObjects
 
   def copy_files_to_folder
     datastreams = @pid_xml.xpath('//foxml:datastream')
+    @content_index = 0
 
     datastreams.each do |datastream|
       if datastream['ID'] == 'AUDIT'
@@ -81,10 +82,12 @@ class MigrateFedoraThreeObjects
   def pull_binary_object(datastream:)
     binary_id = datastream['ID']
     binary_filename = datastream.elements.first['LABEL']
+    blank_filename_test = binary_filename.empty? || binary_filename.include?('/')
     binary_ext = ALLOWED_TYPES[:"#{datastream.elements.first['MIMETYPE']}"]
-    binary_save_name = binary_filename.empty? || binary_filename.include?('/') ? ["content_#{@pid}", binary_ext].join('.') : binary_filename
+    binary_save_name = blank_filename_test ? ["content_#{@pid}_#{@content_index}", binary_ext].join('.') : binary_filename
     download = URI.open("#{@fedora_three_path}/fedora/get/emory:#{@pid}/#{binary_id}")
 
+    @content_index += 1 if blank_filename_test
     IO.copy_stream(download, "./emory_#{@pid}/#{binary_save_name}")
   end
 end
