@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     isbn[0].style.display = "none";
                     series[0].style.display = "none";
                     edition[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("afterend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    parTitleLabel.insertAdjacentHTML("afterend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
                     break;
                 }
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     issue[0].style.display = "none";
                     pageStart[0].style.display = "none";
                     pageEnd[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("afterend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }
@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     issn[0].style.display = "none";
                     volume[0].style.display = "none";
                     issue[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("afterend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    parTitleLabel.insertAdjacentHTML("afterend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     series[0].style.display = "none";
                     edition[0].style.display = "none";
 
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("afterend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }

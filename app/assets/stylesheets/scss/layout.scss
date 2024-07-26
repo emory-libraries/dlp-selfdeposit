@@ -99,7 +99,7 @@ form.new_user ~ a {
 .terms-of-use > a,
 .recent-item a {
   color: $bright-blue;
-} 
+}
 
 /**** Dashboard General ****/
 body.dashboard {
@@ -125,6 +125,8 @@ div.list-group > .list-group-item a {
   label {
     font-weight: bold;
     color: $black;
+    display: flex;
+    align-items: center;
   }
 
   .listing {
@@ -145,6 +147,8 @@ div.list-group > .list-group-item a {
   label {
     font-weight: bold;
     color: $black;
+    display: flex;
+    align-items: center;
   }
 
   .card {
@@ -285,7 +289,7 @@ div.list-group > .list-group-item a {
   .list-group-item * {
     padding: 0.25rem 1rem;
   }
- .dropdown-toggle::after {
+  .dropdown-toggle::after {
     content: "❯";
     transform: rotate(90deg);
     color: $bright-blue;
@@ -300,7 +304,7 @@ div.list-group > .list-group-item a {
 
 /*** Search Results ***/
 .badge {
-  margin: 0 1.5625rem;
+  margin: 0 0.5rem;
 }
 
 section.pagination > div.page-links > a,
