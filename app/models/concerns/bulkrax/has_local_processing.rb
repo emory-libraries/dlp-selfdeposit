@@ -19,6 +19,6 @@ module Bulkrax::HasLocalProcessing
     default_type = "http://id.loc.gov/vocabulary/resourceTypes/txt"
     pulled_type = authority.all.find { |v| v['label'] == parsed_metadata['emory_content_type']&.strip&.titleize }
 
-    parsed_metadata['emory_content_type'] = pulled_type.fetch('id', default_type)
+    parsed_metadata['emory_content_type'] = pulled_type.present? ? pulled_type['id'] : default_type
   end
 end
