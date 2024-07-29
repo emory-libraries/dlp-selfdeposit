@@ -3,9 +3,11 @@
 require 'fileutils'
 require 'nokogiri'
 require 'open-uri'
+require 'csv'
+require_relative 'fedora_three_objects_migration_methods'
 
 class MigrateFedoraThreeObjects
-  ALLOWED_TYPES = {
+  ::ALLOWED_TYPES = {
     'application/pdf': 'pdf',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
     'application/msword': 'doc',
@@ -18,77 +20,28 @@ class MigrateFedoraThreeObjects
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'xlsx'
   }.freeze
 
+  include FedoraThreeObjectsMigrationMethods
+
   def initialize(pids:, fedora_three_path:, fedora_username:, fedora_password:)
     @pids = pids
     @fedora_three_path = fedora_three_path
     @fedora_username = fedora_username
     @fedora_password = fedora_password
+    @pids_with_no_binaries = []
+    @pids_with_filenames = {}
+    @date_time_started = DateTime.now.strftime('%Y%m%dT%H%M')
   end
 
   def run
-    pid_arr = @pids.split(',')
+    pid_arr = @pids.include?('.csv') ? pull_pids_csv : @pids.split(',')
 
     pid_arr.each do |pid|
       @pid = pid
-      make_pid_folder
       @pid_xml = pull_pid_xml
       copy_files_to_folder
     end
-  end
 
-  private
-
-  def make_pid_folder
-    FileUtils.mkdir_p "emory_#{@pid}"
-  end
-
-  def pull_pid_xml
-    system('fedora-export.sh', @fedora_three_path.split('://').last, @fedora_username, @fedora_password,
-           "emory:#{@pid}", 'info:fedora/fedora-system:FOXML-1.1', 'migrate', '.', @fedora_three_path.split('://').first)
-    file = File.open("./emory_#{@pid}.xml")
-    Nokogiri::XML(file)
-  end
-
-  def copy_files_to_folder
-    datastreams = @pid_xml.xpath('//foxml:datastream')
-    @content_index = 0
-
-    datastreams.each do |datastream|
-      if datastream['ID'] == 'AUDIT'
-        pull_audit_object(datastream:)
-      elsif test_for_xmls(datastream:)
-        pull_xml_object(datastream:)
-      else
-        pull_binary_object(datastream:)
-      end
-    end
-  end
-
-  def test_for_xmls(datastream:)
-    datastream['ID'] != 'AUDIT' && ['text/xml', 'application/rdf+xml'].include?(datastream.elements.first['MIMETYPE'])
-  end
-
-  def pull_audit_object(datastream:)
-    IO.copy_stream(StringIO.new(datastream.at_xpath('//foxml:datastreamVersion/foxml:xmlContent').to_s), "./emory_#{@pid}/AUDIT.xml")
-  end
-
-  def pull_xml_object(datastream:)
-    xml_doc = datastream['ID']
-    download = URI.open("#{@fedora_three_path}/fedora/get/emory:#{@pid}/#{xml_doc}")
-
-    IO.copy_stream(download, "./emory_#{@pid}/#{download.base_uri.to_s.split('/')[-1]}.xml")
-  end
-
-  def pull_binary_object(datastream:)
-    binary_id = datastream['ID']
-    binary_filename = datastream.elements.first['LABEL']
-    blank_filename_test = binary_filename.empty? || binary_filename.include?('/')
-    binary_ext = ALLOWED_TYPES[:"#{datastream.elements.first['MIMETYPE']}"]
-    binary_save_name = blank_filename_test ? ["content_#{@pid}_#{@content_index}", binary_ext].join('.') : binary_filename
-    download = URI.open("#{@fedora_three_path}/fedora/get/emory:#{@pid}/#{binary_id}")
-
-    @content_index += 1 if blank_filename_test
-    IO.copy_stream(download, "./emory_#{@pid}/#{binary_save_name}")
+    file_end_reports
   end
 end
 
