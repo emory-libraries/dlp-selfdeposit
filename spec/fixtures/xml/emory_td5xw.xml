@@ -1,0 +1,780 @@
+<foxml:digitalObject PID="emory:td5xw" VERSION="1.1" xmlns:foxml="info:fedora/fedora-system:def/foxml#"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="info:fedora/fedora-system:def/foxml# http://www.fedora.info/definitions/1/0/foxml1-1.xsd">
+  <foxml:objectProperties>
+    <foxml:property NAME="info:fedora/fedora-system:def/model#state" VALUE="Active"/>
+    <foxml:property NAME="info:fedora/fedora-system:def/model#label" VALUE="Systematic computational exploration of the parameter space of the multi-compartment model of the lobster pyloric pacemaker kernel suggests that the kernel can achieve functional activity under various parameter configurations"/>
+    <foxml:property NAME="info:fedora/fedora-system:def/model#ownerId" VALUE="aprinz"/>
+    <foxml:property NAME="info:fedora/fedora-system:def/model#createdDate" VALUE="2018-10-08T18:02:30.355Z"/>
+    <foxml:property NAME="info:fedora/fedora-system:def/view#lastModifiedDate" VALUE="2024-06-16T05:09:08.273Z"/>
+  </foxml:objectProperties>
+  <foxml:datastream CONTROL_GROUP="X" ID="AUDIT" STATE="A" VERSIONABLE="false">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:02:30.355Z"
+      FORMAT_URI="info:fedora/fedora-system:format/xml.fedora.audit" ID="AUDIT.0" LABEL="Audit Trail for this object" MIMETYPE="text/xml">
+      <foxml:xmlContent>
+        <audit:auditTrail xmlns:audit="info:fedora/fedora-system:def/audit#">
+          <audit:record ID="AUDREC1">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:02:30.763Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC2">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>addDatastream</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:02:31.080Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC3">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:02:31.754Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC4">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>addDatastream</audit:action>
+            <audit:componentID>SYMPLECTIC-ATOM</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:02:32.029Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC5">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>SYMPLECTIC-ATOM</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:02:32.444Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC6">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>setDatastreamState</audit:action>
+            <audit:componentID>SYMPLECTIC-ATOM</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:02:32.444Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC7">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>addDatastream</audit:action>
+            <audit:componentID>bin1e3bbec8-ea11-4dc7-a8f3-af5a64e073a5</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:02:32.995Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC8">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>bin1e3bbec8-ea11-4dc7-a8f3-af5a64e073a5</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:02:33.367Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC9">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:03:05.296Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC10">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>SYMPLECTIC-ATOM</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:03:05.803Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC11">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>SYMPLECTIC-ATOM</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:03:06.390Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC12">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>addDatastream</audit:action>
+            <audit:componentID>SYMPLECTIC-LICENCE</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:03:06.946Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC13">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>SYMPLECTIC-LICENCE</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:03:07.543Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC14">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>SYMPLECTIC-LICENCE</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:03:08.087Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC15">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>setDatastreamState</audit:action>
+            <audit:componentID>SYMPLECTIC-LICENCE</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:03:08.087Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC16">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:03:08.857Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC17">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>addDatastream</audit:action>
+            <audit:componentID>descMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:10:10.698Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC18">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:10:11.065Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC19">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>DC</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:10:11.320Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC20">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:10:11.748Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC21">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>addDatastream</audit:action>
+            <audit:componentID>content</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-08T18:10:12.097Z</audit:date>
+            <audit:justification>added application/pdf content from bin1e3bbec8-ea11-4dc7-a8f3-af5a64e073a5</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC22">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>addDatastream</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fpici</audit:responsibility>
+            <audit:date>2018-10-08T18:13:47.655Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC23">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>descMetadata</audit:componentID>
+            <audit:responsibility>fpici</audit:responsibility>
+            <audit:date>2018-10-08T18:13:48.023Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC24">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fpici</audit:responsibility>
+            <audit:date>2018-10-08T18:13:48.313Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC25">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>DC</audit:componentID>
+            <audit:responsibility>fpici</audit:responsibility>
+            <audit:date>2018-10-08T18:13:48.554Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC26">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>fpici</audit:responsibility>
+            <audit:date>2018-10-08T18:13:48.857Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC27">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-09T04:06:36.024Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC28">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-10-09T04:06:36.387Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC29">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2019-06-04T09:28:14.690Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC30">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2019-06-04T09:28:14.923Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC31">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2020-02-20T08:52:37.689Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC32">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2020-02-20T08:52:37.888Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC33">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2021-02-08T10:48:33.944Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC34">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2021-02-08T10:48:34.148Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC35">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2022-03-25T06:58:45.675Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC36">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2022-03-25T06:58:45.939Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC37">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2024-05-15T09:54:59.942Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC38">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2024-05-15T09:55:00.076Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC39">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2024-06-16T05:09:08.171Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC40">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2024-06-16T05:09:08.273Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+        </audit:auditTrail>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="X" ID="DC" STATE="A" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:02:30.355Z" FORMAT_URI="http://www.openarchives.org/OAI/2.0/oai_dc/"
+      ID="DC1.0" LABEL="Dublin Core Record for this object" MIMETYPE="text/xml" SIZE="340">
+      <foxml:contentDigest DIGEST="eb90b3dcb2f218e5bfcc18946c00ded7" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/"
+          xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+          <dc:identifier>emory:td5xw</dc:identifier>
+        </oai_dc:dc>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:10:11.320Z" FORMAT_URI="http://www.openarchives.org/OAI/2.0/oai_dc/"
+      ID="DC.1" LABEL="Dublin Core Record for this object" MIMETYPE="text/xml" SIZE="2308">
+      <foxml:contentDigest DIGEST="a2bd04cc763b854a6d75dd6539f6d6ee" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/"
+          xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+          <dc:title>Systematic computational exploration of the parameter space of the multi-compartment model of the lobster pyloric pacemaker kernel suggests that the kernel can achieve functional activity under various parameter configurations</dc:title>
+          <dc:description/>
+          <dc:contributor>Astrid Prinz</dc:contributor>
+          <dc:contributor>TG Smolinski</dc:contributor>
+          <dc:contributor>C Soto-Treviño</dc:contributor>
+          <dc:contributor>P Rabbah</dc:contributor>
+          <dc:contributor>F Nadim</dc:contributor>
+          <dc:type>text</dc:type>
+          <dc:type>article</dc:type>
+          <dc:identifier>emory:td5xw</dc:identifier>
+          <dc:identifier>h</dc:identifier>
+          <dc:identifier>t</dc:identifier>
+          <dc:identifier>t</dc:identifier>
+          <dc:identifier>p</dc:identifier>
+          <dc:identifier>s</dc:identifier>
+          <dc:identifier>:</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>p</dc:identifier>
+          <dc:identifier>i</dc:identifier>
+          <dc:identifier>d</dc:identifier>
+          <dc:identifier>.</dc:identifier>
+          <dc:identifier>e</dc:identifier>
+          <dc:identifier>m</dc:identifier>
+          <dc:identifier>o</dc:identifier>
+          <dc:identifier>r</dc:identifier>
+          <dc:identifier>y</dc:identifier>
+          <dc:identifier>.</dc:identifier>
+          <dc:identifier>e</dc:identifier>
+          <dc:identifier>d</dc:identifier>
+          <dc:identifier>u</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>a</dc:identifier>
+          <dc:identifier>r</dc:identifier>
+          <dc:identifier>k</dc:identifier>
+          <dc:identifier>:</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>2</dc:identifier>
+          <dc:identifier>5</dc:identifier>
+          <dc:identifier>5</dc:identifier>
+          <dc:identifier>9</dc:identifier>
+          <dc:identifier>3</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>t</dc:identifier>
+          <dc:identifier>d</dc:identifier>
+          <dc:identifier>5</dc:identifier>
+          <dc:identifier>x</dc:identifier>
+          <dc:identifier>w</dc:identifier>
+          <dc:source>None Volume  Issue  Date 2007 Pages -</dc:source>
+        </oai_dc:dc>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:13:48.554Z" FORMAT_URI="http://www.openarchives.org/OAI/2.0/oai_dc/"
+      ID="DC.2" LABEL="Dublin Core Record for this object" MIMETYPE="text/xml" SIZE="2648">
+      <foxml:contentDigest DIGEST="34263d7dc461bd7f92d432695a03c7cb" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/"
+          xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+          <dc:title>Systematic computational exploration of the parameter space of the multi-compartment model of the lobster pyloric pacemaker kernel suggests that the kernel can achieve functional activity under various parameter configurations</dc:title>
+          <dc:subject>Biology, General</dc:subject>
+          <dc:subject>Current Injection</dc:subject>
+          <dc:subject>Model Neuron</dc:subject>
+          <dc:subject>Computational Exploration</dc:subject>
+          <dc:subject>Axonal Compartment</dc:subject>
+          <dc:subject>Pyloric Dilator</dc:subject>
+          <dc:description/>
+          <dc:contributor>Tomasz G Smolinski</dc:contributor>
+          <dc:contributor>Cristina Soto-Treviño</dc:contributor>
+          <dc:contributor>Pascale Rabbah</dc:contributor>
+          <dc:contributor>Farzan Nadim</dc:contributor>
+          <dc:contributor>Astrid A Prinz</dc:contributor>
+          <dc:type>text</dc:type>
+          <dc:type>article</dc:type>
+          <dc:identifier>emory:td5xw</dc:identifier>
+          <dc:identifier>h</dc:identifier>
+          <dc:identifier>t</dc:identifier>
+          <dc:identifier>t</dc:identifier>
+          <dc:identifier>p</dc:identifier>
+          <dc:identifier>s</dc:identifier>
+          <dc:identifier>:</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>p</dc:identifier>
+          <dc:identifier>i</dc:identifier>
+          <dc:identifier>d</dc:identifier>
+          <dc:identifier>.</dc:identifier>
+          <dc:identifier>e</dc:identifier>
+          <dc:identifier>m</dc:identifier>
+          <dc:identifier>o</dc:identifier>
+          <dc:identifier>r</dc:identifier>
+          <dc:identifier>y</dc:identifier>
+          <dc:identifier>.</dc:identifier>
+          <dc:identifier>e</dc:identifier>
+          <dc:identifier>d</dc:identifier>
+          <dc:identifier>u</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>a</dc:identifier>
+          <dc:identifier>r</dc:identifier>
+          <dc:identifier>k</dc:identifier>
+          <dc:identifier>:</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>2</dc:identifier>
+          <dc:identifier>5</dc:identifier>
+          <dc:identifier>5</dc:identifier>
+          <dc:identifier>9</dc:identifier>
+          <dc:identifier>3</dc:identifier>
+          <dc:identifier>/</dc:identifier>
+          <dc:identifier>t</dc:identifier>
+          <dc:identifier>d</dc:identifier>
+          <dc:identifier>5</dc:identifier>
+          <dc:identifier>x</dc:identifier>
+          <dc:identifier>w</dc:identifier>
+          <dc:source>None Volume  Issue  Date 2007-07-12 Pages -</dc:source>
+          <dc:language>English</dc:language>
+        </oai_dc:dc>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="X" ID="RELS-EXT" STATE="A" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:02:31.080Z" ID="RELS-EXT.0" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="367">
+      <foxml:contentDigest DIGEST="b50d931e0f0937e35efbc2d819cf0b36" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+          xmlns:rel="info:fedora/fedora-system:def/relations-external#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw"/>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:10:11.065Z" ID="RELS-EXT.1" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="658">
+      <foxml:contentDigest DIGEST="ad089b380a16af730c8ffd714163bb36" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:13:48.313Z" ID="RELS-EXT.2" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="915">
+      <foxml:contentDigest DIGEST="56d2fbeb858deda618d75293440c4311" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <oai:itemID>oai:ark:/25593/td5xw</oai:itemID>
+            <symp:hasPublicUrl rdf:resource="https://pid.emory.edu/ark:/25593/td5xw"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-09T04:06:36.387Z" ID="RELS-EXT.3" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="1125">
+      <foxml:contentDigest DIGEST="89facecf42b8142e19704e0b39d2d108" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:eul-repomgmt="http://pid.emory.edu/ns/2011/repo-management/#"
+          xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <symp:hasPublicUrl rdf:resource="https://pid.emory.edu/ark:/25593/td5xw"/>
+            <eul-repomgmt:lastFixityCheck rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-10-09T00:06:35</eul-repomgmt:lastFixityCheck>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+            <oai:itemID>oai:ark:/25593/td5xw</oai:itemID>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2019-06-04T09:28:14.923Z" ID="RELS-EXT.4" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="1125">
+      <foxml:contentDigest DIGEST="3ed16601a5166099ae987b838fde3f36" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:eul-repomgmt="http://pid.emory.edu/ns/2011/repo-management/#"
+          xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <oai:itemID>oai:ark:/25593/td5xw</oai:itemID>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+            <symp:hasPublicUrl rdf:resource="https://pid.emory.edu/ark:/25593/td5xw"/>
+            <eul-repomgmt:lastFixityCheck rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-04T05:28:14</eul-repomgmt:lastFixityCheck>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2020-02-20T08:52:37.888Z" ID="RELS-EXT.5" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="1125">
+      <foxml:contentDigest DIGEST="e78e93958af8529f56f7a75c4ea824cf" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:eul-repomgmt="http://pid.emory.edu/ns/2011/repo-management/#"
+          xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <symp:hasPublicUrl rdf:resource="https://pid.emory.edu/ark:/25593/td5xw"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+            <oai:itemID>oai:ark:/25593/td5xw</oai:itemID>
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+            <eul-repomgmt:lastFixityCheck rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-02-20T03:52:37</eul-repomgmt:lastFixityCheck>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2021-02-08T10:48:34.148Z" ID="RELS-EXT.6" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="1125">
+      <foxml:contentDigest DIGEST="44299fba1b32cc17d31e644494eaf758" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:eul-repomgmt="http://pid.emory.edu/ns/2011/repo-management/#"
+          xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+            <oai:itemID>oai:ark:/25593/td5xw</oai:itemID>
+            <eul-repomgmt:lastFixityCheck rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2021-02-08T05:48:33</eul-repomgmt:lastFixityCheck>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <symp:hasPublicUrl rdf:resource="https://pid.emory.edu/ark:/25593/td5xw"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2022-03-25T06:58:45.939Z" ID="RELS-EXT.7" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="1125">
+      <foxml:contentDigest DIGEST="95bdc70d34e0dbbdee84bc557e814142" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:eul-repomgmt="http://pid.emory.edu/ns/2011/repo-management/#"
+          xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <oai:itemID>oai:ark:/25593/td5xw</oai:itemID>
+            <symp:hasPublicUrl rdf:resource="https://pid.emory.edu/ark:/25593/td5xw"/>
+            <eul-repomgmt:lastFixityCheck rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-03-25T02:58:45</eul-repomgmt:lastFixityCheck>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2024-05-15T09:55:00.076Z" ID="RELS-EXT.8" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="1125">
+      <foxml:contentDigest DIGEST="8485f23df0fa6bd902af9a0cd3d193a7" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:eul-repomgmt="http://pid.emory.edu/ns/2011/repo-management/#"
+          xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <oai:itemID>oai:ark:/25593/td5xw</oai:itemID>
+            <eul-repomgmt:lastFixityCheck rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-05-15T05:54:59</eul-repomgmt:lastFixityCheck>
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+            <symp:hasPublicUrl rdf:resource="https://pid.emory.edu/ark:/25593/td5xw"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2024-06-16T05:09:08.273Z" ID="RELS-EXT.9" LABEL="Relationships"
+      MIMETYPE="application/rdf+xml" SIZE="1125">
+      <foxml:contentDigest DIGEST="0c199afe60320068d1a50a132e394095" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:eul-repomgmt="http://pid.emory.edu/ns/2011/repo-management/#"
+          xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:symp="info:symplectic/symplectic-elements:def/model#">
+          <rdf:Description rdf:about="info:fedora/emory:td5xw">
+            <eul-repomgmt:lastFixityCheck rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-16T01:09:08</eul-repomgmt:lastFixityCheck>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedPoster-1.0"/>
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+            <oai:itemID>oai:ark:/25593/td5xw</oai:itemID>
+            <symp:hasPublicUrl rdf:resource="https://pid.emory.edu/ark:/25593/td5xw"/>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="SYMPLECTIC-ATOM" STATE="I" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:02:32.029Z" ID="SYMPLECTIC-ATOM.0" LABEL="SYMPLECTIC-ATOM"
+      MIMETYPE="text/xml" SIZE="10231">
+      <foxml:contentDigest DIGEST="e70177fa580e65d124840ed17704f390" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/SYMPLECTIC-ATOM/2018-10-08T18:02:32.029Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:02:32.444Z" ID="SYMPLECTIC-ATOM.1" LABEL="SYMPLECTIC-ATOM"
+      MIMETYPE="text/xml" SIZE="10231">
+      <foxml:contentDigest DIGEST="e70177fa580e65d124840ed17704f390" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/SYMPLECTIC-ATOM/2018-10-08T18:02:32.444Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:03:05.803Z" ID="SYMPLECTIC-ATOM.2" LABEL="SYMPLECTIC-ATOM"
+      MIMETYPE="text/xml" SIZE="10284">
+      <foxml:contentDigest DIGEST="577349c6ac9b60f0e8a9b3df8d711719" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/SYMPLECTIC-ATOM/2018-10-08T18:03:05.803Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:03:06.390Z" ID="SYMPLECTIC-ATOM.3" LABEL="SYMPLECTIC-ATOM"
+      MIMETYPE="text/xml" SIZE="10284">
+      <foxml:contentDigest DIGEST="577349c6ac9b60f0e8a9b3df8d711719" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/SYMPLECTIC-ATOM/2018-10-08T18:03:06.390Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="bin1e3bbec8-ea11-4dc7-a8f3-af5a64e073a5" STATE="A" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:02:32.995Z" ID="bin1e3bbec8-ea11-4dc7-a8f3-af5a64e073a5.0"
+      LABEL="Prinz_2007_systematic-computational-exploration-of-the-parameter-space-of-the-multi-compartment-model-of-the-lobster-pyloric-pacemaker-kernel-suggests-that-the-kernel-can-achieve-functional-activity-under-various-parameter-configurations.pdf"
+      MIMETYPE="application/pdf; charset=ISO-8859-1" SIZE="132955">
+      <foxml:contentDigest DIGEST="0a814a34b7e67e2c940660a89803df73" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/bin1e3bbec8-ea11-4dc7-a8f3-af5a64e073a5/2018-10-08T18:02:32.995Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:02:33.367Z" ID="bin1e3bbec8-ea11-4dc7-a8f3-af5a64e073a5.1"
+      LABEL="Prinz_2007_systematic-computational-exploration-of-the-parameter-space-of-the-multi-compartment-model-of-the-lobster-pyloric-pacemaker-kernel-suggests-that-the-kernel-can-achieve-functional-activity-under-various-parameter-configurations.pdf"
+      MIMETYPE="application/pdf" SIZE="132955">
+      <foxml:contentDigest DIGEST="0a814a34b7e67e2c940660a89803df73" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/bin1e3bbec8-ea11-4dc7-a8f3-af5a64e073a5/2018-10-08T18:02:33.367Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="SYMPLECTIC-LICENCE" STATE="I" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:03:06.946Z" ID="SYMPLECTIC-LICENCE.0" LABEL="emoryFIRSTLicense1.odt"
+      MIMETYPE="application/vnd.oasis.opendocument.text; charset=ISO-8859-1" SIZE="3189">
+      <foxml:contentDigest DIGEST="52bbfff7bdebb9b6658edaa9ba1a1967" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/SYMPLECTIC-LICENCE/2018-10-08T18:03:06.946Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:03:07.543Z" ID="SYMPLECTIC-LICENCE.1" LABEL="emoryFIRSTLicense1.odt"
+      MIMETYPE="application/vnd.oasis.opendocument.text" SIZE="3189">
+      <foxml:contentDigest DIGEST="52bbfff7bdebb9b6658edaa9ba1a1967" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/SYMPLECTIC-LICENCE/2018-10-08T18:03:07.543Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:03:08.087Z" ID="SYMPLECTIC-LICENCE.2" LABEL="emoryFIRSTLicense1.odt"
+      MIMETYPE="application/vnd.oasis.opendocument.text" SIZE="3189">
+      <foxml:contentDigest DIGEST="52bbfff7bdebb9b6658edaa9ba1a1967" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/SYMPLECTIC-LICENCE/2018-10-08T18:03:08.087Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="descMetadata" STATE="A" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:10:10.698Z" ID="descMetadata.0" LABEL="descMetadata(MODS)"
+      MIMETYPE="text/xml" SIZE="2570">
+      <foxml:contentDigest DIGEST="49ed4e2aaf70f215117bf29a0e4a5d20" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/descMetadata/2018-10-08T18:10:10.698Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-08T18:13:48.023Z" ID="descMetadata.1" LABEL="descMetadata(MODS)"
+      MIMETYPE="text/xml" SIZE="4211">
+      <foxml:contentDigest DIGEST="1d389767150837a3c9fd952bc17bc707" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/descMetadata/2018-10-08T18:13:48.023Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="content" STATE="A" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:10:12.097Z" ID="content.0" LABEL="application/pdf"
+      MIMETYPE="application/pdf" SIZE="132955">
+      <foxml:contentDigest DIGEST="0a814a34b7e67e2c940660a89803df73" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/content/2018-10-08T18:10:12.097Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="provenanceMetadata" STATE="A" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2018-10-08T18:13:47.655Z" ID="provenanceMetadata.0" LABEL="" MIMETYPE="text/xml" SIZE="839">
+      <foxml:contentDigest DIGEST="230832743cbb4a092ad3ac6a5115d244" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/provenanceMetadata/2018-10-08T18:13:47.655Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2018-10-09T04:06:36.024Z" ID="provenanceMetadata.1" LABEL="" MIMETYPE="text/xml" SIZE="1794">
+      <foxml:contentDigest DIGEST="9fdc3c1c9c7c67e5d80d1a94ee121021" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/provenanceMetadata/2018-10-09T04:06:36.024Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2019-06-04T09:28:14.690Z" ID="provenanceMetadata.2" LABEL="" MIMETYPE="text/xml" SIZE="2749">
+      <foxml:contentDigest DIGEST="aa49d1e0f67c255ebb3907b841e4b400" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/provenanceMetadata/2019-06-04T09:28:14.690Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2020-02-20T08:52:37.689Z" ID="provenanceMetadata.3" LABEL="" MIMETYPE="text/xml" SIZE="3704">
+      <foxml:contentDigest DIGEST="14bc96a0036789a3e9baee1ebc6e67f4" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/provenanceMetadata/2020-02-20T08:52:37.689Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2021-02-08T10:48:33.944Z" ID="provenanceMetadata.4" LABEL="" MIMETYPE="text/xml" SIZE="4659">
+      <foxml:contentDigest DIGEST="3497d6ca432786bb1a3e8a51ce3a0f41" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/provenanceMetadata/2021-02-08T10:48:33.944Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2022-03-25T06:58:45.675Z" ID="provenanceMetadata.5" LABEL="" MIMETYPE="text/xml" SIZE="5614">
+      <foxml:contentDigest DIGEST="bb68db28dbe637245d46a3b4ac8e0f3e" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/provenanceMetadata/2022-03-25T06:58:45.675Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2024-05-15T09:54:59.942Z" ID="provenanceMetadata.6" LABEL="" MIMETYPE="text/xml" SIZE="6569">
+      <foxml:contentDigest DIGEST="e12559d8996c088d3e71544264b8901c" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/provenanceMetadata/2024-05-15T09:54:59.942Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2024-06-16T05:09:08.171Z" ID="provenanceMetadata.7" LABEL="" MIMETYPE="text/xml" SIZE="7524">
+      <foxml:contentDigest DIGEST="1d79054b5df05ce00ff0ed10adaf7ec7" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:td5xw/provenanceMetadata/2024-06-16T05:09:08.171Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+</foxml:digitalObject>
