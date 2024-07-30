@@ -2,38 +2,58 @@
 
 <% provide :page_title, @presenter.page_title %>
 
-<div class="file-set-show container-fluid">
-<header>
-  <%= render 'file_set_title', presenter: @presenter %>
-</header>
-<div class="card"><div class="card-body">
-  <div class="row">
+<div class="file-set-show">
 
-    <div itemscope itemtype="<%= @presenter.itemtype %>" class="col-8">
-      <% @presenter.show_partials.each do |partial_path| %>
-        <%= render partial_path %>
-        <% end %>
-        <%= render 'hyrax/users/activity_log', events: @presenter.events %>
-    </div>
+  <header>
+    <%= render 'file_set_title', presenter: @presenter %>
+  </header>
+
+  <div class="file-set-details card">
+    <h2 class="card-header"><%= t(".file_details") %></h2>
+    <div class="card-body">
+      <div class="row">
+
+        <div itemscope itemtype="<%= @presenter.itemtype %>" class="col-8">
+          <% @presenter.show_partials.each do |partial_path| %>
+            <%= render partial_path %>
+          <% end %>
+        </div>
+          
+        <div class="col-4">
+          <%= render media_display_partial(@presenter), file_set: @presenter %>
+
+          <div class="card viewer-actions">
+              <div class="card-header">
+                <h2 class="mb-0 h6 show-tools-card-title">Tools</h2>
+              </div>
+              <ul class="list-group list-group-flush">
+                <%= render 'show_actions', presenter: @presenter %>
+
+                <li class="list-group-item direct_link">
+                  
+              
+
+                </li>
+
+                <%= render 'single_use_links', presenter: @presenter if @presenter.editor? %>
+              </ul>
+          </div><!-- /.card .viewer-actions -->
+        </div><!-- /.col-4 -->
+          
+      </div><!-- /.row -->
+      <%= render 'hyrax/users/activity_log', events: @presenter.events %>
+    </div><!-- /.card-body -->
+  </div><!-- /.card -->
         
-    <div class="col-4">
-      <%= render media_display_partial(@presenter), file_set: @presenter %>
-      <%= render 'show_actions', presenter: @presenter %>
-      <%= render 'single_use_links', presenter: @presenter if @presenter.editor? %>
-    </div>
-  </div></div></div> <!-- /.row -->
-        
-  <div class="card card-overflow">
-    <div class="card-header">
-      <h2 class="card-title"><%= t('.preservation_events') %></h2>
-      <div class="card-body event-table" role="region" aria-label="Preservation Events" tabindex="0">
-          <%= render 'hyrax/base/preservation_events', presenter: @presenter %>
-      </div>
+  <div class="card">
+    <h2 class="card-header"><%= t('.preservation_events') %></h2>
+    <div class="event-table" role="region" aria-label="Preservation Events" tabindex="0">
+      <%= render 'hyrax/base/preservation_events', presenter: @presenter %>
     </div>
 
-  </div><!-- /columns second -->
+  </div><!-- /card -->
 
-</div><!-- /.container-fluid -->
+</div><!-- /.file-set-show -->
 
 <% @presenter.member_of_collection_ids.each do |collection_id| %>
   <span class='hide analytics-event' data-category="file-set-in-collection" data-action="file-set-in-collection-view" data-name="<%= collection_id %>" >

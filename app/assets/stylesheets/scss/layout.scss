@@ -95,11 +95,17 @@ form.new_user ~ a {
 }
 
 /**** Home Page ****/
-.media-heading > a,
-.terms-of-use > a,
-.recent-item a {
-  color: $bright-blue;
-} 
+.home-share-work {
+  .terms-of-use > a {
+    color: $bright-blue;
+  }
+}
+.home-content {
+  .media-heading > a,
+  .recent-item a {
+    color: $bright-blue;
+  } 
+}
 
 /**** Dashboard General ****/
 body.dashboard {
@@ -299,16 +305,16 @@ div.list-group > .list-group-item a {
 /**** End View Work Page (/concerns/publications/) ****/
 
 /*** Search Results ***/
-.badge {
-  margin: 0 1.5625rem;
+#search-results {
+  .badge {
+    margin: 0 1.5625rem;
+  }
+  section.pagination > div.page-links > a,
+  .page-link,
+  a {
+    color: $bright-blue;
+  }
 }
-
-section.pagination > div.page-links > a,
-.page-link,
-#search-results a {
-  color: $bright-blue;
-}
-
 /*** end Search Results ***/
 
 /*** Works List _list_works ***/
@@ -335,8 +341,37 @@ a.facet-select,
   a {
     color: $bright-blue;
   }
+  .file-set-details {
+    margin-bottom: 3rem;
+  }
+  .btn-danger {
+    color: $white;
+  }
   .social-media {
     display: none;
   }
+  .file-show-term {
+    border: none;
+    padding-top: 0;
+  }
+  .representative-media {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+  h2.show-tools-card-title {
+    font-family: $font-family-sans-serif;
+    color: $gold;
+    background-color: $dark-blue;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .viewer-actions div.card-header {
+    background-color: $dark-blue;
+    text-align: left;
+  }
+  .activity-display {
+    margin-top: 3rem;
+  }
+  
 }
 /**** end File-Set Show Page ****/

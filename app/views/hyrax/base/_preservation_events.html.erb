@@ -1,14 +1,14 @@
 <% sorted_events = sort_preservation_events(@presenter.solr_document['preservation_events_tesim']) %>
 <% if sorted_events.present? %>
-    <table id="preservation-event-table" class="table table-striped table-bordered">
+    <table id="preservation-event-table" class="card-body table table-striped table-bordered">
         <thead>
         <tr>
-            <th><%= t('.event') %></th>
-            <th><%= t('.timestamp') %></th>
-            <th><%= t('.outcome') %></th>
-            <th><%= t('.detail') %></th>
-            <th><%= t('.user') %></th>
-            <th><%= t('.software') %></th>
+            <th class="pet-fit"><%= t('.event') %></th>
+            <th class="pet-fit"><%= t('.timestamp') %></th>
+            <th class="pet-fit"><%= t('.outcome') %></th>
+            <th class="pet-fit"><%= t('.detail') %></th>
+            <th class="pet-fit"><%= t('.user') %></th>
+            <th class="pet-fit"><%= t('.software') %></th>
         </tr>
         </thead>
         <tbody>
