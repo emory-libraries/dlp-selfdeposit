@@ -61,12 +61,8 @@ module FedoraThreeObjectsMigrationMethods
   end
 
   def pull_binary_object(datastream:)
-    binary_id = datastream['ID']
-    binary_filename = datastream.elements.first['LABEL']
-    blank_filename_test = binary_filename.empty? || binary_filename.include?('/')
-    binary_ext = ALLOWED_TYPES[:"#{datastream.elements.first['MIMETYPE']}"]
-    binary_save_name = blank_filename_test ? ["content", binary_ext].join('.') : truncate_long_filenames(binary_filename.tr(' ', '_'))
-    download = URI.open("#{@fedora_three_path}/fedora/get/emory:#{@pid}/#{binary_id}")
+    binary_save_name = process_binary_filename(datastream:)
+    download = URI.open("#{@fedora_three_path}/fedora/get/emory:#{@pid}/#{@binary_id}")
 
     IO.copy_stream(download, "./emory_#{@pid}/#{binary_save_name}")
     record_filenames_with_path(binary_save_name)
@@ -98,5 +94,13 @@ module FedoraThreeObjectsMigrationMethods
     else
       filename
     end
+  end
+
+  def process_binary_filename(datastream:)
+    @binary_id = datastream['ID']
+    binary_filename = datastream.elements.first['LABEL']
+    blank_filename_test = binary_filename.empty? || binary_filename.include?('/')
+    binary_ext = ALLOWED_TYPES[:"#{datastream.elements.first['MIMETYPE']}"]
+    blank_filename_test ? ["content", binary_ext].join('.') : truncate_long_filenames(binary_filename.tr(' ', '_'))
   end
 end

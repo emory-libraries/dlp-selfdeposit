@@ -72,4 +72,27 @@ RSpec.describe MigrateFedoraThreeObjects, :clean do
 
     it('returns the filename untouched if it is shorter than 150 characters') { expect(migrator.send(:truncate_long_filenames, short_filename)).to eq(short_filename) }
   end
+
+  context '#process_binary_filename' do
+    let(:datastreams) { Nokogiri::XML(xml_with_binaries).xpath('//foxml:datastream') }
+    let(:no_label_datastream) { datastreams[7] }
+    let(:label_datastream) { datastreams[4] }
+
+    it 'uses the LABEL element if it is available' do
+      allow(migrator).to receive(:truncate_long_filenames).and_call_original
+      expect(migrator).to receive(:truncate_long_filenames)
+      expect(label_datastream.elements.first['LABEL']).to eq(
+        'Prinz_2007_systematic-computational-exploration-of-the-parameter-space-of-the-multi-compartment-model-of-the-lobster-pyloric-pacemaker-' \
+        'kernel-suggests-that-the-kernel-can-achieve-functional-activity-under-various-parameter-configurations.pdf'
+      )
+      expect(migrator.send(:process_binary_filename, datastream: label_datastream)).to eq(
+        "Prinz_2007_systematic-computational-exploration-of-the-parameter-space-of-the-multi-compartment-modeTRUNCATED_FILE_NAME.pdf"
+      )
+    end
+
+    it 'creates a default filename if LABEL is not present' do
+      expect(migrator).not_to receive(:truncate_long_filenames)
+      expect(migrator.send(:process_binary_filename, datastream: no_label_datastream)).to eq("content.pdf")
+    end
+  end
 end
