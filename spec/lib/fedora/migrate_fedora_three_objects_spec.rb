@@ -56,4 +56,20 @@ RSpec.describe MigrateFedoraThreeObjects, :clean do
       expect(migrator.instance_variable_get(:@pids_with_filenames)).to eq({ pids => "bill.jpeg;ted.png;death.flac" })
     end
   end
+
+  context '#truncate_long_filenames' do
+    let(:long_filename) do
+      'Prinz_2007_systematic-computational-exploration-of-the-parameter-space-of-the-multi-compartment-model-of-the-lobster-pyloric-pacemaker-' \
+      'kernel-suggests-that-the-kernel-can-achieve-functional-activity-under-various-parameter-configurations.pdf'
+    end
+    let(:short_filename) { 'a_short_and_sweet_title.pdf' }
+
+    it 'truncates filenames that are longer than 150 characters' do
+      expect(migrator.send(:truncate_long_filenames, long_filename)).to eq(
+        "Prinz_2007_systematic-computational-exploration-of-the-parameter-space-of-the-multi-compartment-modeTRUNCATED_FILE_NAME.pdf"
+      )
+    end
+
+    it('returns the filename untouched if it is shorter than 150 characters') { expect(migrator.send(:truncate_long_filenames, short_filename)).to eq(short_filename) }
+  end
 end
