@@ -20,20 +20,29 @@ RSpec.describe MigrateFedoraThreeObjects, :clean do
   end
 
   context '#pid_lacks_binaries' do
-    it 'returns true when XML lacks binaries' do
-      expect(migrator.send(:pid_lacks_binaries, datastreams)).to be_truthy
-    end
-
+    it('returns true when XML lacks binaries') { expect(migrator.send(:pid_lacks_binaries, datastreams)).to be_truthy }
     include_examples 'tests for xml presence method calling'
 
     describe 'when xml contains binaries' do
       let(:datastreams) { Nokogiri::XML(xml_with_binaries).xpath('//foxml:datastream') }
 
-      it 'returns false' do
-        expect(migrator.send(:pid_lacks_binaries, datastreams)).to be_falsey
-      end
-
+      it('returns false') { expect(migrator.send(:pid_lacks_binaries, datastreams)).to be_falsey }
       include_examples 'tests for xml presence method calling'
     end
+  end
+
+  context '#test_for_xmls' do
+    let(:xml_datastreams) { datastreams.select { |ds| migrator.send(:test_for_xmls, datastream: ds) } }
+
+    it 'returns true for all XML datastreams besides AUDIT' do
+      expect(xml_datastreams.map { |ds| ds['ID'] }).not_to include('AUDIT')
+      expect(xml_datastreams.map { |ds| ds.elements.first['MIMETYPE'] }.all? { |mt| mt.include?('xml') }).to be_truthy
+    end
+  end
+
+  context '#test_for_audit' do
+    let(:audit_datastream) { datastreams.find { |ds| migrator.send(:test_for_audit, datastream: ds) } }
+
+    it('returns true when the datastream contains an ID of AUDIT') { expect(audit_datastream['ID']).to eq('AUDIT') }
   end
 end
