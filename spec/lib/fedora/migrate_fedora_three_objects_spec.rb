@@ -45,4 +45,15 @@ RSpec.describe MigrateFedoraThreeObjects, :clean do
 
     it('returns true when the datastream contains an ID of AUDIT') { expect(audit_datastream['ID']).to eq('AUDIT') }
   end
+
+  context '#record_filenames_with_path' do
+    it 'sets and concatenates filenames' do
+      migrator.instance_variable_set(:@pid, pids)
+      migrator.send(:record_filenames_with_path, 'bill.jpeg')
+      migrator.send(:record_filenames_with_path, 'ted.png')
+      migrator.send(:record_filenames_with_path, 'death.flac')
+
+      expect(migrator.instance_variable_get(:@pids_with_filenames)).to eq( { pids => "bill.jpeg;ted.png;death.flac" } )
+    end
+  end
 end
