@@ -1,0 +1,12 @@
+---
+- name: create default admin set
+  hosts: 
+    - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}"
+  user: deploy
+  become: yes 
+  tasks:
+  - name: run rake task
+    shell: 
+      cmd: source /home/deploy/.nvm/nvm.sh && source /home/deploy/.bash_profile && bundle exec rake selfdeposit:publications:setup_admin_set_collection
+      chdir: /opt/dlp-selfdeposit/current
+      executable: /bin/bash

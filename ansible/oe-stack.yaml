@@ -95,7 +95,7 @@
       db: "oe24{{ ENV }}"
       role: "oe24{{ ENV }}"
       objs: ALL_IN_SCHEMA
-      privs: SELECT,INSERT,UPDATE,DELETE
+      privs: CREATE,SELECT,INSERT,UPDATE,DELETE
   - name: create Redis node
     cloudformation:
       stack_name: "ansible-OE-cloudformation-redis-{{ ENV }}"
