@@ -53,7 +53,7 @@ RSpec.describe MigrateFedoraThreeObjects, :clean do
       migrator.send(:record_filenames_with_path, 'ted.png')
       migrator.send(:record_filenames_with_path, 'death.flac')
 
-      expect(migrator.instance_variable_get(:@pids_with_filenames)).to eq( { pids => "bill.jpeg;ted.png;death.flac" } )
+      expect(migrator.instance_variable_get(:@pids_with_filenames)).to eq({ pids => "bill.jpeg;ted.png;death.flac" })
     end
   end
 end
