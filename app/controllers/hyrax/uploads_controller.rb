@@ -6,10 +6,12 @@ module Hyrax
     load_and_authorize_resource class: Hyrax::UploadedFile
 
     def create
-      @upload.attributes = { file: params[:file],
-                             fileset_name: params[:fileset_name],
-                             fileset_use: params[:fileset_use],
-                             user: current_user }
+      upload_attributes = {}
+      upload_attributes[:file] = params[:files].first
+      upload_attributes[:fileset_name] = params[:fileset_name] if params[:fileset_name].present?
+      upload_attributes[:fileset_use] = params[:fileset_use] if params[:fileset_use].present?
+      upload_attributes[:user] = current_user
+      @upload.attributes = upload_attributes
       @upload.save!
     end
 
