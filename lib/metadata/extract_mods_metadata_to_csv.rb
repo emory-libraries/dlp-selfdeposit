@@ -1,76 +1,16 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
-require 'fileutils'
-require 'nokogiri'
-require 'open-uri'
-require 'csv'
-require 'pry'
-require_relative 'mods_metadata_extraction_methods'
 
-class ExtractModsMetadataToCsv
-  ::MULTIPLE_VALUE_PROCESSOR = ->(el) { el.children.map(&:text).join('|') }
-  ::SINGLE_VALUE_PROCESSOR = ->(el) { el&.children&.first&.text }
-  ::METADATA_FIELDS_LEGEND = {
-    title: { xpath: '/mods:mods/mods:titleInfo/mods:title', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    holding_repository: { xpath: nil, processor: nil, ext_method: 'holding_repository_value' },
-    emory_content_type: { xpath: '//mods:typeOfResource', processor: ->(el) { el&.children&.first&.text&.capitalize }, ext_method: nil },
-    content_genre: { xpath: '//mods:genre[@authority="marcgt"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    creator: { xpath: nil, processor: nil, ext_method: 'creator_values' },
-    creator_last_first: { xpath: nil, processor: nil, ext_method: 'extract_creator_last_first' },
-    abstract: { xpath: '//mods:abstract', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    date_issued: { xpath: '/mods:mods/mods:originInfo/mods:dateIssued', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    date_issued_year: { xpath: '/mods:mods/mods:originInfo/mods:dateIssued', processor: nil, ext_method: 'extract_date_issued_year' },
-    keyword: { xpath: '/mods:mods/mods:subject[@authority="keywords"]/mods:topic', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    parent_title: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    publisher: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:originInfo/mods:publisher', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    final_published_versions: { xpath: '/mods:mods/mods:relatedItem[@displayLabel="Final Published Version"]/mods:identifier[@type="uri"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    issue: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:part/mods:detail[@type="number"]/mods:number', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    page_range_start: { xpath: '//mods:extent[@unit="pages"]/mods:start', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    page_range_end: { xpath: '//mods:extent[@unit="pages"]/mods:end', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    volume: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:part/mods:detail[@type="volume"]/mods:number', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    edition: { xpath: '//mods:edition', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    place_of_production: { xpath: '/mods:mods/mods:originInfo/mods:place/mods:placeTerm', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    issn: { xpath: '/mods:mods/mods:relatedItem[@type="host"]/mods:identifier[@type="issn"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    conference_name: { xpath: '//mods:relatedItem[@type="host"]/mods:name[@type="conference"]/mods:namePart', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    author_notes: { xpath: '/mods:mods/mods:note[@type="author notes"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    rights_statements: { xpath: nil, processor: nil, ext_method: 'rights_statements_value' },
-    emory_ark: { xpath: '/mods:mods/mods:identifier[@type="ark"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    research_categories: { xpath: '/mods:mods/mods:subject[@authority="proquestresearchfield"]/mods:topic', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    rights_notes: { xpath: '/mods:mods/mods:accessCondition[@displayLabel="copyright"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    publisher_version: { xpath: nil, processor: nil, ext_method: 'publisher_version_value' },
-    language: { xpath: '/mods:mods/mods:language/mods:languageTerm[@type="text"]', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    related_datasets: { xpath: '/mods:mods/mods:relatedItem[@type="references"]/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]',
-                        processor: MULTIPLE_VALUE_PROCESSOR,
-                        ext_method: nil },
-    license: { xpath: '/mods:mods/mods:accessCondition/@*[namespace-uri()="http://www.w3.org/1999/xlink" and local-name()="href"]', processor: SINGLE_VALUE_PROCESSOR, ext_method: nil },
-    grant_information: { xpath: '//mods:name[mods:role/mods:roleTerm="funder"]/mods:namePart', processor: MULTIPLE_VALUE_PROCESSOR, ext_method: nil },
-    internal_rights_note: { xpath: nil, processor: nil, ext_method: 'internal_rights_note_value' }
-  }.freeze
-
-  include ::ModsMetadataExtractionMethods
-
-  def initialize(xml_path:, desired_csv_filename: 'mods_parsed_metadata.csv')
-    @xml_path = xml_path
-    @desired_csv_filename = desired_csv_filename
-  end
-
-  def run
-    @mods_xml = pull_mods_xml
-    @ret_hash = {}
-
-    assign_values_to_ret_hash
-    create_csv_from_ret_hash
-  end
-end
+require_relative 'mods_metadata_to_csv_extractor'
 
 if ARGV.empty?
   puts "Exiting -- This script must be in the following format:"
-  puts "./dlp-selfdeposit/lib/metadata/extract_mods_metadata_to_csv.rb <full path to the MODS XML file> <optional: desired name of returned CSV file>"
-  puts "NOTE: desired CSV filename must end with the .csv extension. example: my_desired_filename.csv"
+  puts "./dlp-selfdeposit/lib/metadata/extract_mods_metadata_to_csv.rb <full path to the CSV file produced by the migrate_fedora3_objects.rb script>"
+  puts "<optional: full local path to the location that houses each folder containing files relevant to each PID>"
   exit 1
 end
 
-xml_path = ARGV[0]
-desired_csv_filename = ARGV[1]
+csv_path = ARGV[0]
+local_folder_path = ARGV[1]
 
-desired_csv_filename.nil? ? ExtractModsMetadataToCsv.new(xml_path:).run : ExtractModsMetadataToCsv.new(xml_path:, desired_csv_filename:).run
+local_folder_path.nil? ? ModsMetadataToCsvExtractor.new(csv_path:).run : ModsMetadataToCsvExtractor.new(csv_path:, local_folder_path:).run
