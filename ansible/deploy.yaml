@@ -2,6 +2,7 @@
 - name: deploy main 
   hosts: localhost
   vars:
+    - SECRET_KEY_BASE: "{{ lookup('amazon.aws.aws_secret','selfdeposit-secretkeybase-{{ ENV }}.secretkeybase', nested=true) }}"
     - DBPASSWORD: "{{ lookup('amazon.aws.aws_secret','oe24-{{ ENV }}-dbuser-password.password',nested=true) }}" 
     - deployhost: "{{ ENV | upper }}_SERVER_IP"  
   tasks:
