@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     isbn[0].style.display = "none";
                     series[0].style.display = "none";
                     edition[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("afterend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
                     break;
                 }
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     issue[0].style.display = "none";
                     pageStart[0].style.display = "none";
                     pageEnd[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }
@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     issn[0].style.display = "none";
                     volume[0].style.display = "none";
                     issue[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("afterend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     series[0].style.display = "none";
                     edition[0].style.display = "none";
 
-                    pubVersionLabel.insertAdjacentHTML("afterend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }
@@ -264,7 +264,7 @@ function validateModal(x) {
 
     var modal = document.getElementById("publication_content_genre");
     var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
-    modal.insertAdjacentHTML("afterend", text);
+    modal.insertAdjacentHTML("beforeend", text);
     return false;
 
 }
