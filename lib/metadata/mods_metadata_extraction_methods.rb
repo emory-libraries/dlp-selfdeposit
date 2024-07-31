@@ -3,8 +3,14 @@
 module ModsMetadataExtractionMethods
   private
 
+  def pull_pids_and_filenames
+    ret_hsh = {}
+    ::CSV.open(@csv_path, headers: true, return_headers: false).each { |line| ret_hsh[line.fields.first] = line.fields.last }
+    ret_hsh
+  end
+
   def pull_mods_xml
-    file = File.open(@xml_path)
+    file = File.open(mods_path)
     Nokogiri::XML(file)
   end
 
@@ -17,14 +23,15 @@ module ModsMetadataExtractionMethods
                             send(METADATA_FIELDS_LEGEND[k][:ext_method])
                           end
     end
+    @ret_hash['file'] = @pids_and_filenames[@pid]
   end
 
-  def create_csv_from_ret_hash
-    CSV.open(@desired_csv_filename, "wb") do |csv|
-      keys = @ret_hash.keys
+  def create_csv_from_ret_hash_array
+    CSV.open("ingestion_csv_from_#{@date_time_started}.csv", "wb") do |csv|
+      keys = @ret_array_of_hashes.first.keys
       # header_row
       csv << keys
-      csv << @ret_hash.values_at(*keys)
+      @ret_array_of_hashes.each { |hsh| csv << hsh.values_at(*keys) }
     end
   end
 
@@ -79,5 +86,9 @@ module ModsMetadataExtractionMethods
 
       el_label.empty? ? el_value : "#{el_label}: #{el_value}"
     end.join('; ')
+  end
+
+  def mods_path
+    @local_folder_path.nil? ? "/mnt/efs/current_batch/emory_#{@pid}/descMetadata.xml" : "#{@local_folder_path}/emory_#{@pid}/descMetadata.xml"
   end
 end

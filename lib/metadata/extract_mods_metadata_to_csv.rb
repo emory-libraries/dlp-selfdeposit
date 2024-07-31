@@ -49,17 +49,26 @@ class ExtractModsMetadataToCsv
 
   include ::ModsMetadataExtractionMethods
 
-  def initialize(xml_path:, desired_csv_filename: 'mods_parsed_metadata.csv')
-    @xml_path = xml_path
-    @desired_csv_filename = desired_csv_filename
+  def initialize(csv_path:, local_folder_path: nil)
+    @csv_path = csv_path
+    @local_folder_path = local_folder_path
+    @date_time_started = DateTime.now.strftime('%Y%m%dT%H%M')
   end
 
   def run
-    @mods_xml = pull_mods_xml
-    @ret_hash = {}
+    @pids_and_filenames = pull_pids_and_filenames
+    @ret_array_of_hashes = []
 
-    assign_values_to_ret_hash
-    create_csv_from_ret_hash
+    @pids_and_filenames.keys.each do |pid|
+      @pid = pid
+      @mods_xml = pull_mods_xml
+      @ret_hash = {}
+
+      assign_values_to_ret_hash
+      @ret_array_of_hashes << @ret_hash
+    end
+
+    create_csv_from_ret_hash_array
   end
 end
 
@@ -70,7 +79,7 @@ if ARGV.empty?
   exit 1
 end
 
-xml_path = ARGV[0]
-desired_csv_filename = ARGV[1]
+csv_path = ARGV[0]
+local_folder_path = ARGV[1]
 
-desired_csv_filename.nil? ? ExtractModsMetadataToCsv.new(xml_path:).run : ExtractModsMetadataToCsv.new(xml_path:, desired_csv_filename:).run
+local_folder_path.nil? ? ExtractModsMetadataToCsv.new(csv_path:).run : ExtractModsMetadataToCsv.new(csv_path:, local_folder_path:).run
