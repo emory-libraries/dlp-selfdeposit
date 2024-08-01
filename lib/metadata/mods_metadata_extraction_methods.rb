@@ -24,7 +24,7 @@ module ModsMetadataExtractionMethods
                           end
     end
     @ret_hash['file'] = @pids_and_filenames[@pid]
-    @ret_hash['pid'] = @pid
+    @ret_hash['deduplication_key'] = @pid
   end
 
   def create_csv_from_ret_hash_array

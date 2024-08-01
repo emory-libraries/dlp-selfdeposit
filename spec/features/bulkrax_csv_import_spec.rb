@@ -8,27 +8,27 @@ RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature do
     let(:all_mapped_fields) do
       ["abstract", "author_notes", "conference_name", "content_genre", "creator", "creator_last_first",
        "data_classification", "date_issued", "date_issue_year", "deduplication_key", "edition", "emory_content_type",
-       "emory_ark", "file", "file_labels", "final_published_versions", "grant_agencies", "grant_information",
+       "emory_ark", "file", "final_published_versions", "grant_agencies", "grant_information",
        "holding_repository", "institution", "internal_rights_note", "isbn", "issn", "issue", "keyword", "language",
        "license", "model", "page_range_end", "page_range_start", "parent", "parent_title", "place_of_production",
        "publisher", "publisher_version", "related_datasets", "research_categories", "rights_notes", "rights_statement",
        "series_title", "sponsor", "staff_notes", "subject", "system_of_record_ID", "title", "volume"]
     end
     let(:multiple_value_fields) do
-      ["abstract", "creator", "creator_last_first", "emory_ark", "file", "file_labels", "final_published_versions",
+      ["abstract", "creator", "creator_last_first", "emory_ark", "file", "final_published_versions",
        "grant_agencies", "grant_information", "keyword", "related_datasets", "research_categories", "rights_notes",
        "rights_statement", "staff_notes", "subject", "title"]
     end
 
     it 'maps the expected fields' do
-      expect(pulled_field_mappings.count).to eq(46)
+      expect(pulled_field_mappings.count).to eq(45)
       expect(pulled_field_mappings.keys).to match_array(all_mapped_fields)
     end
 
     it 'contains the expected multivalue fields' do
       multivalued_fields = pulled_field_mappings.select { |_k, v| v[:split].present? }
 
-      expect(multivalued_fields.count).to eq(17)
+      expect(multivalued_fields.count).to eq(16)
       expect(multivalued_fields.keys).to match_array(multiple_value_fields)
     end
   end

@@ -77,7 +77,7 @@ RSpec.describe ModsMetadataToCsvExtractor, :clean do
             "AUDIT.xml;DC.xml;RELS-EXT.xml;SYMPLECTIC-ATOM.xml;Prinz_2007_systematic-computational-exploration-of-the-parameter" \
             "-space-of-the-multi-compartment-modeTRUNCATED_FILE_NAME.pdf;emoryFIRSTLicense1.odt;descMetadata.xml;content.pdf;" \
             "provenanceMetadata.xml",
-          "pid" => "td5xw" }
+          "deduplication_key" => "td5xw" }
       )
     end
   end

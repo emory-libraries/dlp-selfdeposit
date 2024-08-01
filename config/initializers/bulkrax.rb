@@ -51,7 +51,6 @@ Bulkrax.setup do |config|
       "emory_content_type" => { from: ["emory_content_type"] },
       "emory_ark" => { from: ["emory_ark"], split: '\|', join: '|' },
       "file" => { from: ["file"], split: '\;', join: ';' },
-      "file_labels" => { from: ['file_labels'], split: '\;', join: ';' },
       "final_published_versions" => { from: ["final_published_versions"], split: '\|', join: '|' },
       "grant_agencies" => { from: ["grant_agencies"], split: '\|', join: '|' },
       "grant_information" => { from: ["grant_information"], split: '\|', join: '|' },
@@ -184,28 +183,14 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   def apply_emory_fileset_metatdata(attrs)
     importer = Bulkrax::Importer.find(Bulkrax::ImporterRun.find(@importer_run_id).importer_id)
     pertinent_entry = importer.entries.find { |e| e.raw_metadata['deduplication_key'] == attributes['deduplication_key'] }
-
     raise "No associated Entry was found" unless pertinent_entry
 
-    file_names, file_labels = extract_values_from_entry(pertinent_entry)
-    return if file_labels.empty?
-
     uploaded_files_from(attrs).each do |file|
-      values_index = file_names.index { |fn| file.file_identifier == fn }
-
       file.fileset_use = assign_fileset_use(supplementary_file(file.file_identifier))
       file.desired_visibility = assign_fileset_visibility(supplementary_file(file.file_identifier))
-      file.fileset_name = file_labels[values_index]
+      file.fileset_name = assign_fileset_name(pertinent_entry, file.file_identifier)
       file.save
     end
-  end
-
-  # A helper method that pulls the needed FileSet values from the CSV Entry and returns an array or arrays.
-  def extract_values_from_entry(entry)
-    file_names = entry.raw_metadata['file'].split(';')
-    file_labels = entry.raw_metadata['file_labels'].split(';')
-
-    [file_names, file_labels]
   end
 
   def assign_fileset_use(supplementary_file)
@@ -216,8 +201,15 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
     supplementary_file ? 'restricted' : 'open'
   end
 
+  def assign_fileset_name(entry, file_identifier)
+    entry_pid = entry.raw_metadata['deduplication_key']
+    return file_identifier if entry_pid.blank?
+
+    supplementary_file(file_identifier) ? file_identifier : "Publication File - #{entry_pid}.#{file_identifier.split('.').last}"
+  end
+
   def supplementary_file(file_name)
-    file_name.include?('.xml') || (file_name.downcase.include?('emory') && file_name.downcase.include?('license'))
+    !file_name.include?('content.')
   end
 
   ##
