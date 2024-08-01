@@ -47,6 +47,10 @@ a {
   color: $bright-blue;
 }
 
+.badge {
+  margin: 0 0.5rem;
+}
+
 /**** Helper Classes ****/
 
 /** Padding 10 **/
@@ -303,8 +307,39 @@ div.list-group > .list-group-item a {
 /**** End View Work Page (/concerns/publications/) ****/
 
 /*** Search Results ***/
-.badge {
-  margin: 0 0.5rem;
+
+#appliedParams {
+  a.btn.btn-outline-secondary.remove {
+    text-decoration: none;
+  }
+}
+
+#facets {
+  .facet-label .remove {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .facet-limit-active {
+    .card-header {
+      background-color: $base-blue !important;
+
+      button {
+        color: $white;
+      }
+    }
+  }
+
+  .text-success,
+  .facet-values li .selected {
+    color: $base-blue !important;
+    font-weight: bold;
+  }
+
+  .border-success,
+  .facet-limit-active {
+    border-color: $base-blue !important;
+  }
 }
 
 section.pagination > div.page-links > a,
@@ -326,6 +361,13 @@ a.document-title {
 /*** end Works List ***/
 
 /*** Collections ***/
+#dashboard-collection-tab-content {
+  label {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .thumbnail-title-wrapper a,
 .nav-tabs a,
 a.facet-select,
