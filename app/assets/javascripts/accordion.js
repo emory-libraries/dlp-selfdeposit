@@ -264,7 +264,7 @@ function validateModal(x) {
 
     var modal = document.getElementById("publication_content_genre");
     var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
-    modal.insertAdjacentHTML("beforeend", text);
+    modal.insertAdjacentHTML("afterend", text);
     return false;
 
 }
