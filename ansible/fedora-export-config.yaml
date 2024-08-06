@@ -1,0 +1,49 @@
+---
+- name: set up hyrax instance 
+  hosts:
+    - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}" 
+  user: deploy
+  tasks:
+  - name: install java
+    yum: 
+      name: java-1.8.0-openjdk
+  - name: get java dir
+    find: 
+      path: /usr/lib/jvm
+      file_type: directory
+      patterns: java-1.8.0-openjdk-1.8.0*
+      recurse: no
+    register: files
+  - name: populate .bash_profile with necessary variables
+    blockinfile:
+      path: /home/deploy/.bash_profile 
+      state: present
+      marker: "# variables for export from fedora 3"
+      block: |
+        export JAVA_HOME="{{ files.files[0].path }}/jre"
+          export FEDORA_HOME=/home/deploy/fedora
+          export PATH=$PATH:$FEDORA_HOME/client/bin
+      insertafter: 'eval "$(rbenv init -)"'  
+  - name: create install properties
+    file: 
+      path: /home/deploy/install.properties
+      state: touch
+      owner: deploy
+      group: deploy
+  - name: add line to install.properties
+    blockinfile:
+      path: /home/deploy/install.properties
+      block: |
+        install.type=client
+        fedora.home=/home/deploy/fedora
+  - name: download fcrepo jar
+    get_url: 
+      url: https://downloads.sourceforge.net/project/fedora-commons/fedora/3.8.1/fcrepo-installer-3.8.1.jar
+      dest: /home/deploy/fcrepo-install-3.8.1.jar
+  - name: install fedora
+    shell:
+      cmd: "source /home/deploy/.bash_profile && java -jar /home/deploy/fcrepo-install-3.8.1.jar install.properties"
+    args:
+      executable: /bin/bash
+      creates: /home/deploy/fedora/client/bin
+     
