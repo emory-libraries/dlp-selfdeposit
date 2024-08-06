@@ -12,7 +12,6 @@ module Bulkrax::HasLocalProcessing
     parsed_metadata['publisher'] = parsed_metadata['publisher'].blank? ? 'Emory University Libraries' : parsed_metadata['publisher'].strip
 
     process_emory_content_type
-    point_file_location_to_efs
   end
 
   def process_emory_content_type
@@ -21,11 +20,5 @@ module Bulkrax::HasLocalProcessing
     pulled_type = authority.all.find { |v| v['label'] == parsed_metadata['emory_content_type']&.strip&.titleize }
 
     parsed_metadata['emory_content_type'] = pulled_type.present? ? pulled_type['id'] : default_type
-  end
-
-  def point_file_location_to_efs
-    return if importer.zip?
-
-    parsed_metadata['file'] = Dir.glob("/mnt/efs/current_batch/emory_#{parsed_metadata['deduplication_key']}/*")
   end
 end
