@@ -12,7 +12,7 @@ module Bulkrax::HasLocalProcessing
     parsed_metadata['publisher'] = parsed_metadata['publisher'].blank? ? 'Emory University Libraries' : parsed_metadata['publisher'].strip
 
     process_emory_content_type
-    point_file_location_to_efs
+    # point_file_location_to_efs
   end
 
   def process_emory_content_type

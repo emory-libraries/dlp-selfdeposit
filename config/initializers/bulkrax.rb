@@ -255,4 +255,38 @@ Rails.application.config.to_prepare do
         end
     end
   end
+
+  Bulkrax::CsvParser.class_eval do
+    # Retrieve file paths for [:file] mapping in records
+    #  and check all listed files exist.
+    def file_paths
+      raise StandardError, 'No records were found' if records.blank?
+      return [] if importerexporter.metadata_only?
+
+      @file_paths ||= records.map do |r|
+        file_mapping = Bulkrax.field_mappings.dig(self.class.to_s, 'file', :from)&.first&.to_sym || :file
+        next if r[file_mapping].blank?
+
+        r[file_mapping].split(Bulkrax.multi_value_element_split_on).map do |f|
+          file = File.join(path_to_files(pid: r[:deduplication_key]), f.tr(' ', '_'))
+          if File.exist?(file) # rubocop:disable Style/GuardClause
+            file
+          else
+            raise "File #{file} does not exist"
+          end
+        end
+      end.flatten.compact.uniq
+    end
+
+    # Retrieve the path where we expect to find the files
+    def path_to_files(**args)
+      filename = args.fetch(:filename, '')
+      pid = args.fetch(:pid, '')
+
+      return @path_to_files if @path_to_files.present? && filename.blank?
+      @path_to_files = File.join(
+        zip? ? importer_unzip_path : '/mnt/efs/current_batch', "emory_#{pid}", filename
+      )
+    end
+  end
 end
