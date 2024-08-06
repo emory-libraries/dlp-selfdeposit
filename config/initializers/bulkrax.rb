@@ -292,4 +292,16 @@ Rails.application.config.to_prepare do
       )
     end
   end
+
+  Bulkrax::CsvEntry.class_eval do
+    # If only filename is given, construct the path (/files/my_file)
+    def path_to_file(file)
+      # return if we already have the full file path
+      return file if File.exist?(file)
+      path = importerexporter.parser.path_to_files
+      f = parser.zip? ? File.join(path, file) : File.join(path, "emory_#{@record['deduplication_key']}", file)
+      return f if File.exist?(f)
+      raise "File #{f} does not exist"
+    end
+  end
 end
