@@ -268,7 +268,11 @@ Rails.application.config.to_prepare do
         next if r[file_mapping].blank?
 
         r[file_mapping].split(Bulkrax.multi_value_element_split_on).map do |f|
-          file = File.join(path_to_files(pid: r[:deduplication_key]), f.tr(' ', '_'))
+          file = if zip?
+                   File.join(path_to_files, f.tr(' ', '_'))
+                 else
+                   File.join(path_to_files, "emory_#{r[:deduplication_key]}", f.tr(' ', '_'))
+                 end
           if File.exist?(file) # rubocop:disable Style/GuardClause
             file
           else
@@ -281,11 +285,10 @@ Rails.application.config.to_prepare do
     # Retrieve the path where we expect to find the files
     def path_to_files(**args)
       filename = args.fetch(:filename, '')
-      pid = args.fetch(:pid, '')
 
       return @path_to_files if @path_to_files.present? && filename.blank?
       @path_to_files = File.join(
-        zip? ? importer_unzip_path : '/mnt/efs/current_batch', "emory_#{pid}", filename
+        zip? ? importer_unzip_path : '/mnt/efs/current_batch'
       )
     end
   end
