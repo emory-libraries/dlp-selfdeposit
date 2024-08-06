@@ -264,22 +264,30 @@ Rails.application.config.to_prepare do
       return [] if importerexporter.metadata_only?
 
       @file_paths ||= records.map do |r|
-        file_mapping = Bulkrax.field_mappings.dig(self.class.to_s, 'file', :from)&.first&.to_sym || :file
+        file_mapping = pull_file_mapping
         next if r[file_mapping].blank?
 
-        r[file_mapping].split(Bulkrax.multi_value_element_split_on).map do |f|
-          file = if zip?
-                   File.join(path_to_files, f.tr(' ', '_'))
-                 else
-                   File.join(path_to_files, "emory_#{r[:deduplication_key]}", f.tr(' ', '_'))
-                 end
-          if File.exist?(file) # rubocop:disable Style/GuardClause
-            file
-          else
-            raise "File #{file} does not exist"
-          end
-        end
+        locate_files_for_record(r[file_mapping].split(Bulkrax.multi_value_element_split_on), r[:deduplication_key])
       end.flatten.compact.uniq
+    end
+
+    def pull_file_mapping
+      Bulkrax.field_mappings.dig(self.class.to_s, 'file', :from)&.first&.to_sym || :file
+    end
+
+    def locate_files_for_record(file_names, pid)
+      file_names.map do |fn|
+        file = if zip?
+                 File.join(path_to_files, fn.tr(' ', '_'))
+               else
+                 File.join(path_to_files, "emory_#{pid}", fn.tr(' ', '_'))
+               end
+        if File.exist?(file) # rubocop:disable Style/GuardClause
+          file
+        else
+          raise "File #{file} does not exist"
+        end
+      end
     end
 
     # Retrieve the path where we expect to find the files
