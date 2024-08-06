@@ -236,9 +236,9 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   end
 end
 
-# Hyrax v5.0.1 Override - since Bulkrax introduces the Wings constant when it installs, the first test to determine query type passes,
-#   but the `is_a?` method produces an error because `Wings::Valkyrie` constant doesn't exist. This provides that test, as well.
 Rails.application.config.to_prepare do
+  # Hyrax v5.0.1 Override - since Bulkrax introduces the Wings constant when it installs, the first test to determine query type passes,
+  #   but the `is_a?` method produces an error because `Wings::Valkyrie` constant doesn't exist. This provides that test, as well.
   Hyrax::DownloadsController.class_eval do
     def file_set_parent(file_set_id)
       file_set = if defined?(Wings) && defined?(Wings::Valkyrie) && Hyrax.metadata_adapter.is_a?(Wings::Valkyrie::MetadataAdapter)
@@ -257,6 +257,10 @@ Rails.application.config.to_prepare do
   end
 
   Bulkrax::CsvParser.class_eval do
+    # Bulkrax v8.1.0 Override - have to override following methods here because prior logic only looks in application folder
+    #
+    # `file_path`'s override: reduces Cyclomatic Complexity to abstract setting `file_mapping` and `locate_files_for_record`
+    #   (our custom function) to separate methods.
     # Retrieve file paths for [:file] mapping in records
     #  and check all listed files exist.
     def file_paths
@@ -271,10 +275,12 @@ Rails.application.config.to_prepare do
       end.flatten.compact.uniq
     end
 
+    # `pull_file_mapping` override: moved to it's own method for Cyclomatic Complexity reduction.
     def pull_file_mapping
       Bulkrax.field_mappings.dig(self.class.to_s, 'file', :from)&.first&.to_sym || :file
     end
 
+    # `locate_files_for_record` override: refactored after we added our own EFS mount locating (L#289).
     def locate_files_for_record(file_names, pid)
       file_names.map do |fn|
         file = if zip?
@@ -290,6 +296,8 @@ Rails.application.config.to_prepare do
       end
     end
 
+    # `path_to_files` override: instead of using a import file location passed into the CSV or set in config,
+    #   we hardcode the mounted EFS folder to locate files.
     # Retrieve the path where we expect to find the files
     def path_to_files(**args)
       filename = args.fetch(:filename, '')
@@ -302,6 +310,7 @@ Rails.application.config.to_prepare do
   end
 
   Bulkrax::CsvEntry.class_eval do
+    # `path_to_file` override: this adds in the extra path of the record's PID-related folder within the EFS mount.
     # If only filename is given, construct the path (/files/my_file)
     def path_to_file(file)
       # return if we already have the full file path
