@@ -266,6 +266,13 @@ div.list-group > .list-group-item a {
   a.btn-danger {
     color: $white;
   }
+  .button-row-top-two-column {
+    margin-bottom: 2rem;
+  }
+  .fileset-pdf-viewer > iframe {
+    border: 1px solid $base-slate;
+    border-radius: 0.25rem;
+  }
   .sidebar-media > div > img {
     border: 1px solid $base-slate;
     border-radius: 0.25rem;
@@ -375,3 +382,10 @@ a.facet-select,
   color: $bright-blue;
 }
 /**** end Collections ****/
+
+/**** filtering from dashboard works or collections ****/
+div.constraints-container a.catalog_startOverLink.btn {
+    background: $bright-blue;
+    color: $white;
+}
+/**** end filtering ****/
