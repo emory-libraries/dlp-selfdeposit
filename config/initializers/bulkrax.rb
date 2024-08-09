@@ -304,7 +304,7 @@ Rails.application.config.to_prepare do
 
       return @path_to_files if @path_to_files.present? && filename.blank?
       @path_to_files = File.join(
-        zip? ? importer_unzip_path : '/mnt/efs/current_batch'
+        zip? ? "#{importer_unzip_path}/files" : '/mnt/efs/current_batch'
       )
     end
   end
