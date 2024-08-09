@@ -7,7 +7,7 @@ module Hyrax
 
     def create
       upload_attributes = {}
-      upload_attributes[:file] = params[:files].first
+      upload_attributes[:file] = params[:files]&.first || params[:file]
       upload_attributes[:fileset_name] = params[:fileset_name] if params[:fileset_name].present?
       upload_attributes[:fileset_use] = params[:fileset_use] if params[:fileset_use].present?
       upload_attributes[:user] = current_user
