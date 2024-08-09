@@ -149,3 +149,14 @@ body.dashboard {
 .breadcrumb a {
   color: $bright-blue;
 }
+
+/**** Notifications/ Alert ****/
+a.notify-number {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+
+  > span.badge.count {
+    margin: 0;
+  }
+}

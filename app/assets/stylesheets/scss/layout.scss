@@ -382,3 +382,10 @@ a.facet-select,
   color: $bright-blue;
 }
 /**** end Collections ****/
+
+/**** filtering from dashboard works or collections ****/
+div.constraints-container a.catalog_startOverLink.btn {
+    background: $bright-blue;
+    color: $white;
+}
+/**** end filtering ****/
