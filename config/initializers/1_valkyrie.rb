@@ -12,7 +12,9 @@ Valkyrie::MetadataAdapter.register(
     )),
     base_path: Rails.env,
     schema: Valkyrie::Persistence::Fedora::PermissiveSchema.new(Hyrax::SimpleSchemaLoader.new.permissive_schema_for_valkrie_adapter),
-    fedora_version: 6
+    fedora_version: 6.5,
+    fedora_pairtree_count: 4,
+    fedora_pairtree_length: 2
   ), :fedora_metadata
 )
 
@@ -43,7 +45,9 @@ Valkyrie::StorageAdapter.register(
       ENV.fetch('FCREPO_URL') { "http://localhost:8080/fcrepo/rest" }
     )),
     base_path: Rails.env,
-    fedora_version: 6
+    fedora_version: 6.5,
+    fedora_pairtree_count: 4,
+    fedora_pairtree_length: 2
   ), :fedora_storage
 )
 

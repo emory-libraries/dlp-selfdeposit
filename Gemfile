@@ -14,7 +14,7 @@ gem 'devise-guests', '~> 0.8'
 gem "devise_saml_authenticatable", git: "https://github.com/apokalipto/devise_saml_authenticatable"
 gem 'dotenv-rails'
 gem 'hydra-role-management'
-gem 'hyrax', '5.0.1'
+gem 'hyrax', git: 'https://github.com/samvera/hyrax', ref: '59a42adfd57e8c97ceee52ae81176e5ccddcd7a6'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mutex_m', '~> 0.2.0'
