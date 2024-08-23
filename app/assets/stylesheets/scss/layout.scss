@@ -94,8 +94,12 @@ a {
 }
 
 /**** Login Page ****/
-form.new_user ~ a {
-  color: $bright-blue;
+.emory-login {
+  margin-top: 2rem;
+
+  form.new_user ~ a {
+    color: $bright-blue;
+  }
 }
 
 /**** Home Page ****/
@@ -385,7 +389,7 @@ a.facet-select,
 
 /**** filtering from dashboard works or collections ****/
 div.constraints-container a.catalog_startOverLink.btn {
-    background: $bright-blue;
-    color: $white;
+  background: $bright-blue;
+  color: $white;
 }
 /**** end filtering ****/
