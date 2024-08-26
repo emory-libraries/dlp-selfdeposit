@@ -8,6 +8,15 @@
     <%= render 'file_set_title', presenter: @presenter %>
   </header>
 
+  <div class="row show-actions button-row-top-two-column">
+    <div class="col-sm-6">
+    <%= render 'show_actions', presenter: @presenter %>
+    </div>
+    <div class="col-sm-6 text-right">
+    <%= render 'single_use_links', presenter: @presenter if @presenter.editor? %>
+    </div>
+</div>
+
   <div class="file-set-details card">
     <h2 class="card-header"><%= t(".file_details") %></h2>
     <div class="card-body">
@@ -21,23 +30,6 @@
           
         <div class="col-4">
           <%= render media_display_partial(@presenter), file_set: @presenter %>
-
-          <div class="card viewer-actions">
-              <div class="card-header">
-                <h2 class="mb-0 h6 show-tools-card-title">Tools</h2>
-              </div>
-              <ul class="list-group list-group-flush">
-                <%= render 'show_actions', presenter: @presenter %>
-
-                <li class="list-group-item direct_link">
-                  
-              
-
-                </li>
-
-                <%= render 'single_use_links', presenter: @presenter if @presenter.editor? %>
-              </ul>
-          </div><!-- /.card .viewer-actions -->
         </div><!-- /.col-4 -->
           
       </div><!-- /.row -->
