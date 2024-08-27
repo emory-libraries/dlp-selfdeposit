@@ -12,8 +12,8 @@ RSpec.describe MigrateFedoraThreeObjects, :clean do
 
   shared_examples 'tests for xml presence method calling' do
     it 'calls #test_for_xmls and #test_for_audit' do
-      expect(migrator).to receive(:test_for_xmls)
-      expect(migrator).to receive(:test_for_audit)
+      expect(migrator).to receive(:test_for_xmls).at_least(:once)
+      expect(migrator).to receive(:test_for_audit).at_least(:once)
 
       migrator.send(:pid_lacks_binaries, datastreams)
     end

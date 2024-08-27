@@ -53,6 +53,7 @@ module FedoraThreeObjectsMigrationMethods
     tested_datastreams = datastreams.reject do |ds|
       test_for_xmls(datastream: ds) || test_for_audit(datastream: ds) || !test_for_allowed_mime_type(datastream: ds) || test_for_license(datastream: ds)
     end
+    @number_of_binary_datastreams = tested_datastreams.size
     tested_datastreams.empty?
   end
 
@@ -111,8 +112,12 @@ module FedoraThreeObjectsMigrationMethods
   def process_binary_filename(datastream:)
     @binary_id = datastream['ID']
     binary_filename = datastream.elements.first['LABEL']
-    blank_filename_test = binary_filename.empty? || binary_filename.include?('/') || (!test_for_license(datastream:) && !ALLOWED_TYPES.values.any? { |t| binary_filename.include?(".#{t}") })
     binary_ext = ALLOWED_TYPES.find { |k, _v| datastream.elements.first['MIMETYPE'].include?(k.to_s) }[1] unless test_for_license(datastream:)
-    blank_filename_test ? ["content", binary_ext].join('.') : truncate_long_filenames(binary_filename.tr(' ', '_'))
+    blank_filename_test(datastream:, binary_filename:) ? ["content", binary_ext].join('.') : truncate_long_filenames(binary_filename.tr(' ', '_'))
+  end
+
+  def blank_filename_test(datastream:, binary_filename:)
+    binary_filename.empty? || binary_filename.include?('/') || (!test_for_license(datastream:) && !ALLOWED_TYPES.values.any? { |t| binary_filename.include?(".#{t}") }) ||
+      (@number_of_binary_datastreams == 1 && !test_for_license(datastream:))
   end
 end
