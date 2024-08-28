@@ -47,6 +47,10 @@ a {
   color: $bright-blue;
 }
 
+.badge {
+  margin: 0 0.5rem;
+}
+
 /**** Helper Classes ****/
 
 /** Padding 10 **/
@@ -131,6 +135,8 @@ div.list-group > .list-group-item a {
   label {
     font-weight: bold;
     color: $black;
+    display: flex;
+    align-items: center;
   }
 
   .listing {
@@ -151,6 +157,8 @@ div.list-group > .list-group-item a {
   label {
     font-weight: bold;
     color: $black;
+    display: flex;
+    align-items: center;
   }
 
   .card {
@@ -264,6 +272,13 @@ div.list-group > .list-group-item a {
   a.btn-danger {
     color: $white;
   }
+  .button-row-top-two-column {
+    margin-bottom: 2rem;
+  }
+  .fileset-pdf-viewer > iframe {
+    border: 1px solid $base-slate;
+    border-radius: 0.25rem;
+  }
   .sidebar-media > div > img {
     border: 1px solid $base-slate;
     border-radius: 0.25rem;
@@ -291,7 +306,7 @@ div.list-group > .list-group-item a {
   .list-group-item * {
     padding: 0.25rem 1rem;
   }
- .dropdown-toggle::after {
+  .dropdown-toggle::after {
     content: "❯";
     transform: rotate(90deg);
     color: $bright-blue;
@@ -305,6 +320,7 @@ div.list-group > .list-group-item a {
 /**** End View Work Page (/concerns/publications/) ****/
 
 /*** Search Results ***/
+
 #search-results {
   .badge {
     margin: 0 1.5625rem;
@@ -314,6 +330,40 @@ div.list-group > .list-group-item a {
   a {
     color: $bright-blue;
   }
+
+#appliedParams {
+  a.btn.btn-outline-secondary.remove {
+    text-decoration: none;
+  }
+}
+
+#facets {
+  .facet-label .remove {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .facet-limit-active {
+    .card-header {
+      background-color: $base-blue !important;
+
+      button {
+        color: $white;
+      }
+    }
+  }
+
+  .text-success,
+  .facet-values li .selected {
+    color: $base-blue !important;
+    font-weight: bold;
+  }
+
+  .border-success,
+  .facet-limit-active {
+    border-color: $base-blue !important;
+  }
+}
 }
 /*** end Search Results ***/
 
@@ -328,6 +378,13 @@ a.document-title {
 /*** end Works List ***/
 
 /*** Collections ***/
+#dashboard-collection-tab-content {
+  label {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .thumbnail-title-wrapper a,
 .nav-tabs a,
 a.facet-select,
@@ -378,3 +435,10 @@ a.facet-select,
   
 }
 /**** end File-Set Show Page ****/
+
+/**** filtering from dashboard works or collections ****/
+div.constraints-container a.catalog_startOverLink.btn {
+    background: $bright-blue;
+    color: $white;
+}
+/**** end filtering ****/

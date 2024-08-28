@@ -1,0 +1,789 @@
+<foxml:digitalObject PID="emory:f82th" VERSION="1.1" xmlns:foxml="info:fedora/fedora-system:def/foxml#"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="info:fedora/fedora-system:def/foxml# http://www.fedora.info/definitions/1/0/foxml1-1.xsd">
+  <foxml:objectProperties>
+    <foxml:property NAME="info:fedora/fedora-system:def/model#state" VALUE="Active"/>
+    <foxml:property NAME="info:fedora/fedora-system:def/model#label" VALUE="Nonmydriatic Digital Ocular Fundus Photography on the iPhone 3G: The FOTO-ED Study"/>
+    <foxml:property NAME="info:fedora/fedora-system:def/model#ownerId" VALUE="bbbruce,dwwrigh,ophtnjn,vbiouss"/>
+    <foxml:property NAME="info:fedora/fedora-system:def/model#createdDate" VALUE="2013-11-04T19:09:25.434Z"/>
+    <foxml:property NAME="info:fedora/fedora-system:def/view#lastModifiedDate" VALUE="2024-06-01T06:02:43.775Z"/>
+  </foxml:objectProperties>
+  <foxml:datastream CONTROL_GROUP="X" ID="AUDIT" STATE="A" VERSIONABLE="false">
+    <foxml:datastreamVersion CREATED="2013-11-04T19:09:25.434Z"
+      FORMAT_URI="info:fedora/fedora-system:format/xml.fedora.audit" ID="AUDIT.0" LABEL="Audit Trail for this object" MIMETYPE="text/xml">
+      <foxml:xmlContent>
+        <audit:auditTrail xmlns:audit="info:fedora/fedora-system:def/audit#">
+          <audit:record ID="AUDREC1">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>ingest</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:09:25.434Z</audit:date>
+            <audit:justification>Ingest from harvested record PubMed Central 3501143</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC2">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>DC</audit:componentID>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:09:34.525Z</audit:date>
+            <audit:justification>Modified Namespaces for DC</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC3">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:09:36.784Z</audit:date>
+            <audit:justification>Modified Namespaces for DC</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC4">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:09:39.465Z</audit:date>
+            <audit:justification>added harvested event</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC5">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:09:41.039Z</audit:date>
+            <audit:justification>added harvested event</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC6">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:13:45.480Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC7">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>descMetadata</audit:componentID>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:13:50.423Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC8">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:14:07.836Z</audit:date>
+            <audit:justification>failed saving RELS-EXT, rolling back changes</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC9">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:14:28.183Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC10">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>DC</audit:componentID>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:14:29.885Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC11">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>smgrees</audit:responsibility>
+            <audit:date>2013-11-04T19:14:31.928Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC12">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>mtkowal</audit:responsibility>
+            <audit:date>2014-03-24T14:50:06.357Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC13">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>mtkowal</audit:responsibility>
+            <audit:date>2014-03-24T14:51:14.351Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC14">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-05-29T08:19:34.624Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC15">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-05-29T08:19:35.399Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC16">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-06-29T09:24:56.262Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC17">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-06-29T09:24:57.171Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC18">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-08-01T05:29:59.788Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC19">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-08-01T05:30:05.847Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC20">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-09-03T10:09:58.664Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC21">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-09-03T10:09:59.345Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC22">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-10-07T05:22:13.250Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC23">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-10-07T05:22:14.471Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC24">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-11-07T08:25:19.041Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC25">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-11-07T08:25:20.623Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC26">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-12-12T08:39:10.190Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC27">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2014-12-12T08:39:11.705Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC28">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-01-12T08:42:48.963Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC29">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-01-12T08:42:50.407Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC30">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-02-13T06:58:23.634Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC31">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-02-13T06:58:25.418Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC32">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-03-17T06:28:41.886Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC33">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-03-17T06:28:43.390Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC34">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-04-17T09:37:59.086Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC35">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-04-17T09:38:00.548Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC36">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-05-18T09:29:31.776Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC37">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-05-18T09:29:33.274Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC38">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-06-29T09:23:35.207Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC39">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-06-29T09:23:36.027Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC40">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>descMetadata</audit:componentID>
+            <audit:responsibility>abyoung</audit:responsibility>
+            <audit:date>2015-08-03T15:31:15.198Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC41">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>DC</audit:componentID>
+            <audit:responsibility>abyoung</audit:responsibility>
+            <audit:date>2015-08-03T15:31:16.336Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC42">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>abyoung</audit:responsibility>
+            <audit:date>2015-08-03T15:31:18.125Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC43">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>descMetadata</audit:componentID>
+            <audit:responsibility>abyoung</audit:responsibility>
+            <audit:date>2015-08-03T15:34:16.490Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC44">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>DC</audit:componentID>
+            <audit:responsibility>abyoung</audit:responsibility>
+            <audit:date>2015-08-03T15:34:17.247Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC45">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>abyoung</audit:responsibility>
+            <audit:date>2015-08-03T15:34:18.449Z</audit:date>
+            <audit:justification>updated metadata</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC46">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-08-16T13:45:00.237Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC47">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-08-16T13:45:00.940Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC48">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-08-21T09:10:06.604Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC49">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-08-21T09:10:07.316Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC50">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-09-03T18:37:26.787Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC51">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-09-03T18:37:28.752Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC52">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-10-14T09:42:08.124Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC53">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-10-14T09:42:08.472Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC54">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>descMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-12-16T16:12:45.715Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC55">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>DC</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-12-16T16:12:46.193Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC56">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2015-12-16T16:12:46.513Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC57">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-01-28T11:16:17.060Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC58">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-01-28T11:16:17.498Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC59">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>DC</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-04-28T18:55:43.769Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC60">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyObject</audit:action>
+            <audit:componentID/>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-04-28T18:55:44.005Z</audit:date>
+            <audit:justification/>
+          </audit:record>
+          <audit:record ID="AUDREC61">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-05-20T09:36:39.236Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC62">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-05-20T09:36:39.609Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC63">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-07-28T08:32:13.110Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC64">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-07-28T08:32:13.555Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC65">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-11-19T08:56:19.300Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC66">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2016-11-19T08:56:19.682Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC67">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2017-03-20T09:21:27.453Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC68">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2017-03-20T09:21:27.758Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC69">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2017-08-20T06:11:26.730Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC70">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2017-08-20T06:11:27.852Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC71">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-05-21T06:47:38.686Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC72">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2018-05-21T06:47:39.133Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC73">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2019-02-06T10:31:54.001Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC74">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2019-02-06T10:31:54.289Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC75">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2019-10-05T07:04:52.675Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC76">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2019-10-05T07:04:53.360Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC77">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2020-07-25T05:08:26.337Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC78">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2020-07-25T05:08:26.688Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC79">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2021-08-11T06:48:09.543Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC80">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2021-08-11T06:48:09.800Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC81">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2022-10-12T05:50:00.413Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC82">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2022-10-12T05:50:00.675Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC83">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByReference</audit:action>
+            <audit:componentID>provenanceMetadata</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2024-06-01T06:02:43.623Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+          <audit:record ID="AUDREC84">
+            <audit:process type="Fedora API-M"/>
+            <audit:action>modifyDatastreamByValue</audit:action>
+            <audit:componentID>RELS-EXT</audit:componentID>
+            <audit:responsibility>fedoraAdmin</audit:responsibility>
+            <audit:date>2024-06-01T06:02:43.775Z</audit:date>
+            <audit:justification>datastream fixity check</audit:justification>
+          </audit:record>
+        </audit:auditTrail>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="descMetadata" STATE="A" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2013-11-04T19:09:25.635Z" ID="descMetadata.0" LABEL="Descriptive Metadata (MODS)"
+      MIMETYPE="text/xml" SIZE="2635">
+      <foxml:contentDigest DIGEST="751eb4465040b7e7ed9adebdb9015132" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:f82th/descMetadata/2013-11-04T19:09:25.635Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2013-11-04T19:13:50.423Z" ID="descMetadata.1" LABEL="Descriptive Metadata (MODS)"
+      MIMETYPE="text/xml" SIZE="5519">
+      <foxml:contentDigest DIGEST="f6982fbdb47e7af87e25ae23c2674f38" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:f82th/descMetadata/2013-11-04T19:13:50.423Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2015-08-03T15:31:15.198Z" ID="descMetadata.2" LABEL="Descriptive Metadata (MODS)"
+      MIMETYPE="text/xml" SIZE="6850">
+      <foxml:contentDigest DIGEST="be95b628c5aee13ce588ac485397e09b" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:f82th/descMetadata/2015-08-03T15:31:15.198Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2015-08-03T15:34:16.490Z" ID="descMetadata.3" LABEL="Descriptive Metadata (MODS)"
+      MIMETYPE="text/xml" SIZE="6829">
+      <foxml:contentDigest DIGEST="d00785c577bcb3970b1c9233c9dc447c" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:f82th/descMetadata/2015-08-03T15:34:16.490Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+    <foxml:datastreamVersion CREATED="2015-12-16T16:12:45.715Z" ID="descMetadata.4" LABEL="Descriptive Metadata (MODS)"
+      MIMETYPE="text/xml" SIZE="6852">
+      <foxml:contentDigest DIGEST="c36930ff90faaab836bc02e719378ca2" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:f82th/descMetadata/2015-12-16T16:12:45.715Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="contentMetadata" STATE="A" VERSIONABLE="true">
+    <foxml:datastreamVersion CREATED="2013-11-04T19:09:25.636Z" ID="contentMetadata.0" LABEL="content metadata"
+      MIMETYPE="text/xml" SIZE="4926">
+      <foxml:contentDigest DIGEST="aec0b9269fe99e6f62553778a782033f" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:f82th/contentMetadata/2013-11-04T19:09:25.636Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="X" ID="DC" STATE="A" VERSIONABLE="false">
+    <foxml:datastreamVersion CREATED="2016-04-28T18:55:43.769Z" FORMAT_URI="http://www.openarchives.org/OAI/2.0/oai_dc/"
+      ID="DC.6" LABEL="Dublin Core" MIMETYPE="text/xml" SIZE="2033">
+      <foxml:contentDigest DIGEST="e55f63007c24d324f58f4603c1171c90" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/"
+          xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+          <dc:title>Nonmydriatic Digital Ocular Fundus Photography on the iPhone 3G: The FOTO-ED Study</dc:title>
+          <dc:creator>Nancy Newman</dc:creator>
+          <dc:subject>Health Sciences, Opthamology</dc:subject>
+          <dc:subject>Biology, Neuroscience</dc:subject>
+          <dc:description>The widespread use of smartphones, provides a unique opportunity for telemedicine. In ophthalmology, smartphones are used for visual acuity assessments and to document examinations, particularly in settings like the emergency department (ED), where the usual ophthalmic tools and photographic services are unavailable. However, to our knowledge, these devices have not been used for systematic, remote review of clinical photographs, as they have in radiology and dermatology. We performed a pilot investigation to compare the quality of non-mydriatic fundus photographs displayed on an iPhone 3G versus a desktop computer.</dc:description>
+          <dc:contributor>Cedric Lamirel</dc:contributor>
+          <dc:contributor>Beau Benjamin Bruce</dc:contributor>
+          <dc:contributor>David W Wright</dc:contributor>
+          <dc:contributor>Nancy J Newman</dc:contributor>
+          <dc:contributor>Valerie Biousse</dc:contributor>
+          <dc:type>text</dc:type>
+          <dc:type>Post-print: After Peer Review: article</dc:type>
+          <dc:identifier>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3501143/</dc:identifier>
+          <dc:identifier>PMC3501143</dc:identifier>
+          <dc:identifier>http://pid.emory.edu/ark:/25593/f82th</dc:identifier>
+          <dc:identifier>emory:f82th</dc:identifier>
+          <dc:identifier>https://pid.library.emory.edu/ark:/25593/f82th</dc:identifier>
+          <dc:source>Archives of ophthalmology (Chicago, Ill. : 1929) Volume 130 Issue 7 Date 2012-07-01 Pages 939-940</dc:source>
+          <dc:language>English</dc:language>
+        </oai_dc:dc>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="M" ID="provenanceMetadata" STATE="A" VERSIONABLE="false">
+    <foxml:datastreamVersion CREATED="2024-06-01T06:02:43.623Z" ID="provenanceMetadata.34" LABEL="Provenance metadata"
+      MIMETYPE="text/xml" SIZE="27614">
+      <foxml:contentDigest DIGEST="2f78e2362ba4be6b80865b5b5bc2f0d6" TYPE="MD5"/>
+      <foxml:contentLocation
+        REF="http://libfedappprd101.library.emory.edu:8080/fedora/get/emory:f82th/provenanceMetadata/2024-06-01T06:02:43.623Z" TYPE="INTERNAL_ID"/>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+  <foxml:datastream CONTROL_GROUP="X" ID="RELS-EXT" STATE="A" VERSIONABLE="false">
+    <foxml:datastreamVersion CREATED="2024-06-01T06:02:43.775Z" FORMAT_URI="info:fedora/fedora-system:FedoraRELSExt-1.0"
+      ID="RELS-EXT.31" LABEL="External Relations" MIMETYPE="application/rdf+xml" SIZE="854">
+      <foxml:contentDigest DIGEST="02e9ebe4bbe7fc4509452603b5c83978" TYPE="MD5"/>
+      <foxml:xmlContent>
+        <rdf:RDF xmlns:eul-repomgmt="http://pid.emory.edu/ns/2011/repo-management/#"
+          xmlns:fedora-model="info:fedora/fedora-system:def/model#"
+          xmlns:fedora-rels-ext="info:fedora/fedora-system:def/relations-external#"
+          xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+          <rdf:Description rdf:about="info:fedora/emory:f82th">
+            <oai:itemID>oai:ark:/25593/f82th</oai:itemID>
+            <eul-repomgmt:lastFixityCheck rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-01T02:02:43</eul-repomgmt:lastFixityCheck>
+            <fedora-rels-ext:isMemberOfCollection rdf:resource="info:fedora/emory-control:OpenEmory-collection"/>
+            <fedora-model:hasModel rdf:resource="info:fedora/emory-control:PublishedArticle-1.0"/>
+          </rdf:Description>
+        </rdf:RDF>
+      </foxml:xmlContent>
+    </foxml:datastreamVersion>
+  </foxml:datastream>
+</foxml:digitalObject>

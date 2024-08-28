@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     isbn[0].style.display = "none";
                     series[0].style.display = "none";
                     edition[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
                     break;
                 }
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     issue[0].style.display = "none";
                     pageStart[0].style.display = "none";
                     pageEnd[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }
@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     issn[0].style.display = "none";
                     volume[0].style.display = "none";
                     issue[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     series[0].style.display = "none";
                     edition[0].style.display = "none";
 
-                    pubVersionLabel.insertAdjacentHTML("afterend", '&nbsp;<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
 
                     break;
                 }
@@ -192,8 +192,8 @@ function validateForm() {
     var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
     var parTitleValue = document.getElementById("publication_parent_title").value;
 
-    var publisherVersion = 'The Publisher Version field is required';
-    var parentTitle = "The Parent Title field is required";
+    var publisherVersion = 'The Publication Version field is required';
+    var parentTitle = "The Title of Journal or Parent Work field is required";
 
     switch (validationValue) {
 
@@ -225,7 +225,7 @@ function validateForm() {
 
             console.log('Validating: Book || Conference Paper');
             if (pubverValue == ' ') {
-                var publisherVersion = "The field Publisher Version is required";
+                var publisherVersion = "The Publication Version field is required";
                 validateModal(publisherVersion);
                 return false;
             }
@@ -262,9 +262,18 @@ function validateForm() {
 
 function validateModal(x) {
 
-    var modal = document.getElementById("publication_content_genre");
+    var modalNewPub = document.querySelector('[id^="new_publication_"]');
+    var modalEditPub = document.querySelector('[id^="edit_publication_"]');
+
     var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
-    modal.insertAdjacentHTML("afterend", text);
+
+    if (modalNewPub) {
+        modalNewPub.insertAdjacentHTML("afterend", text);
+    }
+
+    if (modalEditPub) {
+        modalEditPub.insertAdjacentHTML("afterend", text);
+    }
     return false;
 
 }
@@ -279,7 +288,7 @@ function dateIssuedValidation() {
 
     var dateIssueValue = document.getElementById("publication_date_issued").value;
     var dateIssuedBool = isDateValid(dateIssueValue);
-    var dateIssueTitle = "The field Date Issued must be in a proper format (YYYY-MM-DD, YYYY-MM or YYYY)"
+    var dateIssueTitle = "The Date field must be in a proper format (YYYY-MM-DD, YYYY-MM or YYYY)"
 
     //check if value is empty
     if (dateIssueValue !== "") {
@@ -304,7 +313,7 @@ function relatedDataValidation() {
 
     var relatedData = document.getElementById("publication_related_datasets").value;
     var relatedDataBool = isUrlValid(relatedData);
-    var relatedDataTitle = 'The field Related datasets requires a full URL entry (starting with http://, https:// etc)';
+    var relatedDataTitle = 'The Supplemental Material field requires a full URL entry (starting with http://, https:// etc)';
 
     //first check if related is not empty
     if (relatedData !== "") {
@@ -328,7 +337,7 @@ function finalPubVerValidation() {
 
     var finalPubVer = document.getElementById("publication_final_published_versions").value;
     var finalPubVerBool = isUrlValid(finalPubVer);
-    var finalPubVerTitle = 'The field Final published versions requires a full URL entry (starting with http://, https:// etc)';
+    var finalPubVerTitle = 'The Final Published Version field requires a full URL entry (starting with http://, https:// etc)';
 
     //first check if related is not empty
     if (finalPubVer !== "") {

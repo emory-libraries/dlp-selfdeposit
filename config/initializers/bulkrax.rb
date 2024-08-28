@@ -51,8 +51,6 @@ Bulkrax.setup do |config|
       "emory_content_type" => { from: ["emory_content_type"] },
       "emory_ark" => { from: ["emory_ark"], split: '\|', join: '|' },
       "file" => { from: ["file"], split: '\;', join: ';' },
-      "file_uses" => { from: ['file_uses'], split: '\;', join: ';' },
-      "file_labels" => { from: ['file_labels'], split: '\;', join: ';' },
       "final_published_versions" => { from: ["final_published_versions"], split: '\|', join: '|' },
       "grant_agencies" => { from: ["grant_agencies"], split: '\|', join: '|' },
       "grant_information" => { from: ["grant_information"], split: '\|', join: '|' },
@@ -71,7 +69,7 @@ Bulkrax.setup do |config|
       "parent" => { from: ["parent"], related_parents_field_mapping: true },
       "parent_title" => { from: ["parent_title"] },
       "place_of_production" => { from: ["place_of_production"] },
-      "publisher" => { from: ["publisher"], split: '\|', join: '|' },
+      "publisher" => { from: ["publisher"] },
       "publisher_version" => { from: ["publisher_version"] },
       "related_datasets" => { from: ["related_datasets"], split: '\|', join: '|' },
       "research_categories" => { from: ["research_categories"], split: '\|', join: '|' },
@@ -185,28 +183,33 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   def apply_emory_fileset_metatdata(attrs)
     importer = Bulkrax::Importer.find(Bulkrax::ImporterRun.find(@importer_run_id).importer_id)
     pertinent_entry = importer.entries.find { |e| e.raw_metadata['deduplication_key'] == attributes['deduplication_key'] }
-
     raise "No associated Entry was found" unless pertinent_entry
 
-    file_names, file_uses, file_labels = extract_values_from_entry(pertinent_entry)
-    return if file_uses.empty? || file_labels.empty?
-
     uploaded_files_from(attrs).each do |file|
-      values_index = file_names.index { |fn| file.file_identifier == fn }
-
-      file.fileset_use = file_uses[values_index]
-      file.fileset_name = file_labels[values_index]
+      file.fileset_use = assign_fileset_use(supplementary_file(file.file_identifier))
+      file.desired_visibility = assign_fileset_visibility(supplementary_file(file.file_identifier))
+      file.fileset_name = assign_fileset_name(pertinent_entry, file.file_identifier)
       file.save
     end
   end
 
-  # A helper method that pulls the needed FileSet values from the CSV Entry and returns an array or arrays.
-  def extract_values_from_entry(entry)
-    file_names = entry.raw_metadata['file'].split(';')
-    file_uses = entry.raw_metadata['file_uses'].split(';')
-    file_labels = entry.raw_metadata['file_labels'].split(';')
+  def assign_fileset_use(supplementary_file)
+    supplementary_file ? 'Supplemental Preservation' : 'Primary Content'
+  end
 
-    [file_names, file_uses, file_labels]
+  def assign_fileset_visibility(supplementary_file)
+    supplementary_file ? 'restricted' : 'open'
+  end
+
+  def assign_fileset_name(entry, file_identifier)
+    entry_pid = entry.raw_metadata['deduplication_key']
+    return file_identifier if entry_pid.blank?
+
+    supplementary_file(file_identifier) ? file_identifier : "Publication File - #{entry_pid}.#{file_identifier.split('.').last}"
+  end
+
+  def supplementary_file(file_name)
+    !file_name.include?('content.')
   end
 
   ##
@@ -233,9 +236,9 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   end
 end
 
-# Hyrax v5.0.1 Override - since Bulkrax introduces the Wings constant when it installs, the first test to determine query type passes,
-#   but the `is_a?` method produces an error because `Wings::Valkyrie` constant doesn't exist. This provides that test, as well.
 Rails.application.config.to_prepare do
+  # Hyrax v5.0.1 Override - since Bulkrax introduces the Wings constant when it installs, the first test to determine query type passes,
+  #   but the `is_a?` method produces an error because `Wings::Valkyrie` constant doesn't exist. This provides that test, as well.
   Hyrax::DownloadsController.class_eval do
     def file_set_parent(file_set_id)
       file_set = if defined?(Wings) && defined?(Wings::Valkyrie) && Hyrax.metadata_adapter.is_a?(Wings::Valkyrie::MetadataAdapter)
@@ -250,6 +253,72 @@ Rails.application.config.to_prepare do
         else
           file_set.parent
         end
+    end
+  end
+
+  Bulkrax::CsvParser.class_eval do
+    # Bulkrax v8.1.0 Override - have to override following methods here because prior logic only looks in application folder
+    #
+    # `file_path`'s override: reduces Cyclomatic Complexity to abstract setting `file_mapping` and `locate_files_for_record`
+    #   (our custom function) to separate methods.
+    # Retrieve file paths for [:file] mapping in records
+    #  and check all listed files exist.
+    def file_paths
+      raise StandardError, 'No records were found' if records.blank?
+      return [] if importerexporter.metadata_only?
+
+      @file_paths ||= records.map do |r|
+        file_mapping = pull_file_mapping
+        next if r[file_mapping].blank?
+
+        locate_files_for_record(r[file_mapping].split(Bulkrax.multi_value_element_split_on), r[:deduplication_key])
+      end.flatten.compact.uniq
+    end
+
+    # `pull_file_mapping` override: moved to it's own method for Cyclomatic Complexity reduction.
+    def pull_file_mapping
+      Bulkrax.field_mappings.dig(self.class.to_s, 'file', :from)&.first&.to_sym || :file
+    end
+
+    # `locate_files_for_record` override: refactored after we added our own EFS mount locating (L#289).
+    def locate_files_for_record(file_names, pid)
+      file_names.map do |fn|
+        file = if zip?
+                 File.join(path_to_files, fn.tr(' ', '_'))
+               else
+                 File.join(path_to_files, "emory_#{pid}", fn.tr(' ', '_'))
+               end
+        if File.exist?(file) # rubocop:disable Style/GuardClause
+          file
+        else
+          raise "File #{file} does not exist"
+        end
+      end
+    end
+
+    # `path_to_files` override: instead of using a import file location passed into the CSV or set in config,
+    #   we hardcode the mounted EFS folder to locate files.
+    # Retrieve the path where we expect to find the files
+    def path_to_files(**args)
+      filename = args.fetch(:filename, '')
+
+      return @path_to_files if @path_to_files.present? && filename.blank?
+      @path_to_files = File.join(
+        zip? ? "#{importer_unzip_path}/files" : '/mnt/efs/current_batch'
+      )
+    end
+  end
+
+  Bulkrax::CsvEntry.class_eval do
+    # `path_to_file` override: this adds in the extra path of the record's PID-related folder within the EFS mount.
+    # If only filename is given, construct the path (/files/my_file)
+    def path_to_file(file)
+      # return if we already have the full file path
+      return file if File.exist?(file)
+      path = importerexporter.parser.path_to_files
+      f = parser.zip? ? File.join(path, file) : File.join(path, "emory_#{@record['deduplication_key']}", file)
+      return f if File.exist?(f)
+      raise "File #{f} does not exist"
     end
   end
 end

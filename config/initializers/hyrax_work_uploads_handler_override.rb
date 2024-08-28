@@ -22,7 +22,7 @@ Rails.application.config.to_prepare do
       Hyrax::AccessControlList.copy_permissions(source: target_permissions, target: file_set)
 
       # set visibility from params and save
-      file_set.visibility = file_set_extra_params(file)[:visibility] if file_set_extra_params(file)[:visibility].present?
+      file_set.visibility = file.desired_visibility || file_set_extra_params(file)[:visibility] if either_visibility_present(file)
       file_set.permission_manager.acl.save if file_set.permission_manager.acl.pending_changes?
       append_to_work(file_set)
 
@@ -59,6 +59,10 @@ Rails.application.config.to_prepare do
         label: file.fileset_name.presence || file.uploader.filename,
         title: file.fileset_name.presence || file.uploader.filename,
         file_set_use: file.fileset_use }
+    end
+
+    def either_visibility_present(file)
+      file.desired_visibility.present? || file_set_extra_params(file)[:visibility].present?
     end
   end
 end
