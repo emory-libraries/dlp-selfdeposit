@@ -50,8 +50,21 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
     expect(page).to have_content('SelfDeposit v.1')
   end
 
-  it 'contains a table of Preservation Events' do
-    expect(page).to have_css('h2.card-title', text: 'Preservation Events')
-    expect(find_all('table#preservation-event-table tbody tr')).to be_present
+  it 'does not contain a table of Preservation Events' do
+    expect(page).not_to have_css('h2.card-title', text: 'Preservation Events')
+    expect(find_all('table#preservation-event-table tbody tr')).not_to be_present
+  end
+
+  context 'when user is admin' do
+    # make an admin user for testing preservation events table presence
+    before do
+      # the below code adds the admin role to user
+      user.roles << Role.find_or_create_by(name: Hyrax.config.admin_user_group_name)
+      user.save
+      visit hyrax_publication_path(publication)
+    end
+    it 'contains a table of Preservation Events' do
+      expect(page).to have_css('h2.card-title', text: 'Preservation Events')
+      expect(find_all('table#preservation-event-table tbody tr')).to be_present
   end
 end
