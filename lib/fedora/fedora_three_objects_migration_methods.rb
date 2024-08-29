@@ -16,7 +16,6 @@ module FedoraThreeObjectsMigrationMethods
 
   def copy_files_to_folder
     datastreams = @pid_xml.xpath('//foxml:datastream')
-
     @pids_with_no_binaries += [@pid] if pid_lacks_binaries(datastreams)
     return if pid_lacks_binaries(datastreams)
 
@@ -111,13 +110,13 @@ module FedoraThreeObjectsMigrationMethods
 
   def process_binary_filename(datastream:)
     @binary_id = datastream['ID']
-    binary_filename = datastream.elements.first['LABEL']
+    binary_filename = @binary_id == 'content' ? nil : datastream&.elements&.first&.[]('LABEL')&.gsub(/[^\s0-9A-Za-z._-]/, '')
     binary_ext = ALLOWED_TYPES.find { |k, _v| datastream.elements.first['MIMETYPE'].include?(k.to_s) }[1] unless test_for_license(datastream:)
     blank_filename_test(datastream:, binary_filename:) ? ["content", binary_ext].join('.') : truncate_long_filenames(binary_filename.tr(' ', '_'))
   end
 
   def blank_filename_test(datastream:, binary_filename:)
-    binary_filename.empty? || binary_filename.include?('/') || (!test_for_license(datastream:) && !ALLOWED_TYPES.values.any? { |t| binary_filename.include?(".#{t}") }) ||
+    binary_filename.nil? || binary_filename.include?('/') || (!test_for_license(datastream:) && !ALLOWED_TYPES.values.any? { |t| binary_filename.include?(".#{t}") }) ||
       (@number_of_binary_datastreams == 1 && !test_for_license(datastream:))
   end
 end
