@@ -27,7 +27,7 @@ module FedoraThreeObjectsMigrationMethods
         pull_audit_object(datastream:)
       elsif test_for_xmls(datastream:)
         pull_xml_object(datastream:)
-      else
+      elsif test_for_license(datastream:) || test_for_allowed_mime_type(datastream:)
         pull_binary_object(datastream:)
       end
     end
@@ -41,8 +41,20 @@ module FedoraThreeObjectsMigrationMethods
     datastream['ID'] == 'AUDIT'
   end
 
+  def test_for_license(datastream:)
+    datastream['ID'] == 'SYMPLECTIC-LICENCE'
+  end
+
+  def test_for_allowed_mime_type(datastream:)
+    ALLOWED_TYPES.any? { |k, _v| datastream.elements.first['MIMETYPE'].include?(k.to_s) }
+  end
+
   def pid_lacks_binaries(datastreams)
-    datastreams.all? { |ds| test_for_xmls(datastream: ds) || test_for_audit(datastream: ds) }
+    tested_datastreams = datastreams.reject do |ds|
+      test_for_xmls(datastream: ds) || test_for_audit(datastream: ds) || !test_for_allowed_mime_type(datastream: ds) || test_for_license(datastream: ds)
+    end
+    @number_of_binary_datastreams = tested_datastreams.size
+    tested_datastreams.empty?
   end
 
   def pull_audit_object(datastream:)
@@ -80,6 +92,7 @@ module FedoraThreeObjectsMigrationMethods
     # PIDs with no binaries report
     File.write("./pids_with_no_binaries_#{@date_time_started}.txt", "List of PIDs with no binary files: #{@pids_with_no_binaries.join(', ')}") unless @pids_with_no_binaries.empty?
 
+    return if @pids_with_filenames.empty?
     # PIDs with binaries CSV
     ::CSV.open("./pids_with_binaries_#{@date_time_started}.csv", 'wb') do |csv|
       csv << ['pid', 'filenames']
@@ -99,8 +112,12 @@ module FedoraThreeObjectsMigrationMethods
   def process_binary_filename(datastream:)
     @binary_id = datastream['ID']
     binary_filename = datastream.elements.first['LABEL']
-    blank_filename_test = binary_filename.empty? || binary_filename.include?('/')
-    binary_ext = ALLOWED_TYPES[:"#{datastream.elements.first['MIMETYPE']}"]
-    blank_filename_test ? ["content", binary_ext].join('.') : truncate_long_filenames(binary_filename.tr(' ', '_'))
+    binary_ext = ALLOWED_TYPES.find { |k, _v| datastream.elements.first['MIMETYPE'].include?(k.to_s) }[1] unless test_for_license(datastream:)
+    blank_filename_test(datastream:, binary_filename:) ? ["content", binary_ext].join('.') : truncate_long_filenames(binary_filename.tr(' ', '_'))
+  end
+
+  def blank_filename_test(datastream:, binary_filename:)
+    binary_filename.empty? || binary_filename.include?('/') || (!test_for_license(datastream:) && !ALLOWED_TYPES.values.any? { |t| binary_filename.include?(".#{t}") }) ||
+      (@number_of_binary_datastreams == 1 && !test_for_license(datastream:))
   end
 end
