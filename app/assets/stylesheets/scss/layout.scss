@@ -103,10 +103,16 @@ a {
 }
 
 /**** Home Page ****/
-.media-heading > a,
-.terms-of-use > a,
-.recent-item a {
-  color: $bright-blue;
+.home-share-work {
+  .terms-of-use > a {
+    color: $bright-blue;
+  }
+}
+.home-content {
+  .media-heading > a,
+  .recent-item a {
+    color: $bright-blue;
+  } 
 }
 
 /**** Dashboard General ****/
@@ -319,6 +325,16 @@ div.list-group > .list-group-item a {
 
 /*** Search Results ***/
 
+#search-results {
+  .badge {
+    margin: 0 1.5625rem;
+  }
+  section.pagination > div.page-links > a,
+  .page-link,
+  a {
+    color: $bright-blue;
+  }
+
 #appliedParams {
   a.btn.btn-outline-secondary.remove {
     text-decoration: none;
@@ -352,13 +368,7 @@ div.list-group > .list-group-item a {
     border-color: $base-blue !important;
   }
 }
-
-section.pagination > div.page-links > a,
-.page-link,
-#search-results a {
-  color: $bright-blue;
 }
-
 /*** end Search Results ***/
 
 /*** Works List _list_works ***/
@@ -386,6 +396,49 @@ a.facet-select,
   color: $bright-blue;
 }
 /**** end Collections ****/
+
+/**** File-Set Show Page ****/
+.file-set-show {
+  a {
+    color: $bright-blue;
+  }
+  .file-set-details {
+    margin-bottom: 3rem;
+  }
+  .form-actions {
+    margin-bottom: 1em;
+  }
+  .btn-danger {
+    color: $white;
+  }
+  .social-media {
+    display: none;
+  }
+  .file-show-term {
+    border: none;
+    padding-top: 0;
+  }
+  .representative-media {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+  h2.show-tools-card-title {
+    font-family: $font-family-sans-serif;
+    color: $gold;
+    background-color: $dark-blue;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .viewer-actions div.card-header {
+    background-color: $dark-blue;
+    text-align: left;
+  }
+  .activity-display {
+    margin-top: 3rem;
+  }
+  
+}
+/**** end File-Set Show Page ****/
 
 /**** filtering from dashboard works or collections ****/
 div.constraints-container a.catalog_startOverLink.btn {

@@ -87,3 +87,16 @@
     overflow-x: scroll;
 }
 }
+
+/**** Preservation Events Table on Show Work and Show FileSets pages ****/
+@media (min-width: 992px) {
+  .pet-fit {
+    overflow-wrap: break-word;
+    min-width: 1rem;
+    width: 1.5rem;
+    max-width: 1.5rem;
+  }
+  .pet-fit.attribute-details {
+    max-width: 5rem;
+  }
+}

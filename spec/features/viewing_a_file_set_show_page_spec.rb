@@ -53,7 +53,7 @@ RSpec.describe "viewing a FileSet's show page", :clean_repo, :perform_enqueued, 
   it 'contains a table of Preservation Events' do
     create_preservation_event(file_set, preservation_events)
     visit hyrax_file_set_path(file_set)
-    expect(page).to have_css('h2.card-title', text: 'Preservation Events')
+    expect(page).to have_css('h2.card-header', text: 'Preservation Events')
     expect(find_all('table#preservation-event-table tbody tr')).to be_present
   end
 end
