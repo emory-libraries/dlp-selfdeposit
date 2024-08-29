@@ -118,15 +118,31 @@ a {
 /**** Dashboard General ****/
 body.dashboard {
   padding-top: 0;
+
+  .dashboard a :not(.btn-danger) :not(.sidebar),
+  .media-body a,
+  div.collection a,
+  .collections-list-table a,
+  .collection-types-wrapper > div > div > p > a,
+  .proxy-rights ~ a,
+  .transfer_link > a,
+  .works-list a {
+    color: $bright-blue;
+  }
+  
+  div.list-group > .list-group-item a {
+    color: $bright-blue;
+  }
+
+
+
+
 }
 
-.dashboard a :not(.btn-danger) :not(.sidebar) {
-  color: $bright-blue;
-}
 
-div.list-group > .list-group-item a {
-  color: $bright-blue;
-}
+
+
+
 
 /**** New Publication Form ****/
 .add-pub-intro {
