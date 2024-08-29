@@ -66,5 +66,6 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
     it 'contains a table of Preservation Events' do
       expect(page).to have_css('h2.card-title', text: 'Preservation Events')
       expect(find_all('table#preservation-event-table tbody tr')).to be_present
+    end
   end
 end
