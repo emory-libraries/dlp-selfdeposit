@@ -42,12 +42,11 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
     visit hyrax_publication_path(publication)
   end
 
-  
   it 'does not contain a table of Preservation Events' do
     expect(page).not_to have_css('h2.card-title', text: 'Preservation Events')
     expect(find_all('table#preservation-event-table tbody tr')).not_to be_present
   end
-  
+
   context 'when user is admin' do
     # make an admin user for testing preservation events table presence
     before do
