@@ -59,26 +59,57 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
     Capybara::Node::Simple.new(rendered)
   end
 
-  it "shows a publication's labels" do
-    ["Persistent URL", "Last modified", "Type of Material", "Authors", "Language", "Date", "Publisher", "Publication Version", "Copyright Status",
-     "License", "Final Published Version (URL)", "Title of Journal or Parent Work", "Conference or Event Name", "ISSN", "ISBN", "Series Title",
-     "Edition", "Volume", "Issue", "Start Page", "End Page", "Place of Publication or Presentation", "Sponsor", "Grant/Funding Agency",
-     "Grant/Funding Information", "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories",
-     "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Format", "Holding repository", "Institution", "Data classification",
-     "Deduplication key"].each do |label|
-      expect(page).to have_selector 'dt', text: label
+  # context 'typical user' do
+  #   include_examples 'renders the expected lis', 2, ['PublicPublic', 'Embargo']
+  # end
+  
+  # context 'admin user' do
+  #   before { allow(user).to receive(:admin?).and_return(true) }
+
+  #   include_examples 'renders the expected lis', 5, ["Embargo", "Institution", "Lease", "Private", "PublicPublic"]
+  # end
+
+  context 'typical user' do
+    it "shows a publication's labels" do
+      ["Persistent URL", "Last modified", "Type of Material", "Authors", "Language", "Date", "Publisher", "Publication Version",
+      "License", "Final Published Version (URL)", "Title of Journal or Parent Work", "Conference or Event Name", "ISSN", "ISBN", "Series Title",
+      "Edition", "Volume", "Issue", "Start Page", "End Page", "Place of Publication or Presentation", "Sponsor", "Grant/Funding Agency",
+      "Grant/Funding Information", "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories"].each do |label|
+        expect(page).to have_selector 'dt', text: label
+      end
+    end
+    it "shows a publication's values" do
+      ["904dncjsz6-emory", "05/12/2024", "Article", "Tom Collins, Gin University", "English", "2004", "Simon & Schusters", "Final Publisher PDF",
+      "Creative Commons Attribution-ShareAlike 4.0 International", "1020", "Parent title",
+      "Samvera Connect", "fqefeefe2fed", "dvqegr3gvfw", "Series Title", "1", "4", "3", "1", "134", "Boston", "NEA", "Rockfeller", "Granted",
+      "A Dataset", "an abstraction", "A note from the author.", "keywordbooks", "Mathematics", "Asian studies"].each do |value|
+        expect(page).to have_selector 'dd', text: value
+      end
     end
   end
 
-  it "shows a publication's values" do
-    ["904dncjsz6-emory", "05/12/2024", "Article", "Tom Collins, Gin University", "English", "2004", "Simon & Schusters", "Final Publisher PDF",
-     "In Copyright", "Creative Commons Attribution-ShareAlike 4.0 International", "1020", "Parent title",
-     "Samvera Connect", "fqefeefe2fed", "dvqegr3gvfw", "Series Title", "1", "4", "3", "1", "134", "Boston", "NEA", "Rockfeller", "Granted",
-     "A Dataset", "an abstraction", "A note from the author.", "keywordbooks", "Mathematics", "Asian studies", "867-5309",
-     "A note about internal rights.", "Oy, this staff!", "12345abcde", "Text",
-     "Emory University. Library", "Emory University", "Public", "83jhcf734jhg93g"].each do |value|
-      expect(page).to have_selector 'dd', text: value
-    end
+  context 'admin user' do
+    before { allow(user).to receive(:admin?).and_return(true) }
+      it "shows a publication's labels" do
+        ["Persistent URL", "Last modified", "Type of Material", "Authors", "Language", "Date", "Publisher", "Publication Version", "Copyright Status",
+        "License", "Final Published Version (URL)", "Title of Journal or Parent Work", "Conference or Event Name", "ISSN", "ISBN", "Series Title",
+        "Edition", "Volume", "Issue", "Start Page", "End Page", "Place of Publication or Presentation", "Sponsor", "Grant/Funding Agency",
+        "Grant/Funding Information", "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories",
+        "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Format", "Holding repository", "Institution", "Data classification",
+        "Deduplication key"].each do |label|
+          expect(page).to have_selector 'dt', text: label
+        end
+      end
+      it "shows a publication's values" do
+        ["904dncjsz6-emory", "05/12/2024", "Article", "Tom Collins, Gin University", "English", "2004", "Simon & Schusters", "Final Publisher PDF",
+        "In Copyright", "Creative Commons Attribution-ShareAlike 4.0 International", "1020", "Parent title",
+        "Samvera Connect", "fqefeefe2fed", "dvqegr3gvfw", "Series Title", "1", "4", "3", "1", "134", "Boston", "NEA", "Rockfeller", "Granted",
+        "A Dataset", "an abstraction", "A note from the author.", "keywordbooks", "Mathematics", "Asian studies", "867-5309",
+        "A note about internal rights.", "Oy, this staff!", "12345abcde", "Text",
+        "Emory University. Library", "Emory University", "Public", "83jhcf734jhg93g"].each do |value|
+          expect(page).to have_selector 'dd', text: value
+        end
+      end
   end
 
   it "does not display an ORCID link when none is provided" do
