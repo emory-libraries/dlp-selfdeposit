@@ -71,7 +71,37 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
 
   context 'typical user' do
     it "shows a publication's labels" do
-      ["Persistent URL", "Last modified", "Type of Material", "Authors", "Language", "Date", "Publisher", "Publication Version", "License", "Final Published Version (URL)", "Title of Journal or Parent Work", "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Start Page", "End Page", "Place of Publication or Presentation", "Sponsor", "Grant/Funding Agency", "Grant/Funding Information", "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories"].each do |label|
+      ["Persistent URL",
+      "Last modified",
+      "Type of Material",
+      "Authors",
+      "Language",
+      "Date",
+      "Publisher",
+      "Publication Version",
+      "License",
+      "Final Published Version (URL)",
+      "Title of Journal or Parent Work",
+      "Conference or Event Name",
+      "ISSN",
+      "ISBN",
+      "Series Title",
+      "Edition",
+      "Volume",
+      "Issue",
+      "Start Page",
+      "End Page",
+      "Place of Publication or Presentation",
+      "Sponsor",
+      "Grant/Funding Agency",
+      "Grant/Funding Information",
+      "Supplemental Material (URL)",
+      "Abstract",
+      "Author Notes",
+      "Keywords",
+      "Subject - Topics",
+      "Research Categories"
+    ].each do |label|
         expect(page).to have_selector 'dt', text: label
       end
     end
