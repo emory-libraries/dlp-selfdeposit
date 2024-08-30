@@ -334,6 +334,15 @@ body.dashboard {
     margin-top: -7px;
     border-top: none;
     margin-left: -0.255em;
+    border-right: 10px solid transparent;
+  }
+  table.items-table { 
+    th {
+    white-space: nowrap;
+    }
+    td {
+      word-break: break-word;
+    }  
   }
 }
 
@@ -414,6 +423,10 @@ a.facet-select,
 /**** end Collections ****/
 
 /**** File-Set Show Page ****/
+div.alert-success > a {
+  color: $bright-blue;
+}
+
 .file-set-show {
   a {
     color: $bright-blue;
