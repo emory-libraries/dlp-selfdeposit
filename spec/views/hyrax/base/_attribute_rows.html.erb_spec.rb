@@ -120,7 +120,6 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
       # the below code adds the admin role to user
       user.roles << Role.find_or_create_by(name: Hyrax.config.admin_user_group_name)
       user.save
-      visit hyrax_publication_path(publication)
     end
     it "shows a publication's labels" do
       ["Persistent URL", "Last modified", "Type of Material", "Authors", "Language", "Date", "Publisher", "Publication Version", "Copyright Status", "License",
