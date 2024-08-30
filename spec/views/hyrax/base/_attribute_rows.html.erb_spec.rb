@@ -2,6 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
+  let!(:user) { FactoryBot.create(:user) }
   let(:solr_doc_attributes) do
     {
       id: '123445-cor',
