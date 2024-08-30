@@ -65,7 +65,6 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
   end
 
   context "user is not logged in or not admin" do
-
     it "shows a publication's labels" do
       ["Persistent URL", "Last modified", "Type of Material", "Authors", "Language", "Date", "Publisher", "Publication Version",
        "License", "Final Published Version (URL)", "Title of Journal or Parent Work", "Conference or Event Name", "ISSN", "ISBN", "Series Title",
