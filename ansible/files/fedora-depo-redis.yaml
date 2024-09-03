@@ -4,14 +4,15 @@ Parameters:
     Type: String
 Resources:
   FedoraDepoRedis:
-    Type: AWS::ElastiCache::CacheCluster
+    Type: AWS::ElastiCache::ReplicationGroup
     Properties:
-      ClusterName: !Sub 'OE24-redis-${EnvironmentParameter}'
+      ReplicationGroupId: !Sub 'OE24-redis-${EnvironmentParameter}'
+      ReplicationGroupDescription: 'openemory self deposit'
+      NumCacheClusters: 3
       Engine: Redis
       EngineVersion: 6.2
-      NumCacheNodes: 1
+      AutomaticFailoverEnabled: true
       CacheNodeType: cache.t3.micro
       CacheSubnetGroupName: elasticache-redis-test
-      VpcSecurityGroupIds:
-        - sg-00e0f950d60629f7e
+      SecurityGroupIds:
         - sg-00e0f950d60629f7e
