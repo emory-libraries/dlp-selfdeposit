@@ -112,20 +112,27 @@ a {
   .media-heading > a,
   .recent-item a {
     color: $bright-blue;
-  } 
+  }
 }
 
 /**** Dashboard General ****/
 body.dashboard {
   padding-top: 0;
-}
 
-.dashboard a :not(.btn-danger) :not(.sidebar) {
-  color: $bright-blue;
-}
+  .dashboard a :not(.btn-danger) :not(.sidebar),
+  .media-body a,
+  div.collection a,
+  .collections-list-table a,
+  .collection-types-wrapper > div > div > p > a,
+  .proxy-rights ~ a,
+  .transfer_link > a,
+  .works-list a {
+    color: $bright-blue;
+  }
 
-div.list-group > .list-group-item a {
-  color: $bright-blue;
+  div.list-group > .list-group-item a {
+    color: $bright-blue;
+  }
 }
 
 /**** New Publication Form ****/
@@ -318,6 +325,15 @@ div.list-group > .list-group-item a {
     margin-top: -7px;
     border-top: none;
     margin-left: -0.255em;
+    vertical-align: top;
+  }
+  table.items-table {
+    th {
+      white-space: nowrap;
+    }
+    td {
+      word-break: break-word;
+    }
   }
 }
 
@@ -325,15 +341,18 @@ div.list-group > .list-group-item a {
 
 /*** Search Results ***/
 
-#search-results {
-  .badge {
-    margin: 0 1.5625rem;
+.facet-limit-active {
+  .card-header {
+    background-color: $base-blue !important;
+
+    button {
+      color: $white;
+    }
   }
-  section.pagination > div.page-links > a,
-  .page-link,
-  a {
-    color: $bright-blue;
-  }
+}
+.badge {
+  margin: 0 1.5625rem;
+}
 
 #appliedParams {
   a.btn.btn-outline-secondary.remove {
@@ -347,16 +366,6 @@ div.list-group > .list-group-item a {
     padding-left: 0;
   }
 
-  .facet-limit-active {
-    .card-header {
-      background-color: $base-blue !important;
-
-      button {
-        color: $white;
-      }
-    }
-  }
-
   .text-success,
   .facet-values li .selected {
     color: $base-blue !important;
@@ -368,7 +377,13 @@ div.list-group > .list-group-item a {
     border-color: $base-blue !important;
   }
 }
+
+section.pagination > div.page-links > a,
+.page-link,
+#search-results a {
+  color: $bright-blue;
 }
+
 /*** end Search Results ***/
 
 /*** Works List _list_works ***/
@@ -395,9 +410,17 @@ a.facet-select,
 .batch_document_selector_all a {
   color: $bright-blue;
 }
+
+div.sort-toggle span.fa-refresh {
+  color: $white;
+}
 /**** end Collections ****/
 
 /**** File-Set Show Page ****/
+div.alert-success > a {
+  color: $bright-blue;
+}
+
 .file-set-show {
   a {
     color: $bright-blue;
@@ -436,7 +459,6 @@ a.facet-select,
   .activity-display {
     margin-top: 3rem;
   }
-  
 }
 /**** end File-Set Show Page ****/
 
