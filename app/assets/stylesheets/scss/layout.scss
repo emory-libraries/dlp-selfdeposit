@@ -350,14 +350,17 @@ body.dashboard {
 
 /*** Search Results ***/
 
-#search-results {
+.facet-limit-active {
+  .card-header {
+    background-color: $base-blue !important;
+
+    button {
+      color: $white;
+    }
+  }
+}
   .badge {
     margin: 0 1.5625rem;
-  }
-  section.pagination > div.page-links > a,
-  .page-link,
-  a {
-    color: $bright-blue;
   }
 
 #appliedParams {
@@ -372,15 +375,6 @@ body.dashboard {
     padding-left: 0;
   }
 
-  .facet-limit-active {
-    .card-header {
-      background-color: $base-blue !important;
-
-      button {
-        color: $white;
-      }
-    }
-  }
 
   .text-success,
   .facet-values li .selected {
@@ -393,7 +387,14 @@ body.dashboard {
     border-color: $base-blue !important;
   }
 }
+
+section.pagination > div.page-links > a,
+.page-link,
+#search-results a {
+  color: $bright-blue;
 }
+
+
 /*** end Search Results ***/
 
 /*** Works List _list_works ***/
@@ -419,6 +420,10 @@ a.document-title {
 a.facet-select,
 .batch_document_selector_all a {
   color: $bright-blue;
+}
+
+div.sort-toggle span.fa-refresh {
+  color: $white;
 }
 /**** end Collections ****/
 
