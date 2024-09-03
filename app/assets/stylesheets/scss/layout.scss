@@ -112,7 +112,7 @@ a {
   .media-heading > a,
   .recent-item a {
     color: $bright-blue;
-  } 
+  }
 }
 
 /**** Dashboard General ****/
@@ -129,20 +129,11 @@ body.dashboard {
   .works-list a {
     color: $bright-blue;
   }
-  
+
   div.list-group > .list-group-item a {
     color: $bright-blue;
   }
-
-
-
-
 }
-
-
-
-
-
 
 /**** New Publication Form ****/
 .add-pub-intro {
@@ -336,13 +327,13 @@ body.dashboard {
     margin-left: -0.255em;
     vertical-align: top;
   }
-  table.items-table { 
+  table.items-table {
     th {
-    white-space: nowrap;
+      white-space: nowrap;
     }
     td {
       word-break: break-word;
-    }  
+    }
   }
 }
 
@@ -359,9 +350,9 @@ body.dashboard {
     }
   }
 }
-  .badge {
-    margin: 0 1.5625rem;
-  }
+.badge {
+  margin: 0 1.5625rem;
+}
 
 #appliedParams {
   a.btn.btn-outline-secondary.remove {
@@ -374,7 +365,6 @@ body.dashboard {
     margin-left: 0;
     padding-left: 0;
   }
-
 
   .text-success,
   .facet-values li .selected {
@@ -393,7 +383,6 @@ section.pagination > div.page-links > a,
 #search-results a {
   color: $bright-blue;
 }
-
 
 /*** end Search Results ***/
 
@@ -470,7 +459,6 @@ div.alert-success > a {
   .activity-display {
     margin-top: 3rem;
   }
-  
 }
 /**** end File-Set Show Page ****/
 
