@@ -378,8 +378,14 @@ body.dashboard {
   }
 }
 
+li.page-item.active span.page-link {
+  color: $white;
+  background-color: $bright-blue;
+  border-color: $bright-blue;
+}
+
 section.pagination > div.page-links > a,
-.page-link,
+a.page-link,
 #search-results a {
   color: $bright-blue;
 }
