@@ -1,10 +1,16 @@
+<!-- Hyrax v5.0.1 Override - made search bar conditional, row 9-13.-->
+
 <header aria-label="header" class="top-header">
   <%= render '/controls' %>
   <nav id="masthead" class="emory-masthead navbar border-bottom navbar-expand-lg navbar-dark justify-content-between <%= placement_class %>" role="navigation" aria-label="masthead">
     <h1 class="sr-only"><%= application_name %></h1>
     <%= render '/logo' %>
     <div class="col-sm-7 header-search-container">
+    <% if request.fullpath.start_with?('/dashboard') %>
+      <a href="/catalog" class="btn btn-primary float-right">Return to Full Site Search</a>
+    <% else %>
       <%= render partial: 'catalog/search_form' %>
+    <% end %>
     </div>
   </nav>
 </header>
