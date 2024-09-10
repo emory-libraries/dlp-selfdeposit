@@ -1,0 +1,41 @@
+---
+- name: Set up Shibboleth application on OpenEmory servers - aws2
+  hosts:   
+    - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}"
+  remote_user: ec2-user
+  become: yes
+
+  tasks:
+
+  - name: Write the shib repo
+    ansible.builtin.template:
+      mode: "0644"
+      src: files/shib.repo
+      dest: /etc/yum.repos.d/shib.repo
+
+  - name: Install shib
+    yum:
+      name: shibboleth.x86_64
+      state: present
+
+  - name: Write OIT's IDP metadata
+    ansible.builtin.template:
+      mode: "0644"
+      src: files/EmoryProdIdP-metadata.xml
+      dest: /etc/shibboleth/EmoryProdIdP-metadata.xml
+
+  - name: Write our shibboleth config
+    ansible.builtin.template:
+      mode: "0644"
+      src: files/shibboleth2.xml
+      dest: /etc/shibboleth/shibboleth2.xml
+
+  - name: Restart shib
+    ansible.builtin.service:
+      name: shibd
+      state: restarted
+
+  - name: Restart httpd
+    ansible.builtin.service:
+      name: shibd
+      state: restarted

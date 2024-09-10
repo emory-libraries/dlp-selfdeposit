@@ -1,0 +1,108 @@
+<EntityDescriptor entityID="https://login.emory.edu/idp/shibboleth"
+                  xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+                  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+                  xmlns:shibmd="urn:mace:shibboleth:metadata:1.0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <IDPSSODescriptor protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+
+        <Extensions>
+            <shibmd:Scope regexp="false">emory.edu</shibmd:Scope>
+        </Extensions>
+
+        <KeyDescriptor>
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <ds:X509Certificate>
+MIIDJzCCAg+gAwIBAgIUfGsUnIe4ehQbVOK7801PiWLKSX8wDQYJKoZIhvcNAQEF
+BQAwGjEYMBYGA1UEAxMPbG9naW4uZW1vcnkuZWR1MB4XDTEwMDMyOTE2MjAwNVoX
+DTMwMDMyOTE2MjAwNVowGjEYMBYGA1UEAxMPbG9naW4uZW1vcnkuZWR1MIIBIjAN
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0RQxoj9S3eD6vcGOB39jZiPBRx1f
+TJf6MV96bHNwD/M+fBCR7t+07VScdH0pffvN0x7g5co0jWJ4KT/16tPpA/14qzpK
+d3oHIFz5rgnG1qBSla+kqe9lzls72HMDA5vdaRpPib1ZsaB7JUyTTHMdvVcyaovL
+ILB/xt2cdy8CCJjIdNt+Uxl5gAwhKfU6DVYspFAWp4uVMJqO774Xn5Sa68ANjrRL
+TbMO7BnqgxCyAAN8ztGlsn+91Z5JnlMPI/q9uLh6xiUffiwo17S9KOQ+hqQx6XDQ
+GI/U7TOanuohkC29qt09tLYFXjAB3sfy66qsQfS/rXulScfJsSYNaziMaQIDAQAB
+o2UwYzBCBgNVHREEOzA5gg9sb2dpbi5lbW9yeS5lZHWGJmh0dHBzOi8vbG9naW4u
+ZW1vcnkuZWR1L2lkcC9zaGliYm9sZXRoMB0GA1UdDgQWBBSC4HCY5liG+oEdDcyx
+nHhEZt8cKjANBgkqhkiG9w0BAQUFAAOCAQEAFdOSL9HrkUxokD0zm07egEpnltaH
+susrsZvVhayfNqiRlgvhHBpJTa9xUaAyZ45VUsieP4olSdfyiMVMIRkVgo/gF4W/
+/ZlGxV28CnlalLR10NMzG6Kz03eRf6v5MQtVL+0EBTO7wiZAFIKYOv8nxpZoL7LV
+9l9x5SIDjsgmwV7wPubl0X3aoGq6+IHIk1TZAA/xWJm1Z1W9fFRWXSLVS1/eCjPY
+4rjIktauEsi8Tj6QlhYFuo5WiEaVtNluIP3MzpBSxCUyEov49a4rxpHNKPxpSZyF
+GTDS8Zsm6tV8cZfn0eCypcm3lqm/X3HSODuN6n5+cVrRig01srF/2D9B1A==
+
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        
+        <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding"
+                                   Location="https://login.emory.edu:8443/idp/profile/SAML1/SOAP/ArtifactResolution" 
+                                   index="1"/>
+
+        <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+                                   Location="https://login.emory.edu:8443/idp/profile/SAML2/SOAP/ArtifactResolution" 
+                                   index="2"/>
+                                   
+        <NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+
+        <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" 
+                             Location="https://login.emory.edu/idp/profile/Shibboleth/SSO" />
+        
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" 
+                             Location="https://login.emory.edu/idp/profile/SAML2/POST/SSO" />
+
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" 
+                             Location="https://login.emory.edu/idp/profile/SAML2/POST-SimpleSign/SSO" />
+        
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" 
+                             Location="https://login.emory.edu/idp/profile/SAML2/Redirect/SSO" />
+    </IDPSSODescriptor>
+
+    <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+
+        <Extensions>
+            <shibmd:Scope regexp="false">emory.edu</shibmd:Scope>
+        </Extensions>
+
+        <KeyDescriptor>
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <ds:X509Certificate>
+MIIDJzCCAg+gAwIBAgIUfGsUnIe4ehQbVOK7801PiWLKSX8wDQYJKoZIhvcNAQEF
+BQAwGjEYMBYGA1UEAxMPbG9naW4uZW1vcnkuZWR1MB4XDTEwMDMyOTE2MjAwNVoX
+DTMwMDMyOTE2MjAwNVowGjEYMBYGA1UEAxMPbG9naW4uZW1vcnkuZWR1MIIBIjAN
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0RQxoj9S3eD6vcGOB39jZiPBRx1f
+TJf6MV96bHNwD/M+fBCR7t+07VScdH0pffvN0x7g5co0jWJ4KT/16tPpA/14qzpK
+d3oHIFz5rgnG1qBSla+kqe9lzls72HMDA5vdaRpPib1ZsaB7JUyTTHMdvVcyaovL
+ILB/xt2cdy8CCJjIdNt+Uxl5gAwhKfU6DVYspFAWp4uVMJqO774Xn5Sa68ANjrRL
+TbMO7BnqgxCyAAN8ztGlsn+91Z5JnlMPI/q9uLh6xiUffiwo17S9KOQ+hqQx6XDQ
+GI/U7TOanuohkC29qt09tLYFXjAB3sfy66qsQfS/rXulScfJsSYNaziMaQIDAQAB
+o2UwYzBCBgNVHREEOzA5gg9sb2dpbi5lbW9yeS5lZHWGJmh0dHBzOi8vbG9naW4u
+ZW1vcnkuZWR1L2lkcC9zaGliYm9sZXRoMB0GA1UdDgQWBBSC4HCY5liG+oEdDcyx
+nHhEZt8cKjANBgkqhkiG9w0BAQUFAAOCAQEAFdOSL9HrkUxokD0zm07egEpnltaH
+susrsZvVhayfNqiRlgvhHBpJTa9xUaAyZ45VUsieP4olSdfyiMVMIRkVgo/gF4W/
+/ZlGxV28CnlalLR10NMzG6Kz03eRf6v5MQtVL+0EBTO7wiZAFIKYOv8nxpZoL7LV
+9l9x5SIDjsgmwV7wPubl0X3aoGq6+IHIk1TZAA/xWJm1Z1W9fFRWXSLVS1/eCjPY
+4rjIktauEsi8Tj6QlhYFuo5WiEaVtNluIP3MzpBSxCUyEov49a4rxpHNKPxpSZyF
+GTDS8Zsm6tV8cZfn0eCypcm3lqm/X3HSODuN6n5+cVrRig01srF/2D9B1A==
+
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+
+        <AttributeService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" 
+                          Location="https://login.emory.edu:8443/idp/profile/SAML1/SOAP/AttributeQuery" />
+        
+        <AttributeService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+                          Location="https://login.emory.edu:8443/idp/profile/SAML2/SOAP/AttributeQuery" />
+        
+        <NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+        
+    </AttributeAuthorityDescriptor>
+    
+</EntityDescriptor>    
