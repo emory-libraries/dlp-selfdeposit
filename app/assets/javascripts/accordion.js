@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     pageEnd[0].style.display = "none";
 
                     break;
-
                 }
 
                 case 'Report': {
@@ -147,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     console.log('default selected');
                     break;
                 }
-
             }
         }
 
@@ -173,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 
-
 function validateForm() {
 
     var relatedDataCheck = relatedDataValidation();
@@ -188,12 +185,16 @@ function validateForm() {
     console.log(dateIssuedCheck);
     if (!dateIssuedCheck) { return false; }
 
+    var primaryFile = primaryFileValidation();
+    console.log(primaryFile);
+    if (!primaryFile) { return false; }
+
     var validationValue = document.getElementById("publication_content_genre").selectedOptions[0].label;
     var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
     var parTitleValue = document.getElementById("publication_parent_title").value;
 
-    var publisherVersion = 'The Publication Version field is required';
-    var parentTitle = "The Title of Journal or Parent Work field is required";
+    var publisherVersion = 'The Publication Version field is required. <br> You can find this field under Publication Information.';
+    var parentTitle = 'The Title of Journal or Parent Work field is required. <br>You can find this field under Publication Information.'
 
     switch (validationValue) {
 
@@ -265,7 +266,7 @@ function validateModal(x) {
     var modalNewPub = document.querySelector('[id^="new_publication_"]');
     var modalEditPub = document.querySelector('[id^="edit_publication_"]');
 
-    var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
+    var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '<br></div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
 
     if (modalNewPub) {
         modalNewPub.insertAdjacentHTML("afterend", text);
@@ -288,7 +289,7 @@ function dateIssuedValidation() {
 
     var dateIssueValue = document.getElementById("publication_date_issued").value;
     var dateIssuedBool = isDateValid(dateIssueValue);
-    var dateIssueTitle = "The Date field must be in a proper format (YYYY-MM-DD, YYYY-MM or YYYY)"
+    var dateIssueTitle = 'The Date field must be in a proper format (YYYY-MM-DD, YYYY-MM or YYYY). <br>You can find this field under Publication Information.';
 
     //check if value is empty
     if (dateIssueValue !== "") {
@@ -304,7 +305,6 @@ function dateIssuedValidation() {
         console.log('value is empty!');
         return true;
     }
-
 }
 
 
@@ -337,7 +337,7 @@ function finalPubVerValidation() {
 
     var finalPubVer = document.getElementById("publication_final_published_versions").value;
     var finalPubVerBool = isUrlValid(finalPubVer);
-    var finalPubVerTitle = 'The Final Published Version field requires a full URL entry (starting with http://, https:// etc)';
+    var finalPubVerTitle = 'The Final Published Version field requires a full URL entry (starting with http://, https:// etc). <br>You can find this field under Publication Information.';
 
     //first check if related is not empty
     if (finalPubVer !== "") {
@@ -348,7 +348,6 @@ function finalPubVerValidation() {
             validateModal(finalPubVerTitle);
             return false;
         }
-
         console.log('do nothing');
         return true;
     } else {
@@ -374,4 +373,22 @@ function isDateValid(date) {
     if (longDateRegex.test(date) || monthYearDateRegex.test(date) || yearDateRegex.test(date)) {
         return true;
     } else { return false; }
+}
+
+function primaryFileValidation() {
+    console.log("primary file validation");
+
+    var primary0 = document.getElementById("primary0").value;
+    var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
+
+    //check if value is empty
+    if (primary0 == "") {
+        console.log("value is empty");
+        validateModal(primaryFileTitle);
+        return false;
+
+    } else {
+        console.log("value is not empty: " + primary0);
+        return true;
+    }
 }
