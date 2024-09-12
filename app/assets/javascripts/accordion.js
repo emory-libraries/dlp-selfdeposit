@@ -43,133 +43,131 @@ document.addEventListener('DOMContentLoaded', function (event) {
         p.addEventListener("change", function () {
             formSetup();
         });
-
-        function formSetup() {
-            var selectedValue = p.selectedOptions[0].label;
-            switch (selectedValue) {
-                case 'Article': {
-                    resetForm();
-                    console.log("Chose: Article");
-                    confName[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
-                    break;
-                }
-
-                case 'Book': {
-                    resetForm();
-                    console.log("Chose: Book");
-                    parTitle[0].style.display = "none";
-                    confName[0].style.display = "none";
-                    issn[0].style.display = "none";
-                    volume[0].style.display = "none";
-                    issue[0].style.display = "none";
-                    pageStart[0].style.display = "none";
-                    pageEnd[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-
-                    break;
-                }
-
-                case 'Book Chapter': {
-                    resetForm();
-                    console.log('Selected: Book Chapter');
-
-                    confName[0].style.display = "none";
-                    issn[0].style.display = "none";
-                    volume[0].style.display = "none";
-                    issue[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
-
-                    break;
-                }
-
-                case 'Conference Paper': {
-                    resetForm();
-                    console.log('Selected: Conference Paper');
-
-                    issn[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-
-                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-
-                    break;
-                }
-
-                case 'Poster':
-                case 'Presentation': {
-                    resetForm();
-                    console.log('Selected: Poster || Presentation');
-
-                    issn[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-                    volume[0].style.display = "none";
-                    issue[0].style.display = "none";
-                    pageStart[0].style.display = "none";
-                    pageEnd[0].style.display = "none";
-
-                    break;
-                }
-
-                case 'Report': {
-                    resetForm();
-                    console.log('Selected: Report');
-
-                    confName[0].style.display = "none";
-                    issn[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-                    volume[0].style.display = "none";
-                    issue[0].style.display = "none";
-                    pageStart[0].style.display = "none";
-                    pageEnd[0].style.display = "none"
-
-                    break;
-                }
-
-                case ' ': {
-                    resetForm();
-                    console.log('none selected');
-                    break;
-                }
-                default: {
-                    resetForm();
-                    console.log('default selected');
-                    break;
-                }
-            }
-        }
-
-
-        function resetForm() {
-            console.log('RESET FORM!');
-            parTitle[0].style.display = "block";
-            confName[0].style.display = "block";
-            isbn[0].style.display = "block";
-            series[0].style.display = "block";
-            edition[0].style.display = "block";
-            issn[0].style.display = "block";
-            volume[0].style.display = "block";
-            issue[0].style.display = "block";
-            pageStart[0].style.display = "block";
-            pageEnd[0].style.display = "block";
-            var pubformPubver = document.getElementById("pubform-pubver");
-            if (pubformPubver) { pubformPubver.remove(); }
-            var pubformPubTitle = document.getElementById("pubform-partitle");
-            if (pubformPubTitle) { pubformPubTitle.remove(); }
-        }
     }
 });
 
+function formSetup() {
+    var selectedValue = p.selectedOptions[0].label;
+    switch (selectedValue) {
+        case 'Article': {
+            resetForm();
+            console.log("Chose: Article");
+            confName[0].style.display = "none";
+            isbn[0].style.display = "none";
+            series[0].style.display = "none";
+            edition[0].style.display = "none";
+            pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+            parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+            break;
+        }
+
+        case 'Book': {
+            resetForm();
+            console.log("Chose: Book");
+            parTitle[0].style.display = "none";
+            confName[0].style.display = "none";
+            issn[0].style.display = "none";
+            volume[0].style.display = "none";
+            issue[0].style.display = "none";
+            pageStart[0].style.display = "none";
+            pageEnd[0].style.display = "none";
+            pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+
+            break;
+        }
+
+        case 'Book Chapter': {
+            resetForm();
+            console.log('Selected: Book Chapter');
+
+            confName[0].style.display = "none";
+            issn[0].style.display = "none";
+            volume[0].style.display = "none";
+            issue[0].style.display = "none";
+            pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+            parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+
+            break;
+        }
+
+        case 'Conference Paper': {
+            resetForm();
+            console.log('Selected: Conference Paper');
+
+            issn[0].style.display = "none";
+            isbn[0].style.display = "none";
+            series[0].style.display = "none";
+            edition[0].style.display = "none";
+
+            pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+
+            break;
+        }
+
+        case 'Poster':
+        case 'Presentation': {
+            resetForm();
+            console.log('Selected: Poster || Presentation');
+
+            issn[0].style.display = "none";
+            isbn[0].style.display = "none";
+            series[0].style.display = "none";
+            edition[0].style.display = "none";
+            volume[0].style.display = "none";
+            issue[0].style.display = "none";
+            pageStart[0].style.display = "none";
+            pageEnd[0].style.display = "none";
+
+            break;
+        }
+
+        case 'Report': {
+            resetForm();
+            console.log('Selected: Report');
+
+            confName[0].style.display = "none";
+            issn[0].style.display = "none";
+            isbn[0].style.display = "none";
+            series[0].style.display = "none";
+            edition[0].style.display = "none";
+            volume[0].style.display = "none";
+            issue[0].style.display = "none";
+            pageStart[0].style.display = "none";
+            pageEnd[0].style.display = "none"
+
+            break;
+        }
+
+        case ' ': {
+            resetForm();
+            console.log('none selected');
+            break;
+        }
+        default: {
+            resetForm();
+            console.log('default selected');
+            break;
+        }
+    }
+}
+
+function resetForm() {
+    console.log('RESET FORM!');
+    parTitle[0].style.display = "block";
+    confName[0].style.display = "block";
+    isbn[0].style.display = "block";
+    series[0].style.display = "block";
+    edition[0].style.display = "block";
+    issn[0].style.display = "block";
+    volume[0].style.display = "block";
+    issue[0].style.display = "block";
+    pageStart[0].style.display = "block";
+    pageEnd[0].style.display = "block";
+    var pubformPubver = document.getElementById("pubform-pubver");
+    if (pubformPubver) { pubformPubver.remove(); }
+    var pubformPubTitle = document.getElementById("pubform-partitle");
+    if (pubformPubTitle) { pubformPubTitle.remove(); }
+}
 
 function validateForm() {
 
@@ -306,7 +304,6 @@ function dateIssuedValidation() {
         return true;
     }
 }
-
 
 function relatedDataValidation() {
     console.log("relatedData URL Validation");
