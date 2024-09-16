@@ -1,7 +1,7 @@
 ---
 - name: Create and provision resources for Fedora Self Deposit
   import_playbook: oe-stack.yaml
-- name: insstall tomcat
+- name: Install all the fedora dependencies
   import_playbook: install_tomcat_and_fedora.yaml
 - name: install hyrax 
   import_playbook: install_hyrax_dependencies.yaml

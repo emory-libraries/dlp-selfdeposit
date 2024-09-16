@@ -2,13 +2,6 @@
 - name: create cloudformation resources
   hosts: localhost
   tasks:
-  - name: globals, shib ec2
-    cloudformation:
-      stack_name: "ansible-OE-cloudformation-global"
-      disable_rollback: true
-      state: present
-      region: "us-east-1"
-      template: "files/fedora-depo-globals.yaml"
   - name: Create the Open Emory ec2s
     cloudformation: 
       stack_name: "ansible-OE-cloudformation-{{ ENV }}"
@@ -19,6 +12,20 @@
       template_parameters:
         EnvironmentParameter: "{{ ENV }}"  
     register: ec2
+  - name: create correct target group for fedora instance
+    elb_target_group:
+      name: "oe24-fedora-{{ ENV }}-instances"
+      protocol: http
+      port: 8080
+      vpc_id: vpc-08bd68a1c66222de4
+      state: "{{ STATE }}"
+  - name: create correct target group for hyrax instance
+    elb_target_group:
+      name: "oe24-hyrax-{{ ENV }}-instances"
+      protocol: http
+      port: 80
+      vpc_id: vpc-08bd68a1c66222de4
+      state: "{{ STATE }}"
   - name: add to correct target group
     community.aws.elb_target:
       target_group_name: "oe24-fedora-{{ ENV }}-instances"
@@ -28,7 +35,7 @@
     when: STATE != 'absent'
   - name: add hyrax to correct target group
     community.aws.elb_target:
-      target_group_name: "oe24-{{ ENV }}-hyrax-instances"
+      target_group_name: "oe24-hyrax-{{ ENV }}-instances"
       target_id: "{{ ec2.stack_resources[2].physical_resource_id }}"
       state: "{{ STATE }}"
       target_port: 80
@@ -64,7 +71,7 @@
   - name: clean up policy file
     file:
       path: files/bucketpolicy.json
-      state: absent    
+      state: absent
   - name: create rds
     cloudformation:
       stack_name: "ansible-OE-cloudformation-{{ ENV }}-rds"
@@ -75,6 +82,7 @@
       template_parameters:
         EnvironmentParameter: "{{ ENV }}"
         MasterPassParameter: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-{{ ENV }}.postgres', nested=true) }}"
+    timeout: 900 
   - name: Get RDS info
     rds_instance_info:
       db_instance_identifier: "fedora-depo-{{ ENV  }}"
@@ -85,17 +93,20 @@
       name: "oe24{{ ENV }}"
       password: "{{ lookup('amazon.aws.aws_secret','oe24-{{ ENV }}-dbuser-password.password',nested=true) }}"
       login_user: postgres
-      login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-test.postgres', nested=true) }}"
+      login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-{{ ENV }}.postgres', nested=true) }}"
       login_host: "{{ db_info.instances[0].endpoint.address }}"
+      #ssl_mode: require
   - name: grant privs
     community.postgresql.postgresql_privs:
       login_user: postgres
-      login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-test.postgres', nested=true) }}"
+      login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-{{ ENV }}.postgres', nested=true) }}"
       login_host: "{{ db_info.instances[0].endpoint.address }}"
       db: "oe24{{ ENV }}"
       role: "oe24{{ ENV }}"
       objs: ALL_IN_SCHEMA
-      privs: CREATE,SELECT,INSERT,UPDATE,DELETE
+      privs: ALL
+      type: database
+      objs: "oe24{{ ENV }}"
   - name: create Redis node
     cloudformation:
       stack_name: "ansible-OE-cloudformation-redis-{{ ENV }}"

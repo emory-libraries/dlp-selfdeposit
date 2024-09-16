@@ -1,0 +1,55 @@
+---
+- name: populate the .env.prod file
+  hosts: localhost
+  vars:
+    - SECRET_KEY_BASE: "{{ lookup('amazon.aws.aws_secret','selfdeposit-secretkeybase-{{ ENV }}.secretkeybase', nested=true) }}"
+    - DBPASSWORD: "{{ lookup('amazon.aws.aws_secret','oe24-{{ ENV }}-dbuser-password.password',nested=true) }}" 
+  tasks:
+  - name: get ec2host ip
+    ec2_instance_info:
+      filters:
+        "tag:Name": OE24-hyrax-{{ ENV }}
+    register: instance_ip
+  - name: get fedora ip
+    ec2_instance_info:
+      filters:
+        "tag:Name": OE24-fedora-{{ ENV }}
+    register: fedora_instance
+  - name: set FEDORA_HOST fact
+    set_fact:
+      FEDORAHOST: "{{ fedora_instance.instances[0].network_interfaces[0].private_ip_address }}"
+  - name: get DBHOST
+    rds_instance_info:
+      db_instance_identifier: "fedora-depo-{{ ENV }}"
+    register: DBHOST_info
+  - name: set DBHOST
+    set_fact: 
+      DBHOST: "{{ DBHOST_info.instances[0].endpoint.address }}"
+  - name: get REDIS Info
+    elasticache_info:
+      name: "oe24-redis-{{ ENV }}-001"
+    register: redis_info
+  - name: set redis fact
+    set_fact:
+      REDISHOST: "{{ redis_info.elasticache_clusters[0].cache_nodes[0].endpoint.address }}"
+  - name: populate template
+    template:
+      src: files/env.production.j2
+      dest: files/env_to_deploy
+- hosts: 
+  - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}"
+  user: ec2-user
+  become: yes
+  tasks:
+  - name: deploy template
+    copy:
+      src: files/env_to_deploy
+      dest: /opt/dlp-selfdeposit/shared/.env.production
+      owner: deploy
+      group: deploy
+  - name: touch secrets.yaml
+    file:
+      path: /opt/dlp-selfdeposit/shared/config/secrets.yml
+      state: touch
+      owner: deploy
+      group: deploy
