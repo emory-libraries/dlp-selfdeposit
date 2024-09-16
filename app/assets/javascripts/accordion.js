@@ -386,18 +386,22 @@ function isDateValid(date) {
 
 function primaryFileValidation() {
     console.log("primary file validation");
+    var urlCheck = window.location.pathname;
+    console.log(urlCheck);
 
-    var primary0 = document.getElementById("primary0").value;
-    var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
+    if (urlCheck == "/concern/publications/new") {
+        var primary0 = document.getElementById("primary0").value;
+        var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
 
-    //check if value is empty
-    if (primary0 == "") {
-        console.log("value is empty");
-        validateModal(primaryFileTitle);
-        return false;
+        //check if value is empty
+        if (primary0 == "") {
+            console.log("value is empty");
+            validateModal(primaryFileTitle);
+            return false;
 
-    } else {
-        console.log("value is not empty: " + primary0);
-        return true;
-    }
+        } else {
+            console.log("value is not empty: " + primary0);
+            return true;
+        }
+    } else return true;
 }
