@@ -4,7 +4,7 @@
       <td><input id="<%= fs_use %>0" type="file" /></td>
     </tr>
     <tr>
-      <td>Name</td>
+      <td>Name (Optional: enter a custom display name for your file)</td>
       <td><input id="<%= fs_use %>-name0" type="text" /></td>
     </tr>
     <tr>
@@ -22,7 +22,7 @@
 <% end %>
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(function() {  
     var count = 1;
 
     $("#<%= fs_use %>-add").click(function(event) {

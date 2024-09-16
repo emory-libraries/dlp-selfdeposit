@@ -1,18 +1,23 @@
 <% # [Hyrax-overwrite-v5.0.1] %>
-<p>Please upload the primary publication file for your work. PDF is recommended for best long-term access to your material, but other formats are also accepted.</p>
-<p> Files containing sensitive data (PII, etc.) are not accepted. You can also provide a link to supplemental files/datasets stored in other sites in the Description tab. If you need assistance with your supplemental files, please view our Help page.</p>
+<div>
+    <p>Please upload the primary publication file for your work. PDF is recommended for best long-term access to your material, but other formats are also accepted.</p>
+    <p> Files containing sensitive data (PII, etc.) are not accepted. You can also provide a link to supplemental files/datasets stored in other sites in the Description tab. If you need assistance with your supplemental files, please view our Help page.</p>
 
-<div class="uploaded_files"></div>
+    <div class="uploaded_files"></div>
 
-<h4>Primary Content File (Required)</h4>
-<%= render 'form_files_upload', fs_use: "primary" %>
+    <div class="primary-file-container">
+        <h4>Primary Content File</h4>
+        <div><span class="badge badge-info required-tag">required</span></div>
+    </div>
+    <%= render 'form_files_upload', fs_use: "primary" %>
 
-<br>
-<h4>Supplemental Files (Optional)</h4>
-<%= render 'form_files_upload', fs_use: "supplemental" %>
+    <br>
+    <h4>Supplemental Files (Optional)</h4>
+    <%= render 'form_files_upload', fs_use: "supplemental" %>
 
-<% if current_user.admin? %>
-<br>
-<h4>Supplemental Preservation Files (Optional)</h4>
-<%= render 'form_files_upload', fs_use: "preservation" %>
-<% end %>
+    <% if current_user.admin? %>
+    <br>
+    <h4>Supplemental Preservation Files (Optional)</h4>
+    <%= render 'form_files_upload', fs_use: "preservation" %>
+    <% end %>
+</div>

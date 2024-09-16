@@ -136,6 +136,13 @@ body.dashboard {
 }
 
 /**** New Publication Form ****/
+.simple_form.edit_publication .tab-pane#files {
+  .primary-file-container {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .add-pub-intro {
   padding: 1rem;
   background: $light-slate;
@@ -150,17 +157,8 @@ body.dashboard {
     align-items: center;
   }
 
-  .listing {
-    max-width: 100%;
-    li.field-wrapper {
-      width: 100%;
-      select {
-        border-radius: 0;
-      }
-      .field-controls {
-        margin: 0;
-      }
-    }
+  select {
+    border-radius: 0;
   }
 }
 
@@ -349,9 +347,6 @@ body.dashboard {
       color: $white;
     }
   }
-}
-.badge {
-  margin: 0 1.5625rem;
 }
 
 #appliedParams {
