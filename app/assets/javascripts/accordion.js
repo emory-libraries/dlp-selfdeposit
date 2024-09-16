@@ -16,163 +16,169 @@ document.addEventListener('DOMContentLoaded', function (event) {
         })
     }
 
-
     //initial check on load for existing works
     var p = document.getElementById("publication_content_genre");
     if (p != null) {
 
-        //fields
-        var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title");
-        var confName = document.getElementsByClassName("form-group string optional publication_conference_name");
-        var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
-        var series = document.getElementsByClassName("form-group string optional publication_series_title");
-        var edition = document.getElementsByClassName("form-group string optional publication_edition");
-        var issn = document.getElementsByClassName("form-group string optional publication_issn");
-        var volume = document.getElementsByClassName("form-group string optional publication_volume");
-        var issue = document.getElementsByClassName("form-group string optional publication_issue");
-        var pageStart = document.getElementsByClassName("form-group string optional publication_page_range_start");
-        var pageEnd = document.getElementsByClassName("form-group string optional publication_page_range_end");
-
-        //labels (for required badged)
-        var pubVersionLabel = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
-        var parTitleLabel = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
-
         formSetup();
 
-        //get select element and watch if it changes
+        //now just watch if select changes
         p.addEventListener("change", function () {
             formSetup();
         });
-
-        function formSetup() {
-            var selectedValue = p.selectedOptions[0].label;
-            switch (selectedValue) {
-                case 'Article': {
-                    resetForm();
-                    console.log("Chose: Article");
-                    confName[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
-                    break;
-                }
-
-                case 'Book': {
-                    resetForm();
-                    console.log("Chose: Book");
-                    parTitle[0].style.display = "none";
-                    confName[0].style.display = "none";
-                    issn[0].style.display = "none";
-                    volume[0].style.display = "none";
-                    issue[0].style.display = "none";
-                    pageStart[0].style.display = "none";
-                    pageEnd[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-
-                    break;
-                }
-
-                case 'Book Chapter': {
-                    resetForm();
-                    console.log('Selected: Book Chapter');
-
-                    confName[0].style.display = "none";
-                    issn[0].style.display = "none";
-                    volume[0].style.display = "none";
-                    issue[0].style.display = "none";
-                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-                    parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
-
-                    break;
-                }
-
-                case 'Conference Paper': {
-                    resetForm();
-                    console.log('Selected: Conference Paper');
-
-                    issn[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-
-                    pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
-
-                    break;
-                }
-
-                case 'Poster':
-                case 'Presentation': {
-                    resetForm();
-                    console.log('Selected: Poster || Presentation');
-
-                    issn[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-                    volume[0].style.display = "none";
-                    issue[0].style.display = "none";
-                    pageStart[0].style.display = "none";
-                    pageEnd[0].style.display = "none";
-
-                    break;
-
-                }
-
-                case 'Report': {
-                    resetForm();
-                    console.log('Selected: Report');
-
-                    confName[0].style.display = "none";
-                    issn[0].style.display = "none";
-                    isbn[0].style.display = "none";
-                    series[0].style.display = "none";
-                    edition[0].style.display = "none";
-                    volume[0].style.display = "none";
-                    issue[0].style.display = "none";
-                    pageStart[0].style.display = "none";
-                    pageEnd[0].style.display = "none"
-
-                    break;
-                }
-
-                case ' ': {
-                    resetForm();
-                    console.log('none selected');
-                    break;
-                }
-                default: {
-                    resetForm();
-                    console.log('default selected');
-                    break;
-                }
-
-            }
-        }
-
-
-        function resetForm() {
-            console.log('RESET FORM!');
-            parTitle[0].style.display = "block";
-            confName[0].style.display = "block";
-            isbn[0].style.display = "block";
-            series[0].style.display = "block";
-            edition[0].style.display = "block";
-            issn[0].style.display = "block";
-            volume[0].style.display = "block";
-            issue[0].style.display = "block";
-            pageStart[0].style.display = "block";
-            pageEnd[0].style.display = "block";
-            var pubformPubver = document.getElementById("pubform-pubver");
-            if (pubformPubver) { pubformPubver.remove(); }
-            var pubformPubTitle = document.getElementById("pubform-partitle");
-            if (pubformPubTitle) { pubformPubTitle.remove(); }
-        }
     }
 });
 
+function resetForm() {
+    var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title");
+    var confName = document.getElementsByClassName("form-group string optional publication_conference_name");
+    var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
+    var series = document.getElementsByClassName("form-group string optional publication_series_title");
+    var edition = document.getElementsByClassName("form-group string optional publication_edition");
+    var issn = document.getElementsByClassName("form-group string optional publication_issn");
+    var volume = document.getElementsByClassName("form-group string optional publication_volume");
+    var issue = document.getElementsByClassName("form-group string optional publication_issue");
+    var pageStart = document.getElementsByClassName("form-group string optional publication_page_range_start");
+    var pageEnd = document.getElementsByClassName("form-group string optional publication_page_range_end");
 
+    console.log('RESET FORM!');
+    parTitle[0].style.display = "block";
+    confName[0].style.display = "block";
+    isbn[0].style.display = "block";
+    series[0].style.display = "block";
+    edition[0].style.display = "block";
+    issn[0].style.display = "block";
+    volume[0].style.display = "block";
+    issue[0].style.display = "block";
+    pageStart[0].style.display = "block";
+    pageEnd[0].style.display = "block";
+    var pubformPubver = document.getElementById("pubform-pubver");
+    if (pubformPubver) { pubformPubver.remove(); }
+    var pubformPubTitle = document.getElementById("pubform-partitle");
+    if (pubformPubTitle) { pubformPubTitle.remove(); }
+}
+
+function formSetup() {
+    //fields
+    var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title");
+    var confName = document.getElementsByClassName("form-group string optional publication_conference_name");
+    var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
+    var series = document.getElementsByClassName("form-group string optional publication_series_title");
+    var edition = document.getElementsByClassName("form-group string optional publication_edition");
+    var issn = document.getElementsByClassName("form-group string optional publication_issn");
+    var volume = document.getElementsByClassName("form-group string optional publication_volume");
+    var issue = document.getElementsByClassName("form-group string optional publication_issue");
+    var pageStart = document.getElementsByClassName("form-group string optional publication_page_range_start");
+    var pageEnd = document.getElementsByClassName("form-group string optional publication_page_range_end");
+
+    //labels (for required badged)
+    var pubVersionLabel = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
+    var parTitleLabel = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
+
+    var p = document.getElementById("publication_content_genre");
+    var selectedValue = p.selectedOptions[0].label;
+    switch (selectedValue) {
+        case 'Article': {
+            resetForm();
+            console.log("Chose: Article");
+            confName[0].style.display = "none";
+            isbn[0].style.display = "none";
+            series[0].style.display = "none";
+            edition[0].style.display = "none";
+            pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+            parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+            break;
+        }
+
+        case 'Book': {
+            resetForm();
+            console.log("Chose: Book");
+            parTitle[0].style.display = "none";
+            confName[0].style.display = "none";
+            issn[0].style.display = "none";
+            volume[0].style.display = "none";
+            issue[0].style.display = "none";
+            pageStart[0].style.display = "none";
+            pageEnd[0].style.display = "none";
+            pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+
+            break;
+        }
+
+        case 'Book Chapter': {
+            resetForm();
+            console.log('Selected: Book Chapter');
+
+            confName[0].style.display = "none";
+            issn[0].style.display = "none";
+            volume[0].style.display = "none";
+            issue[0].style.display = "none";
+            pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+            parTitleLabel.insertAdjacentHTML("beforeend", '<span id="pubform-partitle" class="badge badge-info required-tag">required</span>');
+
+            break;
+        }
+
+        case 'Conference Paper': {
+            resetForm();
+            console.log('Selected: Conference Paper');
+
+            issn[0].style.display = "none";
+            isbn[0].style.display = "none";
+            series[0].style.display = "none";
+            edition[0].style.display = "none";
+
+            pubVersionLabel.insertAdjacentHTML("beforeend", '<span id="pubform-pubver" class="badge badge-info required-tag">required</span>');
+
+            break;
+        }
+
+        case 'Poster':
+        case 'Presentation': {
+            resetForm();
+            console.log('Selected: Poster || Presentation');
+
+            issn[0].style.display = "none";
+            isbn[0].style.display = "none";
+            series[0].style.display = "none";
+            edition[0].style.display = "none";
+            volume[0].style.display = "none";
+            issue[0].style.display = "none";
+            pageStart[0].style.display = "none";
+            pageEnd[0].style.display = "none";
+
+            break;
+        }
+
+        case 'Report': {
+            resetForm();
+            console.log('Selected: Report');
+
+            confName[0].style.display = "none";
+            issn[0].style.display = "none";
+            isbn[0].style.display = "none";
+            series[0].style.display = "none";
+            edition[0].style.display = "none";
+            volume[0].style.display = "none";
+            issue[0].style.display = "none";
+            pageStart[0].style.display = "none";
+            pageEnd[0].style.display = "none"
+
+            break;
+        }
+
+        case ' ': {
+            resetForm();
+            console.log('none selected');
+            break;
+        }
+        default: {
+            resetForm();
+            console.log('default selected');
+            break;
+        }
+    }
+}
 
 function validateForm() {
 
@@ -188,12 +194,16 @@ function validateForm() {
     console.log(dateIssuedCheck);
     if (!dateIssuedCheck) { return false; }
 
+    var primaryFile = primaryFileValidation();
+    console.log(primaryFile);
+    if (!primaryFile) { return false; }
+
     var validationValue = document.getElementById("publication_content_genre").selectedOptions[0].label;
     var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
     var parTitleValue = document.getElementById("publication_parent_title").value;
 
-    var publisherVersion = 'The Publication Version field is required';
-    var parentTitle = "The Title of Journal or Parent Work field is required";
+    var publisherVersion = 'The Publication Version field is required. <br> You can find this field under Publication Information.';
+    var parentTitle = 'The Title of Journal or Parent Work field is required. <br>You can find this field under Publication Information.'
 
     switch (validationValue) {
 
@@ -265,7 +275,7 @@ function validateModal(x) {
     var modalNewPub = document.querySelector('[id^="new_publication_"]');
     var modalEditPub = document.querySelector('[id^="edit_publication_"]');
 
-    var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '.<br>Located under Publication Information.</div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
+    var text = '<div class="modal pubform" id="pubvalidatemodal"><div class="modal-dialog mo,dal-dialog-centered"><div class=modal-content><div class=modal-header><h4 class=modal-title>Missing Entries</h4><button class=close data-dismiss=modal type=button>×</button></div><div class=modal-body>' + x + '<br></div><div class=modal-footer><button class="btn btn-danger"data-dismiss=modal type=button>Close</button></div></div></div></div>';
 
     if (modalNewPub) {
         modalNewPub.insertAdjacentHTML("afterend", text);
@@ -288,7 +298,7 @@ function dateIssuedValidation() {
 
     var dateIssueValue = document.getElementById("publication_date_issued").value;
     var dateIssuedBool = isDateValid(dateIssueValue);
-    var dateIssueTitle = "The Date field must be in a proper format (YYYY-MM-DD, YYYY-MM or YYYY)"
+    var dateIssueTitle = 'The Date field must be in a proper format (YYYY-MM-DD, YYYY-MM or YYYY). <br>You can find this field under Publication Information.';
 
     //check if value is empty
     if (dateIssueValue !== "") {
@@ -304,7 +314,6 @@ function dateIssuedValidation() {
         console.log('value is empty!');
         return true;
     }
-
 }
 
 
@@ -337,7 +346,7 @@ function finalPubVerValidation() {
 
     var finalPubVer = document.getElementById("publication_final_published_versions").value;
     var finalPubVerBool = isUrlValid(finalPubVer);
-    var finalPubVerTitle = 'The Final Published Version field requires a full URL entry (starting with http://, https:// etc)';
+    var finalPubVerTitle = 'The Final Published Version field requires a full URL entry (starting with http://, https:// etc). <br>You can find this field under Publication Information.';
 
     //first check if related is not empty
     if (finalPubVer !== "") {
@@ -348,7 +357,6 @@ function finalPubVerValidation() {
             validateModal(finalPubVerTitle);
             return false;
         }
-
         console.log('do nothing');
         return true;
     } else {
@@ -374,4 +382,26 @@ function isDateValid(date) {
     if (longDateRegex.test(date) || monthYearDateRegex.test(date) || yearDateRegex.test(date)) {
         return true;
     } else { return false; }
+}
+
+function primaryFileValidation() {
+    console.log("primary file validation");
+    var urlCheck = window.location.pathname;
+    console.log(urlCheck);
+
+    if (urlCheck == "/concern/publications/new") {
+        var primary0 = document.getElementById("primary0").value;
+        var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
+
+        //check if value is empty
+        if (primary0 == "") {
+            console.log("value is empty");
+            validateModal(primaryFileTitle);
+            return false;
+
+        } else {
+            console.log("value is not empty: " + primary0);
+            return true;
+        }
+    } else return true;
 }
