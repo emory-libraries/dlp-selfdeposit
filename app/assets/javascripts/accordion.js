@@ -16,37 +16,66 @@ document.addEventListener('DOMContentLoaded', function (event) {
         })
     }
 
-
     //initial check on load for existing works
     var p = document.getElementById("publication_content_genre");
     if (p != null) {
 
-        //fields
-        var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title");
-        var confName = document.getElementsByClassName("form-group string optional publication_conference_name");
-        var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
-        var series = document.getElementsByClassName("form-group string optional publication_series_title");
-        var edition = document.getElementsByClassName("form-group string optional publication_edition");
-        var issn = document.getElementsByClassName("form-group string optional publication_issn");
-        var volume = document.getElementsByClassName("form-group string optional publication_volume");
-        var issue = document.getElementsByClassName("form-group string optional publication_issue");
-        var pageStart = document.getElementsByClassName("form-group string optional publication_page_range_start");
-        var pageEnd = document.getElementsByClassName("form-group string optional publication_page_range_end");
-
-        //labels (for required badged)
-        var pubVersionLabel = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
-        var parTitleLabel = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
-
         formSetup();
 
-        //get select element and watch if it changes
+        //now just watch if select changes
         p.addEventListener("change", function () {
             formSetup();
         });
     }
 });
 
+function resetForm() {
+    var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title");
+    var confName = document.getElementsByClassName("form-group string optional publication_conference_name");
+    var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
+    var series = document.getElementsByClassName("form-group string optional publication_series_title");
+    var edition = document.getElementsByClassName("form-group string optional publication_edition");
+    var issn = document.getElementsByClassName("form-group string optional publication_issn");
+    var volume = document.getElementsByClassName("form-group string optional publication_volume");
+    var issue = document.getElementsByClassName("form-group string optional publication_issue");
+    var pageStart = document.getElementsByClassName("form-group string optional publication_page_range_start");
+    var pageEnd = document.getElementsByClassName("form-group string optional publication_page_range_end");
+
+    console.log('RESET FORM!');
+    parTitle[0].style.display = "block";
+    confName[0].style.display = "block";
+    isbn[0].style.display = "block";
+    series[0].style.display = "block";
+    edition[0].style.display = "block";
+    issn[0].style.display = "block";
+    volume[0].style.display = "block";
+    issue[0].style.display = "block";
+    pageStart[0].style.display = "block";
+    pageEnd[0].style.display = "block";
+    var pubformPubver = document.getElementById("pubform-pubver");
+    if (pubformPubver) { pubformPubver.remove(); }
+    var pubformPubTitle = document.getElementById("pubform-partitle");
+    if (pubformPubTitle) { pubformPubTitle.remove(); }
+}
+
 function formSetup() {
+    //fields
+    var parTitle = document.getElementsByClassName("form-group string optional publication_parent_title");
+    var confName = document.getElementsByClassName("form-group string optional publication_conference_name");
+    var isbn = document.getElementsByClassName("form-group string optional publication_isbn");
+    var series = document.getElementsByClassName("form-group string optional publication_series_title");
+    var edition = document.getElementsByClassName("form-group string optional publication_edition");
+    var issn = document.getElementsByClassName("form-group string optional publication_issn");
+    var volume = document.getElementsByClassName("form-group string optional publication_volume");
+    var issue = document.getElementsByClassName("form-group string optional publication_issue");
+    var pageStart = document.getElementsByClassName("form-group string optional publication_page_range_start");
+    var pageEnd = document.getElementsByClassName("form-group string optional publication_page_range_end");
+
+    //labels (for required badged)
+    var pubVersionLabel = document.getElementsByClassName("form-group select optional publication_publisher_version")[0].firstChild;
+    var parTitleLabel = document.getElementsByClassName("form-group string optional publication_parent_title")[0].firstChild;
+
+    var p = document.getElementById("publication_content_genre");
     var selectedValue = p.selectedOptions[0].label;
     switch (selectedValue) {
         case 'Article': {
@@ -149,24 +178,6 @@ function formSetup() {
             break;
         }
     }
-}
-
-function resetForm() {
-    console.log('RESET FORM!');
-    parTitle[0].style.display = "block";
-    confName[0].style.display = "block";
-    isbn[0].style.display = "block";
-    series[0].style.display = "block";
-    edition[0].style.display = "block";
-    issn[0].style.display = "block";
-    volume[0].style.display = "block";
-    issue[0].style.display = "block";
-    pageStart[0].style.display = "block";
-    pageEnd[0].style.display = "block";
-    var pubformPubver = document.getElementById("pubform-pubver");
-    if (pubformPubver) { pubformPubver.remove(); }
-    var pubformPubTitle = document.getElementById("pubform-partitle");
-    if (pubformPubTitle) { pubformPubTitle.remove(); }
 }
 
 function validateForm() {
@@ -304,6 +315,7 @@ function dateIssuedValidation() {
         return true;
     }
 }
+
 
 function relatedDataValidation() {
     console.log("relatedData URL Validation");
