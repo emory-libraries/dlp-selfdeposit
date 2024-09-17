@@ -378,6 +378,10 @@ body.dashboard {
   }
 }
 
+#search-results .badge {
+  margin: 0;
+}
+
 .documents-masonry {
   .document {
     .caption-area {
@@ -407,9 +411,15 @@ body.dashboard {
 }
 
 section.pagination > div.page-links > a,
-.page-link,
+a.page-link,
 #search-results a {
   color: $bright-blue;
+}
+
+li.page-item.active span.page-link {
+  color: $white;
+  background-color: $bright-blue;
+  border-color: $bright-blue;
 }
 
 /*** end Search Results ***/
