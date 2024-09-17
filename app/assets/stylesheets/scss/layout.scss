@@ -51,6 +51,11 @@ a {
   margin: 0 0.5rem;
 }
 
+//total override as this is weirdly break-all in hyrax
+.table > tbody .document-title {
+  word-break: break-word;
+}
+
 /**** Helper Classes ****/
 
 /** Padding 10 **/
@@ -136,6 +141,13 @@ body.dashboard {
 }
 
 /**** New Publication Form ****/
+.simple_form.edit_publication .tab-pane#files {
+  .primary-file-container {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .add-pub-intro {
   padding: 1rem;
   background: $light-slate;
@@ -150,17 +162,8 @@ body.dashboard {
     align-items: center;
   }
 
-  .listing {
-    max-width: 100%;
-    li.field-wrapper {
-      width: 100%;
-      select {
-        border-radius: 0;
-      }
-      .field-controls {
-        margin: 0;
-      }
-    }
+  select {
+    border-radius: 0;
   }
 }
 
@@ -383,6 +386,34 @@ li.page-item.active span.page-link {
   color: $white;
   background-color: $bright-blue;
   border-color: $bright-blue;
+}
+
+.documents-masonry {
+  .document {
+    .caption-area {
+      padding: 0;
+      border: 0.0625rem solid $hyrax-black;
+      box-sizing: border-box;
+      background-color: $hyrax-black !important;
+    }
+    h3.index_title {
+      padding: 0.3125rem;
+
+      a {
+        color: $black;
+
+        &:hover,
+        &:visited,
+        &:active {
+          color: $black;
+        }
+      }
+    }
+
+    .document-metadata {
+      padding: 0 0.3125rem;
+    }
+  }
 }
 
 section.pagination > div.page-links > a,

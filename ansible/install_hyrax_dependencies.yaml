@@ -19,16 +19,15 @@
       - readline-devel
       - gcc-c++
       - libcurl-devel
+      - libxml2-devel
       - httpd-devel
       - apr-devel
       - apr-util-devel
-    #  - http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-rh-2-3.el7.centos.noarch.rpm
-    #  - http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-2-3.el7.centos.noarch.rpm
- #     - http://mirror.centos.org/centos/7/sclo/x86_64/rh/Packages/l/llvm-toolset-7-clang-4.0.1-1.el7.x86_64.rpm  
       - postgresql15
       - postgresql15-devel
     gems_to_install:
       - nokogiri
+      - base64
     profile_files:
       - /root/.bash_profile
       - /home/deploy/.bash_profile
@@ -44,6 +43,10 @@
        user: deploy
        state: present
        key: "{{ lookup('file', 'files/deploy.pub') }}"
+   - name: allow deploy user to not need pass
+     copy:
+       src: files/deploy-no-pass
+       dest: /etc/sudoers.d/deploy-no-pass
    - name: insstall epel-release
      command:
        cmd: amazon-linux-extras install epel -y
@@ -52,6 +55,14 @@
      copy:
        src: files/pgdg.repo
        dest: /etc/yum.repos.d/pgdg-15.repo
+   - name: install centos-scl-rh
+     copy:
+       src: files/CentOS-SCLo-scl-rh.repo 
+       dest: /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
+   - name: install centos-scl
+     copy:
+       src: files/CentOS-SCLo-scl.repo  
+       dest: /etc/yum.repos.d/CentOS-SCLo-scl.repo     
    - name: install package "{{ item }}
      yum: 
        name: "{{ item }}"
@@ -141,11 +152,6 @@
        name: tomcat
        state: started
        daemon_reload: true 
-   - name: start and enable apache
-     service:
-       name: httpd
-       state: started
-       enabled: yes
    - name: install rbenv
      git: 
        repo: https://github.com/sstephenson/rbenv.git
@@ -184,11 +190,15 @@
        source /root/.bash_profile
        /usr/local/rbenv/shims/gem install passenger
      args:
-       creates: /usr/local/rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/passenger-6.0.20
+       creates: /usr/local/rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/passenger-6.0*
+   - name: get passenger version
+     shell: source ~/.bash_profile; /usr/local/rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/passenger-*/bin/passenger -v |cut -f3 -d' '
+     register: passenger_version
    - name: place passenger.conf
-     copy:       
+     template:       
        dest: /etc/httpd/conf.d/passenger.conf
-       src: files/passenger.conf   
+       src: files/passenger.conf.j2
+       force: true   
    - name: build apache passenger module
      shell: |
        source /root/.bash_profile
@@ -214,6 +224,12 @@
      service:
        name: httpd
        state: restarted
+   - name: deploy sidekiq service file
+     copy:
+       src: files/sidekiq.service
+       dest: /etc/systemd/system/sidekiq.service
+       owner: root
+       group: root
    - name: create pg_config symlink
      file: 
        dest: /usr/bin/pg_config
@@ -229,3 +245,17 @@
        name: "{{ item }}"
        state: latest
      loop: "{{ gems_to_install }}"
+- name: install things for deploy user specifically
+  hosts: 
+    - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}"
+  user: deploy
+  tasks:
+  - name: install nvm
+    shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+    args:
+      executable: /bin/bash
+      creates: "/home/deploy/.nvm/nvm.sh"
+  - name: install node 17.9.1
+    shell: source /home/deploy/.bashrc; nvm install v17.9.1
+  - name: install yarn
+    shell: source /home/deploy/.bashrc; curl --compressed -o- -L https://yarnpkg.com/install.sh | bash  
