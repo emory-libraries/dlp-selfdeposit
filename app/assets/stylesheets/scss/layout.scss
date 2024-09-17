@@ -378,6 +378,34 @@ body.dashboard {
   }
 }
 
+.documents-masonry {
+  .document {
+    .caption-area {
+      padding: 0;
+      border: 0.0625rem solid $hyrax-black;
+      box-sizing: border-box;
+      background-color: $hyrax-black !important;
+    }
+    h3.index_title {
+      padding: 0 0.3125rem;
+
+      a {
+        color: $black;
+
+        &:hover,
+        &:visited,
+        &:active {
+          color: $black;
+        }
+      }
+    }
+
+    .document-metadata {
+      padding: 0 0.3125rem;
+    }
+  }
+}
+
 section.pagination > div.page-links > a,
 .page-link,
 #search-results a {
