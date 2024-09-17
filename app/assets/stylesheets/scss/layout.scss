@@ -51,6 +51,11 @@ a {
   margin: 0 0.5rem;
 }
 
+//total override as this is weirdly break-all in hyrax
+.table > tbody .document-title {
+  word-break: break-word;
+}
+
 /**** Helper Classes ****/
 
 /** Padding 10 **/
