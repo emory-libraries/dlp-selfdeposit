@@ -387,20 +387,28 @@ function isDateValid(date) {
 function primaryFileValidation() {
     console.log("primary file validation");
     var urlCheck = window.location.pathname;
+    var fileUpload = document.getElementById("primary-progress0").value;
     console.log(urlCheck);
 
     if (urlCheck == "/concern/publications/new") {
         var primary0 = document.getElementById("primary0").value;
         var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
+        var primaryFileNotLoadedTitle = 'The Primary Content File must be attached before saving this work. <br><br>Please review the Files tab of the form and make sure you have selected a file for upload. Then click the Attach File button and make sure the Upload Status is complete before saving the work.';
 
-        //check if value is empty
-        if (primary0 == "") {
-            console.log("value is empty");
+        if (primary0 == "" && fileUpload == 0) {
+            console.log("file was not uploaded");
             validateModal(primaryFileTitle);
             return false;
+        }
 
-        } else {
-            console.log("value is not empty: " + primary0);
+        if (primary0 != "" && fileUpload == 0) {
+            console.log("file selected but not attached");
+            validateModal(primaryFileNotLoadedTitle);
+            return false;
+        }
+
+        if (primary0 = ! "" && fileUpload != 0) {
+            console.log("the file was selected and loaded.");
             return true;
         }
     } else return true;
