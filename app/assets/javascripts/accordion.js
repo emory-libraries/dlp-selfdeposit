@@ -386,30 +386,48 @@ function isDateValid(date) {
 
 function primaryFileValidation() {
     console.log("primary file validation");
-    var urlCheck = window.location.pathname;
-    var fileUpload = document.getElementById("primary-progress0").value;
+    const urlCheck = window.location.pathname;
+    const fileUpload = document.getElementById("primary-progress0").value;
     console.log(urlCheck);
 
     if (urlCheck == "/concern/publications/new") {
-        var primary0 = document.getElementById("primary0").value;
-        var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
-        var primaryFileNotLoadedTitle = 'The Primary Content File must be attached before saving this work. <br><br>Please review the Files tab of the form and make sure you have selected a file for upload. Then click the Attach File button and make sure the Upload Status is complete before saving the work.';
+        const primary0 = document.getElementById("primary0").value;
+        const primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
+        const primaryFileNotLoadedTitle = 'The Primary Content File must be attached before saving this work. <br><br>Please review the Files tab of the form and make sure you have selected a file for upload. Then click the Attach File button and make sure the Upload Status is complete before saving the work.';
 
-        if (primary0 == "" && fileUpload == 0) {
-            console.log("file was not uploaded");
-            validateModal(primaryFileTitle);
+        if (primaryFileUploaded(primary0, fileUpload, primaryFileTitle)) {
             return false;
         }
 
-        if (primary0 != "" && fileUpload == 0) {
-            console.log("file selected but not attached");
-            validateModal(primaryFileNotLoadedTitle);
+        if (primaryFileAttched(primary0, fileUpload, primaryFileNotLoadedTitle)) {
             return false;
         }
 
-        if (primary0 = ! "" && fileUpload != 0) {
-            console.log("the file was selected and loaded.");
+        if (primaryFileLoaded(primary0, fileUpload)) {
             return true;
         }
     } else return true;
+}
+
+function primaryFileUploaded(primary0, fileUpload, primaryFileTitle) {
+    if (primary0 == "" && fileUpload == 0) {
+        console.log("file was not uploaded");
+        validateModal(primaryFileTitle);
+        return true;
+    } else return false;
+}
+
+function primaryFileAttched(primary0, fileUpload, primaryFileNotLoadedTitle) {
+    if (primary0 != "" && fileUpload == 0) {
+        console.log("file selected but not attached");
+        validateModal(primaryFileNotLoadedTitle);
+        return true;
+    } else return false;
+}
+
+function primaryFileLoaded(primary0, fileUpload) {
+    if (primary0 = ! "" && fileUpload != 0) {
+        console.log("the file was selected and loaded.");
+        return true;
+    } else return false;
 }
