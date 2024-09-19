@@ -155,7 +155,9 @@ body.dashboard {
       display: block;
 
       tr {
-        display: block;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
 
         td {
           display: block;
