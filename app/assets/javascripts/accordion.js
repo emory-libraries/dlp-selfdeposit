@@ -194,7 +194,7 @@ function validateForm() {
     console.log(dateIssuedCheck);
     if (!dateIssuedCheck) { return false; }
 
-    var primaryFile = primaryFileValidation();
+    var primaryFile = primaryFileNewPublication();
     console.log(primaryFile);
     if (!primaryFile) { return false; }
 
@@ -384,7 +384,7 @@ function isDateValid(date) {
     } else { return false; }
 }
 
-function primaryNewPublicatin() {
+function primaryFileNewPublication() {
     var urlCheck = window.location.pathname;
 
     if (urlCheck == "/concern/publications/new") {
