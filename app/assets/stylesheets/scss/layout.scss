@@ -141,10 +141,31 @@ body.dashboard {
 }
 
 /**** New Publication Form ****/
-.simple_form.edit_publication .tab-pane#files {
+.simple_form .tab-pane#files {
   .primary-file-container {
     display: flex;
     align-items: center;
+  }
+
+  //weirdness, may replace later
+  table {
+    display: block;
+
+    tbody {
+      display: block;
+
+      tr {
+        display: block;
+
+        td {
+          display: block;
+
+          * {
+            max-width: 100%;
+          }
+        }
+      }
+    }
   }
 }
 

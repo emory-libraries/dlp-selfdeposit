@@ -194,7 +194,7 @@ function validateForm() {
     console.log(dateIssuedCheck);
     if (!dateIssuedCheck) { return false; }
 
-    var primaryFile = primaryFileValidation();
+    var primaryFile = primaryFileNewPublication();
     console.log(primaryFile);
     if (!primaryFile) { return false; }
 
@@ -384,24 +384,37 @@ function isDateValid(date) {
     } else { return false; }
 }
 
-function primaryFileValidation() {
-    console.log("primary file validation");
+function primaryFileNewPublication() {
     var urlCheck = window.location.pathname;
     console.log(urlCheck);
 
     if (urlCheck == "/concern/publications/new") {
-        var primary0 = document.getElementById("primary0").value;
-        var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
-
-        //check if value is empty
-        if (primary0 == "") {
-            console.log("value is empty");
-            validateModal(primaryFileTitle);
-            return false;
-
-        } else {
-            console.log("value is not empty: " + primary0);
-            return true;
-        }
+        return primaryFileValidation();
     } else return true;
+}
+
+function primaryFileValidation() {
+    console.log("primary file validation");
+    var fileUpload = document.getElementById("primary-progress0").value;
+
+    var primary0 = document.getElementById("primary0").value;
+    var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
+    var primaryFileNotLoadedTitle = 'The Primary Content File must be attached before saving this work. <br><br>Please review the Files tab of the form and make sure you have selected a file for upload. Then click the Attach File button and make sure the Upload Status is complete before saving the work.';
+
+    if (primary0 == "" && fileUpload == 0) {
+        console.log("file was not uploaded");
+        validateModal(primaryFileTitle);
+        return false;
+    }
+
+    if (primary0 != "" && fileUpload == 0) {
+        console.log("file selected but not attached");
+        validateModal(primaryFileNotLoadedTitle);
+        return false;
+    }
+
+    if (primary0 = ! "" && fileUpload != 0) {
+        console.log("the file was selected and loaded.");
+        return true;
+    } else alert("Contact LTDS"); return true;
 }
