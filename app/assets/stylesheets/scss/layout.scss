@@ -351,9 +351,33 @@ body.dashboard {
     margin-left: -0.255em;
     vertical-align: top;
   }
+
+  .card-body {
+    padding: 0;
+
+    table {
+      margin-bottom: 0;
+    }
+  }
+
+  .work-show.publication {
+    padding-left: 1.25rem;
+  }
+
+  .card.viewer-actions {
+    margin-right: 1.25rem;
+  }
+
+  .work-show {
+    padding: 1.25rem 1.25rem 0 1.25rem;
+  }
+
   table.items-table {
     th {
       white-space: nowrap;
+      &.th-title {
+        min-width: 15rem;
+      }
     }
     td {
       word-break: break-word;
