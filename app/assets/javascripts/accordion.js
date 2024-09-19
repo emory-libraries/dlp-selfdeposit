@@ -386,16 +386,16 @@ function isDateValid(date) {
 
 function primaryFileNewPublication() {
     var urlCheck = window.location.pathname;
+    console.log(urlCheck);
 
     if (urlCheck == "/concern/publications/new") {
-        primaryFileValidation();
+        return primaryFileValidation();
     } else return true;
 }
 
 function primaryFileValidation() {
     console.log("primary file validation");
     var fileUpload = document.getElementById("primary-progress0").value;
-    console.log(urlCheck);
 
     var primary0 = document.getElementById("primary0").value;
     var primaryFileTitle = "The Primary Content File located under the files tab at the top of the page is required to submit.";
@@ -416,5 +416,5 @@ function primaryFileValidation() {
     if (primary0 = ! "" && fileUpload != 0) {
         console.log("the file was selected and loaded.");
         return true;
-    }
+    } else alert("Contact LTDS"); return true;
 }
