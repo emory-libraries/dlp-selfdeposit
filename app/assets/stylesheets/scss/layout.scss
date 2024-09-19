@@ -157,7 +157,7 @@ body.dashboard {
       tr {
         display: flex;
         flex-wrap: wrap;
-        overflow: clip;
+        overflow: hidden;
 
         td {
           display: block;
