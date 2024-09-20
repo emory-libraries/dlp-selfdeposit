@@ -102,3 +102,12 @@ namespace :deploy do
     end
   end
 end
+
+# Restart apache
+namespace :deploy do
+  after :restart_apache, :restart_tomcat do
+    on roles(:ubuntu) do
+      execute :sudo, :systemctl, :restart, :tomcat
+    end
+  end
+end
