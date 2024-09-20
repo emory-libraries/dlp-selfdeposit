@@ -21,15 +21,15 @@
         <div class="row">
           <%= render 'workflow_actions_widget', presenter: @presenter %>
           <% if @presenter.iiif_viewer? %>
-            <div class="col-sm-12">
+            <div class="col-lg-12">
               <%= render 'representative_media', presenter: @presenter, viewer: true %>
             </div>
           <% end %>
-          <div class="col-sm-8">
+          <div class="col-lg-8">
             <%= render 'work_description', presenter: @presenter %>
             <%= render 'metadata', presenter: @presenter %>
           </div>
-          <div class="col-sm-4 text-center">
+          <div class="col-lg-4 text-center">
             <div class="sidebar-media">
               <%= render 'representative_media', presenter: @presenter, viewer: false unless @presenter.iiif_viewer? || @presenter.representative_presenter&.pdf? %>
             </div>
