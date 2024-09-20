@@ -12,7 +12,7 @@ module ApplicationHelper
                         tag.span([author_array[0], "#{author_array[1]},", author_array[2]].join(' '), itemprop: 'name')
                       end
 
-        content_tag(:li, author_span, itemprop: 'creator', itemscope: '', itemtype: 'http://schema.org/Person', class: 'attribute attribute-creator')
+        content_tag(:span, author_span, itemprop: 'creator', itemscope: '', itemtype: 'http://schema.org/Person', class: 'attribute attribute-creator')
       end
     )
   end
