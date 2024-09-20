@@ -389,7 +389,10 @@ body.dashboard {
   }
 
   .work-show.publication {
-    padding-left: 1.25rem;
+    padding-right: 0;
+    ul {
+      margin-bottom: 0;
+    }
   }
 
   .card.viewer-actions {
