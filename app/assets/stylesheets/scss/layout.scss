@@ -298,7 +298,6 @@ body.dashboard {
 #content_block_page * a {
   color: $bright-blue;
 }
-
 /**** End Publication Form ****/
 
 /*** View Work Page (/concerns/publications/) ***/
@@ -316,6 +315,20 @@ body.dashboard {
     border: 1px solid $base-slate;
     border-radius: 0.25rem;
   }
+
+  h2.show-tools-card-title {
+    font-family: $font-family-sans-serif;
+    color: $gold;
+    background-color: $dark-blue;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .viewer-actions div.card-header {
+    background-color: $dark-blue;
+    text-align: left;
+  }
+
   .sidebar-media > div > img {
     border: 1px solid $base-slate;
     border-radius: 0.25rem;
@@ -362,11 +375,9 @@ body.dashboard {
     }
   }
 }
-
 /**** End View Work Page (/concerns/publications/) ****/
 
 /*** Search Results ***/
-
 .facet-limit-active {
   .card-header {
     background-color: $base-blue !important;
@@ -486,39 +497,67 @@ div.alert-success > a {
   a {
     color: $bright-blue;
   }
-  .file-set-details {
-    margin-bottom: 3rem;
-  }
-  .form-actions {
-    margin-bottom: 1em;
-  }
+
   .btn-danger {
     color: $white;
   }
+
   .social-media {
     display: none;
   }
-  .file-show-term {
-    border: none;
-    padding-top: 0;
+
+  .file-set-details {
+    margin-bottom: 3rem;
+
+    .file-show-term {
+      border: none;
+      padding-top: 0;
+    }
+
+    .col-4 {
+      padding: 0;
+
+      #pdf-viewer {
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.35rem;
+      }
+    }
+
+    .activity-display {
+      margin-top: 3rem;
+    }
   }
+
   .representative-media {
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
   }
-  h2.show-tools-card-title {
-    font-family: $font-family-sans-serif;
-    color: $gold;
-    background-color: $dark-blue;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-  .viewer-actions div.card-header {
-    background-color: $dark-blue;
-    text-align: left;
-  }
-  .activity-display {
-    margin-top: 3rem;
+
+  .event-table {
+    table {
+      word-break: break-word;
+      padding: 0;
+      margin-bottom: 0;
+      border: none;
+
+      thead tr {
+        word-break: initial;
+
+        th:first-child {
+          border-left: none;
+        }
+        th:last-child {
+          border-right: none;
+        }
+      }
+
+      tbody td:first-child {
+        border-left: none;
+      }
+      tbody td:last-child {
+        border-right: none;
+      }
+    }
   }
 }
 /**** end File-Set Show Page ****/

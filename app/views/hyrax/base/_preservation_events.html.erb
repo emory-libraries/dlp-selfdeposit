@@ -1,6 +1,6 @@
 <% sorted_events = sort_preservation_events(@presenter.solr_document['preservation_events_tesim']) %>
 <% if sorted_events.present? %>
-    <table id="preservation-event-table" class="card-body table table-striped table-bordered">
+    <table id="preservation-event-table" class="table table-striped table-bordered">
         <thead>
         <tr>
             <th class="pet-fit"><%= t('.event') %></th>
