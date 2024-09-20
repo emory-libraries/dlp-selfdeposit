@@ -301,6 +301,19 @@ body.dashboard {
 
 /*** View Work Page (/concerns/publications/) ***/
 #view-work-page {
+  .work-title-wrapper .title-with-badges {
+    flex-wrap: wrap;
+
+    h1 {
+      flex-basis: 100%;
+      padding-bottom: 0.625rem;
+    }
+
+    .badge:first-of-type {
+      margin-left: 0;
+    }
+  }
+
   a {
     color: $bright-blue;
   }
