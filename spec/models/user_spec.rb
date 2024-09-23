@@ -27,6 +27,7 @@ RSpec.describe User, type: :model do
 
         it 'sets the correct attributes' do
           user = User.from_saml(auth_hash)
+          puts "User: #{user.inspect}"
           expect(user.email).to eq('user@example.com')
           expect(user.display_name).to eq('Test User')
           expect(user.department).to eq('Test Department')
