@@ -1,16 +1,15 @@
 
 # frozen_string_literal: true
 class CollectionType < Hyrax::CollectionType
-  LIBRARY_COLLECTION_DEFAULT_TITLE = 'Library Collection'
+  USER_COLLECTION_DEFAULT_TITLE = 'Library Collection'
+  after_initialize :configure
 
-  # If a Curate::CollectionType already exists, pass it along.
+  # If a Curate::CollectionType already exists, ensure it adheres to expectations and return it.
   # Otherwise, make a new one and return that.
   def self.find_or_create_library_collection_type
-    library_collection_type = CollectionType.find_by_title(LIBRARY_COLLECTION_DEFAULT_TITLE)
-    if library_collection_type.nil?
-      library_collection_type = CollectionType.new
-      library_collection_type.configure
-    end
+    library_collection_type = CollectionType.find_by_title(USER_COLLECTION_DEFAULT_TITLE)
+    library_collection_type = CollectionType.new if library_collection_type.nil?
+    library_collection_type.configure
     library_collection_type
   end
 
