@@ -13,11 +13,11 @@ end
 def make_default_collection(col_type)
   col_exists = Hyrax.custom_queries.find_by_collection_title(title: "OpenEmory")
   return if col_exists.present?
-  desc = ['OpenEmory preserves scholarly publications from Emory faculty, graduate,
-           and undergraduate researchers and makes them freely accessible, increasing the visibility
-           of this research and furthering the intellectual community at Emory University.']
+  desc = ['OpenEmory preserves scholarly publications from Emory faculty, graduate, ' \
+            'and undergraduate researchers and makes them freely accessible, increasing the visibility ' \
+            'of this research and furthering the intellectual community at Emory University.']
   col = Collection.new(title: ["OpenEmory"], description: desc, creator: ['Emory University'], holding_repository: ['Emory University. Library'],
-                       institution: ['Emory University'], collection_type_gid: col_type.to_global_id.to_s, visibility: 'open')
+                       depositor: 'admin@example.com', institution: ['Emory University'], collection_type_gid: col_type.to_global_id.to_s, visibility: 'open')
   change_set = Hyrax::ChangeSet.for(col)
   tx = Hyrax::Transactions::CollectionCreate.new
   tx.with_step_args('change_set.set_noid_id' => {}).call(change_set)
