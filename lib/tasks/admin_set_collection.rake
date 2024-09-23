@@ -17,7 +17,7 @@ def make_default_collection(col_type)
             'and undergraduate researchers and makes them freely accessible, increasing the visibility ' \
             'of this research and furthering the intellectual community at Emory University.']
   col = Collection.new(title: ["OpenEmory"], description: desc, creator: ['Emory University'], holding_repository: ['Emory University. Library'],
-                       depositor: 'admin@examplecom', institution: ['Emory University'], collection_type_gid: col_type.to_global_id.to_s, visibility: 'open')
+                       depositor: 'admin@example.com', institution: ['Emory University'], collection_type_gid: col_type.to_global_id.to_s, visibility: 'open')
   change_set = Hyrax::ChangeSet.for(col)
   tx = Hyrax::Transactions::CollectionCreate.new
   tx.with_step_args('change_set.set_noid_id' => {}).call(change_set)
