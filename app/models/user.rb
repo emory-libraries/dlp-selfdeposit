@@ -14,11 +14,37 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :saml_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
   # the account.
   def to_s
     email
+  end
+
+  def self.from_saml(auth)
+    return unless Rails.env.production?
+    user = find_or_initialize_by(email: auth.info.mail)
+
+    user.assign_attributes(
+      display_name: auth.info.displayName,
+      department: auth.info.ou,
+      title: auth.info.title,
+      uid: auth.uid
+    )
+
+    if user.save
+      user
+    else
+      log_saml_error(auth)
+      User.new
+    end
+  end
+
+  def self.log_saml_error(auth)
+    if auth.info.mail.blank?
+      Rails.logger.error "Nil user detected: SAML didn't pass an email for #{auth.inspect}"
+    else
+      Rails.logger.error "Failed to create/update user: #{auth.inspect}"
+    end
   end
 end

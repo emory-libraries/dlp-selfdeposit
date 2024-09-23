@@ -313,7 +313,7 @@ Devise.setup do |config|
 
   # Configure with your SAML settings (see ruby-saml's README for more information: https://github.com/onelogin/ruby-saml).
   config.saml_configure do |settings|
-    settings.assertion_consumer_service_url     = "https://shib.open.library.emory.edu/Shibboleth.sso/SAML2/POST"
+    settings.assertion_consumer_service_url     = "https://shib.open.library.emory.edu/Shibboleth.sso/SLO/POST"
     settings.assertion_consumer_service_binding = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
     settings.name_identifier_format             = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient" # unchanged
     settings.sp_entity_id                       = "https://shib.open.library.emory.edu"
@@ -324,4 +324,11 @@ Devise.setup do |config|
     settings.idp_cert_fingerprint               = ENV['IDP_CERT_FINGERPRINT']
     settings.idp_cert_fingerprint_algorithm     = "http://www.w3.org/2000/09/xmldsig#sha1" # unchanged
   end
+
+  config.saml_create_user = true
+  config.saml_update_user = true
+  config.saml_default_user_key = :email
+  config.saml_session_index_key = :session_index
+  config.saml_use_subject = true
+  config.saml_resource_locator = ->(model, saml_response) { model.from_saml(saml_response) }
 end
