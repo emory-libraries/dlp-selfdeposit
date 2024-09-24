@@ -73,6 +73,11 @@
 }
 
 /*** search results ***/
+@media (max-width: 767px) {
+  #search-results .search-result-wrapper .list-thumbnail {
+    justify-content: unset;
+  }
+}
 @media (max-width: 576px) {
   #search-results dt.data-labels {
     text-align: unset !important;
