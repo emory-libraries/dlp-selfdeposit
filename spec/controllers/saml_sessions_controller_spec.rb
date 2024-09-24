@@ -115,4 +115,3 @@ RSpec.describe SamlSessionsController, type: :controller do
     end
   end
 end
-
