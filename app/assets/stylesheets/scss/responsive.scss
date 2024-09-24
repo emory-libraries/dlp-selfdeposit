@@ -72,6 +72,13 @@
   }
 }
 
+/*** search results ***/
+@media (max-width: 576px) {
+  #search-results dt.data-labels {
+    text-align: unset !important;
+  }
+}
+
 /*** View Work Page (/concerns/publications/) ***/
 @media (max-width: 991px) {
   #view-work-page {

@@ -1,13 +1,13 @@
 <!-- Hyrax Override:v5.0.1 - changes styling to align with emory. starting line 3, mostly column widths. --> 
 
-<div class="col-sm-9">
+<div class="col-9">
   <div class="metadata">
     <dl>
     <% doc_presenter = index_presenter(document) %>
     <% index_fields(document).each do |field_name, field| -%>
       <% if should_render_index_field? document, field %>
         <div class="row">
-          <dt class="col-sm-3 text-right" data-solr-field-name="<%= field_name %>"><%= render_index_field_label document, field: field_name %></dt>
+          <dt class="col-sm-3 text-right data-labels" data-solr-field-name="<%= field_name %>"><%= render_index_field_label document, field: field_name %></dt>
           <dd class="col-sm-9 align-bottom"><%= doc_presenter.field_value field %></dd>
         </div>
       <% end %>
