@@ -141,6 +141,11 @@ body.dashboard {
   div.list-group > .list-group-item a {
     color: $bright-blue;
   }
+
+  //hide title "Administrative Set"
+  #admin_sets h5 {
+    display: none;
+  }
 }
 
 /**** New Publication Form ****/

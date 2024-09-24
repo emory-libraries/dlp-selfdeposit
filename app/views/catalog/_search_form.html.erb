@@ -10,7 +10,7 @@
           <button type="submit" class="btn btn-primary" id="search-submit-header">
             <%= t('hyrax.search.button.html') %>
           </button>
-          <% if current_user %>
+         <% if user_signed_in? %>
             <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
   
               <span class="sr-only" data-search-element="label"><%= t("hyrax.search.form.option.all.label_long", application_name: application_name) %></span>
