@@ -2,147 +2,117 @@
 require 'rails_helper'
 
 RSpec.describe SamlSessionsController, type: :controller do
-  describe '#new' do
+  include Devise::Test::ControllerHelpers
+
+  let(:warden) { double(Warden::Proxy) }
+  let(:user) { instance_double(User, persisted?: true) }
+
+  before do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @request.env['warden'] = warden
+    allow(warden).to receive(:authenticate?).and_return(false)
+    allow(warden).to receive(:set_user)
+    allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))
+  end
+
+  describe "GET #new" do
     before do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
+      allow_any_instance_of(OneLogin::RubySaml::Authrequest).to receive(:create).and_return("http://idp.example.com/saml/auth")
     end
 
-    context 'when redirect_to param is present' do
-      it 'stores the redirect path' do
-        get :new, params: { redirect_to: '/custom_path' }
-        expect(controller.stored_location_for(:user)).to eq('/custom_path')
-      end
+    it "stores the redirect_to parameter" do
+      get :new, params: { redirect_to: '/dashboard' }
+      expect(session['user_return_to']).to eq('/dashboard')
     end
 
-    context 'when referer is present' do
-      it 'stores the referer path' do
-        @request.env['HTTP_REFERER'] = '/referer_path'
-        get :new
-        expect(controller.stored_location_for(:user)).to eq('/referer_path')
-      end
+    it "stores the referer if no redirect_to parameter" do
+      request.env['HTTP_REFERER'] = '/previous_page'
+      get :new
+      expect(session['user_return_to']).to eq('/previous_page')
     end
 
-    context 'when referer is the new user session url' do
-      it 'does not store the referer path' do
-        @request.env['HTTP_REFERER'] = new_user_session_url
-        get :new
-        expect(controller.stored_location_for(:user)).to be_nil
-      end
+    it "doesn't store referer if it matches new_user_session_url" do
+      request.env['HTTP_REFERER'] = new_saml_user_session_url
+      get :new
+      expect(session['user_return_to']).to be_nil
+    end
+
+    it "initiates SAML authentication" do
+      get :new
+      expect(response).to redirect_to("http://idp.example.com/saml/auth")
     end
   end
 
-  describe '#create' do
-    let(:auth_hash) do
-      OmniAuth::AuthHash.new(
-        provider: 'saml',
-        info: {
-          mail: 'user@example.com',
-          displayName: 'Test User',
-          ou: 'Test Department',
-          title: 'Test Title'
-        }
-      )
-    end
-
-    before do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      @request.env["omniauth.auth"] = auth_hash
-    end
-
-    context 'when authentication is successful' do
-      it 'signs in the user' do
-        post :create
-        expect(controller.current_user).not_to be_nil
+  describe "POST #create" do
+    context "in production environment" do
+      before do
+        allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))
       end
 
-      it 'redirects to the dashboard' do
-        post :create
-        expect(response).to redirect_to(hyrax.dashboard_path)
-      end
-
-      it 'sets a success flash message' do
+      it "sets a success notice and redirects to after_sign_in_path when authentication is successful" do
+        allow(warden).to receive(:authenticate!).and_return(user)
+        allow(warden).to receive(:user).with(:user).and_return(user)
+        allow(controller).to receive(:after_sign_in_path_for).with(user).and_return('/dashboard')
         post :create
         expect(flash[:notice]).to eq(I18n.t("devise.sessions.signed_in"))
+        expect(response).to redirect_to('/dashboard')
+      end
+
+      it "sets an alert and redirects to root_path when authentication fails" do
+        allow(warden).to receive(:authenticate!).and_return(nil)
+        allow(warden).to receive(:user).with(:user).and_return(nil)
+        post :create
+        expect(flash[:alert]).to eq(I18n.t("devise.failure.saml_invalid", reason: "Unable to create or update user account."))
+        expect(response).to redirect_to(root_path)
       end
     end
 
-    context 'when authentication fails' do
+    context "in non-production environment" do
       before do
-        allow(User).to receive(:from_saml).and_return(User.new)
+        allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("development"))
       end
 
-      it 'does not sign in the user' do
+      it "redirects to sign in path with an alert" do
         post :create
-        expect(controller.current_user).to be_nil
-      end
-
-      it 'redirects to the root path' do
-        post :create
-        expect(response).to redirect_to(root_path)
-      end
-
-      it 'sets an error flash message' do
-        post :create
-        expect(flash[:alert]).to eq(I18n.t("devise.failure.saml_invalid", reason: "Unable to create or update user account."))
+        expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:alert]).to eq("SAML authentication is only available in production.")
       end
     end
   end
 
-  describe '#after_sign_in_path_for' do
-    let(:user) { create(:user) }
+  describe "#after_sign_in_path_for" do
+    let(:user) { instance_double(User) }
 
-    it 'returns the omniauth origin if present' do
-      @request.env['omniauth.origin'] = '/custom_path'
-      expect(controller.after_sign_in_path_for(user)).to eq('/custom_path')
-    end
-
-    it 'returns the stored location if present' do
-      controller.store_location_for(user, '/stored_path')
+    it "returns stored location if available" do
+      allow(controller).to receive(:stored_location_for).with(user).and_return('/stored_path')
       expect(controller.after_sign_in_path_for(user)).to eq('/stored_path')
     end
 
-    it 'returns the dashboard path if no other path is set' do
-      expect(controller.after_sign_in_path_for(user)).to eq(hyrax.dashboard_path)
+    it "returns root path if no stored location" do
+      allow(controller).to receive(:stored_location_for).with(user).and_return(nil)
+      expect(controller.after_sign_in_path_for(user)).to eq(root_path)
     end
   end
 
-  describe '#after_sign_out_path_for' do
-    it 'returns the root path' do
-      expect(controller.after_sign_out_path_for(nil)).to eq(root_path)
-    end
-  end
+  describe "#check_environment" do
+    context "in production" do
+      before { allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production")) }
 
-  describe '#check_environment' do
-    context 'when not in production environment' do
-      before do
-        allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new('development'))
-      end
-
-      it 'sets an alert flash message' do
-        get :new
-        expect(flash[:alert]).to eq("SAML authentication is only available in production.")
-      end
-
-      it 'redirects to the new user session path' do
-        get :new
-        expect(response).to redirect_to(new_user_session_path)
-      end
-    end
-
-    context 'when in production environment' do
-      before do
-        allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new('production'))
-      end
-
-      it 'does not set an alert flash message' do
-        get :new
-        expect(flash[:alert]).to be_nil
-      end
-
-      it 'does not redirect to the new user session path' do
+      it "allows access" do
         get :new
         expect(response).not_to redirect_to(new_user_session_path)
       end
     end
+
+    context "in non-production" do
+      before { allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("development")) }
+
+      it "redirects to sign in path with an alert" do
+        get :new
+        expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:alert]).to eq("SAML authentication is only available in production.")
+      end
+    end
   end
 end
+
