@@ -10,7 +10,7 @@
     <%= f.input :institution, label: 'Institution', input_html: { class: 'form-control', value: creator_parts[:institution] || '' }, required: true %>
   </div>
   <div class="col-md-6">
-    <%= f.input :orcid_id, label: 'ORCID ID', input_html: { class: 'form-control', value: creator_parts[:orcid_id] || '' }, required: false %>
+    <%= f.input :orcid_id, label: 'ORCID ID', input_html: { class: 'form-control', value: creator_parts[:orcid] || '' }, required: false %>
   </div>
   <span class="input-group-btn field-controls">
     <button type="button" onClick="removeCreator()" class="btn btn-link remove">
