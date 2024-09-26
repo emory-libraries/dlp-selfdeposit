@@ -8,20 +8,10 @@ class SamlSessionsController < Devise::SamlSessionsController
   end
 
   def create
-    self.resource = warden.authenticate!(auth_options)
-    if resource&.persisted?
-      set_flash_message!(:notice, :signed_in)
-      sign_in(resource_name, resource)
-      yield resource if block_given?
-      respond_with resource, location: after_sign_in_path_for(resource)
-    else
-      flash[:alert] = I18n.t("devise.failure.saml_invalid", reason: "Unable to create or update user account.")
-      redirect_to root_path
-    end
+    authenticate_resource
+    handle_authenticated_resource
   rescue StandardError => e
-    Rails.logger.error("SAML authentication error: #{e.message}")
-    flash[:alert] = I18n.t("devise.failure.saml_invalid", reason: "Unable to create or update user account.")
-    redirect_to root_path
+    handle_authentication_error(e)
   end
 
   def after_sign_in_path_for(resource)
@@ -30,6 +20,41 @@ class SamlSessionsController < Devise::SamlSessionsController
 
   def after_sign_out_path_for(_resource_or_scope)
     root_path
+  end
+
+  private
+
+  def authenticate_resource
+    self.resource = warden.authenticate!(auth_options)
+  end
+
+  def handle_authenticated_resource
+    if resource&.persisted?
+      sign_in_resource
+    else
+      handle_invalid_resource
+    end
+  end
+
+  def sign_in_resource
+    set_flash_message!(:notice, :signed_in)
+    sign_in(resource_name, resource)
+    yield resource if block_given?
+    respond_with resource, location: after_sign_in_path_for(resource)
+  end
+
+  def handle_invalid_resource
+    error_flash_and_redirect("Unable to create or update user account.")
+  end
+
+  def handle_authentication_error(error)
+    Rails.logger.error("SAML authentication error: #{error.message}")
+    error_flash_and_redirect("Unable to create or update user account.")
+  end
+
+  def error_flash_and_redirect(reason)
+    flash[:alert] = I18n.t("devise.failure.saml_invalid", reason:)
+    redirect_to root_path
   end
 
   protected
