@@ -8,7 +8,7 @@ module ApplicationHelper
         parsed_author = parse_creator_string(author)
         author_span =
           if parsed_author[:orcid]
-            sanitize("<span itemprop='name'>#{parsed_author[:last_name]}, #{parsed_author[:first_name]} #{orcid_link_for_creator(parsed_author[:orcid])}
+            sanitize("<span itemprop='name'>#{parsed_author[:first_name]} #{parsed_author[:last_name]} #{orcid_link_for_creator(parsed_author[:orcid])}
                      #{parsed_author[:affiliation].present? ? ",#{parsed_author[:affiliation]}" : ''}</span>")
           else
             tag.span(author, itemprop: 'name')

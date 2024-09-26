@@ -1,10 +1,10 @@
 <div class="nested-fields row">
   <% creator_parts = parse_creator_string(f.object) %>
   <div class="col-md-6">
-    <%= f.input :last_name, label: 'Last Name', input_html: { class: 'form-control', value: creator_parts[:last_name] || '' }, required: true %>
+    <%= f.input :first_name, label: 'First Name', input_html: { class: 'form-control', value: creator_parts[:first_name] || '' }, required: true %>
   </div>
   <div class="col-md-6">
-    <%= f.input :first_name, label: 'First Name', input_html: { class: 'form-control', value: creator_parts[:first_name] || '' }, required: true %>
+    <%= f.input :last_name, label: 'Last Name', input_html: { class: 'form-control', value: creator_parts[:last_name] || '' }, required: true %>
   </div>
   <div class="col-md-6">
     <%= f.input :institution, label: 'Institution', input_html: { class: 'form-control', value: creator_parts[:institution] || '' }, required: true %>
