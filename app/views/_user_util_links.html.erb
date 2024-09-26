@@ -20,8 +20,11 @@
   <% else %>
     <li class="nav-item">
       <%= link_to main_app.new_user_session_path, class: 'nav-link' do %>
-        <span aria-hidden="true"></span> <%= t("hyrax.toolbar.profile.login") %>
+        <span class="fa fa-sign-in" aria-hidden="true"></span> <%= t("hyrax.toolbar.profile.login") %>
       <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Shib", '/users/saml/sign_in', method: :get, class: 'nav-link' %>
     </li>
   <% end %>
 </ul>

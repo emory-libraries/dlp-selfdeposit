@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
   end
-  devise_for :users
+
+  devise_for :users, controllers: { saml_sessions: 'saml_sessions' }
+
   mount Hydra::RoleManagement::Engine => '/'
 
   mount Sidekiq::Web => '/sidekiq'

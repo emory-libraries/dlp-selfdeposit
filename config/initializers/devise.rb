@@ -324,4 +324,11 @@ Devise.setup do |config|
     settings.idp_cert_fingerprint               = ENV['IDP_CERT_FINGERPRINT']
     settings.idp_cert_fingerprint_algorithm     = "http://www.w3.org/2000/09/xmldsig#sha1" # unchanged
   end
+
+  config.saml_create_user = true
+  config.saml_update_user = true
+  config.saml_default_user_key = :email
+  config.saml_session_index_key = :session_index
+  config.saml_use_subject = true
+  config.saml_resource_locator = ->(model, saml_response) { model.from_saml(saml_response) }
 end
