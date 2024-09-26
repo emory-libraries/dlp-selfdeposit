@@ -6,14 +6,12 @@ module ApplicationHelper
     safe_join(
       values.map do |author|
         parsed_author = parse_creator_string(author)
-        puts "parsed_author: #{parsed_author}"
         author_span =
           if parsed_author[:orcid].present?
             sanitize("<span itemprop='name'>#{parsed_author[:first_name]} #{parsed_author[:last_name]} #{orcid_link_for_creator(parsed_author[:orcid])}
                      #{parsed_author[:institution].present? ? ", #{parsed_author[:institution]}" : ''}</span>")
           else
-            tag.span(
-              "#{parsed_author[:first_name]} #{parsed_author[:last_name]}#{parsed_author[:institution].present? ? ", #{parsed_author[:institution]}" : ''}", itemprop: 'name')
+            tag.span("#{parsed_author[:first_name]} #{parsed_author[:last_name]}#{parsed_author[:institution].present? ? ", #{parsed_author[:institution]}" : ''}", itemprop: 'name')
           end
 
         content_tag(:span, author_span, itemprop: 'creator', itemscope: '', itemtype: 'http://schema.org/Person', class: 'attribute attribute-creator')
