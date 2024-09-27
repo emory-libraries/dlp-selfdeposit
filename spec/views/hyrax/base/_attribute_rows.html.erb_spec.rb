@@ -53,7 +53,7 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
 
   let(:solr_doc) { SolrDocument.new(solr_doc_attributes) }
   let(:ability) { double }
-  let(:orcid_id) { '2222-2222-2222-2222' }
+  let(:orcid_id) { '0000-0002-1825-0097' }
   let(:presenter) { Hyrax::WorkShowPresenter.new(solr_doc, ability) }
   let(:page) do
     render('hyrax/base/attribute_rows', presenter:)
