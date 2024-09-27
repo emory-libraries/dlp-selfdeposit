@@ -7,11 +7,24 @@
     nav {
       /**** top nav ****/
       &.navbar-collapse {
-        .navbar-nav.col-md-5 {
-        }
-
         .oe2-controls {
           width: 100%;
+
+          #language-dropdown-menu {
+            flex-basis: 100%;
+            border: none;
+          }
+
+          .dropdown-menu.dropdown-menu-right.show {
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 100%;
+            border: none;
+          }
+
+          .dropdown-item {
+            border-bottom: 1px solid $bootstrap-slate;
+          }
         }
       } /**** END top nav ****/
 
