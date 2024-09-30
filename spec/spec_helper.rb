@@ -8,10 +8,11 @@ require 'rspec/active_model/mocks'
 require 'database_cleaner'
 
 ENV['RAILS_ENV'] = 'test'
-ENV['DATABASE_URL'] = ENV['DATABASE_TEST_URL'] if ENV['DATABASE_TEST_URL']
 
 unless ENV['CI']
+  ENV['DATABASE_URL'] = ENV['DATABASE_TEST_URL'] if ENV['DATABASE_TEST_URL']
   db_config = ActiveRecord::Base.configurations[ENV['RAILS_ENV']]
+
   ActiveRecord::Tasks::DatabaseTasks.create(db_config)
   ActiveRecord::Migrator.migrations_paths = [Pathname.new(ENV['RAILS_ROOT']).join('db', 'migrate').to_s]
   ActiveRecord::Tasks::DatabaseTasks.migrate
