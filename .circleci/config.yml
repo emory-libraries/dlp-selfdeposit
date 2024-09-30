@@ -53,6 +53,7 @@ jobs:
       HYRAX_VALKYRIE: true
       RACK_ENV: test
       RAILS_ENV: test
+      RAILS_ROOT: .
       SOLR_TEST_URL: http://127.0.0.1:8983/solr/dlp-selfdeposit-test
       SPEC_OPTS: >-
         --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
