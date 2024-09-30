@@ -322,6 +322,12 @@ GEM
     crass (1.0.6)
     csv (3.3.0)
     dalli (3.2.8)
+    database_cleaner (2.0.2)
+      database_cleaner-active_record (>= 2, < 3)
+    database_cleaner-active_record (2.2.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -1256,6 +1262,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   coveralls
   dalli
+  database_cleaner
   debug (>= 1.0.0)
   devise
   devise-guests (~> 0.8)

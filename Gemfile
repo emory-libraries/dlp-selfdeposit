@@ -61,6 +61,7 @@ group :development, :test do
   gem 'bixby'
   gem 'capybara-screenshot'
   gem 'coveralls', require: false
+  gem 'database_cleaner'
   gem 'debug', '>= 1.0.0'
   gem 'factory_bot_rails'
   gem 'pry-doc'
