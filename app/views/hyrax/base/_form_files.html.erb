@@ -6,18 +6,22 @@
     <div class="uploaded_files"></div>
 
     <div class="primary-file-container">
-        <h4>Primary Content File</h4>
-        <div><span class="badge badge-info required-tag">required</span></div>
+        <div class="primary-file-label">
+            <h4>Primary Content File</h4>
+            <div><span class="badge badge-info required-tag">required</span></div>
+        </div>
+        <%= render 'form_files_upload', fs_use: "primary" %>
     </div>
-    <%= render 'form_files_upload', fs_use: "primary" %>
 
-    <br>
-    <h4>Supplemental Files (Optional)</h4>
-    <%= render 'form_files_upload', fs_use: "supplemental" %>
+    <div class="supplemental-files-container">
+        <h4>Supplemental Files (Optional)</h4>
+        <%= render 'form_files_upload', fs_use: "supplemental" %>
+    </div>
 
     <% if current_user.admin? %>
-    <br>
-    <h4>Supplemental Preservation Files (Optional)</h4>
-    <%= render 'form_files_upload', fs_use: "preservation" %>
+        <div class="supplemental-files-container preservation">
+            <h4>Supplemental Preservation Files (Optional)</h4>
+            <%= render 'form_files_upload', fs_use: "preservation" %>
+        </div>
     <% end %>
 </div>
