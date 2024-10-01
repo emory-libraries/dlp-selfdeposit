@@ -149,31 +149,57 @@ body.dashboard {
 }
 
 /**** New Publication Form ****/
-.simple_form .tab-pane#files {
+#files {
   .primary-file-container {
-    display: flex;
-    align-items: center;
-  }
+    padding: 1rem 0 3rem 0;
 
-  //weirdness, may replace later
-  table {
-    display: block;
+    //title
+    .primary-file-label {
+      display: flex;
+      align-items: center;
+      padding-bottom: 0.3125rem;
+    }
 
-    tbody {
-      display: block;
+    .primary-fileset {
+      div {
+        margin-bottom: 0.9375rem;
+      }
 
-      tr {
+      label.custom-file-label {
+        height: 2.3rem;
+      }
+
+      .file-name {
         display: flex;
         flex-wrap: wrap;
-        overflow: hidden;
+        gap: 0.625rem;
+        align-items: center;
+      }
+    }
+  }
 
-        td {
-          display: block;
+  .supplemental-files-container {
+    padding-bottom: 3rem;
 
-          * {
-            max-width: 100%;
-          }
-        }
+    &.preservation {
+      padding-bottom: 0;
+    }
+
+    h4 {
+      margin-bottom: 0.8125rem;
+    }
+
+    .supplemental-fileset,
+    .preservation-fileset {
+      div {
+        margin-bottom: 0.9375rem;
+      }
+
+      .file-name {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.625rem;
+        align-items: center;
       }
     }
   }
@@ -472,7 +498,7 @@ body.dashboard {
 // search results section
 #search-results {
   .badge {
-  margin: 0;
+    margin: 0;
   }
   div.list-thumbnail img {
     border: 1px solid $light-slate;
