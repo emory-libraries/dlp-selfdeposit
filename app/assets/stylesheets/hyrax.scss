@@ -5,25 +5,25 @@
 */
 
 @import "bootstrap-default-overrides";
-@import 'bootstrap';
-@import 'blacklight/blacklight';
+@import "bootstrap";
+@import "blacklight/blacklight";
 @import "font-awesome";
 @import "blacklight_gallery/gallery";
 @import "blacklight_gallery/masonry";
 @import "blacklight_gallery/slideshow";
 @import "blacklight_gallery/osd_viewer";
 @import "hyrax/blacklight_gallery";
-@import 'hyrax/hyrax';
-@import 'hyrax/login_signup';
+@import "hyrax/hyrax";
+@import "hyrax/login_signup";
 
 //emory branding
-@import "scss/colors.scss";
-@import "scss/fonts.scss";
-@import "scss/buttons.scss";
-@import "scss/layout.scss";
-@import "scss/header.scss";
-@import "scss/footer.scss";
-@import "scss/preservation_event_table.scss";
+@import "scss/colors";
+@import "scss/fonts";
+@import "scss/buttons";
+@import "scss/layout";
+@import "scss/header";
+@import "scss/footer";
+@import "scss/preservation_event_table";
 
 //responsive last
-//@import "responsive.scss"; 
+//@import "responsive.scss";
