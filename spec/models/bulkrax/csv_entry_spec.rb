@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Bulkrax::CsvEntry, :clean, type: :model do
+RSpec.describe Bulkrax::CsvEntry, type: :model do
   describe '#build_metadata with our added parsing logic' do
     let(:path) { File.expand_path('../../fixtures/csv/parsing_test.csv', __dir__) }
     let(:importer) do
