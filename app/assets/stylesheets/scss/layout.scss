@@ -151,6 +151,16 @@ body.dashboard {
     color: $bright-blue;
   }
 
+  //search bar on collection
+  .collections-wrapper .collections-search-wrapper {
+    padding-top: 0.625rem;
+  }
+
+  //importers page
+  #importers-table_wrapper #status-filter {
+    margin-bottom: 0.3125rem;
+  }
+
   //hide title "Administrative Set"
   #admin_sets h5 {
     display: none;
