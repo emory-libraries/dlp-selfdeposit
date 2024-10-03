@@ -18,17 +18,6 @@ header {
         }
       }
     } /**** END top nav ****/
-
-    /**** masthead nav ****/
-    &#masthead {
-    } /**** END masthead nav ****/
-
-    /*** general styling ****/
-    .nav-item {
-      .nav-link {
-        // border-bottom: 1px solid;
-      }
-    }
   }
 
   /**** Nav Styling ****/
@@ -48,12 +37,6 @@ header {
   .navbar .navbar-light .navbar-nav .nav-link {
     color: $base-blue;
   }
-
-  // this section isn't doing anything currently.
-  // .navbar .navbar-light .navbar-collapse {
-  //     color: #004990;
-  //     border-color: rgba(0, 0, 0, 0.1);
-  // }
 
   .navbar .navbar-toggler-icon {
     display: inline-block !important;
@@ -76,12 +59,12 @@ header {
     float: right;
     transform: rotate(90deg);
     color: $base-blue;
-    padding-left: 15px;
-    margin-top: -7px;
+    padding-left: 0.9375rem;
+    margin-top: -0.4375rem;
   }
 
   .oe2-right-nav .notify-number {
-    margin-left: 15px;
+    margin-left: 0.9375rem;
   }
 
   /**** Branding Styling ****/
@@ -127,12 +110,12 @@ header {
   }
 
   #search-field-header {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   .header-search-container {
-    padding: 15px 15px 15px 0;
+    padding: 0.9375rem 0.9375rem 0.9375rem 0;
   }
 }
 
@@ -145,7 +128,8 @@ body.dashboard {
   .emory-masthead {
     position: relative;
   }
-}/**** Breadcrumbs ****/
+}
+/**** Breadcrumbs ****/
 .breadcrumb a {
   color: $bright-blue;
 }
@@ -154,7 +138,7 @@ body.dashboard {
 a.notify-number {
   align-items: center;
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
 
   > span.badge.count {
     margin: 0;
