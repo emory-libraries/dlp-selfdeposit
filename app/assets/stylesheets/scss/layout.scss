@@ -511,6 +511,23 @@ body.dashboard {
   div.list-thumbnail img {
     border: 1px solid $light-slate;
   }
+
+  .metadata {
+    .data-labels {
+      font-weight: 700;
+      padding-right: 0.3125rem;
+    }
+
+    .metadata-wrapper {
+      padding-bottom: 0.625rem;
+    }
+
+    .attribute-creator {
+      display: flex;
+      padding-left: 15px;
+    }
+  }
+
   a {
     color: $bright-blue;
   }
