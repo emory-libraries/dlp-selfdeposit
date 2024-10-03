@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require_relative 'application_url'
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -313,16 +313,17 @@ Devise.setup do |config|
 
   # Configure with your SAML settings (see ruby-saml's README for more information: https://github.com/onelogin/ruby-saml).
   config.saml_configure do |settings|
-    settings.assertion_consumer_service_url     = "https://shib.open.library.emory.edu/Shibboleth.sso/SAML2/POST"
+    base_url = ApplicationUrl.base_url
+    settings.assertion_consumer_service_url     = "https://#{base_url}/users/saml/auth/"
+    settings.sp_entity_id                       = "https://#{base_url}/users/saml/metadata"
     settings.assertion_consumer_service_binding = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-    settings.name_identifier_format             = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient" # unchanged
-    settings.sp_entity_id                       = "https://shib.open.library.emory.edu"
-    settings.authn_context                      = "" # unchanged
+    settings.name_identifier_format             = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+    settings.authn_context                      = ""
     settings.idp_slo_service_url                = "https://shib.open.library.emory.edu/Shibboleth.sso/SLO/POST"
     settings.idp_sso_service_url                = "https://shib.open.library.emory.edu/Shibboleth.sso/Login"
     # used the use="signing" key below
     settings.idp_cert_fingerprint               = ENV['IDP_CERT_FINGERPRINT']
-    settings.idp_cert_fingerprint_algorithm     = "http://www.w3.org/2000/09/xmldsig#sha1" # unchanged
+    settings.idp_cert_fingerprint_algorithm     = "http://www.w3.org/2000/09/xmldsig#sha1"
   end
 
   config.saml_create_user = true
