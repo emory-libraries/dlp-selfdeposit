@@ -1,27 +1,31 @@
 <div class="<%= fs_use %>-fileset">
-  <table class="table table-hover">
-    <tr>
-      <td><input id="<%= fs_use %>0" type="file" /></td>
-    </tr>
-    <tr>
-      <td>Name (Optional: enter a custom display name for your file)</td>
-      <td><input id="<%= fs_use %>-name0" type="text" /></td>
-    </tr>
-    <tr>
-      <td>Upload Status</td>
-      <td><progress id="<%= fs_use %>-progress0" max="100" value="0"></progress></td>
-    </tr>
-  </table>
+    <div class="custom-file">
+      <input class="custom-file-input" id="<%= fs_use %>0" type="file" />
+      <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+    <div class="file-name">
+        <div>Name (Optional: enter a custom display name for your file)</div>
+        <div><input id="<%= fs_use %>-name0" type="text" /></div>
+    </div>
+    <div class="">
+      <div>Upload Status</div>
+      <progress class="progress" id="<%= fs_use %>-progress0" max="100" value="0"></progress>
+    </div>
   <div><button id="<%= fs_use %>-upload0" class="<%= fs_use %>-upload btn btn-primary">Attach File</button></div>
-  <br>
 </div>
 
 <% if fs_use != "primary" %>
   <div class="<%= fs_use %>-fileset-append"></div>
-  <div><button id="<%= fs_use %>-add">+ Add Another File</button></div>
+  <div><button class="btn btn-primary" id="<%= fs_use %>-add">+ Add Another File</button></div>
 <% end %>
 
 <script>
+
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+
   $(document).ready(function() {  
     var count = 1;
 
