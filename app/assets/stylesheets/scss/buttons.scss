@@ -1,65 +1,57 @@
-@import '../scss/colors.scss';
+@import "../scss/colors.scss";
 
 .btn {
-    border-radius: 0;
-    font-family: 'Open Sans';
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: .3s;
+  border-radius: 0;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 0.3s;
 
-    &.btn-primary {
-        background-color: $bright-blue;
-        border: 1px solid $bright-blue;
-    //     // padding: 14px 28px;
-        color: $white;
-    
-    &:hover {
-        background-color: $mid-blue;
-        border: 1px solid $mid-blue;
-    }
-    }
-
-    &.btn-secondary {
-        background-color: $white;
-        border: 1px solid $bright-blue;
-    //     // padding: 14px 28px;
-        color: $bright-blue;
+  &.btn-primary {
+    background-color: $bright-blue;
+    border: 1px solid $bright-blue;
+    color: $white;
 
     &:hover {
-        background-color: $light-blue;
+      background-color: $mid-blue;
+      border: 1px solid $mid-blue;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: $white;
+    border: 1px solid $bright-blue;
+    color: $bright-blue;
+
+    &:hover {
+      background-color: $light-blue;
     }
 
     &a.btn-danger {
-        color: $white !important;
+      color: $white !important;
     }
+  }
 
-    }
-
-    &.remove {
-      text-transform: uppercase;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: underline;
-      cursor: pointer;
-      color: #d33a35;
-      box-sizing: border-box;
-    }
-
-    // &.pill {
-    //     border-radius: 360px;
-    //     // padding: 10px 28px;
-    // }
+  &.remove {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #d33a35;
+    box-sizing: border-box;
+  }
 }
 
 /**** Search Button Override ****/
 #submit_search {
-    margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 /**** Nav Pill Button Override ****/
 .tabbing.nav-pills > li > a {
-    background-color: $bright-blue;
+  background-color: $bright-blue;
 }
 .tabbing.nav-pills > li > a.active {
-    background-color: $mid-blue;
+  background-color: $mid-blue;
 }
