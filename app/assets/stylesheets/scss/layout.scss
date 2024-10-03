@@ -34,7 +34,7 @@ h2 {
   font-weight: normal;
   font-size: 2rem;
   color: $base-blue;
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
 }
 
 h3 {
@@ -60,42 +60,42 @@ a {
 
 /** Padding 10 **/
 .pd-10 {
-  padding: 10px;
+  padding: 0.625rem;
 }
 
 /** Padding 20 **/
 .pd-20 {
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 /** Padding 50 **/
 .pd-50 {
-  padding: 50px;
+  padding: 3.125rem;
 }
 
 /** Margin 10 **/
 .mg-10 {
-  margin: 10px;
+  margin: 0.625rem;
 }
 
 /** Margin 20 **/
 .mg-20 {
-  margin: 20px;
+  margin: 1.25rem;
 }
 
 /** Margin 50 **/
 .mg-50 {
-  margin: 50px;
+  margin: 3.125rem;
 }
 
 /** 10 spacer **/
 .spacer-10 {
-  height: 10px;
+  height: 0.625rem;
 }
 
 /** 30 spacer **/
 .spacer-30 {
-  height: 30px;
+  height: 1.875rem;
 }
 
 /**** Login Page ****/
@@ -243,7 +243,7 @@ body.dashboard {
       padding: 0;
       text-decoration: underline;
       width: 100%;
-      padding: 20px 10px;
+      padding: 1.25rem 0.625rem;
       background-color: $base-blue;
       font-family: $font-family-serif;
       text-transform: none;
@@ -263,8 +263,8 @@ body.dashboard {
         float: right;
         transform: rotate(90deg);
         color: $white;
-        padding-left: 15px;
-        margin-top: -7px;
+        padding-left: 0.9375rem;
+        margin-top: -0.4375rem;
       }
     }
   }
@@ -358,7 +358,7 @@ body.dashboard {
     display: none;
   }
   .viewer-actions {
-    margin-top: 20px;
+    margin-top: 1.25rem;
   }
   h2.show-tools-card-title {
     font-family: $font-family-sans-serif;
@@ -381,8 +381,8 @@ body.dashboard {
     content: "❯";
     transform: rotate(90deg);
     color: $bright-blue;
-    padding-left: 15px;
-    margin-top: -7px;
+    padding-left: 0.9375rem;
+    margin-top: -0.4375rem;
     border-top: none;
     margin-left: -0.255em;
     vertical-align: top;
@@ -490,7 +490,7 @@ body.dashboard {
 
     .attribute-creator {
       display: flex;
-      padding-left: 15px;
+      padding-left: 0.9375rem;
     }
   }
 
@@ -526,7 +526,7 @@ div.search-widgets > div > button {
   .document {
     .caption-area {
       padding: 0;
-      border: 0.0625rem solid $hyrax-black;
+      border: 1px solid $hyrax-black;
       box-sizing: border-box;
       background-color: $hyrax-black !important;
     }
@@ -583,6 +583,11 @@ div.sort-toggle span.fa-refresh {
 /**** end Collections ****/
 
 /**** File-Set Show Page ****/
+//unsure where this is all being applied but leaving it in
+.card-overflow {
+  overflow-x: auto;
+}
+
 div.alert-success > a {
   color: $bright-blue;
 }
@@ -590,6 +595,11 @@ div.alert-success > a {
 .file-set-show {
   a {
     color: $bright-blue;
+  }
+
+  a.btn,
+  button {
+    margin: 0.3125rem;
   }
 
   .btn-danger {
@@ -602,6 +612,7 @@ div.alert-success > a {
 
   .file-set-details {
     margin-bottom: 3rem;
+    margin-top: 0.625rem;
 
     .file-show-term {
       border: none;
@@ -628,6 +639,11 @@ div.alert-success > a {
   }
 
   .event-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
     table {
       word-break: break-word;
       padding: 0;
