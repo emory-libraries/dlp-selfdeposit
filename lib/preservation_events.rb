@@ -29,4 +29,19 @@ module PreservationEvents
 
     event
   end
+
+  def work_creation(event_start:, user_email:)
+    { 'type' => 'Validation', 'start' => event_start, 'outcome' => 'Success', 'details' => 'Submission package validated',
+      'software_version' => 'SelfDeposit v.1', 'user' => user_email }
+  end
+
+  def work_policy(event_start:, visibility:, user_email:)
+    { 'type' => 'Policy Assignment', 'start' => event_start, 'outcome' => 'Success', 'software_version' => 'SelfDeposit v.1',
+      'details' => "Visibility/access controls assigned: #{visibility}", 'user' => user_email }
+  end
+
+  def work_update(event_start:, user_email:)
+    { 'type' => 'Modification', 'start' => event_start, 'outcome' => 'Success', 'details' => 'Object updated',
+      'software_version' => 'SelfDeposit v.1', 'user' => user_email }
+  end
 end
