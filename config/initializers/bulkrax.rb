@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require './lib/preservation_events'
 
 Bulkrax.setup do |config|
   # Add local parsers
@@ -127,6 +128,8 @@ end
 
 # Bulkrax v8.1.0 Override
 Bulkrax::ValkyrieObjectFactory.class_eval do
+  include ::PreservationEvents
+
   ##
   # @param value [String]
   # @param klass [Class, #where]
@@ -153,6 +156,7 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
 
   # Overridden to include our custom method that alters the UploadFile objects with our FileSet metatdata passed into the CSV line items.
   def create_work(attrs)
+    event_start = DateTime.current # record event_start timestamp
     apply_emory_fileset_metatdata(attrs)
     # NOTE: We do not add relationships here; that is part of the create
     # relationships job.
@@ -165,10 +169,16 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
           'work_resource.save_acl' => { permissions_params: [attrs['visibility'] || 'open'].compact }
         )
     end
+
+    pulled_work = pull_publication_for_preservation_events
+
+    create_preservation_event(pulled_work, work_creation(event_start:, user_email: @user.email))
+    create_preservation_event(pulled_work, work_policy(event_start:, visibility: pulled_work.visibility, user_email: @user.email))
   end
 
   # Overridden to include our custom method that alters the UploadFile objects with our FileSet metatdata passed into the CSV line items.
   def update_work(attrs)
+    event_start = DateTime.current # record event_start timestamp
     apply_emory_fileset_metatdata(attrs)
     perform_transaction_for(object:, attrs:) do
       transactions["change_set.update_work"]
@@ -177,6 +187,10 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
           'work_resource.save_acl' => { permissions_params: [attrs.try('visibility') || 'open'].compact }
         )
     end
+
+    pulled_work = pull_publication_for_preservation_events
+
+    create_preservation_event(pulled_work, work_update(event_start:, user_email: @user.email))
   end
 
   # A brand new function that assigns the values passed into the Publication CSV line to the ingested FileSets created from the line.
@@ -233,6 +247,12 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   def self.add_resource_to_collection(collection:, resource:, user:)
     resource.member_of_collection_ids += Array(collection.id)
     save!(resource:, user:)
+  end
+
+  private
+
+  def pull_publication_for_preservation_events
+    Hyrax.custom_queries.find_publication_by_deduplication_key(deduplication_key: attributes['deduplication_key'])
   end
 end
 

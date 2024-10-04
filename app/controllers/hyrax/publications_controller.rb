@@ -51,7 +51,7 @@ module Hyrax
     # @return [#errors]
     # rubocop:disable Metrics/MethodLength
     def create_valkyrie_work
-      @event_start = DateTime.current # record event_start timestamp
+      event_start = DateTime.current # record event_start timestamp
       form = build_form
       assign_defaults_for_non_admins(form)
       add_custom_facet_params(form)
@@ -66,15 +66,18 @@ module Hyrax
       result = action.perform
 
       @curation_concern = result.value_or { return after_create_error(transaction_err_msg(result)) }
-      create_preservation_event(@curation_concern, work_creation)
-      create_preservation_event(@curation_concern, work_policy)
+      create_preservation_event(@curation_concern, work_creation(event_start:, user_email: current_user.email))
+      create_preservation_event(
+        @curation_concern,
+        work_policy(event_start:, visibility: @curation_concern.visibility, user_email: current_user.email)
+      )
       after_create_response
     end
     # rubocop:enable Metrics/MethodLength
 
     # Hyrax v5.0.1 Override - inserts PreservationEvents if Publication is updated successfully.
     def update_valkyrie_work
-      @event_start = DateTime.current
+      event_start = DateTime.current
       form = build_form
       add_custom_facet_params(form)
       return after_update_error(form_err_msg(form)) unless form.validate(params[hash_key_for_curation_concern])
@@ -85,23 +88,8 @@ module Hyrax
                         'work_resource.save_acl' => { permissions_params: form.input_params["permissions"] })
         .call(form)
       @curation_concern = result.value_or { return after_update_error(transaction_err_msg(result)) }
-      create_preservation_event(@curation_concern, work_update)
+      create_preservation_event(@curation_concern, work_update(event_start:, user_email: current_user.email))
       after_update_response
-    end
-
-    def work_creation
-      { 'type' => 'Validation', 'start' => @event_start, 'outcome' => 'Success', 'details' => 'Submission package validated',
-        'software_version' => 'SelfDeposit v.1', 'user' => current_user.email }
-    end
-
-    def work_policy
-      { 'type' => 'Policy Assignment', 'start' => @event_start, 'outcome' => 'Success', 'software_version' => 'SelfDeposit v.1',
-        'details' => "Visibility/access controls assigned: #{@curation_concern.visibility}", 'user' => current_user.email }
-    end
-
-    def work_update
-      { 'type' => 'Modification', 'start' => @event_start, 'outcome' => 'Success', 'details' => 'Object updated',
-        'software_version' => 'SelfDeposit v.1', 'user' => current_user.email }
     end
 
     def assign_defaults_for_non_admins(form)
