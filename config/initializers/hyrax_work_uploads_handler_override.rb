@@ -9,6 +9,29 @@ Rails.application.config.to_prepare do
     include PreservationEvents
 
     ##
+    # @api public
+    #
+    # Create filesets for each added file
+    #
+    # @return [Boolean] true if all requested files were attached
+    def attach
+      return true if Array.wrap(files).empty? # short circuit to avoid aquiring a lock we won't use
+
+      acquire_lock_for(work.id) do
+        event_payloads = files.each_with_object([]) { |file, arry| arry << make_file_set_and_ingest(file) }
+        public_fileset_payload = event_payloads.find { |ep| ep[:file_set].title.first.include?('Publication File -') }
+
+        assign_public_fileset_to_display(fileset_id: public_fileset_payload[:file_set].id, work:) if public_fileset_payload.present?
+        @persister.save(resource: work)
+        Hyrax.publisher.publish('object.metadata.updated', object: work, user: files.first.user)
+        event_payloads.each do |payload|
+          payload.delete(:job).enqueue
+          Hyrax.publisher.publish('file.set.attached', payload)
+        end
+      end
+    end
+
+    ##
     # @api private
     def make_file_set_and_ingest(file)
       event_start = DateTime.current
@@ -63,6 +86,12 @@ Rails.application.config.to_prepare do
 
     def either_visibility_present(file)
       file.desired_visibility.present? || file_set_extra_params(file)[:visibility].present?
+    end
+
+    def assign_public_fileset_to_display(fileset_id:, work:)
+      work.representative_id = fileset_id
+      work.thumbnail_id = fileset_id
+      work.rendering_ids += [fileset_id]
     end
   end
 end
