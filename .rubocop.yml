@@ -21,6 +21,7 @@ Metrics/AbcSize:
     - app/indexers/self_deposit/indexers/file_set_indexer.rb
     - app/services/hyrax/valkyrie_upload.rb
     - config/initializers/hyrax_edit_permissions_service_override.rb
+    - config/initializers/hyrax_work_uploads_handler_override.rb
 
 Metrics/MethodLength:
   Exclude:
