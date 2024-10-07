@@ -56,12 +56,12 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field "creator_last_first_ssim", label: "Authors"
-    config.add_facet_field "date_issued_year_ssi", label: "Date"
-    config.add_facet_field "parent_title_ssi", label: "Journal or Parent Publication Title"
-    config.add_facet_field "content_genre_ssi", label: "Type"
-    config.add_facet_field "publisher_version_ssi", label: "Publication Version"
-    config.add_facet_field "keyword_sim", label: 'Keyword'
+    config.add_facet_field "creator_last_first_ssim", label: "Authors", limit: 10
+    config.add_facet_field "date_issued_year_ssi", label: "Date", limit: 10
+    config.add_facet_field "parent_title_ssi", label: "Journal or Parent Publication Title", limit: 10
+    config.add_facet_field "content_genre_ssi", label: "Type", limit: 10
+    config.add_facet_field "publisher_version_ssi", label: "Publication Version", limit: 10
+    config.add_facet_field "keyword_sim", label: 'Keyword', limit: 10
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
