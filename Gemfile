@@ -67,6 +67,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-rescue'
+  gem 'rails-controller-testing'
   gem 'rspec-activemodel-mocks'
   gem 'rspec-rails'
   gem 'rubocop', require: false
