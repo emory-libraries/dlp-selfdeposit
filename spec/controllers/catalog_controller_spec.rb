@@ -17,6 +17,14 @@ RSpec.describe CatalogController, type: :controller do
     it { expect(show_fields).to contain_exactly(*expected_show_fields) }
   end
 
+  describe 'facet fields' do
+    let(:expected_facet_fields) do
+      ["creator_last_first_ssim", "date_issued_year_ssi", "parent_title_ssi", "content_genre_ssi", "publisher_version_ssi", "keyword_sim"]
+    end
+
+    it { expect(controller.blacklight_config.facet_fields.keys).to match_array(expected_facet_fields) }
+  end
+
   describe '"All Fields" solr fields' do
     let(:search_fields) do
       controller.blacklight_config.search_fields['all_fields'].solr_parameters[:qf].split(' ')
