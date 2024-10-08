@@ -25,6 +25,15 @@ RSpec.describe CatalogController, type: :controller do
     it { expect(controller.blacklight_config.facet_fields.keys).to match_array(expected_facet_fields) }
   end
 
+  describe 'index fields' do
+    let(:expected_index_fields) do
+      ["title_tesim", "creator_ssim", "date_issued_year_tesi", "publisher_tesim", "publisher_version_tesi", "license_tesi",
+       "embargo_release_date_dtsi", "lease_expiration_date_dtsi"]
+    end
+
+    it { expect(controller.blacklight_config.index_fields.keys).to match_array(expected_index_fields) }
+  end
+
   describe '"All Fields" solr fields' do
     let(:search_fields) do
       controller.blacklight_config.search_fields['all_fields'].solr_parameters[:qf].split(' ')
