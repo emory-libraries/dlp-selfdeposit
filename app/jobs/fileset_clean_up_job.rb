@@ -5,10 +5,11 @@ class FilesetCleanUpJob < Hyrax::ApplicationJob
     CSV.open("config/emory/index_file_set_results.csv", "w") do |csv|
       if file_set_ids.present?
         file_set_ids.flatten.each do |id|
-          process_fileset(::FileSet.find(id), csv)
+          file_set = Hyrax.query_service.find_by(id:)
+          process_fileset(file_set, csv)
         end
       else
-        FileSet.all.find_each do |file_set|
+        Hyrax.query_service.find_all_of_model(model: ::FileSet).each do |file_set|
           process_fileset(file_set, csv)
         end
       end
