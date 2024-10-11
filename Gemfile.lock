@@ -863,6 +863,10 @@ GEM
       bundler (>= 1.15.0)
       railties (= 6.1.7.8)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -1282,6 +1286,7 @@ DEPENDENCIES
   pry-rescue
   puma
   rails (~> 6.1)
+  rails-controller-testing
   riiif (~> 2.1)
   rsolr (>= 1.0, < 3)
   rspec-activemodel-mocks
