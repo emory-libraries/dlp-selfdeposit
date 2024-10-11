@@ -2,7 +2,9 @@
 
 class FilesetCleanUpJob < Hyrax::ApplicationJob
   def perform(*file_set_ids)
-    CSV.open("config/emory/index_file_set_results.csv", "w") do |csv|
+    csv_path = Rails.root.join('tmp', 'emory', 'index_file_set_results.csv')
+    FileUtils.mkdir_p(File.dirname(csv_path))
+    CSV.open(csv_path, "w") do |csv|
       if file_set_ids.present?
         file_set_ids.flatten.each do |id|
           file_set = Hyrax.query_service.find_by(id:)

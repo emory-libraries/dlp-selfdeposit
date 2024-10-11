@@ -6,7 +6,7 @@ require 'hyrax/specs/shared_specs/factories/permission_templates'
 require 'hyrax/specs/shared_specs/factories/workflows'
 
 RSpec.describe FilesetCleanUpJob, :clean do
-  let(:csv_path) { File.join("config/emory/index_file_set_results.csv") }
+  let(:csv_path) { Rails.root.join('tmp', 'emory', 'index_file_set_results.csv') }
   let(:csv) { CSV.read(csv_path) }
   let(:user) { FactoryBot.create(:user) }
   let(:admin_set) { FactoryBot.valkyrie_create(:hyrax_admin_set) }
