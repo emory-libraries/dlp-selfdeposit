@@ -302,7 +302,7 @@ Rails.application.config.to_prepare do
 
     # `locate_files_for_record` override: refactored after we added our own EFS mount locating (L#289).
     def locate_files_for_record(file_names, pid)
-      file_names.map do |fn|
+      filenames_without_unwanted(file_names).map do |fn|
         file = if zip?
                  File.join(path_to_files, fn.tr(' ', '_'))
                else
@@ -326,6 +326,10 @@ Rails.application.config.to_prepare do
       @path_to_files = File.join(
         zip? ? "#{importer_unzip_path}/files" : '/mnt/efs/current_batch'
       )
+    end
+
+    def filenames_without_unwanted(file_names)
+      file_names.reject { |name| name == 'DC.xml' }
     end
   end
 
