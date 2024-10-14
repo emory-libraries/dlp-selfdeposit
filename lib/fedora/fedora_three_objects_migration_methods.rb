@@ -33,7 +33,7 @@ module FedoraThreeObjectsMigrationMethods
   end
 
   def test_for_xmls(datastream:)
-    datastream['ID'] != 'AUDIT' && ['text/xml', 'application/rdf+xml'].include?(datastream.elements.first['MIMETYPE'])
+    datastream['ID'] != 'AUDIT' && datastream['ID'] != 'DC' && ['text/xml', 'application/rdf+xml'].include?(datastream.elements.first['MIMETYPE'])
   end
 
   def test_for_audit(datastream:)
