@@ -9,4 +9,8 @@ class FileSet < Hyrax::FileSet
 
   include Hyrax::Schema(:emory_file_set_metadata)
   include PreservationEventModelMethods
+
+  def extracted_text_content
+    extracted_text&.file&.read
+  end
 end

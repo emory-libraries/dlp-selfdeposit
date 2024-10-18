@@ -13,6 +13,7 @@ class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
       index_document[:preservation_events_tesim] = resource&.preservation_events&.map(&:preservation_event_terms)
       index_document[:preservation_workflow_terms_tesim] = preservation_workflow_terms
       index_document[:alternate_ids_ssim] = find_alternate_ids
+      index_document[:all_text_tsimv] = resource&.primary_file_set&.extracted_text_content
     end
   end
 

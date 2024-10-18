@@ -78,6 +78,7 @@ class CatalogController < ApplicationController
     config.add_index_field "license_tesi", helper_method: :license_links, label: 'License'
     config.add_index_field Hydra.config.permissions.embargo.release_date, label: "Embargo release date", helper_method: :human_readable_date
     config.add_index_field Hydra.config.permissions.lease.expiration_date, label: "Lease expiration date", helper_method: :human_readable_date
+    config.add_index_field 'all_text_tsimv', highlight: true, helper_method: :render_ocr_snippets
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -127,7 +128,7 @@ class CatalogController < ApplicationController
       all_names = config.show_fields.values.map(&:field).join(" ")
       title_name = "title_tesim"
       field.solr_parameters = {
-        qf: "#{all_names} file_format_tesim all_text_timv",
+        qf: "#{all_names} file_format_tesim all_text_tsimv",
         pf: title_name.to_s
       }
     end

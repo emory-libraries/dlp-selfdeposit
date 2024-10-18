@@ -29,7 +29,7 @@ FactoryBot.find_definitions
 query_registration_target =
   Valkyrie::MetadataAdapter.find(:test_adapter).query_service.custom_queries
 custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
-                  Hyrax::CustomQueries::Navigators::ChildFilesetsNavigator,
+                  Hyrax::CustomQueries::Navigators::ChildFileSetsNavigator,
                   Hyrax::CustomQueries::Navigators::ChildWorksNavigator,
                   Hyrax::CustomQueries::FindAccessControl,
                   Hyrax::CustomQueries::FindCollectionsByType,
