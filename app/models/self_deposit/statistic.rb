@@ -5,7 +5,7 @@ module SelfDeposit
       results = query_works("content_genre_tesi")
       content_genres = []
       results.each do |y|
-        if y["content_genre_tesi"].nil? || (y["content_genre_tesi"] == [""])
+        if y["content_genre_tesi"].nil? || (y["content_genre_tesi"] == "")
           content_genres.push("Unknown")
         else
           content_genres.push(y["content_genre_tesi"])
