@@ -2,6 +2,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] = 'test'
+ENV['DATABASE_URL'] = ENV['DATABASE_TEST_URL'] if ENV['DATABASE_TEST_URL'] && !ENV['CI']
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -45,7 +46,22 @@ end
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
+def database_exists?
+  ActiveRecord::Base.connection
+rescue ActiveRecord::NoDatabaseError
+  false
+else
+  true
+end
+
 begin
+  unless database_exists? && !ENV['CI']
+    db_config = ActiveRecord::Base.configurations[ENV['RAILS_ENV']]
+    ActiveRecord::Tasks::DatabaseTasks.create(db_config)
+    ActiveRecord::Migrator.migrations_paths = [Pathname.new(ENV['RAILS_ROOT']).join('db', 'migrate').to_s]
+    ActiveRecord::Tasks::DatabaseTasks.migrate
+    ActiveRecord::Base.descendants.each(&:reset_column_information)
+  end
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
