@@ -55,6 +55,7 @@ else
 end
 
 begin
+  puts "The ENV is set to #{ENV['CI']}"
   unless database_exists? && !ENV['CI']
     db_config = ActiveRecord::Base.configurations[ENV['RAILS_ENV']]
     ActiveRecord::Tasks::DatabaseTasks.create(db_config)
