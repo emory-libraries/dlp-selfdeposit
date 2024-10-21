@@ -55,8 +55,7 @@ else
 end
 
 begin
-  puts "The ENV is set to #{ENV['CI']}"
-  unless database_exists? && !ENV['CI']
+  unless database_exists? && !ENV['CI'].nil?
     db_config = ActiveRecord::Base.configurations[ENV['RAILS_ENV']]
     ActiveRecord::Tasks::DatabaseTasks.create(db_config)
     ActiveRecord::Migrator.migrations_paths = [Pathname.new(ENV['RAILS_ROOT']).join('db', 'migrate').to_s]
