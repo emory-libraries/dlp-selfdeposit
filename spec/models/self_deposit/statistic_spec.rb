@@ -27,8 +27,10 @@ RSpec.describe SelfDeposit::Statistic, :clean, type: :model do
     )
   end
 
-  before { [publication, publication2].each { |p| Hyrax.index_adapter.save(resource: p) } }
-  after { Hyrax.index_adapter.wipe! }
+  before do
+    Hyrax.index_adapter.wipe!
+    [publication, publication2].each { |p| Hyrax.index_adapter.save(resource: p) }
+  end
 
   describe '.content_genres' do
     it 'pulls content_genres with their counts' do
