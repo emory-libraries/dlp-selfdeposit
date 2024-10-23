@@ -30,4 +30,12 @@ class Publication < Hyrax::Work
       []
     end
   end
+
+  def file_sets
+    Hyrax.custom_queries.find_child_file_sets(resource: self)
+  end
+
+  def primary_file_set
+    file_sets&.find { |fs| fs.file_set_use == 'Primary Content' }
+  end
 end
