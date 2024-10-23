@@ -28,7 +28,7 @@ RSpec.describe CatalogController, type: :controller do
   describe 'index fields' do
     let(:expected_index_fields) do
       ["title_tesim", "creator_ssim", "date_issued_year_tesi", "publisher_tesim", "publisher_version_tesi", "license_tesi",
-       "embargo_release_date_dtsi", "lease_expiration_date_dtsi"]
+       "embargo_release_date_dtsi", "lease_expiration_date_dtsi", "all_text_tsimv"]
     end
 
     it { expect(controller.blacklight_config.index_fields.keys).to match_array(expected_index_fields) }
@@ -38,7 +38,7 @@ RSpec.describe CatalogController, type: :controller do
     let(:search_fields) do
       controller.blacklight_config.search_fields['all_fields'].solr_parameters[:qf].split(' ')
     end
-    let(:default_hyrax_search_fields) { ["file_format_tesim", "all_text_timv"] }
+    let(:default_hyrax_search_fields) { ["file_format_tesim", "all_text_tsimv"] }
 
     it { expect(search_fields).to match_array(expected_show_fields + default_hyrax_search_fields) }
   end
