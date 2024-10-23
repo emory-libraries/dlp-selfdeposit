@@ -23,10 +23,12 @@
       - httpd-devel
       - apr-devel
       - apr-util-devel
+      - java-11-amazon-corretto
       - postgresql15
-      - postgresql15-devel
+      - postgresql-devel
     gems_to_install:
       - nokogiri
+      - base
       - base64
     profile_files:
       - /root/.bash_profile
@@ -47,35 +49,24 @@
      copy:
        src: files/deploy-no-pass
        dest: /etc/sudoers.d/deploy-no-pass
-   - name: insstall epel-release
-     command:
-       cmd: amazon-linux-extras install epel -y
-       creates: /etc/yum.repos.d/epel.repo
-   - name: add postgresqlrepo
-     copy:
-       src: files/pgdg.repo
-       dest: /etc/yum.repos.d/pgdg-15.repo
-   - name: install centos-scl-rh
-     copy:
-       src: files/CentOS-SCLo-scl-rh.repo 
-       dest: /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
-   - name: install centos-scl
-     copy:
-       src: files/CentOS-SCLo-scl.repo  
-       dest: /etc/yum.repos.d/CentOS-SCLo-scl.repo     
+   - name: install fedora repo
+     copy: 
+       dest: /etc/yum.repos.d/fedora.repo
+       src: files/fedora.repo
+   - name: unpack and install libreoffie repos
+     unarchive: 
+       src: https://ftp.wayne.edu/tdf/libreoffice/stable/24.8.1/rpm/x86_64/LibreOffice_24.8.1_Linux_x86-64_rpm.tar.gz
+       dest: /home/ec2-user/
+       remote_src: yes
+   - name: install libreoffice rpms
+     shell: yum install /home/ec2-user/LibreOffice_24.8.1.2_Linux_x86-64_rpm/RPMS/*.rpm -y 
+     args:
+       creates: /opt/libreoffice24.8
    - name: install package "{{ item }}
      yum: 
        name: "{{ item }}"
        state: latest
      loop: "{{ hyrax_packages }}"
-   - name: install via amazon-linux-extras
-     command:
-       cmd: amazon-linux-extras install libreoffice -y
-       creates: /usr/lib64/libreoffice/share/gallery
-   - name: install java
-     command: amazon-linux-extras install java-openjdk11 -y
-     args:
-       creates: /usr/lib/jvm/
    - name: create tomcat user
      user:
        name: tomcat
@@ -152,6 +143,11 @@
        name: tomcat
        state: started
        daemon_reload: true 
+   - name: start and enable apache
+     service:
+       name: httpd
+       state: started
+       enabled: yes
    - name: install rbenv
      git: 
        repo: https://github.com/sstephenson/rbenv.git
@@ -198,7 +194,7 @@
      template:       
        dest: /etc/httpd/conf.d/passenger.conf
        src: files/passenger.conf.j2
-       force: true   
+       force: true 
    - name: build apache passenger module
      shell: |
        source /root/.bash_profile
@@ -230,11 +226,6 @@
        dest: /etc/systemd/system/sidekiq.service
        owner: root
        group: root
-   - name: create pg_config symlink
-     file: 
-       dest: /usr/bin/pg_config
-       src: /usr/pgsql-15/bin/pg_config
-       state: link
    - name: create gem symlink
      file:
        dest: /usr/bin/gem
@@ -245,9 +236,14 @@
        name: "{{ item }}"
        state: latest
      loop: "{{ gems_to_install }}"
+   - name: fix base64w
+     shell:
+       cmd: source ~/.bash_profile; gem install --default -v=0.2.0 base64
+     args:
+       executable: /bin/bash
 - name: install things for deploy user specifically
-  hosts: 
-    - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}"
+  hosts:
+  - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}"
   user: deploy
   tasks:
   - name: install nvm
@@ -255,7 +251,10 @@
     args:
       executable: /bin/bash
       creates: "/home/deploy/.nvm/nvm.sh"
-  - name: install node 17.9.1
-    shell: source /home/deploy/.bashrc; nvm install v17.9.1
+  - name: install node 16.20.2
+    shell: source /home/deploy/.bashrc; nvm install v16.20.2
   - name: install yarn
-    shell: source /home/deploy/.bashrc; curl --compressed -o- -L https://yarnpkg.com/install.sh | bash  
+    shell: source /home/deploy/.bashrc; curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+
+
+
