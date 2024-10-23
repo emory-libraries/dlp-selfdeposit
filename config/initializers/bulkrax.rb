@@ -157,16 +157,17 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   # Overridden to include our custom method that alters the UploadFile objects with our FileSet metatdata passed into the CSV line items.
   def create_work(attrs)
     event_start = DateTime.current # record event_start timestamp
+    attrs = HashWithIndifferentAccess.new(attrs)
     apply_emory_fileset_metatdata(attrs)
-    # NOTE: We do not add relationships here; that is part of the create
-    # relationships job.
+    # NOTE: We do not add relationships here; that is part of the create relationships job.
     perform_transaction_for(object:, attrs:) do
+      uploaded_files, file_set_params = prep_fileset_content(attrs)
       transactions["change_set.create_work"]
         .with_step_args(
-          'work_resource.add_file_sets' => { uploaded_files: uploaded_files_from(attrs) },
+          'work_resource.add_file_sets' => { uploaded_files: uploaded_files, file_set_params: file_set_params },
           "change_set.set_user_as_depositor" => { user: @user },
           "work_resource.change_depositor" => { user: @user },
-          'work_resource.save_acl' => { permissions_params: [attrs['visibility'] || 'open'].compact }
+          'work_resource.save_acl' => { permissions_params: [attrs.try('visibility') || 'open'].compact }
         )
     end
 
@@ -179,11 +180,13 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   # Overridden to include our custom method that alters the UploadFile objects with our FileSet metatdata passed into the CSV line items.
   def update_work(attrs)
     event_start = DateTime.current # record event_start timestamp
+    attrs = HashWithIndifferentAccess.new(attrs)
     apply_emory_fileset_metatdata(attrs)
     perform_transaction_for(object:, attrs:) do
+      uploaded_files, file_set_params = prep_fileset_content(attrs)
       transactions["change_set.update_work"]
         .with_step_args(
-          'work_resource.add_file_sets' => { uploaded_files: uploaded_files_from(attrs) },
+          'work_resource.add_file_sets' => { uploaded_files: uploaded_files, file_set_params: file_set_params },
           'work_resource.save_acl' => { permissions_params: [attrs.try('visibility') || 'open'].compact }
         )
     end
@@ -198,8 +201,9 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
     importer = Bulkrax::Importer.find(Bulkrax::ImporterRun.find(@importer_run_id).importer_id)
     pertinent_entry = importer.entries.find { |e| e.raw_metadata['deduplication_key'] == attributes['deduplication_key'] }
     raise "No associated Entry was found" unless pertinent_entry
+    uploaded_files, _file_set_params = prep_fileset_content(attrs)
 
-    uploaded_files_from(attrs).each do |file|
+    uploaded_files.each do |file|
       file.fileset_use = assign_fileset_use(supplementary_file(file.file_identifier))
       file.desired_visibility = assign_fileset_visibility(supplementary_file(file.file_identifier))
       file.fileset_name = assign_fileset_name(pertinent_entry, file.file_identifier)
