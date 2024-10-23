@@ -2,6 +2,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] = 'test'
+ENV['DATABASE_URL'] = ENV['DATABASE_TEST_URL'] if ENV['DATABASE_TEST_URL'] && ENV['CI'].nil?
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -15,7 +16,6 @@ require 'hyrax/specs/shared_specs/factories/strategies/valkyrie_resource'
 require 'hyrax/specs/shared_specs/factories/users'
 require 'hyrax/specs/capybara'
 require 'rspec/active_model/mocks'
-require 'database_cleaner'
 
 require 'valkyrie'
 Valkyrie::MetadataAdapter.register(Valkyrie::Persistence::Memory::MetadataAdapter.new, :test_adapter)
@@ -45,7 +45,22 @@ end
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
+def database_exists?
+  ActiveRecord::Base.connection
+rescue ActiveRecord::NoDatabaseError
+  false
+else
+  true
+end
+
 begin
+  if !database_exists? && ENV['CI'].nil?
+    db_config = ActiveRecord::Base.configurations[ENV['RAILS_ENV']]
+    ActiveRecord::Tasks::DatabaseTasks.create(db_config)
+    ActiveRecord::Migrator.migrations_paths = [Pathname.new(ENV['RAILS_ROOT']).join('db', 'migrate').to_s]
+    ActiveRecord::Tasks::DatabaseTasks.migrate
+    ActiveRecord::Base.descendants.each(&:reset_column_information)
+  end
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
@@ -64,28 +79,9 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :view
 
   # The following behaviors are copied from Hyrax v5.0.1's spec_helper.rb
-  config.before :suite do
-    DatabaseCleaner.clean_with(:truncation)
-    User.group_service = TestHydraGroupService.new
-  end
+  config.before(:suite) { User.group_service = TestHydraGroupService.new }
 
-  config.after do
-    DatabaseCleaner.clean
-    User.group_service.clear
-  end
-
-  config.before do |example|
-    if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
-      DatabaseCleaner.strategy = :truncation
-    else
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.start
-    end
-
-    # using :workflow is preferable to :clean_repo, use the former if possible
-    # It's important that this comes after DatabaseCleaner.start
-    ensure_deposit_available_for(user) if example.metadata[:workflow] && defined?(user)
-  end
+  config.after { User.group_service.clear }
 
   config.prepend_before(:example, :storage_adapter) do |example|
     adapter_name = example.metadata[:storage_adapter]
