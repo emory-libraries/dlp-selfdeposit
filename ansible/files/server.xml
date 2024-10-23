@@ -166,11 +166,7 @@
 		pattern="%h %l %u %t &quot;%r&quot; %s %b" />
 
 	<Valve className="org.apache.catalina.valves.RemoteIpValve" 
-		internalProxies="10\.65\.89\.150|10\.65\.89\.29" 
-		remoteIpHeader="x-forwarded-for" 
-		proxiesHeader="x-forwarded-by" 
-		protocolHeader="x-forwarded-proto" />
-
+/>
 	<Valve className="org.apache.catalina.valves.rewrite.RewriteValve"
 		/>
       </Host>

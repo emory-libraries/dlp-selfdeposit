@@ -42,10 +42,10 @@ Resources:
   FedoraServer:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: "ami-0cf10cdf9fcd62d37"
+      ImageId: "ami-0ebfd941bbafe70c6"
       InstanceType: "t3.large"
       IamInstanceProfile: !Ref FedoraInstanceProfile
-      KeyName: "library_team.pem"
+      KeyName: "default_library_key"
       PropagateTagsToVolumeOnCreation: True
       SecurityGroupIds: 
         - "sg-0d01f29e22a683661"
@@ -64,9 +64,9 @@ Resources:
   HyraxServer:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: "ami-0cf10cdf9fcd62d37"
+      ImageId: "ami-0ebfd941bbafe70c6"
       InstanceType: "t3.medium"
-      KeyName: "library_team.pem"
+      KeyName: "default_library_key"
       BlockDeviceMappings:
       - DeviceName: "/dev/xvda"
         Ebs:

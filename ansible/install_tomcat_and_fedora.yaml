@@ -6,9 +6,8 @@
   become: yes
   tasks:
    - name: install java
-     command: amazon-linux-extras install java-openjdk11 -y
-     args: 
-       creates: /usr/lib/jvm/
+     yum:
+       name: java-11-amazon-corretto 
    - name: create tomcat user
      user:
        name: tomcat
