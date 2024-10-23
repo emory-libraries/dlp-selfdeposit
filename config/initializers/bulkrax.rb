@@ -164,17 +164,14 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
       uploaded_files, file_set_params = prep_fileset_content(attrs)
       transactions["change_set.create_work"]
         .with_step_args(
-          'work_resource.add_file_sets' => { uploaded_files: uploaded_files, file_set_params: file_set_params },
+          'work_resource.add_file_sets' => { uploaded_files:, file_set_params: },
           "change_set.set_user_as_depositor" => { user: @user },
           "work_resource.change_depositor" => { user: @user },
           'work_resource.save_acl' => { permissions_params: [attrs.try('visibility') || 'open'].compact }
         )
     end
 
-    pulled_work = pull_publication_for_preservation_events
-
-    create_preservation_event(pulled_work, work_creation(event_start:, user_email: @user.email))
-    create_preservation_event(pulled_work, work_policy(event_start:, visibility: pulled_work.visibility, user_email: @user.email))
+    process_work_creation_preservation_events(event_start)
   end
 
   # Overridden to include our custom method that alters the UploadFile objects with our FileSet metatdata passed into the CSV line items.
@@ -186,7 +183,7 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
       uploaded_files, file_set_params = prep_fileset_content(attrs)
       transactions["change_set.update_work"]
         .with_step_args(
-          'work_resource.add_file_sets' => { uploaded_files: uploaded_files, file_set_params: file_set_params },
+          'work_resource.add_file_sets' => { uploaded_files:, file_set_params: },
           'work_resource.save_acl' => { permissions_params: [attrs.try('visibility') || 'open'].compact }
         )
     end
@@ -257,6 +254,13 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
 
   def pull_publication_for_preservation_events
     Hyrax.custom_queries.find_publication_by_deduplication_key(deduplication_key: attributes['deduplication_key'])
+  end
+
+  def process_work_creation_preservation_events(event_start)
+    pulled_work = pull_publication_for_preservation_events
+
+    create_preservation_event(pulled_work, work_creation(event_start:, user_email: @user.email))
+    create_preservation_event(pulled_work, work_policy(event_start:, visibility: pulled_work.visibility, user_email: @user.email))
   end
 end
 
