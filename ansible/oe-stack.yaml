@@ -19,6 +19,7 @@
       port: 8080
       vpc_id: vpc-08bd68a1c66222de4
       state: "{{ STATE }}"
+    when: STATE != 'absent'
   - name: create correct target group for hyrax instance
     elb_target_group:
       name: "oe24-hyrax-{{ ENV }}-instances"
@@ -26,6 +27,7 @@
       port: 80
       vpc_id: vpc-08bd68a1c66222de4
       state: "{{ STATE }}"
+    when: STATE != 'absent'
   - name: add to correct target group
     community.aws.elb_target:
       target_group_name: "oe24-fedora-{{ ENV }}-instances"
@@ -40,6 +42,18 @@
       state: "{{ STATE }}"
       target_port: 80
     when: STATE != 'absent'
+  - name: empty buckets if necessary
+    s3_bucket:
+      name: "fedora-depo-{{ ENV }}-binaries"
+      state: absent
+      force: true 
+    when: STATE != 'present'
+  - name: empty backup buckets if necessary
+    s3_bucket:
+      name: "backup-fedora-depo-{{ ENV }}-binaries"
+      state: absent
+      force: true
+    when: STATE != 'present'
   - name: create s3 backup
     cloudformation:
       stack_name: "ansible-OE-cloudformation-{{ENV}}-s3"
@@ -68,6 +82,7 @@
     s3_bucket:
       name: "fedora-depo-{{ ENV }}-binaries" 
       policy: "{{ lookup('file','files/bucketpolicy.json') }}"   
+    when: STATE != 'absent'
   - name: clean up policy file
     file:
       path: files/bucketpolicy.json
@@ -87,6 +102,7 @@
     rds_instance_info:
       db_instance_identifier: "fedora-depo-{{ ENV  }}"
     register: db_info
+    when: STATE != 'absent'
   - name: create User for DB
     community.postgresql.postgresql_user:
       db: "oe24{{ ENV }}"
@@ -96,6 +112,7 @@
       login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-{{ ENV }}.postgres', nested=true) }}"
       login_host: "{{ db_info.instances[0].endpoint.address }}"
       #ssl_mode: require
+    when: STATE != 'absent'
   - name: grant privs
     community.postgresql.postgresql_privs:
       login_user: postgres
@@ -104,9 +121,21 @@
       db: "oe24{{ ENV }}"
       role: "oe24{{ ENV }}"
       objs: ALL_IN_SCHEMA
-      privs: ALL
+      privs: CREATE
       type: database
       objs: "oe24{{ ENV }}"
+    when: STATE != 'absent'
+  - name: grant schema privs
+    community.postgresql.postgresql_privs:
+      login_user: postgres
+      login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-{{ ENV }}.postgres', nested=true) }}"
+      login_host: "{{ db_info.instances[0].endpoint.address }}"
+      db: "oe24{{ ENV }}"
+      role: "oe24{{ ENV }}"
+      privs: all
+      objs: ALL_IN_SCHEMA
+      schema: public
+    when: STATE != 'absent'
   - name: create Redis node
     cloudformation:
       stack_name: "ansible-OE-cloudformation-redis-{{ ENV }}"

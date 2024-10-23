@@ -1,13 +1,6 @@
----
-- name: Create and provision resources for Fedora Self Deposit
-  import_playbook: oe-stack.yaml
-- name: Install all the fedora dependencies
-  import_playbook: install_tomcat_and_fedora.yaml
-- name: install hyrax 
-  import_playbook: install_hyrax_dependencies.yaml
-- name: create solr core
-  import_playbook: solr_core.yaml 
-- name: deploy initially
-  import_playbook: deploy.yaml
-- name: create base admin set
-  import_playbook: admin_sets.yaml
+- import_playbook: oe-stack.yaml
+- import_playbook: install_tomcat_and_fedora.yaml
+- import_playbook: install_hyrax_dependencies.yaml
+- import_playbook: solr_core.yaml 
+- import_playbook: deploy.yaml
+- import_playbook: admin_sets.yaml

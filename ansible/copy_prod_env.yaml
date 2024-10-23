@@ -41,6 +41,24 @@
   user: ec2-user
   become: yes
   tasks:
+  - name: make uploads directory
+    file:
+      path: /opt/uploads
+      state: directory
+      owner: deploy
+      group: deploy
+  - name: make directory
+    file:
+      path: /opt/dlp-selfdeposit/shared
+      state: directory
+      owner: deploy
+      group: deploy
+  - name: make config dir
+    file:
+      path: /opt/dlp-selfdeposit/shared/config
+      state: directory
+      owner: deploy
+      group: deploy
   - name: deploy template
     copy:
       src: files/env_to_deploy
