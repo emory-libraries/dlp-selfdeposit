@@ -169,6 +169,11 @@ body.dashboard {
 
 /**** New Publication Form ****/
 #files {
+  progress {
+    width: 100%;
+    background-color: $white;
+  }
+
   .primary-file-container {
     padding: 1rem 0 3rem 0;
 
@@ -193,11 +198,6 @@ body.dashboard {
         flex-wrap: wrap;
         gap: 0.625rem;
         align-items: center;
-      }
-
-      progress {
-        width: 100%;
-        background-color: $white;
       }
     }
   }
