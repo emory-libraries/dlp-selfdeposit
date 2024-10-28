@@ -85,8 +85,8 @@ RSpec.describe PublicationIndexer do
   end
 
   context 'member_of_collections_ssim' do
-    it 'contains Unknown when no id in member_of_collection_ids' do
-      expect(indexer.to_solr['member_of_collections_ssim']).to eq(['Unknown'])
+    it 'contains Unassigned when no id in member_of_collection_ids' do
+      expect(indexer.to_solr['member_of_collections_ssim']).to eq(['Unassigned'])
     end
 
     describe 'when an id is in member_of_collection_ids' do

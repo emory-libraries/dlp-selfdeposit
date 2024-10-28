@@ -35,6 +35,6 @@ class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
   end
 
   def collection_names_for_facets
-    resource&.member_of_collection_ids&.map { |id| Hyrax.query_service.find_by(id:)&.title&.first }&.presence || ['Unknown']
+    resource&.member_of_collection_ids&.map { |id| Hyrax.query_service.find_by(id:)&.title&.first }&.presence || ['Unassigned']
   end
 end
