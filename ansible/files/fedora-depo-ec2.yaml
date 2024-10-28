@@ -46,6 +46,10 @@ Resources:
       InstanceType: "t3.large"
       IamInstanceProfile: !Ref FedoraInstanceProfile
       KeyName: "default_library_key"
+      BlockDeviceMappings:
+      - DeviceName: "/dev/xvda"
+        Ebs:
+          VolumeSize: 30
       PropagateTagsToVolumeOnCreation: True
       SecurityGroupIds: 
         - "sg-0d01f29e22a683661"
