@@ -16,6 +16,10 @@ header {
         span.count.badge.invisible.badge-secondary {
           display: none;
         }
+        // hide login icon
+        span.fa.fa-sign-in {
+          display: none;
+        }
       }
     } /**** END top nav ****/
   }
