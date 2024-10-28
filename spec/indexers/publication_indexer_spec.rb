@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
+require 'hyrax/specs/shared_specs/factories/administrative_sets'
+require 'hyrax/specs/shared_specs/factories/hyrax_collection'
 require 'hyrax/specs/shared_specs/indexers'
 
 RSpec.describe PublicationIndexer do
@@ -79,6 +81,27 @@ RSpec.describe PublicationIndexer do
 
     it 'contains an array of alternate IDs' do
       expect(indexer.to_solr['alternate_ids_ssim']).to eq(['alt_id_1', 'alt_id_2'])
+    end
+  end
+
+  context 'member_of_collections_ssim' do
+    it 'contains Unknown when no id in member_of_collection_ids' do
+      expect(indexer.to_solr['member_of_collections_ssim']).to eq(['Unknown'])
+    end
+
+    describe 'when an id is in member_of_collection_ids' do
+      let(:user) { FactoryBot.create(:user) }
+      let(:admin_set) { FactoryBot.valkyrie_create(:hyrax_admin_set) }
+      let(:collection_title) { ['The John Carpenter Collection'] }
+      let(:collection) { FactoryBot.valkyrie_create(:hyrax_collection, title: collection_title) }
+
+      before do
+        allow(resource).to receive(:member_of_collection_ids).and_return([collection.id])
+      end
+
+      it 'contains expected title when id in member_of_collection_ids' do
+        expect(indexer.to_solr['member_of_collections_ssim']).to eq(collection_title)
+      end
     end
   end
 end
