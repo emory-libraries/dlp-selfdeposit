@@ -13,7 +13,7 @@ en:
           publisher_sim: Publisher
           subject_sim: Subject
         index:
-          all_text_tsimv: Keyword matches
+          all_text_tsimv: Fulltext matches
           based_near_tesim: Location
           contributor_tesim: Contributor
           creator_tesim: Authors

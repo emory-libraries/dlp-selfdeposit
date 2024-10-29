@@ -98,5 +98,17 @@ module Hyrax
       form.admin_set_id = ENV.fetch('OPENEMORY_WORKFLOW_ADMIN_SET_ID', Hyrax::AdminSetCreateService.find_or_create_default_admin_set.id.to_s)
       form.member_of_collection_ids = [ENV.fetch('OPENEMORY_COLLECTION_ID', nil)]
     end
+
+    def build_form
+      removes_empty_field_values(curation_concern)
+      @form = work_form_service.build(curation_concern, current_ability, self)
+    end
+
+    def removes_empty_field_values(curation_concern)
+      curation_concern.attributes.each do |k, v|
+        next unless v.is_a?(Array)
+        curation_concern.send("#{k}=", v.reject(&:blank?))
+      end
+    end
   end
 end
