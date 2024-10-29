@@ -76,6 +76,12 @@
        src: files/server.xml
        owner: tomcat
        group: tomcat
+   - name: set logging properties
+     copy:
+       dest: /opt/tomcat/conf/logging.properties
+       src: files/logging.properties
+       owner: tomcat
+       group: tomcat
    - name: download fedora war
      get_url:
        owner: tomcat

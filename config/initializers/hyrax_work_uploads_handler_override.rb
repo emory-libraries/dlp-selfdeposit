@@ -19,7 +19,7 @@ Rails.application.config.to_prepare do
 
       acquire_lock_for(work.id) do
         event_payloads = files.each_with_object([]) { |file, arry| arry << make_file_set_and_ingest(file) }
-        public_fileset_payload = event_payloads.find { |ep| ep[:file_set].title.first.include?('Publication File -') }
+        public_fileset_payload = event_payloads.find { |ep| ep[:file_set]&.title&.first&.include?('Publication File -') }
 
         assign_public_fileset_to_display(fileset_id: public_fileset_payload[:file_set].id, work:) if public_fileset_payload.present?
         @persister.save(resource: work)

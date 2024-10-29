@@ -14,6 +14,7 @@ class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
       index_document[:preservation_workflow_terms_tesim] = preservation_workflow_terms
       index_document[:alternate_ids_ssim] = find_alternate_ids
       index_document[:all_text_tsimv] = resource&.primary_file_set&.extracted_text_content
+      index_document[:member_of_collections_ssim] = collection_names_for_facets
     end
   end
 
@@ -31,5 +32,9 @@ class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
 
   def preservation_workflow_terms
     resource.preservation_workflows.map(&:preservation_terms)
+  end
+
+  def collection_names_for_facets
+    resource&.member_of_collection_ids&.map { |id| Hyrax.query_service.find_by(id:)&.title&.first }&.presence || ['Unassigned']
   end
 end
