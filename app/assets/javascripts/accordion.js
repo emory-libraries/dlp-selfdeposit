@@ -184,23 +184,26 @@ function validateForm() {
 
     var orcidCheck = orcidValidation();
     console.log(orcidCheck);
-    if (!orcidCheck) { return false; }
+    // if (!orcidCheck) { return false; }
 
     var relatedDataCheck = relatedDataValidation();
     console.log(relatedDataCheck);
-    if (!relatedDataCheck) { return false; }
+    // if (!relatedDataCheck) { return false; }
 
     var finalPubVerCheck = finalPubVerValidation();
     console.log(finalPubVerCheck);
-    if (!finalPubVerCheck) { return false; }
+    // if (!finalPubVerCheck) { return false; }
 
     var dateIssuedCheck = dateIssuedValidation();
     console.log(dateIssuedCheck);
-    if (!dateIssuedCheck) { return false; }
+    // if (!dateIssuedCheck) { return false; }
 
     var primaryFile = primaryFileNewPublication();
     console.log(primaryFile);
-    if (!primaryFile) { return false; }
+    // if (!primaryFile) { return false; }
+    if (!orcidCheck || !relatedDataCheck || !finalPubVerCheck || !dateIssuedCheck || !primaryFile) {
+        return false;
+    }
 
     var validationValue = document.getElementById("publication_content_genre").selectedOptions[0].label;
     var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
