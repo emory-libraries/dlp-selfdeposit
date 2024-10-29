@@ -182,21 +182,28 @@ function formSetup() {
 
 function validateForm() {
 
+    var orcidCheck = orcidValidation();
+    console.log(orcidCheck);
+    // if (!orcidCheck) { return false; }
+
     var relatedDataCheck = relatedDataValidation();
     console.log(relatedDataCheck);
-    if (!relatedDataCheck) { return false; }
+    // if (!relatedDataCheck) { return false; }
 
     var finalPubVerCheck = finalPubVerValidation();
     console.log(finalPubVerCheck);
-    if (!finalPubVerCheck) { return false; }
+    // if (!finalPubVerCheck) { return false; }
 
     var dateIssuedCheck = dateIssuedValidation();
     console.log(dateIssuedCheck);
-    if (!dateIssuedCheck) { return false; }
+    // if (!dateIssuedCheck) { return false; }
 
     var primaryFile = primaryFileNewPublication();
     console.log(primaryFile);
-    if (!primaryFile) { return false; }
+    // if (!primaryFile) { return false; }
+    if (!orcidCheck || !relatedDataCheck || !finalPubVerCheck || !dateIssuedCheck || !primaryFile) {
+        return false;
+    }
 
     var validationValue = document.getElementById("publication_content_genre").selectedOptions[0].label;
     var pubverValue = document.getElementById("publication_publisher_version").selectedOptions[0].label;
@@ -316,6 +323,21 @@ function dateIssuedValidation() {
     }
 }
 
+function orcidValidation() {
+    console.log("orcid id validation");
+
+    var orcidID = document.getElementById("publication_creators_orcid_id").value;
+    var orcidIDBool = isOrcidIdValid(orcidID);
+    console.log(orcidIDBool);
+    var orcidIDValue = 'The orcid ID is not valid.';
+
+    if (orcidID !== "") {
+        if (!orcidIDBool) {
+            validateModal(orcidIDValue);
+            return false;
+        } else return true;
+    } else return true;
+}
 
 function relatedDataValidation() {
     console.log("relatedData URL Validation");
@@ -363,6 +385,18 @@ function finalPubVerValidation() {
         console.log("value is empty!");
         return true;
     }
+}
+
+function isOrcidIdValid(orcidID) {
+    //no url
+    var orcidIdRegex = /^\d{4}\-\d{4}\-\d{4}\-\d{4}$/;
+    // with url
+    var orcidIdRegex2 = /https:\/\/orcid\.org\/[0-9]+-[0-9]+-[0-9]+-[0-9]+$/;
+
+    if (orcidIdRegex.test(orcidID) || orcidIdRegex2.test(orcidID)) {
+        console.log("idk one of these worked lol");
+        return true;
+    } else return false;
 }
 
 function isUrlValid(url) {
