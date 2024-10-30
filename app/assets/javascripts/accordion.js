@@ -329,7 +329,7 @@ function orcidValidation() {
     var orcidID = document.getElementById("publication_creators_orcid_id").value;
     var orcidIDBool = isOrcidIdValid(orcidID);
     console.log(orcidIDBool);
-    var orcidIDValue = 'The orcid ID is not valid.';
+    var orcidIDValue = 'Please enter a correctly formatted ORCID ID without the URL.';
 
     if (orcidID !== "") {
         if (!orcidIDBool) {
@@ -388,13 +388,9 @@ function finalPubVerValidation() {
 }
 
 function isOrcidIdValid(orcidID) {
-    //no url
     var orcidIdRegex = /^\d{4}\-\d{4}\-\d{4}\-\d{4}$/;
-    // with url
-    var orcidIdRegex2 = /https:\/\/orcid\.org\/[0-9]+-[0-9]+-[0-9]+-[0-9]+$/;
 
-    if (orcidIdRegex.test(orcidID) || orcidIdRegex2.test(orcidID)) {
-        console.log("idk one of these worked lol");
+    if (orcidIdRegex.test(orcidID)) {
         return true;
     } else return false;
 }
