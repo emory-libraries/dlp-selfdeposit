@@ -389,6 +389,11 @@ body.dashboard {
   .button-row-top-two-column {
     margin-bottom: 2rem;
   }
+  /* review and approval actions, admins only */
+  #workflow_controls_collapse > div.row {
+    width: 100%;
+    margin-left: inherit;
+  }
   .fileset-pdf-viewer > iframe {
     border: 1px solid $base-slate;
     border-radius: 0.25rem;
