@@ -23,6 +23,7 @@ class FixityCheckJob < Hyrax::ApplicationJob
   # record recording the check.
   #
   # @param file_set_id [FileSet] the id for FileSet parent object of URI being checked.
+  # @param initiating_user [User] the object for the user that kicked off the job.
   def perform(file_set_id:, initiating_user:)
     event_start = DateTime.current
     @file_set = Hyrax.query_service.find_by(id: file_set_id)
@@ -42,21 +43,9 @@ class FixityCheckJob < Hyrax::ApplicationJob
     service = Hyrax.config.fixity_service.new(@file_set)
     expected_result = service.expected_message_digest
 
-    ChecksumAuditLog.create_and_prune!(
-      passed: service.check,
-      file_set_id: @file_set.id.to_s,
-      checked_uri: service.target.to_s,
-      file_id: @file_set.original_file.id.to_s,
-      expected_result: expected_result
-    )
+    report_to_audit_log(check_results: service.check, uri: service.target.to_s, expected_result:)
   rescue Hyrax::Fixity::MissingContentError
-    ChecksumAuditLog.create_and_prune!(
-      passed: false,
-      file_set_id: @file_set.id.to_s,
-      checked_uri: service.target.to_s,
-      file_id: @file_set.original_file.id.to_s,
-      expected_result: expected_result
-    )
+    report_to_audit_log(check_results: false, uri: service.target.to_s, expected_result:)
   end
 
   def announce_fixity_check_results(audit, result)
@@ -72,6 +61,7 @@ class FixityCheckJob < Hyrax::ApplicationJob
                               checksum_audit_log: audit,
                               warn: false)
   end
+
   def should_call_failure_callback(audit)
     audit.failed? && Hyrax.config.callback.set?(:after_fixity_check_failure)
   end
@@ -95,10 +85,28 @@ class FixityCheckJob < Hyrax::ApplicationJob
   end
 
   def original_file_name
-    @file_set&.original_file&.title&.first || @file_set&.original_file&.label&.first || @file_set&.original_file&.original_filename
+    pulled_original_file_title || pulled_original_file_label || @file_set&.original_file&.original_filename
+  end
+
+  def pulled_original_file_title
+    @file_set&.original_file&.title&.first
+  end
+
+  def pulled_original_file_label
+    @file_set&.original_file&.label&.first
   end
 
   def original_file_checksum
     @file_set&.original_file&.original_checksum&.first
+  end
+
+  def report_to_audit_log(check_results:, uri:, expected_result:)
+    ChecksumAuditLog.create_and_prune!(
+      passed: check_results,
+      file_set_id: @file_set.id.to_s,
+      checked_uri: uri,
+      file_id: @file_set.original_file.id.to_s,
+      expected_result:
+    )
   end
 end

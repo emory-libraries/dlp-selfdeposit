@@ -56,36 +56,36 @@ module SelfDeposit
 
     private
 
-      def premis_status_predicate
-        ::RDF::Vocab::PREMIS.hasEventOutcome
-      end
+    def premis_status_predicate
+      ::RDF::Vocab::PREMIS.hasEventOutcome
+    end
 
-      # Fcrepo4.status was used by Fedora < 4.3, but it was removed
-      # from the 2015-07-24 version of the fedora 4 ontology
-      # http://fedora.info/definitions/v4/2015/07/24/repository and
-      # from rdf-vocab in version 0.8.5
-      def fedora_status_predicate
-        ::RDF::URI("http://fedora.info/definitions/v4/repository#status")
-      end
+    # Fcrepo4.status was used by Fedora < 4.3, but it was removed
+    # from the 2015-07-24 version of the fedora 4 ontology
+    # http://fedora.info/definitions/v4/2015/07/24/repository and
+    # from rdf-vocab in version 0.8.5
+    def fedora_status_predicate
+      ::RDF::URI("http://fedora.info/definitions/v4/repository#status")
+    end
 
-      def success
-        ::RDF::Literal.new("SUCCESS")
-      end
+    def success
+      ::RDF::Literal.new("SUCCESS")
+    end
 
-      def fixity_response_from_fedora
-        uri = @target + "/fcr:fixity"
-        Hyrax.query_service.adapter.connection.get(uri)
-      end
+    def fixity_response_from_fedora
+      uri = @target + "/fcr:fixity"
+      Hyrax.query_service.adapter.connection.get(uri)
+    end
 
-      def fixity_graph
-        @fixity_graph ||= ::RDF::Graph.new << ::RDF::Reader.for(:ttl).new(response.body)
-      end
+    def fixity_graph
+      @fixity_graph ||= ::RDF::Graph.new << ::RDF::Reader.for(:ttl).new(response.body)
+    end
 
-      def object_sha1_value
-        response = Hyrax.query_service.adapter.connection.get(@target) do |req|
-          req.headers["Want-Digest"] = 'sha'
-        end
-        response.response.env.response_headers["digest"].split('sha=').last
+    def object_sha1_value
+      response = Hyrax.query_service.adapter.connection.get(@target) do |req|
+        req.headers["Want-Digest"] = 'sha'
       end
+      response.response.env.response_headers["digest"].split('sha=').last
+    end
   end
 end
