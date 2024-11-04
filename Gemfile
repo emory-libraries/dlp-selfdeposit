@@ -11,7 +11,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'dalli'
 gem 'devise'
 gem 'devise-guests', '~> 0.8'
-gem "devise_saml_authenticatable", git: "https://github.com/apokalipto/devise_saml_authenticatable"
+gem 'omniauth-saml'
 gem 'dotenv-rails'
 gem 'hydra-role-management'
 gem 'hyrax', git: 'https://github.com/samvera/hyrax', ref: '9c58751'
