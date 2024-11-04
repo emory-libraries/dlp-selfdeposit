@@ -390,9 +390,18 @@ body.dashboard {
     margin-bottom: 2rem;
   }
   /* review and approval actions, admins only */
-  #workflow_controls_collapse > div.row {
+  div.workflow-actions {
+    h2, h3, h4, label.workflow-comments-label {
+      font-family: $font-family-sans-serif;
+      font-weight: 700;
+    }
+    h2 {
+      text-transform: uppercase;
+    }
+    #workflow_controls_collapse > div.row {
     width: 100%;
     margin-left: inherit;
+    }
   }
   .fileset-pdf-viewer > iframe {
     border: 1px solid $base-slate;
