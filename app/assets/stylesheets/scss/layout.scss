@@ -651,6 +651,11 @@ a.facet-select,
 div.sort-toggle span.fa-refresh {
   color: $white;
 }
+
+// on the /collections/ page (not in the dashboard), pagination was showing vertically, not horizontally
+div.record-padding > ul.pagination {
+  display: flex;
+}
 /**** end Collections ****/
 
 /**** File-Set Show Page ****/
