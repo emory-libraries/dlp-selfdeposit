@@ -6,7 +6,7 @@ RSpec.describe "hyrax/base/_attribute_rows.html.erb", type: :view do
   let(:solr_doc_attributes) do
     {
       id: '123445-cor',
-      alternate_ids_ssim: ['904dncjsz6-emory'],
+      emory_persistent_id_ssi: '904dncjsz6-emory',
       date_modified_dtsi: "2024-05-12 20:26:26 UTC",
       title_tesim: ["Test Publication"],
       abstract_tesim: ['an abstraction'],

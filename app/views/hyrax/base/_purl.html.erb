@@ -1,8 +1,8 @@
 <dt>Persistent URL</dt>
 <dd>
   <ul class="tabular">
-    <% if presenter.solr_document['alternate_ids_ssim'].present? %>
-        <% url = "#{request.base_url}/purl/#{presenter.solr_document['alternate_ids_ssim'].first}" %>
+    <% if presenter.solr_document['emory_persistent_id_ssi'].present? %>
+        <% url = "#{request.base_url}/purl/#{presenter.solr_document['emory_persistent_id_ssi']}" %>
         <li><a href="<%= url %>"><%= url %></a></li>
     <% else %>
         <li>No alternate ID available</li>

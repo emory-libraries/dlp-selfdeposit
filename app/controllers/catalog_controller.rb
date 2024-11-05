@@ -85,7 +85,7 @@ class CatalogController < ApplicationController
     # Emory Note: the fields are no longer dynamically delivered via this config setting.
     #   Instead, they are hard coded in views/hyrax/base/_attribute_rows.html.erb. We, in turn,
     #   have overridden tht partial so we can institute our own choices/order.
-    config.add_show_field "alternate_ids_ssim"
+    config.add_show_field "emory_persistent_id_ssi"
     config.add_show_field "content_genre_tesi"
     config.add_show_field "title_tesim"
     config.add_show_field "creator_tesim"

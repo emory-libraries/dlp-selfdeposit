@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class PurlController < ApplicationController
   def redirect_to_original
-    purl_object = Hyrax.custom_queries.find_by_alternate_id(alternate_ids: params[:alternate_ids])
+    purl_object = Hyrax.custom_queries.find_by_emory_persistent_id(emory_persistent_id: params[:emory_persistent_id])
 
     if purl_object.work?
       object_url = "#{request.base_url}/concern/publications/#{purl_object.id}"
