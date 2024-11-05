@@ -72,15 +72,15 @@ RSpec.describe PublicationIndexer do
     end
   end
 
-  context 'alternate_ids_ssim' do
-    let(:alternate_ids) { [double(id: 'alt_id_1'), double(id: 'alt_id_2')] }
+  context 'emory_persistent_id_ssi' do
+    let(:emory_persistent_id) { 'alt_id_1' }
 
     before do
-      allow(resource).to receive(:alternate_ids).and_return(alternate_ids)
+      allow(resource).to receive(:emory_persistent_id).and_return(emory_persistent_id)
     end
 
     it 'contains an array of alternate IDs' do
-      expect(indexer.to_solr['alternate_ids_ssim']).to eq(['alt_id_1', 'alt_id_2'])
+      expect(indexer.to_solr['emory_persistent_id_ssi']).to eq('alt_id_1')
     end
   end
 

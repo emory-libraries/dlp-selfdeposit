@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   mount Hyrax::Engine, at: '/'
   resources :welcome, only: 'index'
   root 'hyrax/homepage#index'
-  get 'purl/:alternate_ids', to: 'purl#redirect_to_original'
+  get 'purl/:emory_persistent_id', to: 'purl#redirect_to_original'
   curation_concerns_basic_routes
   concern :exportable, Blacklight::Routes::Exportable.new
 

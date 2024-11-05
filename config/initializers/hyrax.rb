@@ -336,9 +336,10 @@ custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
                   Hyrax::CustomQueries::FindModelsByAccess,
                   Hyrax::CustomQueries::FindCountBy,
                   Hyrax::CustomQueries::FindByDateRange,
+                  SelfDeposit::CustomQueries::FindAllObjectsWithAlternateIdsPresent,
                   SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,
                   SelfDeposit::CustomQueries::FindParentWorks,
-                  SelfDeposit::CustomQueries::FindByAlternateId,
+                  SelfDeposit::CustomQueries::FindByEmoryPersistentId,
                   SelfDeposit::CustomQueries::FindByCollectionTitle,
                   SelfDeposit::CustomQueries::FindBySourceIdentifier]
 custom_queries.each do |handler|
