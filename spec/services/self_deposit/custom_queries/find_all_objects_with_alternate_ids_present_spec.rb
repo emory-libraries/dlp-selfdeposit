@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe SelfDeposit::CustomQueries::FindAllObjectsWithAlternateIdsPresent, :clean do
-  subject(:query_handler) { described_class.new(query_service: query_service) }
+  subject(:query_handler) { described_class.new(query_service:) }
   let(:query_service)     { Hyrax.query_service }
 
   before { Hyrax.persister.wipe! }
@@ -26,5 +26,4 @@ RSpec.describe SelfDeposit::CustomQueries::FindAllObjectsWithAlternateIdsPresent
       end
     end
   end
-
 end
