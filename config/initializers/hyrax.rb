@@ -313,6 +313,8 @@ Hyrax.config do |config|
   # Add registrar implementations by uncommenting and adding to the hash below.
   # See app/services/hyrax/identifier/registrar.rb for the registrar interface
   # config.identifier_registrars = {}
+
+  config.fixity_service = SelfDeposit::ValkyrieFixityService
 end
 
 Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
@@ -336,9 +338,10 @@ custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
                   Hyrax::CustomQueries::FindModelsByAccess,
                   Hyrax::CustomQueries::FindCountBy,
                   Hyrax::CustomQueries::FindByDateRange,
+                  SelfDeposit::CustomQueries::FindAllObjectsWithAlternateIdsPresent,
                   SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,
                   SelfDeposit::CustomQueries::FindParentWorks,
-                  SelfDeposit::CustomQueries::FindByAlternateId,
+                  SelfDeposit::CustomQueries::FindByEmoryPersistentId,
                   SelfDeposit::CustomQueries::FindByCollectionTitle,
                   SelfDeposit::CustomQueries::FindBySourceIdentifier]
 custom_queries.each do |handler|

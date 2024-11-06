@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe CatalogController, type: :controller do
   include Devise::Test::ControllerHelpers
 
-  expected_show_fields = ["alternate_ids_ssim", "content_genre_tesi", "title_tesim", "creator_tesim",
+  expected_show_fields = ["emory_persistent_id_ssi", "content_genre_tesi", "title_tesim", "creator_tesim",
                           "language_tesim", "date_issued_tesi", "publisher_tesim", "publisher_version_tesi",
                           "parent_title_tesi", "conference_name_tesi", "issn_tesi", "isbn_tesi",
                           "series_title_tesi", "grant_agencies_tesim", "grant_information_tesim",

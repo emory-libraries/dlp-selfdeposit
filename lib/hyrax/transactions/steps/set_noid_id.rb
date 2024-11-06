@@ -5,7 +5,7 @@ module Hyrax
   module Transactions
     module Steps
       ##
-      # A step that sets the `#collection_type_gid` in the change set.
+      # A step that sets the `#emory_persistent_id` in the change set.
       #
       # @since 3.2.0
       class SetNoidId
@@ -13,14 +13,14 @@ module Hyrax
 
         ##
         # @param [Hyrax::ChangeSet] change_set
-        # @param alternate_ids for the collection, file_set, publication
-        def call(change_set, alternate_ids: [new_noid_id])
-          return Failure[:no_alternate_ids, change_set] unless
-            change_set.respond_to?(:alternate_ids=)
+        # @param emory_persistent_id for the collection, file_set, publication
+        def call(change_set, emory_persistent_id: new_noid_id)
+          return Failure[:no_emory_persistent_id, change_set] unless
+            change_set.respond_to?(:emory_persistent_id=)
           return Success(change_set) if
-            change_set.alternate_ids.present?
+            change_set.emory_persistent_id.present?
 
-          change_set.alternate_ids = alternate_ids
+          change_set.emory_persistent_id = emory_persistent_id
           Hyrax.persister.save(resource: change_set)
           Success(change_set)
         end
