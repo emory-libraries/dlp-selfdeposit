@@ -398,9 +398,17 @@ body.dashboard {
     h2 {
       text-transform: uppercase;
     }
+    #workflow_controls.panel-workflow div.card-header {
+      background-color: $gold;
+      color: $base-blue;
+
+    }
     #workflow_controls_collapse > div.row {
     width: 100%;
     margin-left: inherit;
+    div.workflow-comments {
+        padding-top: 1rem;
+      }
     }
   }
   .fileset-pdf-viewer > iframe {
@@ -652,7 +660,7 @@ div.sort-toggle span.fa-refresh {
   color: $white;
 }
 
-// on the /collections/ page (not in the dashboard), pagination was showing vertically, not horizontally
+// on the /collections/ page (not from dashboard), pagination was showing vertically, not horizontally
 div.record-padding > ul.pagination {
   display: flex;
 }
