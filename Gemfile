@@ -11,13 +11,13 @@ gem 'coffee-rails', '~> 4.2'
 gem 'dalli'
 gem 'devise'
 gem 'devise-guests', '~> 0.8'
-gem 'omniauth-saml'
 gem 'dotenv-rails'
 gem 'hydra-role-management'
 gem 'hyrax', git: 'https://github.com/samvera/hyrax', ref: '9c58751'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mutex_m', '~> 0.2.0'
+gem 'omniauth-saml'
 gem 'pg', '~> 1.3'
 gem 'puma'
 gem 'rails', '~> 6.1'
@@ -33,6 +33,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development do
   # Add command line in browser when errors
   gem 'better_errors'
+  gem 'solargraph'
 
   # Add deeper stack trace used by better errors
   gem 'binding_of_caller'

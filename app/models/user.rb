@@ -4,10 +4,10 @@ class User < ApplicationRecord
   include Hydra::User
   # Connects this user object to Role-management behaviors.
   include Hydra::RoleManagement::UserRoles
-  # Connects this user object to Hyrax behaviors.
+
   include Hyrax::User
   include Hyrax::UserUsageStats
-  
+
   class NilSamlUserError < RuntimeError
     attr_accessor :auth
 
@@ -49,19 +49,21 @@ class User < ApplicationRecord
       return User.new
     end
 
+    assign_user_attributes(user, auth)
+    user.save
+    user
+  end
+
+  def self.assign_user_attributes(user, auth)
     user.assign_attributes(
       display_name: auth.info.display_name,
       ppid: auth.uid
     )
 
-    # Set email only if net_id is not 'tezprox'
-    if auth.info.net_id != 'tezprox'
-      user.email = auth.info.net_id + '@emory.edu'
-    end
-
-    user.save
-    user
+    user.email = "#{auth.info.net_id}@emory.edu" unless auth.info.net_id == 'tezprox'
   end
+
+  private_class_method :assign_user_attributes
 
   def self.log_omniauth_error(auth)
     if auth.info.net_id.blank?

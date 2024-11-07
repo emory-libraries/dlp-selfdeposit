@@ -106,13 +106,13 @@ Rails.application.configure do
   config.certificate = ENV['SP_CERT']
   config.private_key = ENV['SP_KEY']
   config.attribute_statements = {
-                                  :net_id => ["urn:oid:0.9.2342.19200300.100.1.1"],
-                                  :display_name => ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
-                                  :last_name => ["urn:oid:2.5.4.4"]
-                                }
+    net_id: ["urn:oid:0.9.2342.19200300.100.1.1"],
+    display_name: ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
+    last_name: ["urn:oid:2.5.4.4"]
+  }
   config.uid_attribute = "urn:oid:2.5.4.5"
   config.security = {
-     :want_assertions_encrypted  => true, #makes a 2nd KeyDescriptor, this one says use="encryption"
-     :want_assertions_signed  => true # goes on md SPSSODescriptor tag
+    want_assertions_encrypted: true, # Makes a 2nd KeyDescriptor, this one says use="encryption"
+    want_assertions_signed: true     # Goes on md SPSSODescriptor tag
   }
 end
