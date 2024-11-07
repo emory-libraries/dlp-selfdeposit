@@ -3,11 +3,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication
-      set_flash_message(:notice, :success, kind: "SAML") if is_navigational_format?
+      sign_in @user
+     redirect_to request.env["omniauth.origin"] || hyrax.dashboard_path
+      set_flash_message(:notice, :success, kind: "SAML")
     else
-      session["devise.saml_data"] = request.env["omniauth.auth"].except(:extra)
-      redirect_to new_user_registration_url
+      redirect_to root_path
+      set_flash_message(:notice, :failure, kind: "SAML", reason: "you aren't authorized to use this application.")
     end
   end
 

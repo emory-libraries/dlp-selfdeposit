@@ -107,7 +107,7 @@ Rails.application.configure do
   config.private_key = ENV['SP_KEY']
   config.attribute_statements = {
                                   :net_id => ["urn:oid:0.9.2342.19200300.100.1.1"],
-                                  :first_name => ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
+                                  :display_name => ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
                                   :last_name => ["urn:oid:2.5.4.4"]
                                 }
   config.uid_attribute = "urn:oid:2.5.4.5"
