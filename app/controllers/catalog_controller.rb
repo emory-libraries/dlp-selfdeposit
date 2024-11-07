@@ -32,10 +32,13 @@ class CatalogController < ApplicationController
     config.http_method = Hyrax.config.solr_default_method
 
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
+    default_solr_search_fields = ["title_tesim", "id", "deduplication_key_ssi", "system_of_record_ID_ssi", "emory_persistent_id_ssi",
+                                  "final_published_versions_tesim", "publisher_tesim", "grant_agencies_tesim", "grant_information_tesim",
+                                  "creator_tesim"]
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim"
+      qf: default_solr_search_fields.join(' ')
     }
 
     # solr field configuration for document/show views
