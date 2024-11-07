@@ -80,7 +80,7 @@ module Hyrax
       event_start = DateTime.current
       form = build_form
       add_custom_facet_params(form)
-      return after_update_error(form_err_msg(form)) unless form.validate(params[hash_key_for_curation_concern])
+      return after_update_error(form_err_msg(form)) unless form.validate(sanitized_params)
       result =
         transactions['change_set.update_work']
         .with_step_args('work_resource.add_file_sets' => { uploaded_files:, file_set_params: params[hash_key_for_curation_concern][:file_set] },
@@ -99,16 +99,8 @@ module Hyrax
       form.member_of_collection_ids = [ENV.fetch('OPENEMORY_COLLECTION_ID', nil)]
     end
 
-    def build_form
-      removes_empty_field_values(curation_concern)
-      @form = work_form_service.build(curation_concern, current_ability, self)
-    end
-
-    def removes_empty_field_values(curation_concern)
-      curation_concern.attributes.each do |k, v|
-        next unless v.is_a?(Array)
-        curation_concern.send("#{k}=", v.reject(&:blank?))
-      end
+    def sanitized_params
+      params[hash_key_for_curation_concern].each { |k, v| params[hash_key_for_curation_concern][k] = v.reject(&:blank?) if v.is_a?(Array) }
     end
   end
 end
