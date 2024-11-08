@@ -5,7 +5,7 @@ RSpec.describe SelfDeposit::CustomQueries::FindAllObjectsWithAlternateIdsPresent
   subject(:query_handler) { described_class.new(query_service:) }
   let(:query_service)     { Hyrax.query_service }
 
-  before { Hyrax.persister.wipe! }
+  before { Hyrax.index_adapter.wipe! }
 
   describe '#find_all_objects_with_alternate_ids_present' do
     context 'when no objects match' do

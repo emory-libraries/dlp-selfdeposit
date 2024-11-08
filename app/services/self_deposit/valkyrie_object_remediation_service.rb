@@ -3,6 +3,7 @@
 module SelfDeposit
   class ValkyrieObjectRemediationService
     def self.migrate_alternate_ids_to_emory_persistent_id
+      ::SelfDeposit::ReindexingService.reindex_all_metadata_objects
       operating_ids = pull_operating_ids
       process_objects_with_alternate_ids
       operating_ids
@@ -12,7 +13,7 @@ module SelfDeposit
       private
 
       def objects_with_alternate_ids
-        Hyrax.custom_queries.find_all_objects_with_alternate_ids_present
+        Hyrax.custom_queries.find_all_objects_with_alternate_ids_present.to_a
       end
 
       def pull_operating_ids
