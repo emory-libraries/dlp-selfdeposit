@@ -27,9 +27,9 @@ module SelfDeposit
       # For each Document, it yields the pulled Hyrax Work object
       # @yield [Valkyrie::Resources]
       def each
-        objects = @query_service.find_all
+        objects = @query_service.custom_queries.find_all_metadata_objects
         objects.each do |obj|
-          yield obj if obj.respond_to?(:alternate_ids) && obj.alternate_ids.present?
+          yield obj if obj.alternate_ids.present?
         end
       end
     end
