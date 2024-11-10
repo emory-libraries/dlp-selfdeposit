@@ -20,9 +20,9 @@ Rails.application.routes.draw do
 
   unless AuthConfig.use_database_auth?
     devise_scope :user do
-      get 'sign_in', to: 'omniauth#new', as: :new_user_session
-      post 'sign_in', to: 'users/omniauth_callbacks#saml', as: :new_session
-      get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+      get 'sign_in', to: 'omniauth#new'
+      post 'sign_in', to: 'users/omniauth_callbacks#saml'
+      get 'sign_out', to: 'devise/sessions#destroy'
     end
   end
 
