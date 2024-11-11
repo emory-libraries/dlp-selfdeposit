@@ -389,6 +389,28 @@ body.dashboard {
   .button-row-top-two-column {
     margin-bottom: 2rem;
   }
+  /* review and approval actions, admins only */
+  div.workflow-actions {
+    h2, h3, h4, label.workflow-comments-label {
+      font-family: $font-family-sans-serif;
+      font-weight: 700;
+    }
+    h2 {
+      text-transform: uppercase;
+    }
+    #workflow_controls.panel-workflow div.card-header {
+      background-color: $gold;
+      color: $base-blue;
+
+    }
+    #workflow_controls_collapse > div.row {
+    width: 100%;
+    margin-left: inherit;
+    div.workflow-comments {
+        padding-top: 1rem;
+      }
+    }
+  }
   .fileset-pdf-viewer > iframe {
     border: 1px solid $base-slate;
     border-radius: 0.25rem;
@@ -636,6 +658,11 @@ a.facet-select,
 
 div.sort-toggle span.fa-refresh {
   color: $white;
+}
+
+// on the /collections/ page (not from dashboard), pagination was showing vertically, not horizontally
+div.record-padding > ul.pagination {
+  display: flex;
 }
 /**** end Collections ****/
 

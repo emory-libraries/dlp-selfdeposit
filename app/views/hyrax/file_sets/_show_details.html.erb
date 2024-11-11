@@ -32,4 +32,9 @@
       <% end %>
     </dd>
   </div>
+  <div class="row">
+    <dd class="col-12">
+      <%= button_to t('.fixity_check'), file_set_fixity_checks_path(file_set_id: @presenter.id), method: :post, class: 'btn btn-primary' %>
+    </dd>
+  </div>
 </dl>

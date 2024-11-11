@@ -12,10 +12,10 @@ RSpec.describe PurlController, :clean_repo, type: :controller do
     let(:admin_set) { FactoryBot.valkyrie_create(:hyrax_admin_set) }
     let(:permission_template) { FactoryBot.create(:permission_template, source_id: admin_set.id) }
     let(:workflow) { FactoryBot.create(:workflow, allows_access_grant: true, active: true, permission_template_id: permission_template.id) }
-    let(:publication_alt_ids) { ['1234567-emory'] }
-    let!(:publication) { FactoryBot.valkyrie_create(:publication, with_index: true, admin_set_id: admin_set.id, depositor: user.user_key, alternate_ids: publication_alt_ids) }
-    let(:collection_alt_ids) { ['89abcef-emory'] }
-    let!(:collection) { FactoryBot.valkyrie_create(:hyrax_collection, alternate_ids: collection_alt_ids) }
+    let(:publication_alt_id) { '1234567-emory' }
+    let!(:publication) { FactoryBot.valkyrie_create(:publication, with_index: true, admin_set_id: admin_set.id, depositor: user.user_key, emory_persistent_id: publication_alt_id) }
+    let(:collection_alt_id) { '89abcef-emory' }
+    let!(:collection) { FactoryBot.valkyrie_create(:hyrax_collection, emory_persistent_id: collection_alt_id) }
 
     before do
       Hyrax.index_adapter.wipe!
@@ -25,7 +25,7 @@ RSpec.describe PurlController, :clean_repo, type: :controller do
     context 'when purl_object is a Publication' do
       it 'redirects to the publication URL' do
         Hyrax.index_adapter.save(resource: publication)
-        get :redirect_to_original, params: { alternate_ids: publication_alt_ids.first }
+        get :redirect_to_original, params: { emory_persistent_id: publication_alt_id }
 
         expect(response).to redirect_to("http://test.host/concern/publications/#{publication.id}")
       end
@@ -34,7 +34,7 @@ RSpec.describe PurlController, :clean_repo, type: :controller do
     context 'when purl_object is a Collection' do
       it 'redirects to the collection URL' do
         Hyrax.index_adapter.save(resource: collection)
-        get :redirect_to_original, params: { alternate_ids: collection_alt_ids.first }
+        get :redirect_to_original, params: { emory_persistent_id: collection_alt_id }
 
         expect(response).to redirect_to("http://test.host/collections/#{collection.id}")
       end
@@ -42,7 +42,7 @@ RSpec.describe PurlController, :clean_repo, type: :controller do
 
     context 'when purl_object is not found' do
       before do
-        get :redirect_to_original, params: { alternate_ids: admin_set.id }
+        get :redirect_to_original, params: { emory_persistent_id: admin_set.id }
       end
 
       it 'returns a 404 not found status' do
