@@ -1,4 +1,10 @@
 attributes:
+  emory_persistent_id:
+    type: string
+    multiple: false
+    index_keys:
+      - 'emory_persistent_id_ssi'
+    predicate: http://metadata.emory.edu/vocab/cor-terms#emoryPersistentId
   file_set_use:
     type: string
     multiple: false

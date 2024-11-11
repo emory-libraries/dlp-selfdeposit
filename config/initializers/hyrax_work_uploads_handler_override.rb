@@ -77,7 +77,7 @@ Rails.application.config.to_prepare do
       { depositor: file.user.user_key,
         creator: file.user.user_key,
         date_uploaded: file.created_at,
-        alternate_ids: ["#{Noid::Rails::Service.new.mint}-emory"],
+        emory_persistent_id: "#{Noid::Rails::Service.new.mint}-emory",
         date_modified: Hyrax::TimeService.time_in_utc,
         label: file.fileset_name.presence || file.uploader.filename,
         title: file.fileset_name.presence || file.uploader.filename,

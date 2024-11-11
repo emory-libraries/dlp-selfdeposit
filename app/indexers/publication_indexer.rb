@@ -20,14 +20,14 @@ class PublicationIndexer < Hyrax::Indexers::PcdmObjectIndexer(Publication)
 
   private
 
+  def find_alternate_ids
+    resource.alternate_ids.map(&:id)
+  end
+
   def failed_preservation_events
     failures = resource.preservation_events.select { |event| event.outcome == "Failure" }
     return if failures.blank?
     failures.map(&:failed_event_json)
-  end
-
-  def find_alternate_ids
-    resource.alternate_ids.map(&:id)
   end
 
   def preservation_workflow_terms
