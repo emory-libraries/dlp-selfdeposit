@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise_modules = [:registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:saml]]
-  devise_modules.prepend(:database_authenticatable) if AuthConfig.use_database_auth?
+  devise_modules.prepend(:database_authenticatable, :registerable) if AuthConfig.use_database_auth?
   devise(*devise_modules)
 
   # temporary fix for SAML login while we have a hybrid login
