@@ -1,0 +1,10 @@
+{
+  "BackupPlanId":"{{ backup_info.backup_plans[0].backup_plan_id }}",
+  "BackupSelection":{
+    "IamRoleArn": "arn:aws:iam::556359784184:role/service-role/AWSBackupDefaultServiceRole",
+    "SelectionName":"rds-{{ ENV }}", 
+    "Resources":[
+      "{{ db_info.instances[0].db_instance_arn }}" 
+    ]
+  }
+}
