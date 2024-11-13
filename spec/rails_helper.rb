@@ -12,7 +12,6 @@ require 'rspec/rails'
 require 'devise'
 require 'hyrax/specs/shared_specs/factories/strategies/json_strategy'
 require 'hyrax/specs/shared_specs/factories/strategies/valkyrie_resource'
-require 'hyrax/specs/shared_specs/factories/users'
 require 'hyrax/specs/capybara'
 require 'rspec/active_model/mocks'
 
@@ -70,6 +69,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   # config.use_active_record = false
   config.infer_spec_type_from_file_location!
+
+  config.include FactoryBot::Syntax::Methods
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
