@@ -1,0 +1,31 @@
+---
+- name: backups
+  hosts: localhost
+  tasks:
+  - name: Get RDS info
+    rds_instance_info:
+      db_instance_identifier: "fedora-depo-{{ ENV  }}"
+    register: db_info
+    when: STATE != 'absent'
+  - name: get backupo plan info
+    amazon.aws.backup_plan_info:
+      backup_plan_names: 
+        - "openemory-rds-{{ ENV }}-backups"
+    register: backup_info
+  - name: template out backup json
+    template:
+      src: files/rds-backup-plan.json.j2
+      dest: files/rds-backup-plan.json
+  - name: add resource to backup plan
+    shell: aws backup create-backup-selection --cli-input-json file://files/rds-backup-plan.json
+    when: 
+      - ENV != 'arch' 
+      - STATE != 'absent'
+  - name: clean up templated file
+    file:
+      path: files/rds-backup-plan.json
+      state: absent
+
+   
+      
+
