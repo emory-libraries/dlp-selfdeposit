@@ -1,0 +1,197 @@
+@import "colors.scss";
+@import "fonts.scss";
+
+/**** New Publication Form ****/
+#files {
+    progress {
+      width: 100%;
+      background-color: $white;
+    }
+  
+    .primary-file-container {
+      padding: 1rem 0 3rem 0;
+  
+      //title
+      .primary-file-label {
+        display: flex;
+        align-items: center;
+        padding-bottom: 0.3125rem;
+      }
+  
+      .primary-fileset {
+        > div {
+          margin-bottom: 0.9375rem;
+        }
+  
+        label.custom-file-label {
+          height: 2.3rem;
+        }
+  
+        .file-name {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.625rem;
+          align-items: center;
+        }
+      }
+    }
+  
+    .supplemental-files-container {
+      padding-bottom: 3rem;
+  
+      &.preservation {
+        padding-bottom: 0;
+      }
+  
+      h4 {
+        margin-bottom: 0.8125rem;
+      }
+  
+      .supplemental-fileset,
+      .preservation-fileset {
+        > div {
+          margin-bottom: 0.9375rem;
+        }
+  
+        .file-name {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.625rem;
+          align-items: center;
+        }
+  
+        progress {
+          width: 100%;
+        }
+      }
+    }
+  } //end file upload styling
+  
+  .add-pub-intro {
+    padding: 1rem;
+    background: $light-slate;
+    margin-bottom: 1rem;
+  }
+  
+  .genres-block {
+    label {
+      font-weight: bold;
+      color: $black;
+      display: flex;
+      align-items: center;
+    }
+  
+    select {
+      border-radius: 0;
+    }
+  }
+  
+  .pub-accordion-wrapper {
+    label {
+      font-weight: bold;
+      color: $black;
+      display: flex;
+      align-items: center;
+    }
+  
+    .card {
+      border-radius: 0;
+      border: 2px solid $base-blue;
+  
+      //minor field layout cleanup
+      select,
+      input {
+        border-radius: 0;
+      }
+      textarea {
+        border-radius: 0;
+        height: 120px;
+      }
+      .multi_value .listing,
+      .controlled_vocabulary .listing {
+        max-width: initial;
+      }
+      .multi_value .listing .input-group,
+      .controlled_vocabulary .listing .input-group {
+        width: 100%;
+      }
+      .multi_value .field-controls,
+      .controlled_vocabulary .field-controls {
+        margin: 0;
+      }
+      .input-group:not(.has-validation) > .form-control:not(:last-child) {
+        border-radius: 0;
+      }
+  
+      &:not(:last-child) {
+        border-bottom: 2px solid $dark-blue;
+        margin-bottom: 0;
+      }
+      .card-header {
+        padding: 0;
+        text-decoration: underline;
+        width: 100%;
+        padding: 1.25rem 0.625rem;
+        background-color: $base-blue;
+        font-family: $font-family-serif;
+        text-transform: none;
+        color: $white;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        transition: 0.3s;
+  
+        &:hover {
+          background-color: $mid-blue;
+        }
+  
+        &::after {
+          content: "❯";
+          float: right;
+          transform: rotate(90deg);
+          color: $white;
+          padding-left: 0.9375rem;
+          margin-top: -0.4375rem;
+        }
+      }
+    }
+  
+    .card-body {
+      padding: 0;
+      max-height: 0;
+      min-height: 0;
+      overflow: hidden;
+  
+      .form-group,
+      form.new_user .field {
+        padding: 0 0.75rem;
+      }
+  
+      h6 {
+        padding: 0 0.75rem;
+        font-weight: bold;
+        color: black;
+      }
+  
+      > div {
+        overflow: hidden;
+      }
+  
+      &.open {
+        max-height: initial;
+        margin-top: 2rem;
+        padding: 0;
+      }
+    }
+  }
+  
+  #savewidget a,
+  .switch-upload-type > a,
+  .add-pub-intro p a,
+  #file_owner > a,
+  .fa-refresh,
+  #content_block_page * a {
+    color: $bright-blue;
+  }
+  /**** End Publication Form ****/

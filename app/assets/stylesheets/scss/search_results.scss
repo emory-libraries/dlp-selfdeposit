@@ -7,8 +7,6 @@
 @import "colors.scss";
 @import "fonts.scss";
 
-$highlight-background-color: rgba(5,166,86,0.36);
-
 #search-results .thumbnail_highlight, #documents .thumbnail_highlight {
   background-color: $highlight-background-color;
   z-index: 1000;
@@ -146,4 +144,19 @@ div.search-widgets > div > button {
       padding: 0 0.3125rem;
     }
   }
+}
+
+/*** Works List _list_works ***/
+.media-left {
+  margin-right: 0.5rem;
+}
+
+a.document-title {
+  color: $bright-blue;
+}
+/*** end Works List ***/
+
+// on the /collections/ page (not from dashboard), pagination was showing vertically, not horizontally
+div.record-padding > ul.pagination {
+  display: flex;
 }
