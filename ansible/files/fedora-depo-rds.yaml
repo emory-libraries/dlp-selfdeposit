@@ -25,3 +25,4 @@ Resources:
       MasterUserPassword: !Ref MasterPassParameter
       StorageEncrypted: true
       PubliclyAccessible: false
+      BackupRetentionPeriod: 0
