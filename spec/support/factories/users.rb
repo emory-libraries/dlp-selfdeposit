@@ -5,18 +5,15 @@ FactoryBot.define do
     password { 'password' }
 
     transient do
-      # Allow for custom groups when a user is instantiated.
-      # @example create(:user, groups: 'avacado')
       groups { [] }
     end
 
     after(:build) do |user, evaluator|
-      User.group_service.add(user: user, groups: evaluator.groups)
+      User.group_service.add(user, groups: evaluator.groups)
     end
 
     after(:create) do |user, _evaluator|
-      # Set uid to email by default for SAML compatibility
-      user.update(uid: user.email) unless user.uid.present?
+      user.update(uid: user.email) if user.uid.blank?
     end
 
     trait :with_uid do
@@ -35,14 +32,12 @@ FactoryBot.define do
 
     factory :user_with_mail do
       after(:create) do |user|
-        # Create examples of single file successes and failures
         (1..10).each do |number|
           file = MockFile.new(number.to_s, "Single File #{number}")
           User.batch_user.send_message(user, 'File 1 could not be updated. You do not have sufficient privileges to edit it.', file.to_s, false)
           User.batch_user.send_message(user, 'File 1 has been saved', file.to_s, false)
         end
 
-        # Create examples of mulitple file successes and failures
         files = []
         (1..50).each do |number|
           files << MockFile.new(number.to_s, "File #{number}")
