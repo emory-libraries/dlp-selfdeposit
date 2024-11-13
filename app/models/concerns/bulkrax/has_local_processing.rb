@@ -8,9 +8,6 @@ module Bulkrax::HasLocalProcessing
     # data_classification
     parsed_metadata['data_classification'] = parsed_metadata['data_classification'].blank? ? 'Public' : parsed_metadata['data_classification'].strip
 
-    # publisher
-    parsed_metadata['publisher'] = parsed_metadata['publisher'].blank? ? 'Emory University Libraries' : parsed_metadata['publisher'].strip
-
     process_emory_content_type
   end
 
