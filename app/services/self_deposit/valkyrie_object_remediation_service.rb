@@ -23,6 +23,7 @@ module SelfDeposit
           pulled_object.emory_persistent_id = value_in_alternate_ids if pulled_object.emory_persistent_id.blank?
           pulled_object.alternate_ids = []
           Hyrax.persister.save(resource: pulled_object)
+          Hyrax.index_adapter.save(resource: pulled_object)
         end
       end
     end
