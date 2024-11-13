@@ -9,7 +9,8 @@ FactoryBot.define do
     end
 
     after(:build) do |user, evaluator|
-      User.group_service.add(user, groups: evaluator.groups)
+      current_user = user
+      User.group_service.add(user: current_user, groups: evaluator.groups)
     end
 
     after(:create) do |user, _evaluator|
