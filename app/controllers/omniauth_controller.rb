@@ -2,7 +2,7 @@
 class OmniauthController < Devise::SessionsController
   def new
     if Rails.env.production?
-      redirect_to user_shibboleth_omniauth_authorize_path
+      redirect_to user_saml_omniauth_authorize_path
     else
       super
     end

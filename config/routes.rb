@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get 'sign_in', to: 'omniauth#new'
     post 'sign_in', to: 'users/omniauth_callbacks#saml'
     get 'sign_out', to: 'devise/sessions#destroy'
+    get 'auth/failure', to: 'users/omniauth_callbacks#failure'
   end
   # end
 
