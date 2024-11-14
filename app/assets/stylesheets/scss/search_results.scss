@@ -4,7 +4,8 @@
 // This gem is not yet compatible with Hyrax v3, hence why I am only using the portions relevant to our use case
 // This gem is used for keyword highlighting in search results
 
-$highlight-background-color: rgba(5,166,86,0.36);
+@import "colors.scss";
+@import "fonts.scss";
 
 #search-results .thumbnail_highlight, #documents .thumbnail_highlight {
   background-color: $highlight-background-color;
@@ -15,4 +16,147 @@ $highlight-background-color: rgba(5,166,86,0.36);
 .metadata em {
   background-color: $highlight-background-color;
   font-weight: bold;
+}
+
+// search constraints
+#appliedParams {
+  a.btn.btn-outline-secondary.remove {
+    text-decoration: none;
+  }
+}
+
+// facets sidebar section
+.facet-limit-active {
+  .card-header {
+    background-color: $base-blue !important;
+    button {
+      color: $white;
+    }
+  }
+}
+#facets {
+  h2.facets-heading {
+    font-family: $font-family-sans-serif;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+  }
+  div.facets-collapse > div.facet-limit > h3.facet-field-heading > button.btn {
+    text-transform: none;
+  }
+  .facet-label .remove {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .text-success,
+  .facet-values li .selected {
+    color: $base-blue !important;
+    font-weight: bold;
+  }
+  .border-success,
+  .facet-limit-active {
+    border-color: $base-blue !important;
+  }
+  a.facet-select {
+    font-weight: bold;
+  }
+}
+
+// search results section
+#search-results {
+  .badge {
+    margin: 0;
+  }
+  div.list-thumbnail img {
+    border: 1px solid $light-slate;
+  }
+
+  .metadata {
+    .data-labels {
+      font-weight: 700;
+      padding-right: 0.3125rem;
+    }
+
+    .metadata-wrapper {
+      padding-bottom: 0.625rem;
+    }
+
+    .attribute-creator {
+      display: flex;
+      padding-left: 0.9375rem;
+    }
+
+    div.metadata-wrapper > span.data-field > a {
+      word-break: break-word;
+    }
+  }
+
+  a {
+    color: $bright-blue;
+  }
+  h3 {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  dt + dd {
+    align-self: flex-end;
+  }
+}
+
+// pagination
+section.pagination > div.page-links > a,
+a.page-link {
+  color: $bright-blue;
+}
+li.page-item.active span.page-link {
+  color: $white;
+  background-color: $bright-blue;
+  border-color: $bright-blue;
+}
+div.search-widgets > div > button {
+  text-transform: none;
+  font-weight: normal;
+}
+
+// alternate views
+.documents-masonry {
+  .document {
+    .caption-area {
+      padding: 0;
+      border: 1px solid $hyrax-black;
+      box-sizing: border-box;
+      background-color: $hyrax-black !important;
+    }
+    h3.index_title {
+      padding: 0.3125rem;
+
+      a {
+        color: $black;
+
+        &:hover,
+        &:visited,
+        &:active {
+          color: $black;
+        }
+      }
+    }
+
+    .document-metadata {
+      padding: 0 0.3125rem;
+    }
+  }
+}
+
+/*** Works List _list_works ***/
+.media-left {
+  margin-right: 0.5rem;
+}
+
+a.document-title {
+  color: $bright-blue;
+}
+/*** end Works List ***/
+
+// on the /collections/ page (not from dashboard), pagination was showing vertically, not horizontally
+div.record-padding > ul.pagination {
+  display: flex;
 }

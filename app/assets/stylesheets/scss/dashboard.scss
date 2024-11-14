@@ -1,0 +1,76 @@
+@import "colors.scss";
+@import "fonts.scss";
+
+/**** Dashboard General ****/
+body.dashboard {
+    padding-top: 0;
+    h1 {
+      font-size: 2rem;
+      margin-left: 0.3rem;
+      margin-top: 0.375rem;
+    }
+  
+    .collections-wrapper #add-new-collection-button {
+      margin-bottom: 0.625rem;
+    }
+  
+    #search-field-header {
+      border-radius: 0;
+    }
+  
+    .dashboard a :not(.btn-danger) :not(.sidebar),
+    .media-body a,
+    div.collection a,
+    .collections-list-table a,
+    .collection-types-wrapper > div > div > p > a,
+    .proxy-rights ~ a,
+    .transfer_link > a,
+    .works-list a {
+      color: $bright-blue;
+    }
+    div.list-group > .list-group-item a {
+      color: $bright-blue;
+    }
+  
+    //search bar on collection
+    .collections-wrapper .collections-search-wrapper {
+      padding-top: 0.625rem;
+    }
+  
+    //importers page
+    #importers-table_wrapper #status-filter {
+      margin-bottom: 0.3125rem;
+    }
+  
+    //hide title "Administrative Set"
+    #admin_sets h5 {
+      display: none;
+    }
+  }
+
+  /*** Collections ***/
+#dashboard-collection-tab-content {
+    label {
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  .thumbnail-title-wrapper a,
+  .nav-tabs a,
+  a.facet-select,
+  .batch_document_selector_all a {
+    color: $bright-blue;
+  }
+  
+  div.sort-toggle span.fa-refresh {
+    color: $white;
+  }
+/**** end Collections ****/
+
+/**** filtering from dashboard works or collections ****/
+div.constraints-container a.catalog_startOverLink.btn {
+    background: $bright-blue;
+    color: $white;
+  }
+  /**** end filtering ****/
