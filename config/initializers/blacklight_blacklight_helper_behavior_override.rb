@@ -15,7 +15,7 @@ Rails.application.config.to_prepare do
     def should_render_index_field?(document, field_config)
       Deprecation.warn self, "should_render_index_field? is deprecated and will be removed in Blacklight 8. Use IndexPresenter#render_field? instead."
 
-      return false if field_config.field == 'all_text_tsimv' && (request.url =~ /q=\S/).nil?
+      return false if field_config.field == 'all_text_tsimv' && (request.url =~ /q=\w/).nil?
       should_render_field?(field_config, document) && document_has_value?(document, field_config)
     end
   end
