@@ -16,6 +16,7 @@ module SelfDeposit
         Hyrax.custom_queries.find_all_object_ids_with_alternate_ids_present
       end
 
+      # rubocop:disable Rails/Output
       def process_objects_with_alternate_ids(operating_ids:)
         operating_ids.each do |id|
           pulled_object = Hyrax.query_service.find_by(id:)
@@ -24,8 +25,12 @@ module SelfDeposit
           pulled_object.alternate_ids = []
           Hyrax.persister.save(resource: pulled_object)
           Hyrax.index_adapter.save(resource: pulled_object)
+        rescue => e
+          puts "ID #{id} erred: #{e}"
+          next
         end
       end
+      # rubocop:enable Rails/Output
     end
   end
 end
