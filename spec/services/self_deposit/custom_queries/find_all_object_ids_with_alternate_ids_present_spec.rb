@@ -22,7 +22,9 @@ RSpec.describe SelfDeposit::CustomQueries::FindAllObjectIdsWithAlternateIdsPrese
         publication
 
         expect(query_handler.find_all_object_ids_with_alternate_ids_present).to be_a(Enumerator)
-        expect(query_handler.find_all_object_ids_with_alternate_ids_present.to_a).to eq([publication.id])
+        expect(query_handler.find_all_object_ids_with_alternate_ids_present.to_a.first).to eq(
+          { "id" => publication.id, "alternate_ids_ssim" => ["145djjdjd-emory"] }
+        )
       end
     end
   end

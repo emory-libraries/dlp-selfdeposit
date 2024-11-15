@@ -4,9 +4,9 @@ module SelfDeposit
   class ValkyrieObjectRemediationService
     def self.migrate_alternate_ids_to_emory_persistent_id
       ::SelfDeposit::ReindexingService.reindex_all_metadata_objects
-      operating_ids = pull_operating_ids
-      process_objects_with_alternate_ids(operating_ids:)
-      operating_ids.join(', ')
+      operating_objs = pull_operating_ids
+      process_objects_with_alternate_ids(operating_objs:)
+      operating_objs.map { |obj| obj['id'] }.join(', ')
     end
 
     class << self
@@ -16,21 +16,23 @@ module SelfDeposit
         Hyrax.custom_queries.find_all_object_ids_with_alternate_ids_present
       end
 
-      # rubocop:disable Rails/Output
-      def process_objects_with_alternate_ids(operating_ids:)
-        operating_ids.each do |id|
-          pulled_object = Hyrax.query_service.find_by(id:)
-          value_in_alternate_ids = pulled_object.alternate_ids.map(&:to_s).first
+      def process_objects_with_alternate_ids(operating_objs:)
+        operating_objs.each do |obj|
+          pulled_object = Hyrax.query_service.find_by(id: obj['id'])
+          value_in_alternate_ids = obj['alternate_ids_ssim'].first
+          Rails.logger.info("Found object with id #{obj['id']}")
+
           pulled_object.emory_persistent_id = value_in_alternate_ids if pulled_object.emory_persistent_id.blank?
           pulled_object.alternate_ids = []
           Hyrax.persister.save(resource: pulled_object)
           Hyrax.index_adapter.save(resource: pulled_object)
+
+          Rails.logger.info("Updated object with id #{obj['id']}")
         rescue => e
-          puts "ID #{id} erred: #{e}"
+          Rails.logger.error "ID #{obj['id']} erred: #{e}"
           next
         end
       end
-      # rubocop:enable Rails/Output
     end
   end
 end

@@ -30,8 +30,10 @@ module SelfDeposit
       def each
         docs = Valkyrie::Persistence::Solr::Queries::DefaultPaginator.new
         while docs.has_next?
-          docs = @connection.paginate(docs.next_page, docs.per_page, "select", params: { q: query, fq: filter_query })["response"]["docs"]
-          docs.each { |doc| yield doc['id'] }
+          docs = @connection.paginate(
+                   docs.next_page, docs.per_page, "select", params: { q: query, fq: filter_query, fl: fields_selection }
+                 )["response"]["docs"]
+          docs.each { |doc| yield doc }
         end
       end
 
@@ -43,6 +45,10 @@ module SelfDeposit
 
       def filter_query
         "has_model_ssim:Publication || has_model_ssim:FileSet || has_model_ssim:CollectionResource"
+      end
+
+      def fields_selection
+        "alternate_ids_ssim, id"
       end
     end
   end
