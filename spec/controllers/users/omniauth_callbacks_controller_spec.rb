@@ -8,6 +8,10 @@ RSpec.describe Users::OmniauthCallbacksController do
     '/dashboard?locale=en'
   end
 
+  def root_path
+    '/?locale=en'
+  end
+
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     @request.env['warden'] = double(Warden::Proxy)
@@ -59,6 +63,32 @@ RSpec.describe Users::OmniauthCallbacksController do
           expect(response).to redirect_to(dashboard_path)
         end
       end
+    end
+
+    context 'when user is not authorized' do
+      let(:unauthorized_user) { User.new }
+      let(:user) { unauthorized_user }
+
+      before do
+        allow(User).to receive(:from_omniauth).and_return(unauthorized_user)
+      end
+
+      it 'redirects to root with error message' do
+        get :saml
+        expect(response).to redirect_to(root_path)
+        expect(flash[:notice]).to eq(
+          'Could not authenticate you from SAML because "you aren\'t authorized to use this application.".'
+        )
+      end
+    end
+  end
+
+  describe '#failure' do
+    let(:user) { nil }
+
+    it 'redirects to root path' do
+      get :failure
+      expect(response).to redirect_to(root_path)
     end
   end
 end

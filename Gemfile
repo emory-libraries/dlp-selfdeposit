@@ -33,7 +33,6 @@ gem 'uglifier', '>= 1.3.0'
 group :development do
   # Add command line in browser when errors
   gem 'better_errors'
-  gem 'solargraph'
 
   # Add deeper stack trace used by better errors
   gem 'binding_of_caller'
