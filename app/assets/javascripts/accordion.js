@@ -328,25 +328,20 @@ function dateIssuedValidation() {
 
 function orcidValidation() {
     console.log("orcid id validation");
-    var orcidID = document.getElementsByClassName("publication_creators_orcid_id");
+    var orcidIDs = document.getElementsByClassName("publication_creators_orcid_id");
 
-    for (var i = 0; i < orcidID.length; i++) {
-        var orcidVal = orcidID[i].children[1].value;
-        console.log(orcidVal);
-
+    for (var orcidID of orcidIDs) {
+        var orcidVal = orcidID.children[1].value;
         var orcidIDBool = isOrcidIdValid(orcidVal);
-        console.log(orcidIDBool);
         var orcidIDError = 'Please enter a correctly formatted ORCID ID without the URL.';
 
         if (orcidVal !== "") {
             if (!orcidIDBool) {
                 validateModal(orcidIDError);
                 return false;
-                break;
             } else continue;
         }
     }
-
     return true;
 }
 
