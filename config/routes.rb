@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   def latency_text
-    safe_join(
+    ActionView::Helpers::OutputSafetyHelper.safe_join(
       Sidekiq::Queue.all.map do |q|
         "#{q.name} queue latency in seconds: #{q.latency}"
       end, '\n'
