@@ -270,8 +270,8 @@ function validateForm() {
         }
 
         default: {
-            resetForm();
             console.log('validate default');
+            removeModal();
             break;
         }
     }
