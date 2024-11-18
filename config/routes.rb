@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     safe_join(
       Sidekiq::Queue.all.map do |q|
         "#{q.name} queue latency in seconds: #{q.latency}"
-      end, '\n'
+      end, '<br>'
     )
   end
 end
