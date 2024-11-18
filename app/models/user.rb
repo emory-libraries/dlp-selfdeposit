@@ -45,7 +45,9 @@ class User < ApplicationRecord
   def self.assign_user_attributes(user, auth)
     user.assign_attributes(
       display_name: auth.info.display_name,
-      ppid: auth.uid
+      ppid: auth.uid,
+      provider: auth.provider,
+      uid: auth.info.net_id
     )
 
     user.email = "#{auth.info.net_id}@emory.edu" unless auth.info.net_id == 'tezprox'
