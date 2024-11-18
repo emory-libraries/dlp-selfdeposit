@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
   match "queue-latency" => proc {
-                                  [200, {"Content-Type" => "text/plain"}, latency_text]
+                                  [200, {"Content-Type" => "text/plain"}, [latency_text]]
                                 }, via: :get
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
