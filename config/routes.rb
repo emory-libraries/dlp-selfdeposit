@@ -47,6 +47,6 @@ Rails.application.routes.draw do
   def latency_text
     Sidekiq::Queue.all.map do |q|
       "#{q.name} queue latency in seconds: #{q.latency}"
-    end
+    end.join('\n')
   end
 end
