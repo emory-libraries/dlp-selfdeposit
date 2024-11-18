@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'sidekiq/web'
 require 'sidekiq/api'
+require "action_view/helpers/output_safety_helper"
 
 Rails.application.routes.draw do
   mount Bulkrax::Engine, at: '/'
@@ -21,8 +22,8 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
   match "queue-latency" => proc {
-                                  [200, {"Content-Type" => "text/plain"}, [latency_text]]
-                                }, via: :get
+                             [200, { "Content-Type" => "text/plain" }, [latency_text]]
+                           }, via: :get
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
   resources :welcome, only: 'index'
