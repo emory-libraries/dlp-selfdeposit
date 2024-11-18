@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/apokalipto/devise_saml_authenticatable
-  revision: f8a85c3f3ed069fd40701424e2eef075219ef17f
-  specs:
-    devise_saml_authenticatable (1.9.1)
-      devise (> 2.0.0)
-      ruby-saml (~> 1.7)
-
-GIT
   remote: https://github.com/brentd/xray-rails
   revision: f121814718c9907b20058dc9357b80a53afab821
   branch: bugs/ruby-3.0.0
@@ -792,6 +784,13 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 4)
+    omniauth (2.1.2)
+      hashie (>= 3.4.6)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-saml (2.2.1)
+      omniauth (~> 2.1)
+      ruby-saml (~> 1.17)
     openseadragon (0.7.0)
       rails (> 6.1.0)
     orm_adapter (0.5.0)
@@ -1264,7 +1263,6 @@ DEPENDENCIES
   debug (>= 1.0.0)
   devise
   devise-guests (~> 0.8)
-  devise_saml_authenticatable!
   dotenv-rails
   ed25519 (>= 1.2, < 2.0)
   factory_bot_rails
@@ -1274,6 +1272,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mutex_m (~> 0.2.0)
+  omniauth-saml
   pg (~> 1.3)
   pry-doc
   pry-rails
