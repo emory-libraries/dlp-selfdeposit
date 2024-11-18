@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 require 'sidekiq/web'
 require 'sidekiq/api'
-require "action_view/helpers/output_safety_helper"
 
 Rails.application.routes.draw do
-  extend ActionView::Helpers::OutputSafetyHelper
-
   mount Bulkrax::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount BrowseEverything::Engine => '/browse'
@@ -48,10 +45,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   def latency_text
-    safe_join(
-      Sidekiq::Queue.all.map do |q|
-        "#{q.name} queue latency in seconds: #{q.latency}"
-      end, '<br>'
-    )
+    Sidekiq::Queue.all.map do |q|
+      "#{q.name} queue latency in seconds: #{q.latency}"
+    end.join(', ')
   end
 end
