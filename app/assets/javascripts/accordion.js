@@ -335,11 +335,9 @@ function orcidValidation() {
         var orcidIDBool = isOrcidIdValid(orcidVal);
         var orcidIDError = 'Please enter a correctly formatted ORCID ID without the URL.';
 
-        if (orcidVal !== "") {
-            if (!orcidIDBool) {
-                validateModal(orcidIDError);
-                return false;
-            } else continue;
+        if (orcidVal !== "" && !orcidIDBool) {
+            validateModal(orcidIDError);
+            return false;
         }
     }
     return true;
