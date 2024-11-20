@@ -326,7 +326,7 @@ function orcidValidation() {
     for (var orcidID of orcidIDs) {
         var orcidVal = orcidID.children[1].value;
         var orcidIDBool = isOrcidIdValid(orcidVal, orcidID);
-        var orcidIDError = 'Please enter a correctly formatted ORCID ID without the URL.';
+        var orcidIDError = 'Please enter either the full ORCID URL to your profile or only the ID section of your ORCID id, starting after <br><a target="_blank" href="https://orcid.org/">https://orcid.org/</a>. <br><br> Examples: <ul><li><a href="https://orcid.org/0000-0000-0000-0000">https://orcid.org/0000-0000-0000-0000</a></li><li>0000-0000-0000-0000</li></ul>';
 
         if (orcidVal !== "" && !orcidIDBool) {
             validateModal(orcidIDError);
