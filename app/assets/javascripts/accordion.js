@@ -182,21 +182,28 @@ function formSetup() {
 
 function validateForm() {
 
+
+
+
     var orcidCheck = orcidValidation();
     console.log(orcidCheck);
+    // if (!orcidCheck) { return false; }
 
     var relatedDataCheck = relatedDataValidation();
     console.log(relatedDataCheck);
+    // if (!relatedDataCheck) { return false; }
 
     var finalPubVerCheck = finalPubVerValidation();
     console.log(finalPubVerCheck);
+    // if (!finalPubVerCheck) { return false; }
 
     var dateIssuedCheck = dateIssuedValidation();
     console.log(dateIssuedCheck);
+    // if (!dateIssuedCheck) { return false; }
 
     var primaryFile = primaryFileNewPublication();
     console.log(primaryFile);
-
+    // if (!primaryFile) { return false; }
     if (!orcidCheck || !relatedDataCheck || !finalPubVerCheck || !dateIssuedCheck || !primaryFile) {
         return false;
     }
@@ -325,8 +332,8 @@ function orcidValidation() {
 
     for (var orcidID of orcidIDs) {
         var orcidVal = orcidID.children[1].value;
-        var orcidIDBool = isOrcidIdValid(orcidVal, orcidID);
-        var orcidIDError = 'Please enter either the full ORCID URL to your profile or only the ID section of your ORCID id, starting after <br><a target="_blank" href="https://orcid.org/">https://orcid.org/</a>. <br><br> Examples: <ul><li><a href="https://orcid.org/0000-0000-0000-0000">https://orcid.org/0000-0000-0000-0000</a></li><li>0000-0000-0000-0000</li></ul>';
+        var orcidIDBool = isOrcidIdValid(orcidVal);
+        var orcidIDError = 'Please enter a correctly formatted ORCID ID without the URL.';
 
         if (orcidVal !== "" && !orcidIDBool) {
             validateModal(orcidIDError);
@@ -384,16 +391,10 @@ function finalPubVerValidation() {
     }
 }
 
-function isOrcidIdValid(orcidVal, orcidID) {
+function isOrcidIdValid(orcidID) {
     var orcidIdRegex = /^\d{4}\-\d{4}\-\d{4}\-\d{4}$/;
-    var orcidIdRegex2 = /https:\/\/orcid\.org\/[0-9]+-[0-9]+-[0-9]+-[0-9]+$/; // with url
 
-    if (orcidIdRegex.test(orcidVal)) {
-        return true;
-    } else if (orcidIdRegex2.test(orcidVal)) {
-        var orcidURL = new URL("", orcidVal);
-        var orcidPath = orcidURL.pathname.substring(1);
-        orcidID.children[1].value = orcidPath;
+    if (orcidIdRegex.test(orcidID)) {
         return true;
     } else return false;
 }
