@@ -7,7 +7,8 @@
 @import "colors.scss";
 @import "fonts.scss";
 
-#search-results .thumbnail_highlight, #documents .thumbnail_highlight {
+#search-results .thumbnail_highlight,
+#documents .thumbnail_highlight {
   background-color: $highlight-background-color;
   z-index: 1000;
   position: absolute;

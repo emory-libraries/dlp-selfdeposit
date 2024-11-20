@@ -1,12 +1,37 @@
 @import "colors.scss";
 
+/**** Small Phone Screens ****/
+@media (max-width: 576px) {
+  #search-results dt.data-labels {
+    text-align: unset !important;
+  }
+}
+
 /**** Phone/Tablet Screen ****/
 @media (max-width: 767px) {
   /**** Header ****/
   header {
+    .col-sm-7 {
+      flex: auto;
+      max-width: 100%;
+      padding: 15px 0;
+    }
+
     nav {
       /**** top nav ****/
       &.navbar-collapse {
+        .nav-item {
+          flex-wrap: wrap;
+          flex-basis: 100%;
+
+          .nav-link {
+            flex-basis: 100%;
+          }
+
+          &:not(:last-child)::after {
+            display: none;
+          }
+        }
         .oe2-controls {
           width: 100%;
 
@@ -30,6 +55,9 @@
 
       /**** masthead nav ****/
       &#masthead {
+        .header-search {
+          justify-content: center;
+        }
       } /**** END masthead nav ****/
 
       /*** general styling ****/
@@ -42,29 +70,6 @@
           }
         }
       }
-    }
-  }
-  header {
-    .navbar .nav-item {
-      flex-wrap: wrap;
-      flex-basis: 100%;
-    }
-    .nav-link {
-      flex-basis: 100%;
-    }
-    li {
-      flex-wrap: wrap;
-    }
-    .navbar .nav-item:not(:last-child)::after {
-      display: none;
-    }
-    .header-search {
-      justify-content: center;
-    }
-    .col-sm-7 {
-      flex: auto;
-      max-width: 100%;
-      padding: 15px 0;
     }
   }
 
@@ -83,17 +88,10 @@
       align-items: center;
     }
   }
-}
 
-/*** search results ***/
-@media (max-width: 767px) {
+  /**** Search Results ****/
   #search-results .search-result-wrapper .list-thumbnail {
     justify-content: unset;
-  }
-}
-@media (max-width: 576px) {
-  #search-results dt.data-labels {
-    text-align: unset !important;
   }
 }
 
