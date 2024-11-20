@@ -182,6 +182,9 @@ function formSetup() {
 
 function validateForm() {
 
+
+
+
     var orcidCheck = orcidValidation();
     console.log(orcidCheck);
     // if (!orcidCheck) { return false; }
@@ -270,8 +273,8 @@ function validateForm() {
         }
 
         default: {
-            resetForm();
             console.log('validate default');
+            removeModal();
             break;
         }
     }
@@ -325,18 +328,19 @@ function dateIssuedValidation() {
 
 function orcidValidation() {
     console.log("orcid id validation");
+    var orcidIDs = document.getElementsByClassName("publication_creators_orcid_id");
 
-    var orcidID = document.getElementById("publication_creators_orcid_id").value;
-    var orcidIDBool = isOrcidIdValid(orcidID);
-    console.log(orcidIDBool);
-    var orcidIDValue = 'Please enter a correctly formatted ORCID ID without the URL.';
+    for (var orcidID of orcidIDs) {
+        var orcidVal = orcidID.children[1].value;
+        var orcidIDBool = isOrcidIdValid(orcidVal);
+        var orcidIDError = 'Please enter a correctly formatted ORCID ID without the URL.';
 
-    if (orcidID !== "") {
-        if (!orcidIDBool) {
-            validateModal(orcidIDValue);
+        if (orcidVal !== "" && !orcidIDBool) {
+            validateModal(orcidIDError);
             return false;
-        } else return true;
-    } else return true;
+        }
+    }
+    return true;
 }
 
 function relatedDataValidation() {
