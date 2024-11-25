@@ -21,6 +21,5 @@ class SearchBuilder < Blacklight::SearchBuilder
     solr_parameters[:'hl.fl'] = 'all_text_tsimv'
     solr_parameters[:'hl.fragsize'] = 100
     solr_parameters[:'hl.snippets'] = 5
-    solr_parameters[:'hl.method'] = 'fastVector'
   end
 end
