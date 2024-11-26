@@ -1,33 +1,14 @@
 # frozen_string_literal: true
+# rubocop:disable Rails/OutputSafety
 module ApplicationHelper
   def emory_creators_display(presenter)
     values = presenter.is_a?(Hash) ? presenter[:value] : presenter.solr_document['creator_ssim']
-
-      values_html = values.map do |author|
-        parsed_author = parse_creator_string(author)
-        author_span =
-          if parsed_author[:orcid].present?
-            sanitize("<span itemprop='name'>#{parsed_author[:first_name]} #{parsed_author[:last_name]} #{orcid_link_for_creator(parsed_author[:orcid])}
-                     #{parsed_author[:institution].present? ? ", #{parsed_author[:institution]}" : ''}</span>")
-          else
-            tag.span("#{parsed_author[:first_name]} #{parsed_author[:last_name]}#{parsed_author[:institution].present? ? ", #{parsed_author[:institution]}" : ''}", itemprop: 'name')
-          end
-
-        content_tag(:span, author_span, itemprop: 'creator', itemscope: '', itemtype: 'http://schema.org/Person', class: 'attribute attribute-creator')
-      end
-
-    first_5 = values_html.first(5)
+    values_html = pull_html_values(values)
+    first_five = values_html.first(5)
     remaining_authors = values_html.drop(5)
+    return_array = raw(safe_join(first_five))
 
-    remaining_authors_html = raw (
-      "<span id='remaining-authors' class='collapse'>#{safe_join(remaining_authors)}</span>
-      <a class='btn-link remaining-authors-collapse collapsed' data-toggle='collapse' role='button' aria-expanded='false' aria-controls='remaining-authors' href='#remaining-authors'></a>"
-    )
-
-    return_array = raw(
-      "#{safe_join(first_5)}"
-    )
-    return_array << remaining_authors_html if remaining_authors.present?
+    return_array << remaining_authors_html(remaining_authors) if remaining_authors.present?
     return_array
   end
 
@@ -65,4 +46,27 @@ module ApplicationHelper
   def valid_orcid?(id)
     id.to_s.match?(/^\d{4}-\d{4}-\d{4}-\d{3}[0-9X]$/)
   end
+
+  def remaining_authors_html(remaining_authors)
+    raw(
+    "<span id='remaining-authors' class='collapse'>#{safe_join(remaining_authors)}</span>
+    <a class='btn-link remaining-authors-collapse collapsed' data-toggle='collapse' role='button' aria-expanded='false' aria-controls='remaining-authors' href='#remaining-authors'></a>"
+  )
+  end
+
+  def pull_html_values(values)
+    values.map do |author|
+      parsed_author = parse_creator_string(author)
+      author_span =
+        if parsed_author[:orcid].present?
+          sanitize("<span itemprop='name'>#{parsed_author[:first_name]} #{parsed_author[:last_name]} #{orcid_link_for_creator(parsed_author[:orcid])}
+                     #{parsed_author[:institution].present? ? ", #{parsed_author[:institution]}" : ''}</span>")
+        else
+          tag.span("#{parsed_author[:first_name]} #{parsed_author[:last_name]}#{parsed_author[:institution].present? ? ", #{parsed_author[:institution]}" : ''}", itemprop: 'name')
+        end
+
+      content_tag(:span, author_span, itemprop: 'creator', itemscope: '', itemtype: 'http://schema.org/Person', class: 'attribute attribute-creator')
+    end
+  end
 end
+# rubocop:enable Rails/OutputSafety
