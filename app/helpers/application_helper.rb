@@ -3,8 +3,7 @@ module ApplicationHelper
   def emory_creators_display(presenter)
     values = presenter.is_a?(Hash) ? presenter[:value] : presenter.solr_document['creator_ssim']
 
-    safe_join(
-      values.map do |author|
+      values_html = values.map do |author|
         parsed_author = parse_creator_string(author)
         author_span =
           if parsed_author[:orcid].present?
@@ -16,7 +15,20 @@ module ApplicationHelper
 
         content_tag(:span, author_span, itemprop: 'creator', itemscope: '', itemtype: 'http://schema.org/Person', class: 'attribute attribute-creator')
       end
+
+    first_5 = values_html.first(5)
+    remaining_authors = values_html.drop(5)
+
+    remaining_authors_html = raw (
+      "<span id='remaining-authors' class='collapse'>#{safe_join(remaining_authors)}</span>
+      <a class='btn-link remaining-authors-collapse collapsed' data-toggle='collapse' role='button' aria-expanded='false' aria-controls='remaining-authors' href='#remaining-authors'></a>"
     )
+
+    return_array = raw(
+      "#{safe_join(first_5)}"
+    )
+    return_array << remaining_authors_html if remaining_authors.present?
+    return_array
   end
 
   def orcid_link_for_creator(orcid_id)
