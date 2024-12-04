@@ -25,7 +25,7 @@ class FilesetCleanUpJob < Hyrax::ApplicationJob
   end
 
   def characterize_file_set(file_set, csv)
-    ::ValkyrieCharacterizationJob.perform_later(file_set.original_file_id)
+    ::ValkyrieCharacterizationJob.perform_later(file_set.original_file_id.to_s)
     csv << [file_set.id, "Fileset not characterized", "Queued"]
   end
 end

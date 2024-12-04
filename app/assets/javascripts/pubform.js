@@ -182,28 +182,21 @@ function formSetup() {
 
 function validateForm() {
 
-
-
-
     var orcidCheck = orcidValidation();
     console.log(orcidCheck);
-    // if (!orcidCheck) { return false; }
 
     var relatedDataCheck = relatedDataValidation();
     console.log(relatedDataCheck);
-    // if (!relatedDataCheck) { return false; }
 
     var finalPubVerCheck = finalPubVerValidation();
     console.log(finalPubVerCheck);
-    // if (!finalPubVerCheck) { return false; }
 
     var dateIssuedCheck = dateIssuedValidation();
     console.log(dateIssuedCheck);
-    // if (!dateIssuedCheck) { return false; }
 
     var primaryFile = primaryFileNewPublication();
     console.log(primaryFile);
-    // if (!primaryFile) { return false; }
+
     if (!orcidCheck || !relatedDataCheck || !finalPubVerCheck || !dateIssuedCheck || !primaryFile) {
         return false;
     }
@@ -332,8 +325,9 @@ function orcidValidation() {
 
     for (var orcidID of orcidIDs) {
         var orcidVal = orcidID.children[1].value;
-        var orcidIDBool = isOrcidIdValid(orcidVal);
-        var orcidIDError = 'Please enter a correctly formatted ORCID ID without the URL.';
+        var orcidIDBool = isOrcidIdValid(orcidVal, orcidID);
+        console.log(orcidID);
+        var orcidIDError = '<p>Please enter only the ID section of your ORCID id, starting after <a href="https://orcid.org/" target="_blank">https://orcid.org/</a>. <br>Examples: <ul><li><a href="https://orcid.org/0000-0002-2771-9344" target="_blank">https://orcid.org/0000-0002-2771-9344</a></li><li>0000-0002-2771-9344</li></ul></p>';
 
         if (orcidVal !== "" && !orcidIDBool) {
             validateModal(orcidIDError);
@@ -346,55 +340,50 @@ function orcidValidation() {
 function relatedDataValidation() {
     console.log("relatedData URL Validation");
 
-    var relatedData = document.getElementById("publication_related_datasets").value;
-    var relatedDataBool = isUrlValid(relatedData);
+    var relatedDatas = document.getElementsByClassName("publication_related_datasets");
     var relatedDataTitle = 'The Supplemental Material field requires a full URL entry (starting with http://, https:// etc)';
 
-    //first check if related is not empty
-    if (relatedData !== "") {
-        console.log('value is not empty, related date: ' + relatedData);
-        if (!relatedDataBool) {
-            console.log('relatedDataTitle is: ' + relatedDataTitle);
+    for (var i = 1; i < relatedDatas.length; i++) {
+        // console.log(relatedDatas);
+        var relatedData = relatedDatas[i].value;
+        // console.log(relatedData);
+        var relatedDataBool = isUrlValid(relatedData);
+
+        if (relatedData !== "" && !relatedDataBool) {
             validateModal(relatedDataTitle);
             return false;
         }
-
-        console.log('do nothing');
-        return true;
-    } else {
-        console.log("value is empty!");
-        return true;
-    }
+    } return true;
 }
 
 function finalPubVerValidation() {
     console.log("finalPubVer URL Validation");
-
-    var finalPubVer = document.getElementById("publication_final_published_versions").value;
-    var finalPubVerBool = isUrlValid(finalPubVer);
+    var finalPubVers = document.getElementsByClassName("publication_final_published_versions");
     var finalPubVerTitle = 'The Final Published Version field requires a full URL entry (starting with http://, https:// etc). <br>You can find this field under Publication Information.';
+    // console.log(finalPubVers);
 
-    //first check if related is not empty
-    if (finalPubVer !== "") {
-        console.log('value is not empty, final published version: ' + finalPubVer);
+    for (var i = 1; i < finalPubVers.length; i++) {
+        var finalPubVerValue = finalPubVers[i].value;
+        // console.log(finalPubVerValue);
+        var finalPubVerBool = isUrlValid(finalPubVerValue);
 
-        if (!finalPubVerBool) {
-            console.log('finalPubVerTitle is: ' + finalPubVerTitle);
+        if (finalPubVerValue !== "" && !finalPubVerBool) {
             validateModal(finalPubVerTitle);
             return false;
         }
-        console.log('do nothing');
-        return true;
-    } else {
-        console.log("value is empty!");
-        return true;
-    }
+    } return true;
 }
 
-function isOrcidIdValid(orcidID) {
+function isOrcidIdValid(orcidVal, orcidID) {
     var orcidIdRegex = /^\d{4}\-\d{4}\-\d{4}\-\d{4}$/;
+    var orcidIdRegex2 = /https:\/\/orcid\.org\/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/; // with url
 
-    if (orcidIdRegex.test(orcidID)) {
+    if (orcidIdRegex.test(orcidVal)) {
+        return true;
+    } else if (orcidIdRegex2.test(orcidVal)) {
+        var orcidURL = new URL("", orcidVal);
+        var orcidPath = orcidURL.pathname.substring(1);
+        orcidID.children[1].value = orcidPath;
         return true;
     } else return false;
 }
