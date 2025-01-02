@@ -34,7 +34,9 @@
   </div>
   <div class="row">
     <dd class="col-12">
+    <% if current_user.try(:admin?) %>
       <%= button_to t('.fixity_check'), file_set_fixity_checks_path(file_set_id: @presenter.id), method: :post, class: 'btn btn-primary' %>
+   <% end %>
     </dd>
   </div>
 </dl>
