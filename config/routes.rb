@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
   match "queue-latency" => proc {
-                             [200, { "Content-Type" => "text/plain" }, [latency_text]]
+                             [200, { "Content-Type" => "application/json" }, [latency_text]]
                            }, via: :get
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
@@ -44,9 +44,13 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # rubocop:disable Rails/FindEach
   def latency_text
-    Sidekiq::Queue.all.map do |q|
-      "#{q.name} queue latency in seconds: #{q.latency}"
-    end.join(', ')
+    ret_hsh = { queues: [] }
+    Sidekiq::Queue.all.each do |q|
+      ret_hsh[:queues] << Hash[q.name, q.latency]
+    end
+    ret_hsh.to_json
   end
+  # rubocop:enable Rails/FindEach
 end
