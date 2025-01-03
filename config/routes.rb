@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # rubocop:disable Rails/FindEach
   def latency_text
     ret_hsh = { queues: [] }
     Sidekiq::Queue.all.each do |q|
@@ -51,4 +52,5 @@ Rails.application.routes.draw do
     end
     ret_hsh.to_json
   end
+  # rubocop:enable Rails/FindEach
 end
