@@ -149,7 +149,7 @@
        enabled: yes
    - name: place cloudwatch file
      copy:
-       dest: /opt/aws/amazon-cloudwatch-agent.json
+       dest: /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
        src: files/amazon-cloudwatch-agent.json
    - name: place collectd config
      template:
