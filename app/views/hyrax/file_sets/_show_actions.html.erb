@@ -16,7 +16,7 @@
   <% end %>
 
   <% if current_user.try(:admin?) %>
-    <%= button_to ("Fixity Check"), file_set_fixity_checks_path(file_set_id: @presenter.id), method: :post, class: 'btn btn-primary' %>
+    <%= button_to ("Fixity Check"), file_set_fixity_checks_path(file_set_id: @presenter.id), method: :post, class: 'btn btn-secondary' %>
   <% end %>
 
   <%= render 'social_media' %>
