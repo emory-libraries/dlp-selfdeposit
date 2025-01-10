@@ -101,6 +101,17 @@
   dt + dd {
     align-self: flex-end;
   }
+
+  /* toggle for fulltext matches */
+  a.ocr_snippets_expand {
+    line-height: 2.5rem;
+  }
+  a.ocr_snippets_expand.collapsed:after {
+    content: "Show more matches >>";
+  }
+  a.ocr_snippets_expand:not(.collapsed):after {
+    content: "<< Show fewer matches";
+  }
 }
 
 // pagination

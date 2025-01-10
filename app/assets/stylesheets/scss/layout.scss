@@ -124,16 +124,14 @@ a {
 /*** Remaining Authors Toggle ***/
 /* shows up on both search results and show item pages */
 a.remaining-authors-collapse {
-  text-transform: uppercase;
   padding-left: 0.9375rem;
   line-height: 2.5rem;
-  font-size: smaller;
 }
 a.remaining-authors-collapse.collapsed:after {
-  content: "+ Show more authors/creators";
+  content: "Show more authors/creators >>";
 }
 a.remaining-authors-collapse:not(.collapsed):after {
-  content: "+ Show fewer authors/creators";
+  content: "<< Show fewer authors/creators";
 }
 
 #content_block_page {
