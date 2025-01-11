@@ -33,7 +33,7 @@
 <%= facet_renderer.new(:sponsor, presenter.solr_document['sponsor_ssi'], {}).render_dl_row  %>
 <%= facet_renderer.new(:grant_agencies, presenter.solr_document['grant_agencies_ssim'], {}).render_dl_row  %>
 <%= generic_renderer.new(:grant_information, presenter.solr_document['grant_information_tesim'], {}).render_dl_row  %>
-<%= facet_renderer.new(:related_datasets, presenter.solr_document['related_datasets_ssim'], {}).render_dl_row  %>
+<%= Hyrax::Renderers::ExternalLinkAttributeRenderer.new(:related_datasets, presenter.solr_document['related_datasets_ssim'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:abstract, html_dl: true) %>
 <%= generic_renderer.new(:author_notes, presenter.solr_document['author_notes_tesi'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
