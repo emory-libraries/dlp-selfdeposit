@@ -1,4 +1,5 @@
-<!-- Hyrax 5.0.1 override: display file set use and moves h2 title to file_set/show.html.erb -->
+<!-- Hyrax 5.0.1 override: display file set use and moves h2 title to file_set/show.html.erb; moves fixity check button to _show_actions -->
+
 
 
 <dl class="file-show-term">
@@ -30,11 +31,6 @@
       <% else %>
         <%= t(".not_yet_characterized") %>
       <% end %>
-    </dd>
-  </div>
-  <div class="row">
-    <dd class="col-12">
-      <%= button_to t('.fixity_check'), file_set_fixity_checks_path(file_set_id: @presenter.id), method: :post, class: 'btn btn-primary' %>
     </dd>
   </div>
 </dl>

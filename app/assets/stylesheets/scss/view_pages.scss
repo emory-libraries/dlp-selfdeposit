@@ -232,5 +232,11 @@ div.alert-success > a {
       }
     }
   }
+
+  /* fixity button spacing */
+  .form-actions > form.button_to {
+    margin: 0.3125rem;
+  }
 }
+
 /**** end File-Set Show Page ****/
