@@ -12,13 +12,14 @@ RSpec.describe Bulkrax::CsvEntry, type: :model do
       )
     end
     let(:data) do
-      { model: "Publication", title: "A Good Title", parent: "2", source_identifier: "1", data_classification: nil, emory_content_type: nil }
+      { model: "Publication", title: "A Good Title", parent: "2", source_identifier: "1", publisher: nil, data_classification: nil, emory_content_type: nil }
     end
     subject(:entry) { described_class.new(importerexporter: importer, raw_metadata: data, identifier: data.fetch(:source_identifier)) }
 
     before { entry.build_metadata }
 
     it "passes in default values when fields are empty" do
+      expect(entry.parsed_metadata['publisher']).to eq('Emory University Libraries')
       expect(entry.parsed_metadata['data_classification']).to eq('Public')
       expect(entry.parsed_metadata['emory_content_type']).to eq('http://id.loc.gov/vocabulary/resourceTypes/txt')
     end

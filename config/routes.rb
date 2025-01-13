@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'sidekiq/web'
+require 'sidekiq/api'
 
 Rails.application.routes.draw do
   mount Bulkrax::Engine, at: '/'
@@ -30,6 +31,9 @@ Rails.application.routes.draw do
   mount Hydra::RoleManagement::Engine => '/'
 
   mount Sidekiq::Web => '/sidekiq'
+  match "queue-latency" => proc {
+                             [200, { "Content-Type" => "application/json" }, [latency_text]]
+                           }, via: :get
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
   resources :welcome, only: 'index'
@@ -49,4 +53,15 @@ Rails.application.routes.draw do
       delete 'clear'
     end
   end
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # rubocop:disable Rails/FindEach
+  def latency_text
+    ret_hsh = { queues: [] }
+    Sidekiq::Queue.all.each do |q|
+      ret_hsh[:queues] << Hash[q.name, q.latency]
+    end
+    ret_hsh.to_json
+  end
+  # rubocop:enable Rails/FindEach
 end
