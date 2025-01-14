@@ -15,10 +15,10 @@
                     class: 'ocr_snippet') %>
   <% end %>
 </div>
-<%= link_to('more >>',
+<%= link_to('',
             "#snippet_collapse_#{document_id}",
             data: {toggle: 'collapse'},
             'aria-expanded' => 'false',
             'aria-controls' => "#snippet_collapse_#{document_id}",
-            class: 'ocr_snippets_expand js-controls')
+            class: 'collapsed ocr_snippets_expand js-controls')
 %>
