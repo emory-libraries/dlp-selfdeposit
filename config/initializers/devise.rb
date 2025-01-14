@@ -279,8 +279,6 @@ Devise.setup do |config|
     idp_sso_target_url: 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO',
     idp_sso_service_url: ENV['IDP_SSO_TARGET_URL']
 
-  
-
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

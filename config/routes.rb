@@ -54,7 +54,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   # rubocop:disable Rails/FindEach
   def latency_text
     ret_hsh = { queues: [] }
