@@ -2,6 +2,7 @@
        Instead, they are hard coded here. We, in turn, have overridden this partial so we can institute our own choices/order. -->
 <% generic_renderer = ::Hyrax::Renderers::AttributeRenderer %>
 <% facet_renderer = ::Hyrax::Renderers::FacetedAttributeRenderer %>
+<% external_link_renderer = ::Hyrax::Renderers::ExternalLinkAttributeRenderer %>
 <% content_type_term = SelfDeposit::ContentTypesService.label(presenter.solr_document['emory_content_type_tesi']) %>
 <!-- Persistent URL block start -->
 <%= render 'purl', presenter: presenter %>
@@ -33,7 +34,7 @@
 <%= facet_renderer.new(:sponsor, presenter.solr_document['sponsor_ssi'], {}).render_dl_row  %>
 <%= facet_renderer.new(:grant_agencies, presenter.solr_document['grant_agencies_ssim'], {}).render_dl_row  %>
 <%= generic_renderer.new(:grant_information, presenter.solr_document['grant_information_tesim'], {}).render_dl_row  %>
-<%= facet_renderer.new(:related_datasets, presenter.solr_document['related_datasets_ssim'], {}).render_dl_row  %>
+<%= external_link_renderer.new(:related_datasets, presenter.solr_document['related_datasets_ssim'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:abstract, html_dl: true) %>
 <%= generic_renderer.new(:author_notes, presenter.solr_document['author_notes_tesi'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
