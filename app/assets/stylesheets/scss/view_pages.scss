@@ -177,6 +177,11 @@ div.alert-success > a {
     display: none;
   }
 
+  /* fixity button spacing */
+  .form-actions > form.button_to {
+    margin: 0.3125rem;
+  }
+
   .file-set-details {
     margin-bottom: 3rem;
     margin-top: 0.625rem;
@@ -235,11 +240,6 @@ div.alert-success > a {
         border-right: none;
       }
     }
-  }
-
-  /* fixity button spacing */
-  .form-actions > form.button_to {
-    margin: 0.3125rem;
   }
 }
 
