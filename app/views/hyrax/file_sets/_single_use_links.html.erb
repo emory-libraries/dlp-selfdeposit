@@ -1,18 +1,18 @@
-<!-- Hyrax 5.0.1 override: adds preservation events table after activity log and styles for Emory-->
+<!-- Hyrax 5.0.1 override: switches the links to a dropdown menu, from line 1.-->
 <div class="form-actions">
 
   
     <button type="button" class="btn btn-secondary dropdown-toggle" id="singleUseLinksFileset" data-toggle="dropdown" aria-expanded="false"><%= t('hyrax.single_use_links.title') %>
     </button>
-    <ul class="dropdown-menu" <%= dom_class(presenter) %> single-use-links">
-        <div class="dropdown-item" data-url="<%= hyrax.generated_single_use_links_path(presenter) %>">
+    <div class="dropdown-menu" <%= dom_class(presenter) %> single-use-links">
+        <div class="" data-url="<%= hyrax.generated_single_use_links_path(presenter) %>">
           <% if presenter.single_use_links.empty? %>
-            <li><a><%= t('hyrax.single_use_links.table.no_links') %></a></li>
+            <%= t('hyrax.single_use_links.table.no_links') %>
           <% else %>
-            <li><a><%= render 'single_use_link_rows', single_use_links: presenter.single_use_links %></a></li>
+            <%= render 'single_use_link_rows', single_use_links: presenter.single_use_links %>
           <% end %>
         </div>
-    </ul>
+    </div>
 
  
   <button class="btn btn-secondary">
