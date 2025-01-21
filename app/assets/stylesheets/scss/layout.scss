@@ -108,6 +108,26 @@ a {
 }
 
 /**** Home Page ****/
+
+.home-share-work.dlp-hero {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-image: url(/images/skyline.jpg);
+  background-color: #ddd;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+
+  .dlp-hero-container {
+    padding: 10px;
+  }
+}
+
 .home-share-work {
   .terms-of-use > a {
     color: $bright-blue;
