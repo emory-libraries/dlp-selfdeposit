@@ -95,8 +95,9 @@
   }
 }
 
-/*** View Work Page (/concerns/publications/) ***/
+/**** Desktop Screen ****/
 @media (max-width: 991px) {
+  /*** View Work Page (/concerns/publications/) ***/
   #view-work-page {
     .dropdown-toggle {
       white-space: normal;
@@ -105,4 +106,10 @@
   .table-responsive {
     overflow-x: scroll;
   }
+
+  /**** homepage ****/
+  .dlp-featured-wrapper {
+    padding-bottom: 1rem;
+  }
+  /**** end homepage ****/
 }
