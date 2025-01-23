@@ -208,8 +208,18 @@ a {
       font-family: $font-family-serif;
       font-size: large;
 
+      h3 {
+        color: $charcoal;
+      }
+
+      a {
+        color: $dark-blue;
+        font-weight: bold;
+      }
+
       a.btn {
         margin-top: 1.5625rem;
+        color: $white;
       }
     }
   }
