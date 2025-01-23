@@ -35,6 +35,24 @@ h2 {
   font-size: 2rem;
   color: $base-blue;
   margin-bottom: 0.9375rem;
+
+  &.homepage {
+    text-align: center;
+    width: 100%;
+
+    &::after {
+      display: block;
+      margin: 0 auto;
+      width: 3.75rem;
+      color: rgba(0, 0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      content: "";
+      border-top-width: 0.375rem;
+      border-top-style: solid;
+      border-top-color: rgb(233, 191, 85);
+      margin-top: 0.625rem;
+    }
+  }
 }
 
 h3 {
@@ -109,36 +127,139 @@ a {
 
 /**** Home Page ****/
 
-.home-share-work.dlp-hero {
+.dlp-fullwidth {
   width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+}
+
+.dlp-hero {
   background-image: url(/images/skyline.jpg);
   background-color: #ddd;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  margin-bottom: 0;
 
   .dlp-hero-container {
-    padding: 10px;
+    padding: 0.625rem;
   }
 }
 
-.home-share-work {
-  .terms-of-use > a {
-    color: $bright-blue;
+//override
+.featured-item {
+  padding: 0;
+}
+.dlp-explore-publications {
+  background-color: $dark-blue;
+
+  h2 {
+    color: $white;
+    margin-bottom: 2rem;
+  }
+
+  .dlp-explore-publications-wrapper {
+    padding: 2.5rem 0;
+  }
+
+  //so i dont have to repeast myself
+  h3 {
+    text-transform: uppercase;
+    font-size: small;
+    font-family: $font-family-sans-serif;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: $dark-blue;
+  }
+
+  .dlp-featured {
+    background-color: #fff;
+    padding: 1.25rem 0.9375rem;
+  }
+
+  .featured-img-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .img-wrapper {
+      flex-basis: 37%;
+      margin-right: 3%;
+
+      .img {
+        border: 1px solid $gold;
+        padding: 0.625rem;
+      }
+
+      img {
+        width: 100%;
+        float: initial;
+        padding: 0;
+        border: 1px solid $dark-blue;
+      }
+    }
+
+    .featured-item-title {
+      flex-basis: 60%;
+      font-family: $font-family-serif;
+      font-size: large;
+
+      h3 {
+        color: $charcoal;
+      }
+
+      a {
+        color: $dark-blue;
+        font-weight: bold;
+      }
+
+      a.btn {
+        margin-top: 1.5625rem;
+        color: $white;
+      }
+    }
   }
 }
-.home-content {
-  .media-heading > a,
-  .recent-item a {
-    color: $bright-blue;
+
+.dlp-featured-menu {
+  background-color: $mid-blue;
+  height: 100%;
+  padding: 0.625rem;
+
+  .dlp-featured-menu-wrapper {
+    height: 100%;
+    width: 100%;
+    border: 1px solid $bright-blue;
+    display: flex;
+    flex-wrap: wrap;
+
+    * {
+      flex-basis: 100%;
+    }
+
+    h3 {
+      color: $gold;
+      padding-left: 0.625rem;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .dlp-feat-menu-link {
+      padding-left: 1.5625rem;
+      color: $white;
+
+      &:last-child {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
   }
 }
+
 /*** end Home Page ***/
 
 /*** Remaining Authors Toggle ***/
