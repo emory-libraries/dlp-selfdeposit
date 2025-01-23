@@ -16,16 +16,20 @@
     template:
       src: files/rds-backup-plan.json.j2
       dest: files/rds-backup-plan.json
+  - name: check that we don't already back up this resource
+    shell: "aws backup describe-protected-resource --resource-arn {{ db_info.instances[0].db_instance_arn }}" 
+    register: command_result
+    ignore_errors: true
+  - name: debug backup plan
+    debug:
+      var: command_result["failed"]
   - name: add resource to backup plan
     shell: aws backup create-backup-selection --cli-input-json file://files/rds-backup-plan.json
     when: 
       - ENV != 'arch' 
       - STATE != 'absent'
+      - command_result["failed"] != false
   - name: clean up templated file
     file:
       path: files/rds-backup-plan.json
       state: absent
-
-   
-      
-
