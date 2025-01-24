@@ -389,13 +389,14 @@ a {
     }
 
     .middle {
-      position: absolute;
-      display: block;
-      left: 0;
+      display: none;
       font-size: xxx-large;
       border: 1px solid;
       border-radius: 360px;
       padding: 5px;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
     }
   }
 }
