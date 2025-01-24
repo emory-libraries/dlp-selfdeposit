@@ -1,10 +1,6 @@
 ---
 :queues:
-  - [import, 4]
   - [ingest, 4]
-  - [batch, 2]
-  - [default, 1]
-  - [export, 1]
 
 :limits:
   ingest: 7

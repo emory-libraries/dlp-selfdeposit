@@ -1,56 +1,16 @@
 # Requires Docker Compose v2
 name: dlp-selfdeposit
 services:
-  app: &app
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: hyrax
-    entrypoint: ./scripts/entrypoint.sh
-    command: sh -c 'bundle exec puma -v -b tcp://0.0.0.0:3000'
-    stdin_open: true
-    tty: true
-    user: root
-    env_file:
-      - .env.development
-    depends_on:
-      - chrome
-      - db_migrate
-      - memcached
-      - postgres
-      - redis
-      - solr
-    ports:
-      - 3000:3000
-    volumes:
-      - .:/app
-      - ./public:/app/public
-      - bundle:/app/bundle
-      - hyrax-storage:/app/storage
-      - hyrax-derivatives:/app/derivatives
-      - hyrax-uploads:/app/uploads
-      - rails-tmp:/app/tmp
-    networks:
-      - dlp
-
-  sidekiq:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: hyrax-worker
-    entrypoint: ./scripts/entrypoint.sh
+  worker:
+    image: emorylibraries/self_deposit
     command: sh -c 'bundle exec sidekiq'
     user: root
     stdin_open: true
     tty: true
     env_file:
-      - .env.development
+      - .env.production
     depends_on:
       - db_migrate
-      - memcached
-      - postgres
-      - redis
-      - solr
     volumes:
       - .:/app
       - bundle:/app/bundle
@@ -63,64 +23,16 @@ services:
       - dlp
 
   db_migrate:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: hyrax
-    entrypoint: ./scripts/entrypoint.sh
+    image: emorylibraries/self_deposit
     user: root
     env_file:
-      - .env.development
+      - .env.production
     command: ./scripts/db-migrate-seed.sh
-    depends_on:
-      - postgres
-      - solr
     volumes:
       - .:/app
       - bundle:/app/bundle
       - rails-public:/app/public
       - rails-tmp:/app/tmp
-    networks:
-      - dlp
-
-  chrome:
-    image: seleniarm/standalone-chromium:114.0
-    environment:
-      - START_XVFB=false
-    logging:
-      driver: none
-    volumes:
-      - /dev/shm:/dev/shm
-    shm_size: 2G
-    ports:
-      - "4447:4444"
-      - "5962:5900"
-    networks:
-      - dlp
-
-  postgres:
-    image: postgres:15
-    env_file:
-      - .env.development
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres:/var/lib/postgresql/data
-    networks:
-      - dlp
-
-  fcrepo:
-    image: fcrepo/fcrepo:6.5.0-tomcat9
-    environment:
-      - >-
-        CATALINA_OPTS=-Dfcrepo.home=/fcrepo-home -Djava.awt.headless=true -Dfile.encoding=UTF-8
-        -server -Xms512m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m
-        -XX:MaxPermSize=256m -XX:+DisableExplicitGC -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
-      - JAVA_OPTS=-Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
-    volumes:
-      - fcrepo:/fcrepo-home
-    ports:
-      - 8080:8080
     networks:
       - dlp
 
@@ -131,46 +43,8 @@ services:
     networks:
       - dlp
 
-  memcached:
-    image: bitnami/memcached
-    ports:
-      - '11213:11211'
-    networks:
-      - dlp
-
-  redis:
-    image: bitnami/redis:6.2
-    env_file:
-      - .env.development
-    volumes:
-      - redis:/bitnami/redis/data
-    networks:
-      - dlp
-
-  solr:
-    image: solr:8.11
-    ports:
-      - 8983:8983
-    command:
-      - sh
-      - "-c"
-      - "precreate-core dlp-selfdeposit-test /opt/solr/server/configsets/hyraxconf; solr-precreate dlp-selfdeposit /opt/solr/server/configsets/hyraxconf"
-    volumes:
-      - solr:/var/solr/data:cached
-      - ./solr/conf:/opt/solr/server/configsets/hyraxconf
-    ulimits:
-      nofile:
-        soft: 65536
-        hard: 524288
-    networks:
-      - dlp
-
 volumes:
   bundle:
-  postgres:
-  fcrepo:
-  redis:
-  solr:
   hyrax-storage:
   hyrax-derivatives:
   hyrax-uploads:
