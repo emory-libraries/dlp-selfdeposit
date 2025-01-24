@@ -12,7 +12,9 @@
               <%= featured.title.first %>
             <% end %> 
             <br>
-            <a class="btn btn-primary" href="/">view featured publication</a>
+            <%= link_to [main_app, featured], class: "btn btn-primary" do %>
+           <%= featured.title.first %>
+            <% end %>  
           </div>
     </div>
 </div>

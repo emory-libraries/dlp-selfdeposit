@@ -33,11 +33,55 @@
 
 <div class="row home-content dlp-explore-publications dlp-fullwidth">
   <div class="dlp-explore-publications-wrapper container">
-    <h2 class="homepage">Explore our Publications</h2>
+    <h2 class="alt">Explore our Publications</h2>
     <%= render 'home_content' %>
   </div>
 </div>
 
 <%= render '/shared/select_work_type_modal', create_work_presenter: @presenter.create_work_presenter if @presenter.draw_select_work_modal? %>
 
-<h1>hey</h1>
+<div class="dlp-explore-collections"> 
+  <h2 class="alt dlp-fullwidth">View by Collection</h2>
+  <%= render 'explore_collections', collections: @presenter.collections %>
+</div>
+
+
+<div class="dlp-stats-wrapper">
+  <h2 class="alt">Statistics</h2>
+  <div class="dlp-stats row">
+    <div class="dlp-stat-1 col-sm-4">
+      <div class="top">
+        Downloads this year
+      </div>
+      <div class="middle">
+      <i class="fa fa-external-link"></i>
+      </div>
+      <div class="bottom">
+      668,714
+      </div>
+    </div>
+
+    <div class="dlp-stat-1 col-sm-4">
+      <div class="top">
+        Total works deposited
+      </div>
+      <div class="middle">
+      </div>
+      <div class="bottom">
+      35,293
+      </div>
+    </div>
+
+        <div class="dlp-stat-1 col-sm-4">
+      <div class="top">
+        Total Downloads
+      </div>
+      <div class="middle">
+      </div>
+      <div class="bottom">
+       8,822,724
+      </div>
+    </div>
+  </div>
+
+</div>
