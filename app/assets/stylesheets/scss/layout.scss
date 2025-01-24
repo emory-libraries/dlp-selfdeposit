@@ -322,11 +322,26 @@ a {
     .dlp-collections-info {
       width: 100%;
       padding: 20px 0 0 10px;
+      display: flex;
+      flex-wrap: wrap;
+
+      a,
+      div {
+        flex-basis: 100%;
+      }
 
       h3 {
         font-size: xx-large;
         font-weight: bold;
         color: $base-blue;
+      }
+
+      .dlp-collections-button-wrapper {
+        a {
+          float: right;
+          margin-right: 20px;
+          margin-bottom: 10px;
+        }
       }
     }
   }
@@ -377,6 +392,10 @@ a {
       position: absolute;
       display: block;
       left: 0;
+      font-size: xxx-large;
+      border: 1px solid;
+      border-radius: 360px;
+      padding: 5px;
     }
   }
 }

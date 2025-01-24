@@ -2,18 +2,22 @@
 <% collections.each do |collection| %>
   <div class="dlp-collections">
     <div class="dlp-collections-img">
-        <%= link_to [hyrax, collection] do %>
-    <%= document_presenter(collection)&.thumbnail&.thumbnail_tag(
-      { class: 'd-none d-md-block file_listing_thumbnail', alt: "#{collection.title_or_label} #{ t('hyrax.homepage.admin_sets.thumbnail')}" },
-      { suppress_link: true }
-    ) %>
-    <% end %>
+      <%= link_to [hyrax, collection] do %>
+      <%= document_presenter(collection)&.thumbnail&.thumbnail_tag(
+        { class: 'd-none d-md-block file_listing_thumbnail', alt: "#{collection.title_or_label} #{ t('hyrax.homepage.admin_sets.thumbnail')}" },
+        { suppress_link: true }) %>
+      <% end %>
     </div>
     <div class="dlp-collections-info">
-    <%= link_to [hyrax, collection] do %>
-      <%= tag.h3(collection.title_or_label) %>
-    <% end %>
-    <%= tag.div(collection&.description&.first, class:"dlp-collections-descrip") %>
+      <%= link_to [hyrax, collection] do %>
+        <%= tag.h3(collection.title_or_label) %>
+      <% end %>
+      <%= tag.div(collection&.description&.first, class:"dlp-collections-descrip") %>
+      <div class="dlp-collections-button-wrapper">
+        <%= link_to [hyrax, collection], class: "btn btn-primary" do %>
+            View Collection
+        <% end %> 
+      </div>
     </div>
   </div>
 <% end %>
