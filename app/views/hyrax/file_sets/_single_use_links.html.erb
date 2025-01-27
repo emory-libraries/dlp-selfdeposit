@@ -5,7 +5,7 @@
     <button type="button" class="btn btn-secondary dropdown-toggle" id="singleUseLinksFileset" data-toggle="dropdown" aria-expanded="false"><%= t('hyrax.single_use_links.title') %>
     </button>
     <div class="dropdown-menu" <%= dom_class(presenter) %> single-use-links">
-        <div class="" data-url="<%= hyrax.generated_single_use_links_path(presenter) %>">
+        <div class="no-single-links" data-url="<%= hyrax.generated_single_use_links_path(presenter) %>">
           <% if presenter.single_use_links.empty? %>
             <%= t('hyrax.single_use_links.table.no_links') %>
           <% else %>
