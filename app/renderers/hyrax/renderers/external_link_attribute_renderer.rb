@@ -7,7 +7,7 @@ module Hyrax
 
       def li_value(value)
         auto_link(value, :urls, target: "_blank", rel: "noopener noreferrer") do |link|
-          "<span class='fa fa-external-link'></span>&nbsp;#{link}"
+          "&nbsp;#{link}"
         end
       end
     end
