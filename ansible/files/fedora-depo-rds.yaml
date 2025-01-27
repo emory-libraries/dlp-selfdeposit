@@ -14,7 +14,7 @@ Resources:
       AllocatedStorage: 40
       DBInstanceClass: db.t3.micro
       Engine: postgres
-      EngineVersion: 15.5
+      EngineVersion: 15.7
       AvailabilityZone: us-east-1a
       VPCSecurityGroups:
         - sg-0eac4ee948d55b836

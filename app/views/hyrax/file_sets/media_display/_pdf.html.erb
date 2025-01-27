@@ -1,0 +1,30 @@
+<!-- Hyrax 5.0.1 override: uses PDF Viewer on Work page only, and defaults to Hyrax behavior everywhere else -->
+
+<% if display_media_download_link?(file_set: file_set) && request.fullpath.include?('/file_sets/') %>
+  <div>
+      <h2 class="sr-only"><%= t('hyrax.file_set.show.downloadable_content.heading') %></h2>
+      <%= image_tag thumbnail_url(file_set),
+                    class: "representative-media",
+                    alt: "",
+                    role: "presentation" %>
+      <%= link_to t('hyrax.file_set.show.downloadable_content.pdf_link'),
+                  hyrax.download_path(file_set),
+                  target: :_blank,
+                  id: "file_download",
+                  data: { label: file_set.id, work_id: @presenter.id, collection_ids: @presenter.member_of_collection_ids } %>
+    </div>
+<% elsif display_media_download_link?(file_set: file_set) && !request.fullpath.include?('/file_sets/') %>
+  <div class="fileset-pdf-viewer">
+      <h2 class="sr-only"><%= t('hyrax.file_set.show.downloadable_content.heading') %></h2>
+      <iframe id="pdf-viewer" width="100%" height="600px" frameborder="0"
+          scrolling="no" marginheight="0" marginwidth="0"
+          title="PDF Document" src="/pdfjs/web/viewer.html?file=<%= download_path(file_set) %>"></iframe>
+  </div>
+<% else %>
+    <div>
+      <%= image_tag thumbnail_url(file_set),
+                    class: "representative-media",
+                    alt: "",
+                    role: "presentation" %>
+    </div>
+<% end %>

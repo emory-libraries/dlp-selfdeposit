@@ -12,22 +12,6 @@
       template_parameters:
         EnvironmentParameter: "{{ ENV }}"  
     register: ec2
-  - name: create correct target group for fedora instance
-    elb_target_group:
-      name: "oe24-fedora-{{ ENV }}-instances"
-      protocol: http
-      port: 8080
-      vpc_id: vpc-08bd68a1c66222de4
-      state: "{{ STATE }}"
-    when: STATE != 'absent'
-  - name: create correct target group for hyrax instance
-    elb_target_group:
-      name: "oe24-hyrax-{{ ENV }}-instances"
-      protocol: http
-      port: 80
-      vpc_id: vpc-08bd68a1c66222de4
-      state: "{{ STATE }}"
-    when: STATE != 'absent'
   - name: add to correct target group
     community.aws.elb_target:
       target_group_name: "oe24-fedora-{{ ENV }}-instances"
@@ -135,6 +119,14 @@
       privs: all
       objs: ALL_IN_SCHEMA
       schema: public
+    when: STATE != 'absent'
+  - name: more privs
+    community.postgresql.postgresql_query:
+      login_user: postgres
+      login_password: "{{ lookup('amazon.aws.aws_secret','postgres-for-self-deposit-{{ ENV }}.postgres', nested=true) }}"
+      login_host: "{{ db_info.instances[0].endpoint.address }}"
+      db: "oe24{{ ENV }}"
+      query: "grant usage, create on schema public to oe24{{ ENV }}"
     when: STATE != 'absent'
   - name: create Redis node
     cloudformation:

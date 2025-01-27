@@ -3,6 +3,7 @@
   hosts:
     - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}" 
   user: deploy
+  become: yes
   tasks:
   - name: install java
     yum: 

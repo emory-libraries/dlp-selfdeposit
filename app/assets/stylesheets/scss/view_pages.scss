@@ -28,6 +28,10 @@
   .button-row-top-two-column {
     margin-bottom: 2rem;
   }
+  .viewer-wrapper > iframe {
+    /* hhyrax had this set as absolute, not sure why, but it was causing it to overflow from the card into the row on line 21 of the show page which has -15px margins.*/
+    position: static;
+  }
   /* review and approval actions, admins only */
   div.workflow-actions {
     h2,
@@ -173,6 +177,11 @@ div.alert-success > a {
     display: none;
   }
 
+  /* fixity button spacing */
+  .form-actions > form.button_to {
+    margin: 0.3125rem;
+  }
+
   .file-set-details {
     margin-bottom: 3rem;
     margin-top: 0.625rem;
@@ -231,11 +240,6 @@ div.alert-success > a {
         border-right: none;
       }
     }
-  }
-
-  /* fixity button spacing */
-  .form-actions > form.button_to {
-    margin: 0.3125rem;
   }
 }
 
