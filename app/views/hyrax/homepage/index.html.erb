@@ -1,0 +1,89 @@
+<% provide :page_title, application_name %>
+
+<% if @presenter.display_share_button? && !Flipflop.read_only? %>
+<div class="home-share-work text-center dlp-hero dlp-fullwidth">
+    <div class="dlp-hero-container">
+    <h1>Open Emory</h1>
+    <p>Bringing Emory research to the world since 2012</p>
+      <% if signed_in? %>
+    <% if @presenter.create_many_work_types? %>
+      <%= link_to '#',
+        class: "btn btn-primary btn-lg",
+        data: { behavior: 'select-work', toggle: 'modal', target: '#worktypes-to-create', 'create-type' => 'single' } do %>
+        <i class="fa fa-upload" aria-hidden="true"></i> <%= t('hyrax.share_button') %>
+      <% end %>
+    <% else # simple link to the first work type %>
+   <% #SIGNED IN %>
+      <%= link_to new_polymorphic_path([main_app, @presenter.first_work_type]),
+            class: 'btn btn-primary btn-lg' do %>
+        <i class="fa fa-upload" aria-hidden="true"></i> <%= t('hyrax.share_button') %>
+      <% end %>
+    <% end %>
+  <% else %>
+  <% #SIGNED OUT %>
+    <%= link_to hyrax.my_works_path,
+      class: "btn btn-primary btn-lg" do %>
+      <i class="fa fa-upload" aria-hidden="true"></i> <%= t('hyrax.share_button') %>
+    <% end %>
+  <% end %>
+  <p class="terms-of-use"><%= link_to t(:'hyrax.pages.tabs.terms_page'), hyrax.terms_path %></p>
+    </div>
+</div>
+<% end %>
+
+<div class="row home-content dlp-explore-publications dlp-fullwidth">
+  <div class="dlp-explore-publications-wrapper container">
+    <h2 class="alt">Explore our Publications</h2>
+    <%= render 'home_content' %>
+  </div>
+</div>
+
+<%= render '/shared/select_work_type_modal', create_work_presenter: @presenter.create_work_presenter if @presenter.draw_select_work_modal? %>
+
+<div class="dlp-explore-collections"> 
+  <h2 class="alt">View by Collection</h2>
+  <%= render 'explore_collections', collections: @presenter.collections %>
+</div>
+
+
+<div class="dlp-stats-wrapper">
+  <h2 class="alt">Statistics</h2>
+  <div class="dlp-stats row">
+    <div class="dlp-stat col-lg-4">
+      <div class="top">
+        Downloads this year
+      </div>
+      <div class="middle">
+      <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+      </div>
+      <div class="bottom">
+      668,714
+      </div>
+    </div>
+
+    <div class="dlp-stat col-lg-4">
+      <div class="top">
+        Total works deposited
+      </div>
+      <div class="middle">
+      <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+      </div>
+      <div class="bottom">
+      35,293
+      </div>
+    </div>
+
+        <div class="dlp-stat col-lg-4">
+      <div class="top">
+        Total Downloads
+      </div>
+      <div class="middle">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      </div>
+      <div class="bottom">
+       8,822,724
+      </div>
+    </div>
+  </div>
+
+</div>
