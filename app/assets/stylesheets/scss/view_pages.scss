@@ -182,6 +182,11 @@ div.alert-success > a {
     margin: 0.3125rem;
   }
 
+  /* single use links styling */
+  .form-actions div.no-single-links {
+    padding: 0 0.625rem
+  }
+
   .file-set-details {
     margin-bottom: 3rem;
     margin-top: 0.625rem;
