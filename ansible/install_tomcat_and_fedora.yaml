@@ -86,7 +86,7 @@
      get_url:
        owner: tomcat
        group: tomcat
-       url: https://github.com/fcrepo/fcrepo/releases/download/fcrepo-6.5.0/fcrepo-webapp-6.5.0.war
+       url: https://github.com/fcrepo/fcrepo/releases/download/fcrepo-6.5.1/fcrepo-webapp-6.5.1.war
        dest: /opt/tomcat/webapps/fcrepo.war
    - name: Start and Enable Tomcat 9 on sever
      systemd:
