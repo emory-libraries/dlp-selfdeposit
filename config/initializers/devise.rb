@@ -273,11 +273,15 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :saml,
-    idp_cert: ENV['IDP_CERT'],
-    certificate: ENV['SP_CERT'],
-    private_key: ENV['SP_KEY'],
-    idp_sso_target_url: 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO',
-    idp_sso_service_url: ENV['IDP_SSO_TARGET_URL']
+    idp_cert: Rails.application.config.idp_cert,
+    certificate: Rails.application.config.certificate,
+    private_key: Rails.application.config.private_key,
+    attribute_statements: Rails.application.config.attribute_statements,
+    security: Rails.application.config.security,
+    uid_attribute: Rails.application.config.uid_attribute,
+    assertion_consumer_service_url: Rails.application.config.assertion_consumer_service_url,
+    sp_entity_id: Rails.application.config.sp_entity_id,
+    idp_sso_service_url: 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

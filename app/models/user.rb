@@ -31,10 +31,15 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     begin
-      user = find_by!(provider: auth.provider, uid: auth.info.net_id)
+      user = find_by!(provider: auth.provider, ppid: auth.info.ppid)
     rescue ActiveRecord::RecordNotFound
       log_omniauth_error(auth)
-      return User.new
+      user = User.new
+      if auth.info.role == 'Staff'
+        assign_user_attributes(user, auth)
+        user.save
+        user
+      end
     end
 
     assign_user_attributes(user, auth)
@@ -45,7 +50,7 @@ class User < ApplicationRecord
   def self.assign_user_attributes(user, auth)
     user.assign_attributes(
       display_name: auth.info.display_name,
-      ppid: auth.uid,
+      ppid: auth.info.ppid,
       provider: auth.provider,
       uid: auth.info.net_id
     )

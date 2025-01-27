@@ -97,6 +97,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # OmniAuth configuration settings
+  config.sp_entity_id = ENV['SP_ENTITY']
   config.idp_slo_target_url = ENV['IDP_SLO_TARGET_URL']
   config.assertion_consumer_service_url = ENV['ASSERTION_CS_URL']
   config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL']
@@ -108,11 +109,19 @@ Rails.application.configure do
   config.attribute_statements = {
     net_id: ["urn:oid:0.9.2342.19200300.100.1.1"],
     display_name: ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
-    last_name: ["urn:oid:2.5.4.4"]
+    last_name: ["urn:oid:2.5.4.4"],
+    title: ["urn:oid:2.5.4.12"],
+    email: ["urn:oid:0.9.2342.19200300.100.1.3"],       
+    department: ["urn:oid:2.5.4.11"],                    
+    status: ["urn:oid:0.9.2342.19200300.100.1.45"],
+    ppid: ["urn:oid:2.5.4.5"],
+    role: ["urn:oid:0.9.2342.19200300.100.1.45"]
   }
   config.uid_attribute = "urn:oid:2.5.4.5"
   config.security = {
     want_assertions_encrypted: true, # Makes a 2nd KeyDescriptor, this one says use="encryption"
-    want_assertions_signed: true     # Goes on md SPSSODescriptor tag
+    want_assertions_signed: true,     # Goes on md SPSSODescriptor tag
+    digest_method: XMLSecurity::Document::SHA1,
+    signature_method: XMLSecurity::Document::RSA_SHA1
   }
 end

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     post 'sign_in', to: 'users/omniauth_callbacks#saml'
     get 'sign_out', to: 'devise/sessions#destroy'
     get 'auth/failure', to: 'users/omniauth_callbacks#failure'
+    post '/auth/saml/callback', to: 'omniauth_callbacks#saml', as: 'user_omniauth_callback'
+    post '/auth/saml', to: 'omniauth_callbacks#passthru', as: 'user_omniauth_authorize'
   end
   # end
 
