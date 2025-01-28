@@ -25,6 +25,11 @@ class User < ApplicationRecord
   devise_modules.prepend(:database_authenticatable, :registerable) # if AuthConfig.use_database_auth?
   devise(*devise_modules)
 
+  def password_required?
+    return false if provider == 'saml'
+    super
+  end
+
   def to_s
     email
   end
