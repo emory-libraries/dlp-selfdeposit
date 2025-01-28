@@ -13,6 +13,7 @@ services:
       - db_migrate
     volumes:
       - .:/app
+      - nfs-uploads:/opt/uploads
       - bundle:/app/bundle
       - hyrax-storage:/app/storage
       - hyrax-derivatives:/app/derivatives
@@ -50,6 +51,12 @@ volumes:
   hyrax-uploads:
   rails-public:
   rails-tmp:
+  nfs-uploads:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: "addr=${NFS_SERVER_IP},nolock,soft,rw"
+      device: ":/opt/uploads"
 
 networks:
   dlp:
