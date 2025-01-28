@@ -50,6 +50,6 @@ class SolrDocument
   end
 
   def title_label_or_filename
-    title.presence || label.presence || self['original_filename_ssi']
+    title&.first&.presence || label&.first&.presence || self['original_filename_ssi']
   end
 end
