@@ -65,6 +65,12 @@
       state: directory
       owner: deploy
       group: deploy
+  - name: export /opt/uploads
+    copy:
+      dest: /etc/exports
+      content: /opt/uploads 10.65.0.0/16(rw,sync)
+  - name: reload exportfs
+    shell: exportfs -r
   - name: deploy template
     copy:
       src: files/env_to_deploy
