@@ -17,6 +17,7 @@
       - ImageMagick
       - gcc
       - gnupg2
+      - nfs-utils
       - zlib-devel
       - libffi-devel
       - openssl-devel
@@ -161,7 +162,7 @@
    - name: place collectd config
      template:
        dest: /etc/collectd.conf
-       src: files/collectd.conf.j2    
+       src: files/collectd.conf.j2
    - name: start and enable apache, collectd, amazon-cloudwatch-agent
      service:
        name: "{{ item }}"
@@ -171,6 +172,7 @@
        - httpd
        - collectd
        - amazon-cloudwatch-agent
+       - nfs-server
    - name: install rbenv
      git: 
        repo: https://github.com/sstephenson/rbenv.git
