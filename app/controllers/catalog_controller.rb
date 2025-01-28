@@ -196,6 +196,14 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('content_genre') do |field|
+      solr_name = 'content_genre_ssi'
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('subject') do |field|
       solr_name = "subject_tesim"
       field.solr_local_parameters = {
@@ -271,6 +279,30 @@ class CatalogController < ApplicationController
 
     config.add_search_field('license') do |field|
       solr_name = "license_tesim"
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('research_categories') do |field|
+      solr_name = "research_categories_ssim"
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('parent_title') do |field|
+      solr_name = "parent_title_ssi"
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('publisher_version') do |field|
+      solr_name = "publisher_version_ssi"
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
