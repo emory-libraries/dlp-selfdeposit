@@ -1,6 +1,7 @@
 <!-- Hyrax v5.0.1 Override - the fields below are no longer dynamically delivered via Hyrax' config settings.
        Instead, they are hard coded here. We, in turn, have overridden this partial so we can institute our own choices/order. -->
 <% generic_renderer = ::Hyrax::Renderers::AttributeRenderer %>
+<% custom_facet_renderer = ::Hyrax::Renderers::CustomFacetedAttributeRenderer %>
 <% facet_renderer = ::Hyrax::Renderers::FacetedAttributeRenderer %>
 <% external_link_renderer = ::Hyrax::Renderers::ExternalLinkAttributeRenderer %>
 <% content_type_term = SelfDeposit::ContentTypesService.label(presenter.solr_document['emory_content_type_tesi']) %>
@@ -8,19 +9,24 @@
 <%= render 'purl', presenter: presenter %>
 <!-- Persistent URL block end -->
 <%= presenter.attribute_to_html(:date_modified, label: t('hyrax.base.show.last_modified'), html_dl: true) %>
-<%= facet_renderer.new(:content_genre, presenter.solr_document['content_genre_ssi'], {}).render_dl_row  %>
+<%= custom_facet_renderer.new('content_genre', 
+      presenter.solr_document['content_genre_ssi'], {search_field: 'content_genre_ssi'}).render_dl_row %>
 <%= render 'creator', presenter: presenter %>
-<%= presenter.attribute_to_html(:language, render_as: :faceted, html_dl: true) %>
-<%= facet_renderer.new(:date_issued, presenter.solr_document['date_issued_ssi'], {}).render_dl_row  %>
+<%= custom_facet_renderer.new('language', 
+      presenter.solr_document['language_tesim'], {search_field: 'language_tesim'}).render_dl_row %>
+<%= custom_facet_renderer.new('date_issued', 
+      presenter.solr_document['date_issued_ssi'], {search_field: 'date_issued_year_ssi'}).render_dl_row %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
-<%= facet_renderer.new(:publisher_version, presenter.solr_document['publisher_version_ssi'], {}).render_dl_row  %>
+<%= custom_facet_renderer.new('publisher_version', 
+      presenter.solr_document['publisher_version_ssi'], {search_field: 'publisher_version_ssi'}).render_dl_row %>
 <% if current_user.try(:admin?) %>
   <%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, html_dl: true) %>
 <% end %>
 <%= presenter.attribute_to_html(:rights_notes, html_dl: true) %>
 <%= ::Hyrax::Renderers::LicenseAttributeRenderer.new(:license, presenter.solr_document['license_tesi'], {}).render_dl_row %>
 <%= generic_renderer.new(:final_published_versions, presenter.solr_document['final_published_versions_tesim'], {}).render_dl_row  %>
-<%= facet_renderer.new(:parent_title, presenter.solr_document['parent_title_ssi'], {}).render_dl_row  %>
+<%= custom_facet_renderer.new('parent_title', 
+      presenter.solr_document['parent_title_ssi'], {search_field: 'parent_title_ssi'}).render_dl_row %>
 <%= facet_renderer.new(:conference_name, presenter.solr_document['conference_name_ssi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:issn, presenter.solr_document['issn_tesi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:isbn, presenter.solr_document['isbn_tesi'], {}).render_dl_row  %>
@@ -39,7 +45,8 @@
 <%= generic_renderer.new(:author_notes, presenter.solr_document['author_notes_tesi'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
-<%= facet_renderer.new(:research_categories, presenter.solr_document['research_categories_ssim'], {}).render_dl_row  %>
+<%= custom_facet_renderer.new('research_categories', 
+      presenter.solr_document['research_categories_ssim'], {search_field: 'research_categories_ssim'}).render_dl_row %>
 <% if current_user.try(:admin?) %>
   <%= generic_renderer.new(:emory_ark, presenter.solr_document['emory_ark_tesim'], {}).render_dl_row  %>
   <%= generic_renderer.new(:internal_rights_note, presenter.solr_document['internal_rights_note_tesi'], {}).render_dl_row  %>
