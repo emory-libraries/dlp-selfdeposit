@@ -138,6 +138,7 @@ a {
 }
 
 .dlp-hero {
+  margin-top: -2rem; //remove space between header and hero for the homepage.
   background-image: image_url("skyline.jpg");
   background-size: cover;
   background-repeat: no-repeat;
