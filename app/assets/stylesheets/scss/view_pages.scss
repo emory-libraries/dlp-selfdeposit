@@ -163,6 +163,9 @@ div.alert-success > a {
   a {
     color: $bright-blue;
   }
+  > header {
+    margin-bottom: 0;
+  }
 
   a.btn,
   button {
@@ -197,9 +200,10 @@ div.alert-success > a {
     }
 
     .col-4 {
-      padding: 0;
+      padding-left: 2rem;
 
-      #pdf-viewer {
+      #pdf-viewer,
+      .pdf-border {
         border: 1px solid rgba(0, 0, 0, 0.125);
         border-radius: 0.35rem;
       }
