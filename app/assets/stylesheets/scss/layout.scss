@@ -129,10 +129,13 @@ a {
 /**** Home Page ****/
 
 /* alert banner */
+div.alert {
+  margin: -2rem 0 2rem 0;
+}
+
 div#announcement_text > div#announcement {
   background-color: $gold;
   color: $dark-blue;
-  margin: -2rem 0 2rem 0;
   border-radius: unset;
   border: unset;
   position: relative;
@@ -145,6 +148,8 @@ div#announcement_text > div#announcement {
     margin: 0;
   }
 }
+
+/* hero */
 
 .dlp-fullwidth {
   width: 100vw;
@@ -217,7 +222,7 @@ div#announcement_text > div#announcement {
     padding: 2.5rem 0;
   }
 
-  //so i dont have to repeast myself
+  //so i dont have to repeat myself
   h3 {
     text-transform: uppercase;
     font-size: small;
