@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  # unless AuthConfig.use_database_auth?
   devise_scope :user do
     get 'sign_in', to: 'omniauth#new'
     post 'sign_in', to: 'users/omniauth_callbacks#saml'
@@ -28,7 +27,6 @@ Rails.application.routes.draw do
     post '/auth/saml/callback', to: 'omniauth_callbacks#saml', as: 'user_omniauth_callback'
     post '/auth/saml', to: 'omniauth_callbacks#passthru', as: 'user_omniauth_authorize'
   end
-  # end
 
   mount Hydra::RoleManagement::Engine => '/'
 
