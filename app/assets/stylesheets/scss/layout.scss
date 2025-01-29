@@ -128,24 +128,34 @@ a {
 
 /**** Home Page ****/
 
-/* alert banner */
+/* alert and/or announcement banner */
 div.alert {
   margin: -2rem 0 2rem 0;
 }
 
-div#announcement_text > div#announcement {
+div#announcement_text {
   background-color: $gold;
-  color: $dark-blue;
-  border-radius: unset;
-  border: unset;
   position: relative;
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.64;
-  text-align: left;
-  p {
-    margin: 0;
+  margin: -2rem auto 2rem auto;
+  padding: 0.75rem 0;
+  div.notification-label {
+    text-transform: uppercase;
+    font-size: .675rem;
+    font-weight: 700;
+  }
+  div.notification-label,
+  div#announcement {
+    background-color: $gold;
+    text-align: left;
+    border-radius: unset;
+    border: unset;
+    color: $dark-blue;
+    > p {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.64;
+      margin: 0;
+    }
   }
 }
 
