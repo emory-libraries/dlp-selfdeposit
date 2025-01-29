@@ -48,4 +48,8 @@ class SolrDocument
   def preservation_events
     self['preservation_events_tesim']
   end
+
+  def title_label_or_filename
+    title&.first&.presence || label&.first&.presence || self['original_filename_ssi']
+  end
 end

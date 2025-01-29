@@ -353,3 +353,47 @@ ActiveFedora.init(solr_config_path: Rails.root.join('config', 'solr.yml'))
 
 # set bulkrax default work type to first curation_concern if it isn't already set
 Bulkrax.default_work_type = Hyrax.config.curation_concerns.first.to_s if Bulkrax.default_work_type.blank?
+
+# [Hyrax-overwrite-v5.0.1] `application/vnd.oasis.opendocument.text` (.odt) has been removed from the `office_mime_types` needing derivatives.
+Hyrax::Configuration.class_eval do
+  def mime_types_map # rubocop:disable Metrics/MethodLength
+    {
+      audio_mime_types: [
+        'audio/mp3',
+        'audio/mpeg',
+        'audio/wav',
+        'audio/x-wave',
+        'audio/x-wav',
+        'audio/ogg'
+      ],
+      image_mime_types: [
+        'image/png',
+        'image/jpeg',
+        'image/jpg',
+        'image/jp2',
+        'image/bmp',
+        'image/gif',
+        'image/tiff'
+      ],
+      office_mime_types: [
+        'text/rtf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+      ],
+      pdf_mime_types: ['application/pdf'],
+      video_mime_types: [
+        'video/mpeg',
+        'video/mp4',
+        'video/webm',
+        'video/x-msvideo',
+        'video/avi',
+        'video/quicktime',
+        'application/mxf'
+      ]
+    }
+  end
+end

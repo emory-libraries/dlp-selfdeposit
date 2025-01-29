@@ -69,7 +69,8 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: "ami-0ebfd941bbafe70c6"
-      InstanceType: "t3.medium"
+      InstanceType: "t3.large"
+      IamInstanceProfile: general-ec2-role
       KeyName: "default_library_key"
       BlockDeviceMappings:
       - DeviceName: "/dev/xvda"

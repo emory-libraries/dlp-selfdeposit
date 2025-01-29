@@ -6,6 +6,9 @@
   become: yes
   vars:
     hyrax_packages:
+      - amazon-cloudwatch-agent
+      - collectd
+      - collectd-curl_json
       - httpd
       - git
       - redis
@@ -13,6 +16,8 @@
       - perl-IPC-Cmd
       - ImageMagick
       - gcc
+      - gnupg2
+      - nfs-utils
       - zlib-devel
       - libffi-devel
       - openssl-devel
@@ -53,19 +58,25 @@
      copy: 
        dest: /etc/yum.repos.d/fedora.repo
        src: files/fedora.repo
+   - name: check if we have a libreoffice installed
+     stat:
+       path: /opt/libreoffice24.8/
+     register: libreoffice_result
    - name: unpack and install libreoffie repos
      unarchive: 
-       src: https://ftp.wayne.edu/tdf/libreoffice/stable/24.8.1/rpm/x86_64/LibreOffice_24.8.1_Linux_x86-64_rpm.tar.gz
+       src: https://ftp.wayne.edu/tdf/libreoffice/stable/24.8.4/rpm/x86_64/LibreOffice_24.8.4_Linux_x86-64_rpm.tar.gz
        dest: /home/ec2-user/
        remote_src: yes
+     when: libreoffice_result.stat.exists == False
    - name: install libreoffice rpms
-     shell: yum install /home/ec2-user/LibreOffice_24.8.1.2_Linux_x86-64_rpm/RPMS/*.rpm -y 
+     shell: yum install /home/ec2-user/LibreOffice_24.8.4.*_Linux_x86-64_rpm/RPMS/*.rpm -y 
      args:
        creates: /opt/libreoffice24.8
    - name: install package "{{ item }}
      yum: 
        name: "{{ item }}"
        state: latest
+       allowerasing: true
      loop: "{{ hyrax_packages }}"
    - name: create tomcat user
      user:
@@ -143,11 +154,25 @@
        name: tomcat
        state: started
        daemon_reload: true 
-   - name: start and enable apache
+       enabled: yes
+   - name: place cloudwatch file
+     copy:
+       dest: /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+       src: files/amazon-cloudwatch-agent.json
+   - name: place collectd config
+     template:
+       dest: /etc/collectd.conf
+       src: files/collectd.conf.j2
+   - name: start and enable apache, collectd, amazon-cloudwatch-agent
      service:
-       name: httpd
+       name: "{{ item }}"
        state: started
        enabled: yes
+     with_items:
+       - httpd
+       - collectd
+       - amazon-cloudwatch-agent
+       - nfs-server
    - name: install rbenv
      git: 
        repo: https://github.com/sstephenson/rbenv.git
@@ -212,10 +237,13 @@
        dest: /etc/httpd/conf.d/oe24.conf
        src: files/oe24.conf 
    - name: edit mimetypes
-     lineinfile:
+     blockinfile:
        path: /etc/mime.types
-       line: "application/javascript				js mjs"
-       regexp: "^applications/javascript*$"
+       block: |
+          application/javascript				js mjs
+          image/svg+xml svg svgz
+          text/css css       
+       insertafter: EOF
    - name: restart apache
      service:
        name: httpd

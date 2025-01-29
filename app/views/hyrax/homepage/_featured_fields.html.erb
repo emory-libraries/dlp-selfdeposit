@@ -1,0 +1,20 @@
+<div class="dlp-featured">
+    <div class="featured-img-container">
+        <div class="img-wrapper">
+          <div class="img">
+            <%= render_thumbnail_tag(featured, {width: 90, alt: "#{featured.title.first.to_s} #{ t('hyrax.homepage.admin_sets.thumbnail')}" }, {suppress_link: true})%>
+          </div>
+        </div>
+          <div class="featured-item-title">
+            <h3>publication spotlight</h3>
+            <span class="sr-only"><%= t('hyrax.homepage.featured_works.document.title_label') %></span>
+            <%= link_to [main_app, featured] do %>
+              <%= featured.title.first %>
+            <% end %> 
+            <br>
+            <%= link_to [main_app, featured], class: "btn btn-primary" do %>
+           <%= featured.title.first %>
+            <% end %>  
+          </div>
+    </div>
+</div>
