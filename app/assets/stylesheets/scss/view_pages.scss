@@ -163,6 +163,9 @@ div.alert-success > a {
   a {
     color: $bright-blue;
   }
+  > header {
+    margin-bottom: 0;
+  }
 
   a.btn,
   button {
@@ -182,6 +185,11 @@ div.alert-success > a {
     margin: 0.3125rem;
   }
 
+  /* single use links styling */
+  .form-actions div.no-single-links {
+    padding: 0 0.625rem
+  }
+
   .file-set-details {
     margin-bottom: 3rem;
     margin-top: 0.625rem;
@@ -192,9 +200,10 @@ div.alert-success > a {
     }
 
     .col-4 {
-      padding: 0;
+      padding-left: 2rem;
 
-      #pdf-viewer {
+      #pdf-viewer,
+      .pdf-border {
         border: 1px solid rgba(0, 0, 0, 0.125);
         border-radius: 0.35rem;
       }
@@ -203,11 +212,6 @@ div.alert-success > a {
     .activity-display {
       margin-top: 3rem;
     }
-  }
-
-  .representative-media {
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
   }
 
   .event-table {
