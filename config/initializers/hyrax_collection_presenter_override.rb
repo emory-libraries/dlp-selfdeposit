@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] - Adds in our desired collection terms to the fileset show page.
+# [Hyrax-overwrite-v5.0.1] - Adds in our desired collection terms to the show page.
 
 Rails.application.config.to_prepare do
   Hyrax::CollectionPresenter.class_eval do
