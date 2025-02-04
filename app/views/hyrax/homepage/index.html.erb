@@ -3,7 +3,7 @@
 <% if @presenter.display_share_button? && !Flipflop.read_only? %>
 <div class="home-share-work text-center dlp-hero dlp-fullwidth">
     <div class="dlp-hero-container">
-    <h1>Open Emory</h1>
+    <h1>OpenEmory</h1>
     <p>Bringing Emory research to the world since 2012</p>
       <% if signed_in? %>
     <% if @presenter.create_many_work_types? %>
@@ -26,7 +26,7 @@
       <i class="fa fa-upload" aria-hidden="true"></i> <%= t('hyrax.share_button') %>
     <% end %>
   <% end %>
-  <p class="terms-of-use"><%= link_to t(:'hyrax.pages.tabs.terms_page'), hyrax.terms_path %></p>
+  <p class="terms-of-use"><%= link_to ('How to Submit'), hyrax.help_path %></p>
     </div>
 </div>
 <% end %>
