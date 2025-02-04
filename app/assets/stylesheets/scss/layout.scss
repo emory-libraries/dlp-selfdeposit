@@ -281,15 +281,14 @@ div#announcement_text {
     .featured-item-title {
       flex-basis: 60%;
       font-family: $font-family-serif;
-      
+
       h3 {
         color: $charcoal;
       }
-      
+
       a {
         font-size: 1.75rem;
         color: $dark-blue;
-        // font-weight: bold;
       }
 
       a.btn {
@@ -389,7 +388,6 @@ div#announcement_text {
       }
 
       h3 {
-        // font-size: xx-large;
         font-weight: bold;
         color: $base-blue;
       }
@@ -418,10 +416,7 @@ div#announcement_text {
   padding: 2.5rem 0;
 
   h2 {
-    // margin-bottom: 0;
-    // border-bottom: 2px solid $light-slate;
     font-weight: 700;
-    // padding: 0 2rem 2rem 2rem;
   }
 
   .dlp-stats {
