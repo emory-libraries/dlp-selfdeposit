@@ -39,6 +39,15 @@ jobs:
           POSTGRES_PASSWORD: hyrax_password
           POSTGRES_DB: dlp-selfdeposit-test
     environment:
+      SP_ENTITY: 'test-entity-id'
+      IDP_CERT: 'test-cert'
+      SP_CERT: 'test-certificate'
+      SP_KEY: 'test-private-key'
+      ASSERTION_CS_URL: 'http://localhost:3000/users/auth/saml/callback'
+      ASSERTION_LOGOUT_URL: 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
+      ISSUER: 'test-issuer'
+      IDP_SSO_TARGET_URL: 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO'
+      IDP_SLO_TARGET_URL: 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
       BUNDLE_JOBS: 4
       BUNDLE_PATH: vendor/bundle
       BUNDLE_RETRY: 3

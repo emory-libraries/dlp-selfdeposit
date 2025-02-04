@@ -45,4 +45,32 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  # OmniAuth configuration settings
+  config.sp_entity_id = ENV['SP_ENTITY'] || 'test-entity-id'
+  config.idp_slo_target_url = ENV['IDP_SLO_TARGET_URL'] || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
+  config.assertion_consumer_service_url = ENV['ASSERTION_CS_URL'] || 'http://localhost:3000/users/auth/saml/callback'
+  config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL'] || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
+  config.issuer = ENV['ISSUER'] || 'test-issuer'
+  config.idp_sso_target_url = ENV['IDP_SSO_TARGET_URL'] || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO'
+  config.idp_cert = ENV['IDP_CERT'] || 'test-cert'
+  config.certificate = ENV['SP_CERT'] || 'test-certificate'
+  config.private_key = ENV['SP_KEY'] || 'test-private-key'
+  config.attribute_statements = {
+    net_id: ["urn:oid:0.9.2342.19200300.100.1.1"],
+    display_name: ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
+    last_name: ["urn:oid:2.5.4.4"],
+    title: ["urn:oid:2.5.4.12"],
+    email: ["urn:oid:0.9.2342.19200300.100.1.3"],
+    department: ["urn:oid:2.5.4.11"],
+    status: ["urn:oid:0.9.2342.19200300.100.1.45"],
+    ppid: ["urn:oid:2.5.4.5"],
+    role: ["urn:oid:0.9.2342.19200300.100.1.45"]
+  }
+  config.uid_attribute = "urn:oid:2.5.4.5"
+  config.security = {
+    want_assertions_encrypted: true,
+    want_assertions_signed: true,
+    digest_method: XMLSecurity::Document::SHA1,
+    signature_method: XMLSecurity::Document::RSA_SHA1
+  }
 end
