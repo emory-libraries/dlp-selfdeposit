@@ -3,7 +3,7 @@ FactoryBot.define do
   factory :emory_saml_user, class: 'User' do
     sequence(:email) { |n| "samluser#{n}@emory.edu" }
     sequence(:uid) { |n| "samluser#{n}" }
-    provider { 'saml' }
+    sequence(:provider) { |n| "saml#{n}" }
 
     after(:build) do |user|
       user.password = 'testing123'
