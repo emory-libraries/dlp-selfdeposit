@@ -128,23 +128,38 @@ a {
 
 /**** Home Page ****/
 
-/* alert banner */
-div#announcement_text > div#announcement {
-  background-color: $gold;
-  color: $dark-blue;
+/* alert and/or announcement banner */
+div.alert {
   margin: -2rem 0 2rem 0;
-  border-radius: unset;
-  border: unset;
+}
+
+div#announcement_text {
+  background-color: $gold;
   position: relative;
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.64;
-  text-align: left;
-  p {
-    margin: 0;
+  margin: -2rem auto 2rem auto;
+  padding: 0.75rem 0;
+  div.notification-label {
+    text-transform: uppercase;
+    font-size: .675rem;
+    font-weight: 700;
+  }
+  div.notification-label,
+  div#announcement {
+    background-color: $gold;
+    text-align: left;
+    border-radius: unset;
+    border: unset;
+    color: $dark-blue;
+    > p {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.64;
+      margin: 0;
+    }
   }
 }
+
+/* hero */
 
 .dlp-fullwidth {
   width: 100vw;
@@ -190,13 +205,22 @@ div#announcement_text > div#announcement {
     padding: 0.625rem;
     z-index: 10;
     color: $white;
-
-    h1 {
+    h1, p {
+      font-weight: 700;
       color: white;
     }
-
     a {
       color: $white;
+      font-size: 0.6875rem;
+    }
+    a.btn {
+      padding: 0.875rem 1.5625rem;
+      height: 3.125rem;
+    }
+    .terms-of-use > a {
+      font-weight: 400;
+      text-decoration: underline;
+      font-size: 1rem;
     }
   }
 }
@@ -217,7 +241,7 @@ div#announcement_text > div#announcement {
     padding: 2.5rem 0;
   }
 
-  //so i dont have to repeast myself
+  //so i dont have to repeat myself
   h3 {
     text-transform: uppercase;
     font-size: small;
@@ -257,20 +281,22 @@ div#announcement_text > div#announcement {
     .featured-item-title {
       flex-basis: 60%;
       font-family: $font-family-serif;
-      font-size: large;
 
       h3 {
         color: $charcoal;
       }
 
       a {
+        font-size: 1.75rem;
         color: $dark-blue;
-        font-weight: bold;
       }
 
       a.btn {
+        font-size: 0.6875rem;
         margin-top: 1.5625rem;
         color: $white;
+        padding: 0.875rem 1.5625rem;
+        height: 3.125rem;
       }
     }
   }
@@ -287,6 +313,7 @@ div#announcement_text > div#announcement {
     border: 1px solid $bright-blue;
     display: flex;
     flex-wrap: wrap;
+    padding-left: 1.5625rem;
 
     * {
       flex-basis: 100%;
@@ -294,13 +321,11 @@ div#announcement_text > div#announcement {
 
     h3 {
       color: $gold;
-      padding-left: 0.625rem;
       padding-bottom: 0.9375rem;
       margin-bottom: 0;
     }
 
     .dlp-feat-menu-link {
-      padding-left: 1.5625rem;
       padding-bottom: 0.625rem;
       color: $white;
 
@@ -317,19 +342,33 @@ div#announcement_text > div#announcement {
 
   h2 {
     margin-bottom: 0;
-    border-bottom: 1px solid $base-slate;
+    border-bottom: 2px solid $light-slate;
+    font-weight: 700;
+    padding: 0 2rem 2rem 2rem;
+  }
+
+  .btn {
+    font-size: 0.6875rem;
+    color: $white;
+    padding: 0.875rem 1.5625rem;
+    height: 3.125rem;
+  }
+
+  .dlp-collections-wrapper {
+    padding: 0 5rem;
+    justify-self: center;
   }
 
   .dlp-collections {
     display: flex;
-    border: 1px solid $base-slate;
+    border: 1px solid $light-slate;
     margin-bottom: 0.9375rem;
 
     &:first-child {
       border-top: none;
-      border-left: 1px solid #b6bdcc;
-      border-right: 1px solid #b6bdcc;
-      border-bottom: 1px solid #b6bdcc;
+      border-left: 1px solid $light-slate;
+      border-right: 1px solid $light-slate;
+      border-bottom: 1px solid $light-slate;
     }
 
     img {
@@ -349,9 +388,12 @@ div#announcement_text > div#announcement {
       }
 
       h3 {
-        font-size: xx-large;
         font-weight: bold;
         color: $base-blue;
+      }
+
+      .dlp-collections-descrip {
+        padding: 0 1rem 1rem
       }
 
       .dlp-collections-button-wrapper {
@@ -366,16 +408,16 @@ div#announcement_text > div#announcement {
 
   .dlp-view-collections {
     text-align: center;
-
-    .btn {
-      font-size: large;
     }
-  }
 }
 
 .dlp-stats-wrapper {
-  border-top: 1px solid $base-slate;
+  border-top: 1px solid $light-slate;
   padding: 2.5rem 0;
+
+  h2 {
+    font-weight: 700;
+  }
 
   .dlp-stats {
     padding-top: 1.5rem;
@@ -388,8 +430,8 @@ div#announcement_text > div#announcement {
     .top {
       flex-basis: 100%;
       border-top: 8px solid $bright-blue;
-      border-left: 1px solid $charcoal;
-      border-right: 1px solid $charcoal;
+      border-left: 1px solid $light-slate;
+      border-right: 1px solid $light-slate;
       padding: 0.625rem 0 2.1875rem 0;
       text-align: center;
       font-weight: bold;
@@ -398,7 +440,7 @@ div#announcement_text > div#announcement {
     }
 
     .bottom {
-      border: 1px solid $charcoal;
+      border: 1px solid $light-slate;
       flex-basis: 100%;
       padding: 2.1875rem 0 0.625rem 0;
       text-align: center;
@@ -420,8 +462,8 @@ div#announcement_text > div#announcement {
       justify-content: center;
       align-items: center;
       font-size: 35px;
-      border: 1px solid;
-      background: #fff;
+      border: 1px solid $light-slate;
+      background: $white;
       color: $dark-blue;
     }
   }
