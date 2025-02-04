@@ -1,0 +1,21 @@
+---
+- name: Set up SSL certificates for oe24 hyrax SAML implementation
+  hosts:   
+    - "tag_AnsibleDesignation_OE24hyrax:&tag_AnsibleEnvironment_{{ ENV }}"
+  remote_user: ec2-user
+  become: yes
+
+  tasks:
+
+  - name: Write our SP signing cert
+    ansible.builtin.template:
+      mode: "0644"
+      src: files/sp-signing-cert.pem
+      dest: /opt/dlp-selfdeposit/shared/sp-signing-cert.pem
+
+  - name: Write Emory's IDP cert
+    ansible.builtin.template:
+      mode: "0644"
+      src: files/emory-idp-cert.pem
+      dest: /opt/dlp-selfdeposit/shared/emory-idp-cert.pem
+
