@@ -94,3 +94,9 @@ ARG BUNDLE_WITHOUT=
 ONBUILD COPY --chown=1001:101 $APP_PATH /app
 ONBUILD RUN bundle install --jobs "$(nproc)"
 ONBUILD RUN RAILS_ENV=production SECRET_KEY_BASE=`bin/rake secret` DB_ADAPTER=nulldb DATABASE_URL='postgresql://fake' bundle exec rake assets:precompile
+
+FROM hyrax-worker as hyrax-worker-aws
+
+COPY --chown=1001:101 $APP_PATH /app
+RUN bundle install --jobs "$(nproc)"
+RUN RAILS_ENV=production SECRET_KEY_BASE=`bin/rake secret` DB_ADAPTER=nulldb DATABASE_URL='postgresql://fake' bundle exec rake assets:precompile
