@@ -6,8 +6,9 @@ RSpec.describe User, type: :model do
     let(:auth_hash) do
       OpenStruct.new(
         provider: 'saml',
-        uid: '12345',
+        
         info: OpenStruct.new(
+          ppid: '12345',
           net_id: 'testuser',
           display_name: 'Test User'
         )
@@ -15,7 +16,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when user exists' do
-      let!(:existing_user) { create(:emory_saml_user, uid: 'testuser') }
+      let!(:existing_user) { create(:emory_saml_user, net_id: 'testuser') }
 
       it 'updates the user attributes' do
         user = User.from_omniauth(auth_hash)
@@ -33,8 +34,8 @@ RSpec.describe User, type: :model do
       let(:tezprox_auth) do
         OpenStruct.new(
           provider: 'saml',
-          uid: '12345',
           info: OpenStruct.new(
+            ppid: '12345',
             net_id: 'tezprox',
             display_name: 'Test User'
           )
@@ -56,14 +57,15 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'when SAML response is invalid' do
+    context 'when user is not found' do
       let(:invalid_auth_hash) do
         OpenStruct.new(
           provider: 'saml',
-          uid: '12345',
           info: OpenStruct.new(
-            net_id: nil,
-            display_name: 'Test User'
+            ppid: nil,
+            net_id: 'testuser',
+            display_name: 'Test User',
+            role: 'Staff'
           )
         )
       end
@@ -73,10 +75,13 @@ RSpec.describe User, type: :model do
         User.from_omniauth(invalid_auth_hash)
       end
 
-      it 'returns a new unsaved user' do
+      it 'returns a new saved user if role is Staff' do
         user = User.from_omniauth(invalid_auth_hash)
+        expect(user.display_name).to eq('Test User')
+        expect(user.ppid).to eq('12345')
+        expect(user.role).to eq('Staff')
         expect(user).to be_a(User)
-        expect(user).not_to be_persisted
+        expect(user).to be_persisted
       end
     end
   end
@@ -86,20 +91,15 @@ RSpec.describe User, type: :model do
       OpenStruct.new(
         provider: 'saml',
         info: OpenStruct.new(
-          net_id: nil,
+          ppid: nil,
+          net_id: 'testuser',
           display_name: 'Test User'
         )
       )
     end
 
-    it 'logs an error when net_id is missing' do
-      expect(Rails.logger).to receive(:error).with(/Nil user detected: SAML didn't pass a net_id/)
-      User.log_omniauth_error(auth_hash)
-    end
-
-    it 'logs an unauthorized login attempt when net_id is present' do
-      auth_hash.info.net_id = 'testuser'
-      expect(Rails.logger).to receive(:error).with(/Unauthorized user attempted login/)
+    it 'logs an error when ppid is missing' do
+      expect(Rails.logger).to receive(:error).with(/Nil user detected: SAML didn't pass a ppid/)
       User.log_omniauth_error(auth_hash)
     end
   end
@@ -109,8 +109,8 @@ RSpec.describe User, type: :model do
     let(:auth_hash) do
       OpenStruct.new(
         provider: 'saml',
-        uid: '12345',
         info: OpenStruct.new(
+          ppid: '12345',
           net_id: 'testuser',
           display_name: 'Test User'
         )
@@ -128,8 +128,8 @@ RSpec.describe User, type: :model do
       let(:tezprox_auth) do
         OpenStruct.new(
           provider: 'saml',
-          uid: '12345',
           info: OpenStruct.new(
+            ppid: '12345',
             net_id: 'tezprox',
             display_name: 'Test User'
           )
