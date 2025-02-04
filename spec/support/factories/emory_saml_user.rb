@@ -3,7 +3,8 @@ FactoryBot.define do
   factory :emory_saml_user, class: 'User' do
     sequence(:email) { |n| "samluser#{n}@emory.edu" }
     sequence(:uid) { |n| "samluser#{n}" }
-    sequence(:provider) { |n| "saml#{n}" }
+    provider { 'saml' }
+    ppid { '12345' }
 
     after(:build) do |user|
       user.password = 'testing123'
@@ -12,10 +13,6 @@ FactoryBot.define do
 
     trait :with_display_name do
       sequence(:display_name) { |n| "Test User #{n}" }
-    end
-
-    trait :with_ppid do
-      sequence(:ppid) { |n| "PPID#{n}" }
     end
 
     trait :tezprox do

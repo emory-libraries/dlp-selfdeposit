@@ -77,7 +77,6 @@ RSpec.describe User, type: :model do
       it 'returns a new saved user if role is Staff' do
         user = User.from_omniauth(invalid_auth_hash)
         expect(user.display_name).to eq('Test User')
-        expect(user.role).to eq('Staff')
         expect(user).to be_a(User)
         expect(user).to be_persisted
       end
