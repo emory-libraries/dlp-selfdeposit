@@ -111,8 +111,8 @@ Rails.application.configure do
     display_name: ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
     last_name: ["urn:oid:2.5.4.4"],
     title: ["urn:oid:2.5.4.12"],
-    email: ["urn:oid:0.9.2342.19200300.100.1.3"],   
-    department: ["urn:oid:2.5.4.11"],            
+    email: ["urn:oid:0.9.2342.19200300.100.1.3"],
+    department: ["urn:oid:2.5.4.11"],
     status: ["urn:oid:0.9.2342.19200300.100.1.45"],
     ppid: ["urn:oid:2.5.4.5"],
     role: ["urn:oid:0.9.2342.19200300.100.1.45"]
