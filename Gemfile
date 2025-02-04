@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '~> 3.2.2'
 
+gem 'aws-sdk-secretsmanager'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.6'
 gem 'bulkrax'

@@ -96,6 +96,17 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  require 'aws-sdk-secretsmanager'
+  def get_secret
+    client = Aws::SecretsManager::Client.new(region: ENV['AWS_REGION'])
+    begin
+      get_secret_value_response = client.get_secret_value(secret_id: ENV['SP_KEY_SECRET_NAME'])
+    rescue StandardError => e
+      raise e
+    end
+    get_secret_value_response.secret_string
+  end
+
   # OmniAuth configuration settings
   config.sp_entity_id = ENV['SP_ENTITY']
   config.idp_slo_target_url = ENV['IDP_SLO_TARGET_URL']
@@ -103,9 +114,9 @@ Rails.application.configure do
   config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL']
   config.issuer = ENV['ISSUER']
   config.idp_sso_target_url = ENV['IDP_SSO_TARGET_URL']
-  config.idp_cert = ENV['IDP_CERT']
-  config.certificate = ENV['SP_CERT']
-  config.private_key = ENV['SP_KEY']
+  config.idp_cert = File.read(ENV['IDP_CERT'])
+  config.certificate = File.read(ENV['SP_CERT'])
+  config.private_key = get_secret
   config.attribute_statements = {
     net_id: ["urn:oid:0.9.2342.19200300.100.1.1"],
     display_name: ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],

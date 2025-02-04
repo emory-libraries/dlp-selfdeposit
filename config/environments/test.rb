@@ -52,8 +52,8 @@ Rails.application.configure do
   config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL'] || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
   config.issuer = ENV['ISSUER'] || 'test-issuer'
   config.idp_sso_target_url = ENV['IDP_SSO_TARGET_URL'] || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO'
-  config.idp_cert = ENV['IDP_CERT'] || 'test-cert'
-  config.certificate = ENV['SP_CERT'] || 'test-certificate'
+  config.idp_cert = File.read(ENV['IDP_CERT']) || 'test-cert'
+  config.certificate = File.read(ENV['SP_CERT']) || 'test-certificate'
   config.private_key = ENV['SP_KEY'] || 'test-private-key'
   config.attribute_statements = {
     net_id: ["urn:oid:0.9.2342.19200300.100.1.1"],
