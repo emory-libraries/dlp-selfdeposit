@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
     let(:auth_hash) do
       OpenStruct.new(
         provider: 'saml',
-        
         info: OpenStruct.new(
           ppid: '12345',
           net_id: 'testuser',
