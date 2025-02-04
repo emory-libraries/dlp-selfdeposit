@@ -128,6 +128,39 @@ a {
 
 /**** Home Page ****/
 
+/* alert and/or announcement banner */
+div.alert {
+  margin: -2rem 0 2rem 0;
+}
+
+div#announcement_text {
+  background-color: $gold;
+  position: relative;
+  margin: -2rem auto 2rem auto;
+  padding: 0.75rem 0;
+  div.notification-label {
+    text-transform: uppercase;
+    font-size: .675rem;
+    font-weight: 700;
+  }
+  div.notification-label,
+  div#announcement {
+    background-color: $gold;
+    text-align: left;
+    border-radius: unset;
+    border: unset;
+    color: $dark-blue;
+    > p {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.64;
+      margin: 0;
+    }
+  }
+}
+
+/* hero */
+
 .dlp-fullwidth {
   width: 100vw;
   position: relative;
@@ -138,6 +171,7 @@ a {
 }
 
 .dlp-hero {
+  margin-top: -2rem;
   background-image: image_url("skyline.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -198,7 +232,7 @@ a {
     padding: 2.5rem 0;
   }
 
-  //so i dont have to repeast myself
+  //so i dont have to repeat myself
   h3 {
     text-transform: uppercase;
     font-size: small;
