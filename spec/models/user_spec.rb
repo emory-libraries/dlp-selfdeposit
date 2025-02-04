@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when user exists' do
-      let!(:existing_user) { create(:emory_saml_user, net_id: 'testuser') }
+      let!(:existing_user) { create(:emory_saml_user, uid: 'testuser') }
 
       it 'updates the user attributes' do
         user = User.from_omniauth(auth_hash)

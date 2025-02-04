@@ -2,7 +2,7 @@
 FactoryBot.define do
   factory :emory_saml_user, class: 'User' do
     sequence(:email) { |n| "samluser#{n}@emory.edu" }
-    sequence(:net_id) { |n| "samluser#{n}" }
+    sequence(:uid) { |n| "samluser#{n}" }
     provider { 'saml' }
 
     after(:build) do |user|
@@ -19,7 +19,7 @@ FactoryBot.define do
     end
 
     trait :tezprox do
-      net_id { 'tezprox' }
+      uid { 'tezprox' }
       ppid { '12345' }
       provider { 'saml' }
       display_name { 'Tezprox User' }
