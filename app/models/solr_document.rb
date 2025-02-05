@@ -52,4 +52,54 @@ class SolrDocument
   def title_label_or_filename
     title&.first&.presence || label&.first&.presence || self['original_filename_ssi']
   end
+
+  def emory_persistent_id
+    self['emory_persistent_id_ssi']
+  end
+
+  def holding_repository
+    self['holding_repository_ssi']
+  end
+
+  def institution
+    self['institution_ssi']
+  end
+
+  def contact_information
+    self['contact_information_ssi']
+  end
+
+  def subject_geo
+    self['subject_geo_ssim']
+  end
+
+  def subject_names
+    self['subject_names_ssim']
+  end
+
+  def notes
+    self['notes_ssim']
+  end
+
+  def emory_ark
+    self['emory_ark_tesim']
+  end
+
+  # rubocop:disable Naming/MethodName
+  def system_of_record_ID
+    self['system_of_record_ID_ssi']
+  end
+  # rubocop:enable Naming/MethodName
+
+  def staff_notes
+    self['staff_notes_tesim']
+  end
+
+  def internal_rights_note
+    self['internal_rights_note_tesi']
+  end
+
+  def administrative_unit
+    self['administrative_unit_ssi']
+  end
 end
