@@ -129,8 +129,9 @@ a {
 /**** Home Page ****/
 
 /* alert and/or announcement banner */
-div.alert {
-  margin: -2rem 0 2rem 0;
+body:not(.dashboard) div.alert {
+  margin: -2rem -10rem 2rem -10rem;
+  padding: 0.75rem 5rem
 }
 
 div#announcement_text {
@@ -393,7 +394,7 @@ div#announcement_text {
       }
 
       .dlp-collections-descrip {
-        padding: 0 1rem 1rem
+        padding: 0 1rem 1rem 0;
       }
 
       .dlp-collections-button-wrapper {
