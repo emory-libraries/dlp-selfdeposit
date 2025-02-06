@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise_modules = [:registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:saml]]
-  devise_modules.prepend(:database_authenticatable, :registerable) # if AuthConfig.use_database_auth?
+  devise_modules.prepend(:database_authenticatable, :registerable) if AuthConfig.use_database_auth?
   devise(*devise_modules)
 
   def password_required?
@@ -35,16 +35,15 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
+    if auth.info.ppid.nil? || auth.provider != 'saml'
+      log_omniauth_error(auth)
+      return User.new
+    end
+
     begin
       user = find_by!(provider: auth.provider, ppid: auth.info.ppid)
     rescue ActiveRecord::RecordNotFound
-      log_omniauth_error(auth)
       user = User.new
-      if auth.info.role == 'Staff'
-        assign_user_attributes(user, auth)
-        user.save
-        user
-      end
     end
 
     assign_user_attributes(user, auth)
@@ -64,10 +63,11 @@ class User < ApplicationRecord
   end
 
   def self.log_omniauth_error(auth)
-    if auth.info.net_id.blank?
-      Rails.logger.error "Nil user detected: SAML didn't pass a net_id for #{auth.inspect}"
+    if auth.info.ppid.nil?
+      Rails.logger.error "Nil user detected: SAML didn't pass a ppid for #{auth.inspect}"
+    elsif auth.provider != 'saml'
+      Rails.logger.error "Invalid provider attempted login: #{auth.provider} for #{auth.inspect}"
     else
-      # Log unauthorized logins to error
       Rails.logger.error "Unauthorized user attempted login: #{auth.inspect}"
     end
   end

@@ -18,5 +18,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def failure
     redirect_to root_path
+    set_flash_message(:notice, :failure, kind: "SAML", reason: "saml response is invalid")
   end
 end
