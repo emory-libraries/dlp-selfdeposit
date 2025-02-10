@@ -70,15 +70,14 @@ RSpec.describe User, type: :model do
       end
 
       it 'logs an error' do
-        expect(Rails.logger).to receive(:error).with(/Unauthorized user attempted login/)
+        expect(Rails.logger).to receive(:error).with(/Nil user detected/)
         User.from_omniauth(invalid_auth_hash)
       end
 
-      it 'returns a new saved user if role is Staff' do
+      it 'returns a new not saved user' do
         user = User.from_omniauth(invalid_auth_hash)
-        expect(user.display_name).to eq('Test User')
         expect(user).to be_a(User)
-        expect(user).to be_persisted
+        expect(user).not_to be_persisted
       end
     end
   end
@@ -96,7 +95,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'logs an error when ppid is missing' do
-      expect(Rails.logger).to receive(:error).with(/Unauthorized user attempted login/)
+      expect(Rails.logger).to receive(:error).with(/Nil user detected/)
       User.log_omniauth_error(auth_hash)
     end
   end
