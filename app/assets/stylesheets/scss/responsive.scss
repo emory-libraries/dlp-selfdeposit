@@ -111,7 +111,13 @@
   .dlp-featured-wrapper {
     padding-bottom: 1rem;
   }
-
+  div.home-content.dlp-explore-publications.dlp-fullwidth > div.dlp-explore-publications-wrapper > div.row {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .dlp-explore-collections > .dlp-collections-wrapper {
+    padding: 0;
+  }
   .dlp-stat {
     padding-bottom: 20px;
   }

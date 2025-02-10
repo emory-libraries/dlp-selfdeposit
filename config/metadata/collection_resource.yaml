@@ -29,6 +29,8 @@ attributes:
       primary: true
       multiple: false
     predicate: http://id.loc.gov/vocabulary/relators/cur
+    index_keys:
+      - 'administrative_unit_ssi'
   contact_information:
     type: string
     multiple: false
@@ -36,6 +38,8 @@ attributes:
       primary: true
       multiple: false
     predicate: http://www.rdaregistry.info/Elements/u/#P60490
+    index_keys:
+      - 'contact_information_ssi'
   description:
     type: string
     multiple: true
@@ -52,6 +56,8 @@ attributes:
       primary: false
       multiple: true
     predicate: http://www.w3.org/2004/02/skos/core#note
+    index_keys:
+      - 'notes_ssim'
   subject_geo:
     type: string
     multiple: false
