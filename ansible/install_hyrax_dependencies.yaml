@@ -254,6 +254,12 @@
        dest: /etc/systemd/system/sidekiq.service
        owner: root
        group: root
+   - name: deploy logrotate for sidekiq logging
+     copy:
+       src: files/sidekiq
+       dest: /etc/logrotate.d/sidekiq
+       owner: root
+       mode: 0644
    - name: create gem symlink
      file:
        dest: /usr/bin/gem
