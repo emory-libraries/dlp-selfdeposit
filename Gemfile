@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '~> 3.2.2'
 
+gem 'aws-sdk-secretsmanager'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.6'
 gem 'bulkrax', '~> 8.2.0'
@@ -12,13 +13,14 @@ gem 'concurrent-ruby', '1.3.4'
 gem 'dalli'
 gem 'devise'
 gem 'devise-guests', '~> 0.8'
-gem "devise_saml_authenticatable", git: "https://github.com/apokalipto/devise_saml_authenticatable"
 gem 'dotenv-rails'
 gem 'hydra-role-management'
 gem 'hyrax', git: 'https://github.com/samvera/hyrax', ref: '9c58751'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mutex_m', '~> 0.2.0'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-saml'
 gem 'pg', '~> 1.3'
 gem 'puma'
 gem 'rails', '~> 6.1'
