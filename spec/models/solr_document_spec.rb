@@ -44,4 +44,52 @@ RSpec.describe ::SolrDocument, type: :model do
                      '\"2024-07-08T15:36:11.455+00:00\",\"event_start\":\"2024-07-07T15:46:11.455+00:00\",\"event_type\":' \
                      '\"Policy Assignment\",\"initiating_user\":\"admin@example.com\",\"outcome\":\"Success\",' \
                      '\"software_version\":\"SelfDeposit 1.0\"}')
+  include_examples('tests for a direct solr index value return',
+                   'emory_persistent_id',
+                   'emory_persistent_id_ssi',
+                   '12345678-cor')
+  include_examples('tests for a direct solr index value return',
+                   'holding_repository',
+                   'holding_repository_ssi',
+                   'Emory University. Libraries')
+  include_examples('tests for a direct solr index value return',
+                   'institution',
+                   'institution_ssi',
+                   'Emory University')
+  include_examples('tests for a direct solr index value return',
+                   'contact_information',
+                   'contact_information_ssi',
+                   '4075555555')
+  include_examples('tests for a direct solr index value return',
+                   'subject_geo',
+                   'subject_geo_ssim',
+                   ['Atlanta, Georgia, USA'])
+  include_examples('tests for a direct solr index value return',
+                   'subject_names',
+                   'subject_names_ssim',
+                   ['Carter, Jimmy'])
+  include_examples('tests for a direct solr index value return',
+                   'notes',
+                   'notes_ssim',
+                   ['A note.'])
+  include_examples('tests for a direct solr index value return',
+                   'emory_ark',
+                   'emory_ark_tesim',
+                   ['doi:123456'])
+  include_examples('tests for a direct solr index value return',
+                   'system_of_record_ID',
+                   'system_of_record_ID_ssi',
+                   '12345678-cor')
+  include_examples('tests for a direct solr index value return',
+                   'staff_notes',
+                   'staff_notes_tesim',
+                   ['A note.'])
+  include_examples('tests for a direct solr index value return',
+                   'internal_rights_note',
+                   'internal_rights_note_tesi',
+                   'A note.')
+  include_examples('tests for a direct solr index value return',
+                   'administrative_unit',
+                   'administrative_unit_ssi',
+                   'Faculty')
 end
