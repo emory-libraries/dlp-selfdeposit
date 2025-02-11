@@ -92,6 +92,29 @@ module Hyrax
       after_update_response
     end
 
+    # Hyrax 5.0.1 override
+    # Sometimes the order of permissions is not the same between saved permissions and new permissions for Valkyrie
+    # I am replacing array comparison (which relies on order) with comparing array sizes and checking for existence of elements in both arrays
+    def permissions_changed?
+      case curation_concern
+      when ActiveFedora::Base
+        @saved_permissions != curation_concern.permissions.map(&:to_hash)
+      else
+        new_permissions = Hyrax::AccessControl.for(resource: curation_concern).permissions
+        saved_permissions_set = @saved_permissions.to_set
+        new_permissions.size != @saved_permissions.size || new_permissions.any? { |e| !saved_permissions_set.include? e }
+      end
+    end
+
+    # Hyrax v5.0.1 Override - adds our respond_to_ris custom method.
+    def additional_response_formats(format)
+      respond_to_ris(format)
+      respond_to_endnote(format)
+      respond_to_ttl(format)
+      respond_to_jsonld(format)
+      respond_to_nt(format)
+    end
+
     def assign_defaults_for_non_admins(form)
       return if current_user.admin?
 
@@ -101,6 +124,14 @@ module Hyrax
 
     def sanitized_params
       params[hash_key_for_curation_concern].each { |k, v| params[hash_key_for_curation_concern][k] = v.reject(&:blank?) if v.is_a?(Array) }
+    end
+
+    def respond_to_ris(format)
+      format.ris do
+        send_data(presenter.solr_document.export_as_ris(request.base_url),
+                  type: "application/x-research-info-systems",
+                  filename: presenter.solr_document.ris_filename)
+      end
     end
   end
 end
