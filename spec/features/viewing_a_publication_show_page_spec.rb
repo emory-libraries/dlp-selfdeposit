@@ -47,6 +47,11 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
     expect(find_all('table#preservation-event-table tbody tr')).not_to be_present
   end
 
+  it 'provides a citation link for RIS' do
+    find('div.dropdown-toggle', text: 'Citation Management Tools').click
+    expect(page).to have_link('RIS')
+  end
+
   context 'when user is admin' do
     # make an admin user for testing preservation events table presence
     before do
