@@ -104,7 +104,7 @@ Rails.application.configure do
     rescue StandardError => e
       raise e
     end
-    get_secret_value_response.secret_string
+    get_secret_value_response.secret_string.gsub(/[{}"]/, '').gsub('\n', "\n")
   end
 
   # OmniAuth configuration settings
