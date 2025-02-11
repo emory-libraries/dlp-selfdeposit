@@ -50,8 +50,8 @@ RestartSec=1
 Restart=on-failure
 
 # output goes to /var/log/syslog
-StandardOutput=syslog
-StandardError=syslog
+StandardOutput=append:/var/log/sidekiq.log
+StandardError=append:/var/log/sidekiq.err.log
 
 # This will default to "bundler" if we don't specify it
 SyslogIdentifier=sidekiq
