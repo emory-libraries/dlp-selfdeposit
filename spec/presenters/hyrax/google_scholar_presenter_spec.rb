@@ -1,5 +1,8 @@
 # frozen_string_literal: true
-
+# [Hyrax-overwrite-v5.0.0] - brought in to test out of box behavior as well as our own.
+#   - Removes testing of description (not used)
+#   - Alters publication_date to our preferred solr value
+#   - Adds all of our fields starting at Line 71
 require 'rails_helper'
 RSpec.describe Hyrax::GoogleScholarPresenter do
   subject(:presenter) { described_class.new(work) }
