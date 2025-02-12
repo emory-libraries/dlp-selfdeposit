@@ -1,5 +1,34 @@
 # frozen_string_literal: true
 class SolrDocument
+  METHOD_ASSIGNMENTS = [
+    ['administrative_unit', 'administrative_unit_ssi'],
+    ['conference_name', 'conference_name_ssi'],
+    ['contact_information', 'contact_information_ssi'],
+    ['creating_application_name', 'creating_application_name_ssim'],
+    ['creating_os', 'creating_os_ssim'],
+    ['date_issued_year', 'date_issued_year_ssi'],
+    ['emory_ark', 'emory_ark_tesim'],
+    ['emory_persistent_id', 'emory_persistent_id_ssi'],
+    ['file_path', 'file_path_ssim'],
+    ['holding_repository', 'holding_repository_ssi'],
+    ['institution', 'institution_ssi'],
+    ['internal_rights_note', 'internal_rights_note_tesi'],
+    ['isbn', 'isbn_tesi'],
+    ['issn', 'issn_tesi'],
+    ['issue', 'issue_tesi'],
+    ['notes', 'notes_ssim'],
+    ['original_checksum', 'original_checksum_ssim'],
+    ['page_range_end', 'page_range_end_tesi'],
+    ['page_range_start', 'page_range_start_tesi'],
+    ['parent_title', 'parent_title_ssi'],
+    ['persistent_unique_identification', 'puid_ssim'],
+    ['preservation_events', 'preservation_events_tesim'],
+    ['staff_notes', 'staff_notes_tesim'],
+    ['subject_geo', 'subject_geo_ssim'],
+    ['subject_names', 'subject_names_ssim'],
+    ['volume', 'volume_tesi']
+  ].freeze
+
   include Blacklight::Solr::Document
   include Blacklight::Gallery::OpenseadragonSolrDocument
 
@@ -28,64 +57,10 @@ class SolrDocument
 
   use_extension(Hydra::ContentNegotiation)
 
-  def file_path
-    self['file_path_ssim']
-  end
-
-  def creating_application_name
-    self['creating_application_name_ssim']
-  end
-
-  def creating_os
-    self['creating_os_ssim']
-  end
-
-  def persistent_unique_identification
-    self['puid_ssim']
-  end
-
-  def original_checksum
-    self['original_checksum_ssim']
-  end
-
-  def preservation_events
-    self['preservation_events_tesim']
-  end
-
-  def title_label_or_filename
-    title&.first&.presence || label&.first&.presence || self['original_filename_ssi']
-  end
-
-  def emory_persistent_id
-    self['emory_persistent_id_ssi']
-  end
-
-  def holding_repository
-    self['holding_repository_ssi']
-  end
-
-  def institution
-    self['institution_ssi']
-  end
-
-  def contact_information
-    self['contact_information_ssi']
-  end
-
-  def subject_geo
-    self['subject_geo_ssim']
-  end
-
-  def subject_names
-    self['subject_names_ssim']
-  end
-
-  def notes
-    self['notes_ssim']
-  end
-
-  def emory_ark
-    self['emory_ark_tesim']
+  METHOD_ASSIGNMENTS.each do |method_name, solr_field|
+    define_method method_name do
+      self[solr_field]
+    end
   end
 
   # rubocop:disable Naming/MethodName
@@ -94,15 +69,7 @@ class SolrDocument
   end
   # rubocop:enable Naming/MethodName
 
-  def staff_notes
-    self['staff_notes_tesim']
-  end
-
-  def internal_rights_note
-    self['internal_rights_note_tesi']
-  end
-
-  def administrative_unit
-    self['administrative_unit_ssi']
+  def title_label_or_filename
+    title&.first&.presence || label&.first&.presence || self['original_filename_ssi']
   end
 end
