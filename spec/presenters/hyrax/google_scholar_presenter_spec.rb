@@ -4,6 +4,7 @@
 #   - Alters publication_date to our preferred solr value
 #   - Adds all of our fields starting at Line 71
 require 'rails_helper'
+
 RSpec.describe Hyrax::GoogleScholarPresenter do
   subject(:presenter) { described_class.new(work) }
   let(:work) { FactoryBot.valkyrie_create(:publication, title: 'On Moomins') }
