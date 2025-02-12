@@ -3,3 +3,5 @@ export JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.home=s3://fedora-depo-{{ ENV }}-binaries
 export JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.storage=ocfl-s3"
 export JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.aws.region=us-east-1"
 export JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.ocfl.s3.bucket=fedora-depo-{{ ENV }}-binaries"
+export JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.ocfl.show_path=true"
+
