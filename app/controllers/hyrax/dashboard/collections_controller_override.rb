@@ -28,8 +28,8 @@ module Hyrax
           form_class.model_attributes(params[:collection])
         else
           ret_params = params
-            .permit(collection: {})[:collection]
-            .merge(params.permit(:collection_type_gid)
+                       .permit(collection: {})[:collection]
+                       .merge(params.permit(:collection_type_gid)
             .with_defaults(collection_type_gid: default_collection_type_gid))
           ret_params.each { |k, v| ret_params[k] = v.reject(&:blank?) if v.is_a?(Array) }
           ret_params
