@@ -248,3 +248,14 @@ div.alert-success > a {
 }
 
 /**** end File-Set Show Page ****/
+
+/*** View Collection Page /views/hyrax/collections/show.html.erb ***/
+.hyc-container {
+  .hyc-banner {
+    border-radius: 0.25rem;
+  }
+  .hyc-logos > img {
+    width: 100%;
+  }
+}
+/*** end View COllection Page ***/
