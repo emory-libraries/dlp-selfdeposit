@@ -21,6 +21,20 @@ module Hyrax
         @collection = result.value_or { return after_create_errors(result.failure.first) }
         after_create_response
       end
+
+      def collection_params
+        if Hyrax.config.collection_class < ActiveFedora::Base
+          @participants = extract_old_style_permission_attributes(params[:collection])
+          form_class.model_attributes(params[:collection])
+        else
+          ret_params = params
+            .permit(collection: {})[:collection]
+            .merge(params.permit(:collection_type_gid)
+            .with_defaults(collection_type_gid: default_collection_type_gid))
+          ret_params.each { |k, v| ret_params[k] = v.reject(&:blank?) if v.is_a?(Array) }
+          ret_params
+        end
+      end
     end
   end
 end
