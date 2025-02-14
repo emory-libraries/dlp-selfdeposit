@@ -113,7 +113,7 @@ services:
       - dlp
 
   fcrepo:
-    image: fcrepo/fcrepo:6.5.0-tomcat9
+    image: fcrepo/fcrepo:6.5.1-tomcat9
     environment:
       - >-
         CATALINA_OPTS=-Dfcrepo.home=/fcrepo-home -Djava.awt.headless=true -Dfile.encoding=UTF-8
