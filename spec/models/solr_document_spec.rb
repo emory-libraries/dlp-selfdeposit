@@ -4,6 +4,8 @@ require 'rails_helper'
 RSpec.describe ::SolrDocument, type: :model do
   subject(:document) { described_class.new(attributes) }
   let(:attributes) { {} }
+  multiple_valued_fields = described_class::METHOD_ASSIGNMENTS.select { |_k, v| v.last == 'm' }
+  single_valued_fields = described_class::METHOD_ASSIGNMENTS.dup - multiple_valued_fields
 
   shared_examples('tests for a direct solr index value return') do |method_name, solr_field, val|
     describe "##{method_name}" do
@@ -15,83 +17,18 @@ RSpec.describe ::SolrDocument, type: :model do
     end
   end
 
-  include_examples('tests for a direct solr index value return',
-                   'file_path',
-                   'file_path_ssim',
-                   '/usr/local/tomcat/webapps/fits/upload/1720036857165/halloween-kills.jpeg20240703-1-ed8o7o.jpeg')
-  include_examples('tests for a direct solr index value return',
-                   'creating_application_name',
-                   'creating_application_name_ssim',
-                   'ImageMagick')
-  include_examples('tests for a direct solr index value return',
-                   'creating_os',
-                   'creating_os_ssim',
-                   'MacOSX Sapphire')
-  include_examples('tests for a direct solr index value return',
-                   'persistent_unique_identification',
-                   'puid_ssim',
-                   'fmt/43')
-  include_examples('tests for a direct solr index value return',
-                   'original_checksum',
-                   'original_checksum_ssim',
-                   ["urn:sha1:8494cfb8d05e02b79ab6df1afe7545386a74bf39",
-                    "urn:sha256:16b97ef201fa90417ff54157f67e180bcf7d2052cd55ced649d1cc20cddd22c9",
-                    "urn:md5:9a553c8259a8ccfa80225dda33d7bf25"])
-  include_examples('tests for a direct solr index value return',
-                   'preservation_events',
-                   'preservation_events_tesim',
-                   '{\"event_details\":\"Visibility/access controls assigned: Emory Network\",\"event_end\":' \
-                     '\"2024-07-08T15:36:11.455+00:00\",\"event_start\":\"2024-07-07T15:46:11.455+00:00\",\"event_type\":' \
-                     '\"Policy Assignment\",\"initiating_user\":\"admin@example.com\",\"outcome\":\"Success\",' \
-                     '\"software_version\":\"SelfDeposit 1.0\"}')
-  include_examples('tests for a direct solr index value return',
-                   'emory_persistent_id',
-                   'emory_persistent_id_ssi',
-                   '12345678-cor')
-  include_examples('tests for a direct solr index value return',
-                   'holding_repository',
-                   'holding_repository_ssi',
-                   'Emory University. Libraries')
-  include_examples('tests for a direct solr index value return',
-                   'institution',
-                   'institution_ssi',
-                   'Emory University')
-  include_examples('tests for a direct solr index value return',
-                   'contact_information',
-                   'contact_information_ssi',
-                   '4075555555')
-  include_examples('tests for a direct solr index value return',
-                   'subject_geo',
-                   'subject_geo_ssim',
-                   ['Atlanta, Georgia, USA'])
-  include_examples('tests for a direct solr index value return',
-                   'subject_names',
-                   'subject_names_ssim',
-                   ['Carter, Jimmy'])
-  include_examples('tests for a direct solr index value return',
-                   'notes',
-                   'notes_ssim',
-                   ['A note.'])
-  include_examples('tests for a direct solr index value return',
-                   'emory_ark',
-                   'emory_ark_tesim',
-                   ['doi:123456'])
+  multiple_valued_fields.each do |method_name, solr_field|
+    include_examples('tests for a direct solr index value return', method_name, solr_field, ["test string", "another string", "last string"])
+  end
+
+  single_valued_fields.each do |method_name, solr_field|
+    include_examples('tests for a direct solr index value return', method_name, solr_field, "test string")
+  end
+
   include_examples('tests for a direct solr index value return',
                    'system_of_record_ID',
                    'system_of_record_ID_ssi',
                    '12345678-cor')
-  include_examples('tests for a direct solr index value return',
-                   'staff_notes',
-                   'staff_notes_tesim',
-                   ['A note.'])
-  include_examples('tests for a direct solr index value return',
-                   'internal_rights_note',
-                   'internal_rights_note_tesi',
-                   'A note.')
-  include_examples('tests for a direct solr index value return',
-                   'administrative_unit',
-                   'administrative_unit_ssi',
-                   'Faculty')
 
   context '#export_as_ris' do
     def ris_right_test(right_fields:, expected_ty_field:)
