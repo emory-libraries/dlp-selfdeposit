@@ -23,7 +23,7 @@
   <%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, html_dl: true) %>
 <% end %>
 <%= presenter.attribute_to_html(:rights_notes, html_dl: true) %>
-<%= generic_renderer.new(:license, presenter.solr_document['license_tesi'], {}).render_dl_row %>
+<%= ::Hyrax::Renderers::LicenseAttributeRenderer.new(:license, presenter.solr_document['license_tesi'], {}).render_dl_row %>
 <!-- External Hyperlink to the final published versions facet -->
 <%= external_link_renderer.new(:final_published_versions, presenter.solr_document['final_published_versions_tesim'], {}).render_dl_row  %>
 <!-- Hyperlink to the parent title facet -->
@@ -55,7 +55,7 @@
   <%= generic_renderer.new(:internal_rights_note, presenter.solr_document.internal_rights_note, {}).render_dl_row  %>
   <%= generic_renderer.new(:staff_notes, presenter.solr_document.staff_notes, {}).render_dl_row  %>
   <%= generic_renderer.new(:system_of_record_ID, presenter.solr_document.system_of_record_ID, {}).render_dl_row  %>
-  <%= generic_renderer.new(:emory_content_type, presenter.solr_document.emory_content_type, {}).render_dl_row  %>
+  <%= ::Hyrax::Renderers::ExternalLinkAttributeRenderer.new(:emory_content_type, content_type_term, {}).render_dl_row  %>
   <%= generic_renderer.new(:holding_repository, presenter.solr_document.holding_repository, {}).render_dl_row  %>
   <%= generic_renderer.new(:institution, presenter.solr_document.institution, {}).render_dl_row  %>
   <%= generic_renderer.new(:data_classification, presenter.solr_document['data_classification_ssi'], {}).render_dl_row  %>
