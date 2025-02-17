@@ -9,53 +9,55 @@
 <%= render 'purl', presenter: presenter %>
 <!-- Persistent URL block end -->
 <%= presenter.attribute_to_html(:date_modified, label: t('hyrax.base.show.last_modified'), html_dl: true) %>
+<!-- Hyperlink to the content genre facet -->
 <%= custom_facet_renderer.new('content_genre', 
       presenter.solr_document['content_genre_ssi'], {search_field: 'content_genre_ssi'}).render_dl_row %>
 <%= render 'creator', presenter: presenter %>
-<%= custom_facet_renderer.new('language', 
-      presenter.solr_document['language_tesim'], {search_field: 'language_tesim'}).render_dl_row %>
-<%= custom_facet_renderer.new('date_issued', 
-      presenter.solr_document['date_issued_ssi'], {search_field: 'date_issued_year_ssi'}).render_dl_row %>
-<%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
+<%= generic_renderer.new(:language, presenter.solr_document['language_tesim'], {}).render_dl_row %>
+<%= generic_renderer.new(:date_issued, presenter.solr_document['date_issued_ssi'], {}).render_dl_row %>
+<%= presenter.attribute_to_html(:publisher, html_dl: true) %>
+<!-- Hyperlink to the publisher version facet -->
 <%= custom_facet_renderer.new('publisher_version', 
       presenter.solr_document['publisher_version_ssi'], {search_field: 'publisher_version_ssi'}).render_dl_row %>
 <% if current_user.try(:admin?) %>
   <%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, html_dl: true) %>
 <% end %>
 <%= presenter.attribute_to_html(:rights_notes, html_dl: true) %>
-<%= ::Hyrax::Renderers::LicenseAttributeRenderer.new(:license, presenter.solr_document['license_tesi'], {}).render_dl_row %>
-<%= generic_renderer.new(:final_published_versions, presenter.solr_document['final_published_versions_tesim'], {}).render_dl_row  %>
+<%= generic_renderer.new(:license, presenter.solr_document['license_tesi'], {}).render_dl_row %>
+<!-- External Hyperlink to the final published versions facet -->
+<%= external_link_renderer.new(:final_published_versions, presenter.solr_document['final_published_versions_tesim'], {}).render_dl_row  %>
+<!-- Hyperlink to the parent title facet -->
 <%= custom_facet_renderer.new('parent_title', 
       presenter.solr_document['parent_title_ssi'], {search_field: 'parent_title_ssi'}).render_dl_row %>
-<%= facet_renderer.new(:conference_name, presenter.solr_document['conference_name_ssi'], {}).render_dl_row  %>
+<%= generic_renderer.new(:conference_name, presenter.solr_document['conference_name_ssi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:issn, presenter.solr_document['issn_tesi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:isbn, presenter.solr_document['isbn_tesi'], {}).render_dl_row  %>
-<%= facet_renderer.new(:series_title, presenter.solr_document['series_title_ssi'], {}).render_dl_row  %>
+<%= generic_renderer.new(:series_title, presenter.solr_document['series_title_ssi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:edition, presenter.solr_document['edition_tesi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:volume, presenter.solr_document['volume_tesi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:issue, presenter.solr_document['issue_tesi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:page_range_start, presenter.solr_document['page_range_start_tesi'], {}).render_dl_row  %>
 <%= generic_renderer.new(:page_range_end, presenter.solr_document['page_range_end_tesi'], {}).render_dl_row  %>
-<%= facet_renderer.new(:place_of_production, presenter.solr_document['place_of_production_ssi'], {}).render_dl_row  %>
-<%= facet_renderer.new(:sponsor, presenter.solr_document['sponsor_ssi'], {}).render_dl_row  %>
-<%= facet_renderer.new(:grant_agencies, presenter.solr_document['grant_agencies_ssim'], {}).render_dl_row  %>
+<%= generic_renderer.new(:place_of_production, presenter.solr_document['place_of_production_ssi'], {}).render_dl_row  %>
+<%= generic_renderer.new(:sponsor, presenter.solr_document['sponsor_ssi'], {}).render_dl_row  %>
+<%= generic_renderer.new(:grant_agencies, presenter.solr_document['grant_agencies_ssim'], {}).render_dl_row  %>
 <%= generic_renderer.new(:grant_information, presenter.solr_document['grant_information_tesim'], {}).render_dl_row  %>
+<!-- External Hyperlink to the related datasets facet -->
 <%= external_link_renderer.new(:related_datasets, presenter.solr_document['related_datasets_ssim'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:abstract, html_dl: true) %>
 <%= generic_renderer.new(:author_notes, presenter.solr_document['author_notes_tesi'], {}).render_dl_row  %>
+<!-- Hyperlink to the keyword facet -->
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
-<%= custom_facet_renderer.new('research_categories', 
-      presenter.solr_document['research_categories_ssim'], {search_field: 'research_categories_ssim'}).render_dl_row %>
+<%= presenter.attribute_to_html(:subject, html_dl: true) %>
+<%= generic_renderer.new(:research_categories, presenter.solr_document['research_categories_ssim'], {}).render_dl_row %>
 <% if current_user.try(:admin?) %>
   <%= generic_renderer.new(:emory_ark, presenter.solr_document.emory_ark, {}).render_dl_row  %>
   <%= generic_renderer.new(:internal_rights_note, presenter.solr_document.internal_rights_note, {}).render_dl_row  %>
   <%= generic_renderer.new(:staff_notes, presenter.solr_document.staff_notes, {}).render_dl_row  %>
-  <%= facet_renderer.new(:system_of_record_ID, presenter.solr_document.system_of_record_ID, {}).render_dl_row  %>
-  <%= ::Hyrax::Renderers::ExternalLinkAttributeRenderer.new(:emory_content_type, content_type_term, {}).render_dl_row  %>
-  <%= facet_renderer.new(:holding_repository, presenter.solr_document.holding_repository, {}).render_dl_row  %>
-  <%= facet_renderer.new(:institution, presenter.solr_document.institution, {}).render_dl_row  %>
-  <%= facet_renderer.new(:data_classification, presenter.solr_document['data_classification_ssi'], {}).render_dl_row  %>
+  <%= generic_renderer.new(:system_of_record_ID, presenter.solr_document.system_of_record_ID, {}).render_dl_row  %>
+  <%= generic_renderer.new(:emory_content_type, presenter.solr_document.emory_content_type, {}).render_dl_row  %>
+  <%= generic_renderer.new(:holding_repository, presenter.solr_document.holding_repository, {}).render_dl_row  %>
+  <%= generic_renderer.new(:institution, presenter.solr_document.institution, {}).render_dl_row  %>
+  <%= generic_renderer.new(:data_classification, presenter.solr_document['data_classification_ssi'], {}).render_dl_row  %>
   <%= generic_renderer.new(:deduplication_key, presenter.solr_document['deduplication_key_tesi'], {}).render_dl_row  %>
 <% end %>
-
