@@ -49,7 +49,7 @@ module SelfDeposit
       #   no preservation_events_tesim values.
       # @return query string.
       def query
-        "-preservation_events_tesim:["" TO *]"
+        "-preservation_events_tesim:['' TO *]"
       end
 
       def default_filter_query
