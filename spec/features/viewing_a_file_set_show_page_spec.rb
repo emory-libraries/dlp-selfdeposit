@@ -50,10 +50,24 @@ RSpec.describe "viewing a FileSet's show page", :clean_repo, :perform_enqueued, 
     expect(page).to have_content('urn:sha256:3f97a01efdd0ea847a24aecad6f4bfa8640838d393e35cc553408908ace0928e')
   end
 
-  it 'contains a table of Preservation Events' do
+  it 'lacks a table of Preservation Events' do
     create_preservation_event(file_set, preservation_events)
     visit hyrax_file_set_path(file_set)
-    expect(page).to have_css('h2.card-header', text: 'Preservation Events')
-    expect(find_all('table#preservation-event-table tbody tr')).to be_present
+
+    expect(page).not_to have_css('h2.card-header', text: 'Preservation Events')
+    expect(find_all('table#preservation-event-table tbody tr')).not_to be_present
+  end
+
+  context 'when admin logged in' do
+    it 'contains a table of Preservation Events' do
+      user.roles << Role.find_or_create_by(name: Hyrax.config.admin_user_group_name)
+      user.save
+      login_as user
+      create_preservation_event(file_set, preservation_events)
+      visit hyrax_file_set_path(file_set)
+
+      expect(page).to have_css('h2.card-header', text: 'Preservation Events')
+      expect(find_all('table#preservation-event-table tbody tr')).to be_present
+    end
   end
 end
