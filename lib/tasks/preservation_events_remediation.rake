@@ -14,7 +14,12 @@ namespace :selfdeposit do
       puts "Number of PreservationEvent objects: #{all_preservation_event_ids.size}"
       puts "Number of associated PreservationEvent objects: #{associated_preservation_events_ids.size}"
       puts "Number of orphaned PreservationEvent objects: #{orphaned_preservation_event_ids.size}"
-      puts "Orphaned PreservationEvent IDs: #{orphaned_preservation_event_ids}" unless orphaned_preservation_event_ids.empty?
+      if orphaned_preservation_event_ids.present?
+        CSV.open('./tmp/orphaned_preservation_event_ids.csv', "wb") do |csv|
+          csv << ['ids']
+          orphaned_preservation_event_ids.each { |id| csv << id }
+        end
+      end
     end
 
     desc "Remediates Publication objects that lack PreservationEvent objects"
