@@ -17,7 +17,7 @@ namespace :selfdeposit do
       if orphaned_preservation_event_ids.present?
         CSV.open('./tmp/orphaned_preservation_event_ids.csv', "wb") do |csv|
           csv << ['ids']
-          orphaned_preservation_event_ids.each { |id| csv << id }
+          orphaned_preservation_event_ids.each { |id| csv << Array(id) }
         end
       end
     end
