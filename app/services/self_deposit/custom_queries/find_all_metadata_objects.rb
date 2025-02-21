@@ -6,17 +6,8 @@ module SelfDeposit
     #   Hyrax.custom_queries.find_all_metadata_objects
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
-    class FindAllMetadataObjects
-      def self.queries
-        [:find_all_metadata_objects]
-      end
-
-      def initialize(query_service:)
-        @query_service = query_service
-        @connection = Hyrax.index_adapter.connection
-      end
-
-      attr_reader :query_service
+    class FindAllMetadataObjects < SolrDocumentMultipleReturnQuery
+      self.queries = [:find_all_metadata_objects]
 
       ##
       # @returns [Collections, Publications, FileSets]

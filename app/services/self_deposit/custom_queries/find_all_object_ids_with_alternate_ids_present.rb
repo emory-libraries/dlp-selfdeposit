@@ -6,17 +6,8 @@ module SelfDeposit
     #   Hyrax.custom_queries.find_all_object_ids_with_alternate_ids_present
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
-    class FindAllObjectIdsWithAlternateIdsPresent
-      def self.queries
-        [:find_all_object_ids_with_alternate_ids_present]
-      end
-
-      def initialize(query_service:)
-        @query_service = query_service
-        @connection = Hyrax.index_adapter.connection
-      end
-
-      attr_reader :query_service
+    class FindAllObjectIdsWithAlternateIdsPresent < SolrDocumentMultipleReturnQuery
+      self.queries = [:find_all_object_ids_with_alternate_ids_present]
 
       ##
       # @return enumerator of Valkyrie Fedora objects
