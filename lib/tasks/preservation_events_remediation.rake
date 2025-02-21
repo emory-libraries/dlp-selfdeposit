@@ -17,7 +17,7 @@ namespace :selfdeposit do
       if orphaned_preservation_event_ids.present?
         CSV.open('./tmp/orphaned_preservation_event_ids.csv', "wb") do |csv|
           csv << ['ids']
-          orphaned_preservation_event_ids.each { |id| csv << id }
+          orphaned_preservation_event_ids.each { |id| csv << Array(id) }
         end
       end
     end
@@ -38,6 +38,26 @@ namespace :selfdeposit do
         create_preservation_event(publication, work_policy(event_start:, visibility: publication.visibility, user_email:))
         puts "Preservation Events for Publication with ID #{id} have been remediated."
       end
+    end
+
+    desc "Removes orphaned PreservationEvent objects listed in a CSV"
+    task remove_orphaned_preservation_events: :environment do
+      csv_path = ENV['CSV_PATH']
+      read_csv = CSV.open(csv_path, headers: true, return_headers: false)&.map(&:fields)&.flatten
+
+      abort 'ERROR: CSV did not contain ids. Please check the file and try again.' if read_csv.empty?
+
+      read_csv.each do |id|
+        preservation_event = Hyrax.query_service.find_by(id:)
+        if preservation_event.present?
+          Hyrax.persister.delete(resource: preservation_event)
+          puts "PreservationEvent with ID #{id} has been deleted."
+        else
+          puts "A PreservationEvent object with ID #{id} has not been found."
+        end
+      end
+
+      puts "All orphaned PreservationEvent objects have been removed."
     end
   end
 end
