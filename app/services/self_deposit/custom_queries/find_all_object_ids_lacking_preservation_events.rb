@@ -6,17 +6,8 @@ module SelfDeposit
     #   Hyrax.custom_queries.find_all_object_ids_lacking_preservation_events
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
-    class FindAllObjectIdsLackingPreservationEvents
-      def self.queries
-        [:find_all_object_ids_lacking_preservation_events]
-      end
-
-      def initialize(query_service:)
-        @query_service = query_service
-        @connection = Hyrax.index_adapter.connection
-      end
-
-      attr_reader :query_service
+    class FindAllObjectIdsLackingPreservationEvents < SolrDocumentMultipleReturnQuery
+      self.queries = [:find_all_object_ids_lacking_preservation_events]
 
       ##
       # @returns [Publications#id, FileSets#id]
