@@ -8,25 +8,25 @@ RSpec.describe 'viewing a Collection show page', type: :feature do
   selector_value_array = [
     ['.hyc-title', 'A Good Title'],
     ['.hyc-description', 'A good description.'],
-    ['.col-sm-8 dd', 'Tom Wolfe'],
-    ['.col-sm-8 dd', '12345678-cor'],
-    ['.col-sm-8 dd', 'Emory University. Library'],
-    ['.col-sm-8 dd', 'Emory University'],
-    ['.col-sm-8 dd', '4075555555'],
-    ['.col-sm-8 dd', 'book'],
-    ['.col-sm-8 dd', 'Southern States'],
-    ['.col-sm-8 dd', 'Atlanta, Georgia, USA'],
-    ['.col-sm-8 dd', 'Radley, Boo'],
-    ['.col-sm-8 dd', 'A note about rights.'],
-    ['.col-sm-8 dd', 'A gernal note.']
+    ['.col-sm-10 dd', 'Tom Wolfe'],
+    ['.col-sm-10 dd', '12345678-cor'],
+    ['.col-sm-10 dd', 'Emory University. Library'],
+    ['.col-sm-10 dd', 'Emory University'],
+    ['.col-sm-10 dd', '4075555555'],
+    ['.col-sm-10 dd', 'book'],
+    ['.col-sm-10 dd', 'Southern States'],
+    ['.col-sm-10 dd', 'Atlanta, Georgia, USA'],
+    ['.col-sm-10 dd', 'Radley, Boo'],
+    ['.col-sm-10 dd', 'A note about rights.'],
+    ['.col-sm-10 dd', 'A gernal note.']
   ]
 
   admin_selector_value_array = [
-    ['.col-sm-8 dd', 'doi:123456'],
-    ['.col-sm-8 dd', '12345789'],
-    ['.col-sm-8 dd', 'A note from a staff member.'],
-    ['.col-sm-8 dd', 'An internal note about rights.'],
-    ['.col-sm-8 dd', 'Faculty']
+    ['.col-sm-10 dd', 'doi:123456'],
+    ['.col-sm-10 dd', '12345789'],
+    ['.col-sm-10 dd', 'A note from a staff member.'],
+    ['.col-sm-10 dd', 'An internal note about rights.'],
+    ['.col-sm-10 dd', 'Faculty']
   ]
 
   dashboard_selector_value_array = [
