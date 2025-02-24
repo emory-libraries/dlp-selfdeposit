@@ -36,15 +36,15 @@
       <%= render 'hyrax/users/activity_log', events: @presenter.events %>
     </div><!-- /.card-body -->
   </div><!-- /.card -->
-        
-  <div class="card">
-    <h2 class="card-header"><%= t('.preservation_events') %></h2>
-    <div class="event-table" role="region" aria-label="Preservation Events" tabindex="0">
-      <%= render 'hyrax/base/preservation_events', presenter: @presenter %>
-    </div>
 
-  </div><!-- /card -->
-
+  <% if current_user&.admin? %>
+    <div class="card">
+      <h2 class="card-header">Preservation Events</h2>
+      <div class="event-table" role="region" aria-label="Preservation Events" tabindex="0">
+        <%= render 'hyrax/base/preservation_events', presenter: @presenter %>
+      </div>
+    </div><!-- /card -->
+  <% end %>
 </div><!-- /.file-set-show -->
 
 <% @presenter.member_of_collection_ids.each do |collection_id| %>

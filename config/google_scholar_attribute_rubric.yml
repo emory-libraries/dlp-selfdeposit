@@ -1,0 +1,57 @@
+attributes:
+  citation_title:
+    presenter_method: :title
+    solr_document_method: :title.first
+    solr_field: title_tesim
+  citation_author:
+    presenter_method: :authors
+    solr_document_method: :creator
+    solr_field: creator_tesim
+  citation_publication_date:
+    presenter_method: :publication_date
+    solr_document_method: :date_issued_year
+    solr_field: date_issued_year_ssi
+  citation_pdf_url:
+    presenter_method: :pdf_url
+    solr_document_method: :download_url
+    solr_field: "N/A (Hyrax::Engine.routes.url_helpers.download_url(representative_presenter, host: request.host))"
+  citation_keywords:
+    presenter_method: :keywords
+    solr_document_method: :keyword
+    solr_field: keyword_tesim
+  citation_publisher:
+    presenter_method: :publisher
+    solr_document_method: :publisher
+    solr_field: publisher_tesim
+  citation_journal_title:
+    presenter_method: :journal_title
+    solr_document_method: :parent_title
+    solr_field: parent_title_ssi
+  citation_conference_title:
+    presenter_method: :conference_title
+    solr_document_method: :conference_name
+    solr_field: conference_name_ssi
+  citation_issn:
+    presenter_method: :issn
+    solr_document_method: :issn
+    solr_field: issn_tesi
+  citation_isbn:
+    presenter_method: :isbn
+    solr_document_method: :isbn
+    solr_field: isbn_tesi
+  citation_volume:
+    presenter_method: :volume
+    solr_document_method: :volume
+    solr_field: volume_tesi
+  citation_issue:
+    presenter_method: :issue
+    solr_document_method: :issue
+    solr_field: issue_tesi
+  citation_firstpage:
+    presenter_method: :firstpage
+    solr_document_method: :page_range_start
+    solr_field: page_range_start_tesi
+  citation_lastpage:
+    presenter_method: :lastpage
+    solr_document_method: :page_range_end
+    solr_field: page_range_end_tesi
