@@ -6,17 +6,8 @@ module SelfDeposit
     #   Hyrax.custom_queries.find_all_associated_preservation_event_ids
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
-    class FindAllAssociatedPreservationEventIds
-      def self.queries
-        [:find_all_associated_preservation_event_ids]
-      end
-
-      def initialize(query_service:)
-        @query_service = query_service
-        @connection = Hyrax.index_adapter.connection
-      end
-
-      attr_reader :query_service
+    class FindAllAssociatedPreservationEventIds < SolrDocumentMultipleReturnQuery
+      self.queries = [:find_all_associated_preservation_event_ids]
 
       ##
       # @returns [PreservationEvent#id]
