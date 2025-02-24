@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
+  resources :background_jobs, only: [:new, :create]
+
   devise_for :users, controllers: { saml_sessions: 'saml_sessions' }
 
   mount Hydra::RoleManagement::Engine => '/'
