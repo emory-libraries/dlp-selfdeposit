@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+  config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -272,6 +272,16 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :saml,
+    idp_cert: Rails.application.config.idp_cert,
+    certificate: Rails.application.config.certificate,
+    private_key: Rails.application.config.private_key,
+    attribute_statements: Rails.application.config.attribute_statements,
+    security: Rails.application.config.security,
+    uid_attribute: Rails.application.config.uid_attribute,
+    assertion_consumer_service_url: Rails.application.config.assertion_consumer_service_url,
+    sp_entity_id: Rails.application.config.sp_entity_id,
+    idp_sso_service_url: 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -308,28 +318,4 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-
-  config.saml_route_helper_prefix = 'saml'
-
-  # Configure with your SAML settings (see ruby-saml's README for more information: https://github.com/onelogin/ruby-saml).
-  config.saml_configure do |settings|
-    base_url = ApplicationUrl.base_url
-    settings.assertion_consumer_service_url     = "https://#{base_url}/users/saml/auth/"
-    settings.sp_entity_id                       = "https://#{base_url}/users/saml/metadata"
-    settings.assertion_consumer_service_binding = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-    settings.name_identifier_format             = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
-    settings.authn_context                      = ""
-    settings.idp_slo_service_url                = "https://shib.open.library.emory.edu/Shibboleth.sso/SLO/POST"
-    settings.idp_sso_service_url                = "https://shib.open.library.emory.edu/Shibboleth.sso/Login"
-    # used the use="signing" key below
-    settings.idp_cert_fingerprint               = ENV['IDP_CERT_FINGERPRINT']
-    settings.idp_cert_fingerprint_algorithm     = "http://www.w3.org/2000/09/xmldsig#sha1"
-  end
-
-  config.saml_create_user = true
-  config.saml_update_user = true
-  config.saml_default_user_key = :email
-  config.saml_session_index_key = :session_index
-  config.saml_use_subject = true
-  config.saml_resource_locator = ->(model, saml_response) { model.from_saml(saml_response) }
 end
