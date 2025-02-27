@@ -12,7 +12,7 @@ RSpec.describe BackgroundJobsController, type: :controller, clean: true do
   let(:csv_file2) do
     fixture_file_upload((fixture_path + '/preservation_workflows.csv'), 'text/csv')
   end
-  
+
   let(:new_call) { get :new }
 
   context "when signed in" do
