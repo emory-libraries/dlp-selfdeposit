@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe PreservationWorkflowImporterJob, :clean do
   let(:persister) { Hyrax.persister }
-  let(:generic_work) do 
+  let(:generic_work) do
     Hyrax.custom_queries.find_publication_by_deduplication_key(deduplication_key: 'MSS1218_B071_I205')
   end
   let(:csv) { fixture_path + '/preservation_workflows.csv' }
