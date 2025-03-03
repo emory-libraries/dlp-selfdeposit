@@ -21,9 +21,11 @@ class User < ApplicationRecord
   include Blacklight::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise_modules = [:recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:saml]]
+  devise_modules = [:recoverable, :rememberable, :omniauthable, omniauth_providers: [:saml]]
   devise_modules.prepend(:database_authenticatable, :registerable) # if AuthConfig.use_database_auth?
   devise(*devise_modules)
+
+  validates :email, presence: true, format: { with: Devise.email_regexp }
   validates :password, presence: true, if: :password_required?
 
   def password_required?
