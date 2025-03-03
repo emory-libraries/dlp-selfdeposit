@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class BackgroundJobsController < ApplicationController
   with_themed_layout 'dashboard'
+  before_action :authenticate_user!
+
   def new; end
 
   def create
