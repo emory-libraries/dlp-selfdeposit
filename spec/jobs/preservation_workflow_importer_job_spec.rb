@@ -5,7 +5,6 @@ RSpec.describe PreservationWorkflowImporterJob, :clean do
   let(:adapter)       { Valkyrie::MetadataAdapter.find(:test_adapter) }
   let(:persister)     { adapter.persister }
   let(:query_service) { adapter.query_service }
-  
   let(:publication) do
     publication = Publication.new(
       data_classification: 'Public',
@@ -33,7 +32,6 @@ RSpec.describe PreservationWorkflowImporterJob, :clean do
 
   it 'processes preservation workflow metadata' do
     described_class.perform_now(csv)
-    
     queried_publication = query_service.find_by(id: publication.id)
     expect(queried_publication.preservation_workflows.count).to eq 4
     expect(queried_publication.preservation_workflows.pluck(:workflow_type)).to match_array PreservationWorkflowImporter.workflow_types
