@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe BackgroundJobsController, type: :controller, clean: true do
   include ActionDispatch::TestProcess
   include ActiveJob::TestHelper
+  include Devise::Test::ControllerHelpers
 
   let(:admin) { FactoryBot.create(:admin) }
   let(:user) { FactoryBot.create(:user) }
