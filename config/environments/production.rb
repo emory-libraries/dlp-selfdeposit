@@ -98,11 +98,12 @@ Rails.application.configure do
 
   require 'aws-sdk-secretsmanager'
   def fetch_secret
+    raise "AWS_REGION" if ENV['AWS_REGION'].present?
     client = Aws::SecretsManager::Client.new(region: ENV['AWS_REGION'])
     begin
       get_secret_value_response = client.get_secret_value(secret_id: ENV['SP_KEY_SECRET_NAME'])
-    rescue StandardError => e
-      raise e
+    rescue StandardError
+      raise "AWS_REGION"
     end
     get_secret_value_response.secret_string.gsub(/[{}"]/, '').gsub('\n', "\n")
   end
@@ -114,8 +115,16 @@ Rails.application.configure do
   config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL']
   config.issuer = ENV['ISSUER']
   config.idp_sso_target_url = ENV['IDP_SSO_TARGET_URL']
-  config.idp_cert = File.read(ENV['IDP_CERT'])
-  config.certificate = File.read(ENV['SP_CERT'])
+  config.idp_cert = if ENV['IDP_CERT'].present? && File.exist?(ENV['IDP_CERT'])
+                      File.read(ENV['IDP_CERT'])
+                    else
+                      'idp_cert'
+                    end
+  config.certificate = if ENV['SP_CERT'].present? && File.exist?(ENV['SP_CERT'])
+                         File.read(ENV['SP_CERT'])
+                       else
+                         'sp_cert'
+                       end
   config.private_key = fetch_secret
   config.attribute_statements = {
     net_id: ["urn:oid:0.9.2342.19200300.100.1.1"],
