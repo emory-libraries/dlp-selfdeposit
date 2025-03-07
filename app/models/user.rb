@@ -30,7 +30,8 @@ class User < ApplicationRecord
 
   def password_required?
     return false if saml_authenticatable?
-    super
+    
+    !persisted? || !password.nil? || !password_confirmation.nil? || encrypted_password.blank?
   end
 
   def saml_authenticatable?
