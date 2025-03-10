@@ -1,7 +1,7 @@
 ARG ALPINE_VERSION=3.19
 ARG RUBY_VERSION=3.2.3
 
-FROM ruby:$RUBY_VERSION-alpine$ALPINE_VERSION as hyrax-base
+FROM ruby:$RUBY_VERSION-alpine$ALPINE_VERSION AS hyrax-base
 
 ARG DATABASE_APK_PACKAGE="postgresql-dev"
 ARG EXTRA_APK_PACKAGES="git"
@@ -42,6 +42,7 @@ USER app
 
 RUN mkdir -p /app
 WORKDIR /app
+COPY .env.docker_dev /app/.env.production
 
 COPY --chown=1001:101 ./scripts/*.sh /app/scripts/
 
@@ -53,7 +54,7 @@ ENTRYPOINT ["./scripts/entrypoint.sh"]
 CMD ["bundle", "exec", "puma", "-v", "-b", "tcp://0.0.0.0:3000"]
 
 
-FROM hyrax-base as hyrax
+FROM hyrax-base AS hyrax
 
 ARG APP_PATH=.
 ARG BUNDLE_WITHOUT=
@@ -64,7 +65,7 @@ ONBUILD RUN yarn
 ONBUILD RUN RAILS_ENV=production SECRET_KEY_BASE=`bin/rake secret` DB_ADAPTER=nulldb DATABASE_URL='postgresql://fake' bundle exec rake assets:precompile
 
 
-FROM hyrax-base as hyrax-worker-base
+FROM hyrax-base AS hyrax-worker-base
 
 USER root
 RUN apk --no-cache add bash \
@@ -86,7 +87,7 @@ ENV PATH="${PATH}:/app/fits"
 CMD bundle exec sidekiq
 
 
-FROM hyrax-worker-base as hyrax-worker
+FROM hyrax-worker-base AS hyrax-worker
 
 ARG APP_PATH=.
 ARG BUNDLE_WITHOUT=
