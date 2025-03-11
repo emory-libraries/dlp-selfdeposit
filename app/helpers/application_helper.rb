@@ -8,7 +8,7 @@ module ApplicationHelper
     remaining_authors = values_html.drop(5)
     return_array = raw(safe_join(first_five))
 
-    return_array << remaining_authors_html(remaining_authors) if remaining_authors.present?
+    return_array << remaining_authors_html(presenter, remaining_authors) if remaining_authors.present?
     return_array
   end
 
@@ -47,10 +47,11 @@ module ApplicationHelper
     id.to_s.match?(/^\d{4}-\d{4}-\d{4}-\d{3}[0-9X]$/)
   end
 
-  def remaining_authors_html(remaining_authors)
+  def remaining_authors_html(presenter, remaining_authors)
+    unique_doc_id = presenter.is_a?(Hash) ? presenter[:document]['id'] : presenter.solr_document['id']
     raw(
-    "<span id='remaining-authors' class='collapse'>#{safe_join(remaining_authors)}</span>
-    <a class='btn-link remaining-authors-collapse collapsed' data-toggle='collapse' role='button' aria-expanded='false' aria-controls='remaining-authors' href='#remaining-authors'></a>"
+    "<span id='remaining-authors-#{unique_doc_id}' class='collapse'>#{safe_join(remaining_authors)}</span>
+    <a class='btn-link remaining-authors-collapse collapsed' data-toggle='collapse' role='button' aria-expanded='false' aria-controls='remaining-authors' href='#remaining-authors-#{unique_doc_id}'></a>"
   )
   end
 
