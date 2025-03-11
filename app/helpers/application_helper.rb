@@ -51,7 +51,12 @@ module ApplicationHelper
     unique_doc_id = presenter.is_a?(Hash) ? presenter[:document]['id'] : presenter.solr_document['id']
     raw(
     "<span id='remaining-authors-#{unique_doc_id}' class='collapse'>#{safe_join(remaining_authors)}</span>
-    <a class='btn-link remaining-authors-collapse collapsed' data-toggle='collapse' role='button' aria-expanded='false' aria-controls='remaining-authors' href='#remaining-authors-#{unique_doc_id}'></a>"
+    <a class='btn-link remaining-authors-collapse collapsed' 
+      data-toggle='collapse' 
+      role='button' 
+      aria-expanded='false' 
+      aria-controls='remaining-authors' 
+      href='#remaining-authors-#{unique_doc_id}'></a>"
   )
   end
 
