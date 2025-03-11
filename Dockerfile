@@ -62,7 +62,7 @@ ARG BUNDLE_WITHOUT=
 ONBUILD COPY --chown=1001:101 $APP_PATH /app
 ONBUILD RUN bundle install --jobs "$(nproc)"
 ONBUILD RUN yarn
-ONBUILD RUN RAILS_ENV=production DB_ADAPTER=nulldb DATABASE_URL='postgresql://fake' bundle exec rake assets:precompile
+ONBUILD RUN RAILS_ENV=production SECRET_KEY_BASE=dummy DB_ADAPTER=nulldb DATABASE_URL='postgresql://fake' bundle exec rake assets:precompile
 
 
 FROM hyrax-base AS hyrax-worker-base
@@ -94,5 +94,5 @@ ARG BUNDLE_WITHOUT=
 
 COPY --chown=1001:101 $APP_PATH /app
 RUN bundle install --jobs "$(nproc)"
-RUN RAILS_ENV=production DB_ADAPTER=nulldb DATABASE_URL='postgresql://fake' bundle exec rake assets:precompile
+RUN RAILS_ENV=production SECRET_KEY_BASE=dummy DB_ADAPTER=nulldb DATABASE_URL='postgresql://fake' bundle exec rake assets:precompile
 
