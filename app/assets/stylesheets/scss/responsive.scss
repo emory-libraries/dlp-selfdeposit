@@ -5,6 +5,12 @@
   #search-results dt.data-labels {
     text-align: unset !important;
   }
+  div.hyc-container > div.hyc-body > div.hyc-metadata {
+    padding: 0 1rem 0 1rem;
+    .persistent-url a {
+      word-break: break-word;
+    }
+  }
 }
 
 /**** Phone/Tablet Screen ****/

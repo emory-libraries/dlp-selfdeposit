@@ -1,9 +1,9 @@
 <% # [Hyrax-override-v5.0.1] %>
 <dl>
   <!-- Persistent URL block start -->
-  <div class='metadata-line'>
-    <div class='col-xs-12 col-sm-4'><dt >Persistent URL</dt></div>
-    <div class='col-xs-12 col-sm-8'><dd>
+  <div class='metadata-line persistent-url'>
+    <div class='col-sm-2'><dt>Persistent URL</dt></div>
+    <div class='col-sm-10'><dd>
     <% if @presenter.emory_persistent_id.present? %>
         <% url = "#{request.base_url}/purl/#{@presenter.emory_persistent_id}" %>
         <a href="<%= url %>"><%= url %></a>
@@ -13,18 +13,26 @@
     </dd></div>
   </div>
   <!-- Persistent URL block end -->
+
+  <% unless @presenter.modified_date.blank? %>
+    <div class="metadata-line hyc-last-updated">
+      <div class='col-sm-2'><dt>Last Updated</dt></div>
+      <div class='col-sm-10'><dd><%= @presenter.modified_date %></dd></div>
+    </div>
+  <% end %>
+
   <% @presenter.terms_with_values.each do |field_name| %>
     <div class='metadata-line'>
-      <div class='col-xs-12 col-sm-4'><dt><%= collection_metadata_label(@presenter, field_name) %></dt></div>
-      <div class='col-xs-12 col-sm-8'><dd><%= collection_metadata_value(@presenter, field_name) %></dd></div>
+      <div class='col-sm-2'><dt><%= collection_metadata_label(@presenter, field_name) %></dt></div>
+      <div class='col-sm-10'><dd><%= collection_metadata_value(@presenter, field_name) %></dd></div>
     </div>
   <% end %>
 
   <% if current_user&.admin? %>
     <% @presenter.admin_terms_with_values.each do |field_name| %>
       <div class='metadata-line'>
-      <div class='col-xs-12 col-sm-4'><dt><%= collection_metadata_label(@presenter, field_name) %></dt></div>
-      <div class='col-xs-12 col-sm-8'><dd><%= collection_metadata_value(@presenter, field_name) %></dd></div>
+      <div class='col-sm-2'><dt><%= collection_metadata_label(@presenter, field_name) %></dt></div>
+      <div class='col-sm-10'><dd><%= collection_metadata_value(@presenter, field_name) %></dd></div>
     </div>
     <% end %>
   <% end %>

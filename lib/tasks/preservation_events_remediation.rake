@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require './lib/preservation_events'
+require 'preservation_events'
 
 # rubocop:disable Metrics/BlockLength
 namespace :selfdeposit do
@@ -24,6 +24,7 @@ namespace :selfdeposit do
 
     desc "Remediates Publication objects that lack PreservationEvent objects"
     task remediate_preservation_events_for_publications_lacking_them: :environment do
+      include PreservationEvents
       query_service = Hyrax.query_service
       publication_ids_lacking_events = query_service&.custom_queries
                                                     &.find_all_object_ids_lacking_preservation_events(model: Publication)

@@ -57,6 +57,10 @@
   .facet-limit-active {
     border-color: $base-blue !important;
   }
+  span.facet-label {
+    hyphens: manual;
+    word-wrap: normal;
+  }
   a.facet-select {
     font-weight: bold;
   }

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     post '/auth/saml', to: 'omniauth_callbacks#passthru', as: 'user_omniauth_authorize'
   end
 
+  resources :background_jobs, only: [:new, :create]
+
   mount Hydra::RoleManagement::Engine => '/'
 
   mount Sidekiq::Web => '/sidekiq'

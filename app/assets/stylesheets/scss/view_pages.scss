@@ -248,3 +248,55 @@ div.alert-success > a {
 }
 
 /**** end File-Set Show Page ****/
+
+/*** View Collection Page /views/hyrax/collections/show.html.erb ***/
+.hyc-container {
+  /** header **/
+  > .hyc-header {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    .badge {
+      margin: 0 1rem 1rem 0;
+    }
+    .hyc-item-count.badge {
+      background-color: $base-blue;
+    }
+  /** if a banner image is uploaded, the div class is hyc-banner. IF NOT, it's .hyc-generic **/
+    > div.hyc-banner.col-md-12   {
+    border-radius: 0.25rem;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  /** everything after the header down to the subcollection search bar **/
+  .hyc-body {
+    .hyc-logos.col-3 > img {
+      width: 100%;
+    }
+    .hyc-description {
+      padding: 0 1rem 0 1rem;
+    }
+    .hyc-metadata  {
+      margin-top: 2rem;
+      padding: 0 0 0 1rem;
+      > h2 {
+        font-size: 2rem;
+      }
+      div {
+        border-bottom: none;
+      }
+      .metadata-line {
+        border-bottom: 1px solid $base-slate;
+        dt {
+          flex-basis: 100%;
+        }
+      }
+    }
+  }
+  .hyc-blacklight {
+    padding: 0;
+  }
+}
+/*** end View COllection Page ***/
