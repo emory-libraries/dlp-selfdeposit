@@ -10,6 +10,7 @@ module SelfDeposit::RisBehavior
     'Presentation': 'GEN',
     'Report': 'REPORT'
   }.freeze
+  URL_REGEX = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
 
   def export_as_ris(base_url)
     ris_format = ris_format_template
@@ -36,7 +37,7 @@ module SelfDeposit::RisBehavior
   end
 
   def process_doi_field(ris_key:, value:, ret_text:)
-    dois = value.select { |v| v.include? "doi:" }
+    dois = value.select { |v| v.include?('doi.org') && v.match?(URL_REGEX) }
     dois.each { |doi| assign_unaltered_value_to_ret_txt(ret_text:, ris_key:, value: doi) } if dois.present?
   end
 
@@ -88,7 +89,7 @@ module SelfDeposit::RisBehavior
       process_field_with_added_genre_logic(ret_text:, ris_key:, value:, tests_pass: ["Article", "Conference Paper"].include?(genre))
     end
     if this_field_is_present?(ris_key:, expected_key: [:SP, :EP], value:)
-      process_field_with_added_genre_logic(ret_text:, ris_key:, value:, tests_pass: ["Article", "Book Chapter"].include?(genre))
+      process_field_with_added_genre_logic(ret_text:, ris_key:, value:, tests_pass: ["Article", "Book Chapter", "Conference Paper"].include?(genre))
     end
     process_l2_fields(ret_text:, ris_key:, value:, base_url:) if this_field_is_present?(ris_key:, expected_key: :L2, value:)
   end
