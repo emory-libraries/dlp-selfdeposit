@@ -48,7 +48,7 @@ RSpec.describe ::SolrDocument, type: :model do
         'language_tesim': ['English'],
         'date_issued_year_tesi': '1910',
         'publisher_tesim': ['Simon & Schuster'],
-        'final_published_versions_tesim': ['doi:123456'],
+        'final_published_versions_tesim': ['http://dx.doi.org/10.1186/1742-4690-9-S2-P36'],
         'parent_title_tesi': 'Parent Title',
         'conference_name_tesi': 'Samvera 2025',
         'volume_tesi': '10',
@@ -99,8 +99,8 @@ RSpec.describe ::SolrDocument, type: :model do
     describe 'with a genre of Conference Paper' do
       subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Conference Paper')) }
 
-      it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'T2', 'VL', 'IS', 'CY', 'L2'], expected_ty_field: 'CONF') }
-      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'SP', 'EP']) }
+      it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'T2', 'VL', 'IS', 'CY', 'L2', 'SP', 'EP'], expected_ty_field: 'CONF') }
+      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO']) }
 
       context 'empty fields' do
         subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Conference Paper', 'publisher_tesim': "", 'final_published_versions_tesim': "")) }
