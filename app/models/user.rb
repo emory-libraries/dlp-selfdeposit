@@ -36,7 +36,7 @@ class User < ApplicationRecord
   def saml_authenticatable?
     provider == 'saml'
   end
- p
+
   def to_s
     email
   end
