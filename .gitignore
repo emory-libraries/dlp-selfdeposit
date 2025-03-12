@@ -81,7 +81,9 @@ lib/bundler/man
 spec/reports
 /spec/examples.txt
 node_modules
-.env.*
+.env.production
+.env.development
+.env.test
 # ignore branding path
 public/branding
 
