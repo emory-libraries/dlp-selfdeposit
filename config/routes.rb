@@ -15,9 +15,17 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  resources :background_jobs, only: [:new, :create]
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
-  devise_for :users, controllers: { saml_sessions: 'saml_sessions' }
+  devise_scope :user do
+    get 'auth/failure', to: 'users/omniauth_callbacks#failure'
+    post '/auth/saml/callback', to: 'omniauth_callbacks#saml', as: 'user_omniauth_callback'
+    post '/auth/saml', to: 'omniauth_callbacks#passthru', as: 'user_omniauth_authorize'
+  end
+
+  resources :background_jobs, only: [:new, :create]
 
   mount Hydra::RoleManagement::Engine => '/'
 
@@ -44,7 +52,6 @@ Rails.application.routes.draw do
       delete 'clear'
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # rubocop:disable Rails/FindEach
   def latency_text
