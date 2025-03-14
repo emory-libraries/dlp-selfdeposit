@@ -17,12 +17,12 @@ class DerelictFileSetReportJob < Hyrax::ApplicationJob
   private
 
   def process_file_sets_without_files
-    @all_file_sets_from_fedora.each { |fs| @file_sets_lacking_files << fs if !fs.file_ids.present? }
+    @all_file_sets_from_fedora.each { |fs| @file_sets_lacking_files << fs if fs.file_ids.blank? }
   end
 
   def process_file_sets_unlinked_to_publications
     @all_file_sets_from_fedora.each do |fs|
-      @file_sets_unlinked_to_publications << fs if !@all_file_set_ids_linked_publications.include?(fs.id.to_s)
+      @file_sets_unlinked_to_publications << fs unless @all_file_set_ids_linked_publications.include?(fs.id.to_s)
     end
   end
 
@@ -32,4 +32,3 @@ class DerelictFileSetReportJob < Hyrax::ApplicationJob
     CSV.open(csv_path, "w") { |csv| report_array.each { |fs| csv << [fs.id.to_s] } }
   end
 end
-
