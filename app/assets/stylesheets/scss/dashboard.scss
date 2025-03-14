@@ -32,9 +32,8 @@ body.dashboard {
     color: $bright-blue;
   }
 
-  //search bar on collection
-  .collections-wrapper .collections-search-wrapper {
-    padding-top: 0.625rem;
+  div.table-responsive {
+    overflow-x: auto;
   }
 
   //importers page
@@ -46,15 +45,22 @@ body.dashboard {
   #admin_sets h5 {
     display: none;
   }
-}
 
-/*** Collections ***/
-#dashboard-collection-tab-content {
-  label {
-    display: flex;
-    align-items: center;
+
+  /*** Collections ***/
+  #dashboard-collection-tab-content {
+    label {
+      display: flex;
+      align-items: center;
+    }
   }
-}
+  //search bar on collection
+  .collections-wrapper .collections-search-wrapper {
+    padding-top: 0.625rem;
+  }
+  table.collections-list-table img {
+    width: 5rem;
+  }
 
 .thumbnail-title-wrapper a,
 .nav-tabs a,
@@ -74,3 +80,4 @@ div.constraints-container a.catalog_startOverLink.btn {
   color: $white;
 }
 /**** end filtering ****/
+}
