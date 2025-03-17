@@ -21,7 +21,11 @@ class FilesetCleanUpJob < Hyrax::ApplicationJob
   private
 
   def process_fileset(file_set, csv)
-    characterize_file_set(file_set, csv)
+    if file_set.file_ids.present?
+      characterize_file_set(file_set, csv)
+    else
+      csv << [file_set.id, "Fileset contains no binaries/files to characterize", "Not Processed"]
+    end
   end
 
   def characterize_file_set(file_set, csv)
