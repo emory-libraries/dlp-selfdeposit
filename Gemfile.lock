@@ -999,7 +999,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     retriable (3.1.2)
-    rexml (3.3.9)
+    rexml (3.4.1)
     riiif (2.5.0)
       deprecation (>= 1.0.0)
       iiif-image-api (>= 0.1.0)
@@ -1069,7 +1069,7 @@ GEM
       multipart-post
       oauth2
     ruby-progressbar (1.13.0)
-    ruby-saml (1.17.0)
+    ruby-saml (1.18.0)
       nokogiri (>= 1.13.10)
       rexml
     ruby2_keywords (0.0.5)
@@ -1200,7 +1200,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.5.0)
     unicode-types (1.9.0)
-    uri (1.0.2)
+    uri (1.0.3)
     validatable (1.6.7)
     valkyrie (3.3.0)
       activemodel
