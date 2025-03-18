@@ -15,8 +15,10 @@ body.dashboard {
     margin-bottom: 1rem;
   }
 
-  .collections-wrapper #add-new-collection-button {
-    margin-bottom: 0.625rem;
+  /** sidebar **/
+  li.nav-item > a {
+    padding: 0.5rem 1rem 0.5rem 24px;
+    display: block;
   }
 
   #search-field-header {
@@ -33,6 +35,7 @@ body.dashboard {
   .works-list a {
     color: $bright-blue;
   }
+
   div.list-group > .list-group-item a {
     color: $bright-blue;
   }
@@ -51,7 +54,6 @@ body.dashboard {
     display: none;
   }
 
-
   /*** Collections ***/
   #dashboard-collection-tab-content {
     label {
@@ -59,10 +61,16 @@ body.dashboard {
       align-items: center;
     }
   }
+
+  .collections-wrapper #add-new-collection-button {
+    margin-bottom: 0.625rem;
+  }
+
   //search bar on collection
   .collections-wrapper .collections-search-wrapper {
     padding-top: 0.625rem;
   }
+
   table.collections-list-table img {
     width: 5rem;
   }
