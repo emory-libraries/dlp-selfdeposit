@@ -21,6 +21,7 @@ RSpec.describe PreservationWorkflowImporterJob, :clean do
   let(:csv) { fixture_path + '/preservation_workflows.csv' }
 
   before do
+    PreservationWorkflowImporter.instance_variable_set(:@persister, persister)
     allow(Hyrax).to receive(:query_service).and_return(query_service)
     allow(Hyrax).to receive(:persister).and_return(persister)
     Hyrax.index_adapter.save(resource: publication)
