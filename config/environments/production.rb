@@ -98,23 +98,24 @@ Rails.application.configure do
 
   require 'aws-sdk-secretsmanager'
   def fetch_secret
-    raise "AWS_REGION" if ENV['AWS_REGION'].present?
-    client = Aws::SecretsManager::Client.new(region: ENV['AWS_REGION'])
+    aws_region = ENV['AWS_REGION'].presence || 'us-east-1'
+    secret_name = ENV['SP_KEY_SECRET_NAME'].presence || 'production-sp-key'
+    client = Aws::SecretsManager::Client.new(region: aws_region)
     begin
-      get_secret_value_response = client.get_secret_value(secret_id: ENV['SP_KEY_SECRET_NAME'])
+      get_secret_value_response = client.get_secret_value(secret_id: secret_name)
     rescue StandardError
-      raise "AWS_REGION"
+      raise "AWS_REGION or SP_KEY_SECRET_NAME is not set"
     end
     get_secret_value_response.secret_string.gsub(/[{}"]/, '').gsub('\n', "\n")
   end
 
   # OmniAuth configuration settings
-  config.sp_entity_id = ENV['SP_ENTITY']
-  config.idp_slo_target_url = ENV['IDP_SLO_TARGET_URL']
-  config.assertion_consumer_service_url = ENV['ASSERTION_CS_URL']
-  config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL']
-  config.issuer = ENV['ISSUER']
-  config.idp_sso_target_url = ENV['IDP_SSO_TARGET_URL']
+  config.sp_entity_id = ENV['SP_ENTITY'].presence || 'production-entity-id'
+  config.idp_slo_target_url = ENV['IDP_SLO_TARGET_URL'].presence || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
+  config.assertion_consumer_service_url = ENV['ASSERTION_CS_URL'].presence || 'http://localhost:3000/users/auth/saml/callback'
+  config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL'].presence || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
+  config.issuer = ENV['ISSUER'].presence || 'production-issuer'
+  config.idp_sso_target_url = ENV['IDP_SSO_TARGET_URL'].presence || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO'
   config.idp_cert = if ENV['IDP_CERT'].present? && File.exist?(ENV['IDP_CERT'])
                       File.read(ENV['IDP_CERT'])
                     else

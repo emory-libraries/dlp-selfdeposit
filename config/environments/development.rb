@@ -70,15 +70,15 @@ Rails.application.configure do
     IPAddr.new(ifa.addr.ip_address + '/' + ifa.netmask.ip_address)
   end
 
-  config.sp_entity_id = ENV['SP_ENTITY'] || 'test-entity-id'
-  config.idp_slo_target_url = ENV['IDP_SLO_TARGET_URL'] || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
-  config.assertion_consumer_service_url = ENV['ASSERTION_CS_URL'] || 'http://localhost:3000/users/auth/saml/callback'
-  config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL'] || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
-  config.issuer = ENV['ISSUER'] || 'test-issuer'
-  config.idp_sso_target_url = ENV['IDP_SSO_TARGET_URL'] || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO'
-  config.idp_cert = ENV['IDP_CERT'] || 'test-cert'
-  config.certificate = ENV['SP_CERT'] || 'test-certificate'
-  config.private_key = ENV['SP_KEY'] || 'test-private-key'
+  config.sp_entity_id = ENV['SP_ENTITY'].presence || 'test-entity-id'
+  config.idp_slo_target_url = ENV['IDP_SLO_TARGET_URL'].presence || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
+  config.assertion_consumer_service_url = ENV['ASSERTION_CS_URL'].presence || 'http://localhost:3000/users/auth/saml/callback'
+  config.assertion_consumer_logout_service_url = ENV['ASSERTION_LOGOUT_URL'].presence || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SLO'
+  config.issuer = ENV['ISSUER'].presence || 'test-issuer'
+  config.idp_sso_target_url = ENV['IDP_SSO_TARGET_URL'].presence || 'https://login.emory.edu/idp/profile/SAML2/Redirect/SSO'
+  config.idp_cert = ENV['IDP_CERT'].presence || 'test-cert'
+  config.certificate = ENV['SP_CERT'].presence || 'test-certificate'
+  config.private_key = ENV['SP_KEY'].presence || 'test-private-key'
   config.attribute_statements = {
     net_id: ["urn:oid:0.9.2342.19200300.100.1.1"],
     display_name: ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
