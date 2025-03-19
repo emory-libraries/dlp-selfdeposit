@@ -13,7 +13,7 @@ module Hyrax
     end
 
     def mark_active_action
-    { "aria-current" => "page" }
+      { "aria-current" => "page" }
     end
   end
 end
