@@ -9,10 +9,7 @@ module Hyrax
     end
 
     def add_breadcrumb_for_action
-    case action_name
-    when 'new'
-        add_breadcrumb 'Background Jobs', '/background_jobs/new', mark_active_action
-    end
+      add_breadcrumb 'Background Jobs', '/background_jobs/new', mark_active_action
     end
 
     def mark_active_action
