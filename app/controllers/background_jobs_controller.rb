@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class BackgroundJobsController < ApplicationController
+  include Hyrax::BreadcrumbsForBackgroundJobs
   with_themed_layout 'dashboard'
   before_action :authenticate_user!
 

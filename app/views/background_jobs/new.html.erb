@@ -1,6 +1,11 @@
+<% provide :page_title, t("hyrax.admin.sidebar.background_jobs") %>
+
+<% provide :page_header do %>
+  <h1><span class="fa fa-tasks" aria-hidden="true"></span> <%= t("hyrax.admin.sidebar.background_jobs") %></h1>
+<% end %>
+
 <%= render '/flash_msg' %>
 <%= form_tag background_jobs_path, method: :post, multipart: true, class: "form-horizontal" do %>
-  <h3>Background Jobs</h3>
   <table class="table table-striped">
     <tr>
       <th>Select Job</th>
@@ -14,7 +19,6 @@
       <td>
         <%= file_field_tag 'reindex_csv', class: 'files', :accept => 'text/csv' %>
       </td>
-      
     </tr>
     <tr>
       <td>
@@ -39,6 +43,6 @@ $(document).ready(function() {
         if(val !== 'cleanup'){
           $("input[name='" + val + "_csv']").prop('required',true);
         }
-    }); 
+    });
 });
 </script>

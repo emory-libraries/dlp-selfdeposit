@@ -67,6 +67,9 @@ en:
           title_tesim: Title
   hyrax:
     account_name: My Institution Account Id
+    admin:
+      sidebar:
+        background_jobs: Background Jobs
     directory:
       suffix: "@example.org"
     footer:
