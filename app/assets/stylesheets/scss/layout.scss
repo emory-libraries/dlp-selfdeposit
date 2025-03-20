@@ -129,16 +129,17 @@ a {
 /**** Home Page ****/
 
 /* alert and/or announcement banner */
-body:not(.dashboard) div.alert {
-  margin: -2rem 0 2rem 0;
-  padding: 0.75rem 5rem;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  border-radius: 0;
-}
+/* but only where it shows up directly at the top of the page and not in the dashboard */
+body:not(.dashboard) > div#content-wrapper > div.alert {
+    margin: -2rem 0 2rem 0;
+    padding: 0.75rem 5rem;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    border-radius: 0;
+  }
 
 div#announcement_text {
   background-color: $gold;
