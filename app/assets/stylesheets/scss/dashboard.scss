@@ -15,6 +15,10 @@ body.dashboard {
     margin-bottom: 1rem;
   }
 
+  div.card h2.card-title {
+    font-size: 1.25rem;
+  }
+
   /** sidebar **/
   li.nav-item > a {
     padding: 0.5rem 1rem 0.5rem 24px;
@@ -44,15 +48,16 @@ body.dashboard {
     overflow-x: auto;
   }
 
-  //importers page
-  #importers-table_wrapper #status-filter {
-    margin-bottom: 0.3125rem;
-  }
+  /** Your activity --> transfers **/
+  div.card.transfers > div.card-body {
+    div.col-12:not(:last-of-type) {
+      margin-bottom: 0.75rem;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+  }}
 
-  //hide title "Administrative Set"
-  #admin_sets h5 {
-    display: none;
-  }
 
   /*** Collections ***/
   #dashboard-collection-tab-content {
@@ -75,22 +80,32 @@ body.dashboard {
     width: 5rem;
   }
 
-.thumbnail-title-wrapper a,
-.nav-tabs a,
-a.facet-select,
-.batch_document_selector_all a {
-  color: $bright-blue;
-}
+  .thumbnail-title-wrapper a,
+  .nav-tabs a,
+  a.facet-select,
+  .batch_document_selector_all a {
+    color: $bright-blue;
+  }
 
-div.sort-toggle span.fa-refresh {
-  color: $white;
-}
-/**** end Collections ****/
+  div.sort-toggle span.fa-refresh {
+    color: $white;
+  }
+  /**** end Collections ****/
 
-/**** filtering from dashboard works or collections ****/
-div.constraints-container a.catalog_startOverLink.btn {
-  background: $bright-blue;
-  color: $white;
-}
-/**** end filtering ****/
+  // works - hide title "Administrative Set"
+  #admin_sets h5 {
+    display: none;
+  }
+
+  /**** filtering from dashboard works or collections ****/
+  div.constraints-container a.catalog_startOverLink.btn {
+    background: $bright-blue;
+    color: $white;
+  }
+  /**** end filtering ****/
+
+  //importers page
+  #importers-table_wrapper #status-filter {
+    margin-bottom: 0.3125rem;
+  }
 }

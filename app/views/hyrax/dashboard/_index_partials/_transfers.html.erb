@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-12">
+    <h3><%= t("hyrax.dashboard.transfers_sent") %></h3>
+    <%= presenter.render_sent_transfers %>
+  </div>
+  <div class="col-12">
+    <h3><%= t("hyrax.dashboard.transfers_received") %></h3>
+    <%= presenter.render_received_transfers %>
+  </div>
+  <div class="col-12 transfer_link">
+    <%= link_to hyrax.my_works_path do %>
+        <%= t("hyrax.dashboard.transfer_works_link") %>
+    <% end %>
+  </div>
+</div>
