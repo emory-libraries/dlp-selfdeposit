@@ -2,6 +2,7 @@
 
 class ReindexObjectJob < Hyrax::ApplicationJob
   def perform(id)
-    ActiveFedora::Base.find(id).update_index
+    object = Hyrax.query_service.find_by(id:)
+    Hyrax.index_adapter.save(resource: object)
   end
 end
