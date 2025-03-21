@@ -18,6 +18,7 @@ RSpec.describe BackgroundJobsController, type: :controller, clean: true do
 
   context "when signed in" do
     before do
+      Hyrax.index_adapter.wipe!
       sign_in admin
     end
 
@@ -34,11 +35,13 @@ RSpec.describe BackgroundJobsController, type: :controller, clean: true do
     end
 
     describe "#create" do
-      let(:cleanup) { post :create, params: { jobs: 'cleanup', format: 'json' } }
       let(:preservation) do
         post :create, params: { jobs: 'preservation', preservation_csv: csv_file2, format: 'json' }
       end
       let(:reindex) { post :create, params: { jobs: 'reindex', reindex_csv: csv_file, format: 'json' } }
+      let(:link_publications) do
+        post :create, params: { jobs: 'publications_to_collection', format: 'json' }
+      end
 
       it "successfully starts a preservation workflow background job" do
         expect(preservation).to redirect_to(new_background_job_path)
@@ -49,6 +52,23 @@ RSpec.describe BackgroundJobsController, type: :controller, clean: true do
         expect(reindex).to redirect_to(new_background_job_path)
         # Needed to call out how many times the job will be enqueued.
         expect(ReindexObjectJob).to have_been_enqueued.twice
+      end
+
+      it "avoids starting BatchAddPublicationsToCollectionJob background job when no unlinked Publications" do
+        expect(link_publications).to redirect_to(new_background_job_path)
+        # Needed to call out how many times the job will be enqueued.
+        expect(BatchAddPublicationsToCollectionJob).not_to have_been_enqueued
+      end
+
+      context 'when an unlinked Publication exists' do
+        let(:publication) { FactoryBot.valkyrie_create(:publication, with_index: true) }
+
+        it "starts a BatchAddPublicationsToCollectionJob background job when unlinked Publication" do
+          publication
+          expect(link_publications).to redirect_to(new_background_job_path)
+          # Needed to call out how many times the job will be enqueued.
+          expect(BatchAddPublicationsToCollectionJob).to have_been_enqueued
+        end
       end
     end
   end
