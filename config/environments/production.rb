@@ -126,7 +126,7 @@ Rails.application.configure do
                        else
                          'sp_cert'
                        end
-  config.private_key = fetch_secret
+  config.private_key = ENV['IN_DOCKER'].present? ? 'dummy' : fetch_secret
   config.attribute_statements = {
     net_id: ["urn:oid:0.9.2342.19200300.100.1.1"],
     display_name: ["urn:oid:1.3.6.1.4.1.5923.1.1.1.2"],
