@@ -1,10 +1,10 @@
 <%# Hyrax v5.0.1 Override: institutes our own layout. Starts line 1. %>
 
-<li class="list-group-item direct_link">
-    <% if Hyrax.config.citations? %>
-      <%= link_to "Cite", hyrax.citations_work_path(presenter), id: 'citations' %>
-    <% end %>
-</li>
+<%# if Hyrax.config.citations? %>
+  <li class="list-group-item direct_link">
+    <%= link_to "Cite", hyrax.citations_work_path(presenter), id: 'citations' %>
+  </li>
+<%# end %>
 
 <li class="list-group-item direct_link>
   <div class="btn-group">
