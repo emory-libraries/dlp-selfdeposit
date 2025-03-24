@@ -89,7 +89,17 @@ en:
   simple_form:
     hints:
       defaults:
-        language: ""
+        title: "Provide a name to aid in identifying your work."
+        date_issued: "Please enter the date your scholarly work was published, presented, or otherwise issued. Dates must be entered in YYYY-MM-DD format (year is required; month and day are optional)."
+        publisher: "For traditional publications (books, journal articles), provide the publisher's name. For conference posters and presentations, technical reports, and other scholarly works that may not be published anywhere else, list the entity making the work available (i.e., Emory University Libraries)."
+        rights_notes: "Provide the copyright owner's name and the copyright year (e.g., © 2024 Cambridge University Press. All rights reserved.). For materials that are not formally published (e.g., a conference poster), the copyright holder is the creator (or creators) of the work."
+        license: "Provide licensing and distribution information governing access to the work by selecting the appropriate license from the drop-down list."
+        final_published_versions: "If the work was originally published outside of this repository, provide a link to that original version."
+        related_datasets: "If you want to provide links to external resources related to this scholarly work (e.g., datasets or other associated files), please do so here."
+        abstract: "Please note that this field does not support text formatting such as paragraph breaks, bold, or italics. Non-embedded hyperlinks and email addresses are supported (if fully spelled out)."
+        author_notes: "Non-embedded hyperlinks and email addresses are supported (if fully spelled out)."
+        keyword: "Words or phrases you select to describe what the work is about. These are used to tag your work so that users can discover it."
+        subject: "Search for headings or index terms from Library of Congress Subject Headings describing what the work is about."
     labels:
       defaults:
         author_notes: Author Notes
