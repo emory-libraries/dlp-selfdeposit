@@ -90,6 +90,15 @@ body.dashboard {
   div.sort-toggle span.fa-refresh {
     color: $white;
   }
+
+  table.collections-list-table tbody tr td .expanded-details {
+    display: none;
+    padding-top: 10px;
+
+    dd {
+      text-align: left;
+    }
+  }
   /**** end Collections ****/
 
   // works - hide title "Administrative Set"
