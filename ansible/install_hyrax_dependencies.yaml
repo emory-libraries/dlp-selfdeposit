@@ -9,6 +9,7 @@
       - amazon-cloudwatch-agent
       - collectd
       - collectd-curl_json
+      - cronie
       - httpd
       - git
       - redis
@@ -171,6 +172,7 @@
        enabled: yes
      with_items:
        - httpd
+       - crond
        - collectd
        - amazon-cloudwatch-agent
        - nfs-server
@@ -263,8 +265,8 @@
        mode: 0644
    - name: install crontab to clean tmp directory files
      copy:
-     src: files/tmpclean.crontab
-     dest: /etc/cron.d/tmpclean.crontab
+       src: files/tmpclean.crontab
+       dest: /etc/cron.d/tmpclean.crontab
    - name: create gem symlink
      file:
        dest: /usr/bin/gem

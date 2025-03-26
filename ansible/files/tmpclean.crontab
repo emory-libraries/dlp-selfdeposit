@@ -1,1 +1,1 @@
-* 3 * * * /bin/tmpwatch 168 /opt/dlp-selfdeposit/current/tmp/imports
+* 3 * * * root /bin/tmpwatch 168 /opt/dlp-selfdeposit/current/tmp/imports
