@@ -9,6 +9,7 @@
       - amazon-cloudwatch-agent
       - collectd
       - collectd-curl_json
+      - cronie
       - httpd
       - git
       - redis
@@ -28,6 +29,7 @@
       - httpd-devel
       - apr-devel
       - apr-util-devel
+      - tmpwatch
       - java-11-amazon-corretto
       - postgresql15
       - postgresql-devel
@@ -170,6 +172,7 @@
        enabled: yes
      with_items:
        - httpd
+       - crond
        - collectd
        - amazon-cloudwatch-agent
        - nfs-server
@@ -260,6 +263,10 @@
        dest: /etc/logrotate.d/sidekiq
        owner: root
        mode: 0644
+   - name: install crontab to clean tmp directory files
+     copy:
+       src: files/tmpclean.crontab
+       dest: /etc/cron.d/tmpclean.crontab
    - name: create gem symlink
      file:
        dest: /usr/bin/gem
