@@ -1,7 +1,7 @@
 @import "colors.scss";
 @import "fonts.scss";
 
-/**** Dashboard General ****/
+/**** Dashboard body and header ****/
 body.dashboard {
   padding-top: 0;
   h1 {
@@ -36,10 +36,7 @@ body.dashboard {
   .collection-types-wrapper > div > div > p > a,
   .proxy-rights ~ a,
   .transfer_link > a,
-  .works-list a {
-    color: $bright-blue;
-  }
-
+  .works-list a,
   div.list-group > .list-group-item a {
     color: $bright-blue;
   }
@@ -57,6 +54,15 @@ body.dashboard {
       font-size: 1rem;
       font-weight: 700;
   }}
+
+  table#incoming-transfers td {
+    > div.btn-group > button.btn-primary {
+      width: 5rem;
+    }
+    > form.button_to > input.btn {
+      width: 5rem;
+    }
+  }
 
 
   /*** Collections ***/
