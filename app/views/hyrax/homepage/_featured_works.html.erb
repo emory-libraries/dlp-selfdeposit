@@ -1,0 +1,10 @@
+<!-- Hyrax 5.0.1 override: removes extra admin functionality elsif fka lines 6-16 -->
+
+<h2 class="sr-only"><%= t('hyrax.homepage.featured_works.title') %></h2>
+<% if @featured_work_list.empty? %>
+  <p><%= t('hyrax.homepage.featured_works.no_works') %></p>
+<% else %>
+  <ol class="list-group list-group-striped" id="featured_works">
+    <%= render partial: 'featured', collection: @featured_work_list.featured_works %>
+  </ol>
+<% end %>
