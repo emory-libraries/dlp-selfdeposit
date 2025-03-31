@@ -38,6 +38,9 @@ class MigrateFedoraThreeObjects
       @pid = pid
       @pid_xml = pull_pid_xml
       copy_files_to_folder
+    rescue Nokogiri::XML::XPath::SyntaxError
+      @pids_with_no_binaries += [@pid]
+      puts "PID emory:#{pid} lacked a datastream XML structure."
     end
 
     file_end_reports
