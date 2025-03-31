@@ -37,6 +37,7 @@ Rails/Exit:
 Rails/Output:
   Exclude:
     - lib/fedora/migrate_fedora3_objects.rb
+    - lib/fedora/migrate_fedora_three_objects.rb
     - lib/metadata/extract_mods_metadata_to_csv.rb
 
 Style/MultilineBlockChain:
