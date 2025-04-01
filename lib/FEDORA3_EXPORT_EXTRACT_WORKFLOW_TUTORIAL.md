@@ -1,5 +1,3 @@
-
-
 ## SelfDeposit Fedora 3 Objects Export and Extract Metadata Workflow
 
  1. **Obtain/Create CSV of PIDs**
