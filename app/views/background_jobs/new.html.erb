@@ -29,6 +29,15 @@
         <%= file_field_tag 'preservation_csv', class: 'files', :accept => 'text/csv' %>
       </td>
     </tr>
+    <tr>
+      <td>
+        <%= radio_button_tag :jobs, 'publications_to_collection', false, id: 'publications_to_collection' %>
+        <%= label :job_cleanup, 'Associate Unlinked Publications To Collection' %>
+      </td>
+      <td>
+        <%= text_area_tag 'collection_id', nil, size: '60x2', placeholder: 'Collection ID. If left blank, an attempt to find the OpenEmory Collection ID will be made.' %>
+      </td>
+    </tr>
   </table>
   <button class="btn btn-primary" type="submit" value="Submit">Start Job</button>
 <% end %>

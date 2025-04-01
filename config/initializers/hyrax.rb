@@ -55,7 +55,7 @@ Hyrax.config do |config|
 
   # Enables a link to the citations page for a work
   # Default is false
-  config.citations = true
+  # config.citations = true
 
   # Where to store tempfiles, leave blank for the system temp directory (e.g. /tmp)
   # config.temp_file_base = '/home/developer1'
@@ -344,6 +344,7 @@ custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
                   SelfDeposit::CustomQueries::FindAllMetadataObjects,
                   SelfDeposit::CustomQueries::FindAllObjectIdsLackingPreservationEvents,
                   SelfDeposit::CustomQueries::FindAllObjectIdsWithAlternateIdsPresent,
+                  SelfDeposit::CustomQueries::FindAllPublicationIdsUnlinkedToCollection,
                   SelfDeposit::CustomQueries::FindAllPreservationEventIds,
                   SelfDeposit::CustomQueries::FindCountByModel,
                   SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,

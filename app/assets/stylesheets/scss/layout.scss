@@ -130,7 +130,7 @@ a {
 
 /* alert and/or announcement banner */
 /* but only where it shows up directly at the top of the page and not in the dashboard */
-body:not(.dashboard) > div#content-wrapper > div.alert {
+body:not(.dashboard) > div#content-wrapper > div.alert:first-child {
     margin: -2rem 0 2rem 0;
     padding: 0.75rem 5rem;
     width: 100vw;
