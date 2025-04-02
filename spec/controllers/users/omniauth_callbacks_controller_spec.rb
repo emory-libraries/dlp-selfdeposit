@@ -56,11 +56,24 @@ RSpec.describe Users::OmniauthCallbacksController do
       context 'when omniauth.origin is not present' do
         before do
           @request.env["omniauth.origin"] = nil
+          request.env["HTTP_REFERER"] = '/referer/path'
         end
 
-        it 'redirects to the dashboard' do
+        it 'redirects to the referer path' do
           get :saml
-          expect(response).to redirect_to(dashboard_path)
+          expect(response).to redirect_to('/referer/path')
+        end
+      end
+
+      context 'when neither omniauth.origin nor referer are present' do
+        before do
+          @request.env["omniauth.origin"] = nil
+          request.env["HTTP_REFERER"] = nil
+        end
+
+        it 'redirects to the root path' do
+          get :saml
+          expect(response).to redirect_to(root_path)
         end
       end
     end
