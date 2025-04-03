@@ -8,7 +8,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in @user
-      redirect_to request.env["omniauth.origin"] || hyrax.dashboard_path
+      redirect_to request.env["omniauth.origin"] || request.referer || root_path
       set_flash_message(:notice, :success, kind: "SAML")
     else
       redirect_to root_path
