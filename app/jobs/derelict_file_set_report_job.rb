@@ -11,7 +11,7 @@ class DerelictFileSetReportJob < Hyrax::ApplicationJob
     process_file_sets_without_files
     process_file_sets_unlinked_to_publications
     create_report(filename: 'file_sets_without_files.csv', report_array: @file_sets_lacking_files) if @file_sets_lacking_files.present?
-    create_report(filename: 'file_sets_unlinked_to_publications.csv', report_array: @file_sets_lacking_files) if @file_sets_lacking_files.present?
+    create_report(filename: 'file_sets_unlinked_to_publications.csv', report_array: @file_sets_unlinked_to_publications) if @file_sets_unlinked_to_publications.present?
   end
 
   private
