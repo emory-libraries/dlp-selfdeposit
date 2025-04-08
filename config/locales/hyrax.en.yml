@@ -70,8 +70,14 @@ en:
     admin:
       sidebar:
         background_jobs: Background Jobs
+        profile: Account
+    dashboard:
+      profiles:
+        edit_primary:
+          save_profile: <i class="fa fa-floppy-o"></i> Save Account
     directory:
       suffix: "@example.org"
+    edit_profile: Edit Account
     footer:
       copyright_html: "<strong>Copyright &copy; 2022 Samvera</strong> Licensed under the Apache License, Version 2.0"
       service_html: A service of <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a>.
@@ -86,6 +92,8 @@ en:
       form:
         q:
           placeholder: Search OpenEmory
+    user_profile:
+      tab_profile: Account
   simple_form:
     hints:
       defaults:
