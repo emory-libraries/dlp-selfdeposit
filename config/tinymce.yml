@@ -2,12 +2,23 @@ default: &default
   setup: tinymce_nav_safety # onChange event init
 content_block:
   <<: *default
-  menubar: false
-  toolbar1: styleselect | bold italic | undo redo
-  toolbar2: table | fullscreen | image
+  toolbar1: undo redo | styles | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image
   plugins:
-    - table
+    - advlist
+    - anchor
+    - autolink
+    - charmap
+    - code
     - fullscreen
+    - help
     - image
+    - insertdatetime
+    - link
+    - lists
+    - media
+    - preview
+    - searchreplace
+    - table
+    - visualblocks
 custom:
   <<: *default
