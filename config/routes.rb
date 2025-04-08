@@ -29,7 +29,11 @@ Rails.application.routes.draw do
 
   mount Hydra::RoleManagement::Engine => '/'
 
-  mount Sidekiq::Web => '/sidekiq'
+  # Require authentication by an admin user to mount sidekiq web ui
+  authenticate :user, ->(u) { u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   match "queue-latency" => proc {
                              [200, { "Content-Type" => "application/json" }, [latency_text]]
                            }, via: :get
