@@ -196,16 +196,10 @@
 }
 
 #savewidget ul.visibility > li.form-check {
-  margin-bottom: 1rem;
-  > label.form-check-label {
-    > span.badge {
-      width: 4rem;
-    }
-    > div {
-      margin-top: .25rem;
-      > div > p > * {
-          margin-bottom: .25rem;
-      }
+  > label.form-check-label > div {
+    margin-top: .25rem;
+    > div > p > * {
+      margin-bottom: .25rem;
     }
   }
   select.form-control {
