@@ -16,7 +16,6 @@
           <label class="form-check-label">
             <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC, class: 'form-check-input', data: { 'target': '#collapsePublic' } %>
             <%= visibility_badge(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC) %>
-            <br />
             <%= t('hyrax.visibility.open.note_html', type: f.object.human_readable_type) %>
             <div class="collapse" id="collapsePublic">
               <%= t('hyrax.visibility.open.warning_html', label: visibility_badge(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)) %>
@@ -27,14 +26,14 @@
           <label class="form-check-label">
             <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_EMBARGO, 'aria-label': 'Embargo', class: 'form-check-input', data: { 'target': '#collapseEmbargo' } %>
             <%= visibility_badge(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_EMBARGO) %>
-            <br />
             <%= t('hyrax.visibility.embargo.note_html') %>
             <div class="collapse" id="collapseEmbargo">
               <div class="form-inline">
-                <%= f.input :visibility_during_embargo, wrapper: :inline, collection: visibility_options(:restrict), include_blank: false %>
-                <%= t('hyrax.works.form.visibility_until') %>
-                <%= f.date_field :embargo_release_date, wrapper: :inline, 'aria-label': 'Embargo Release Date', value: f.object.embargo_release_date&.to_date || Date.tomorrow, class: 'datepicker form-control' %>
-                <%= f.input :visibility_after_embargo, wrapper: :inline, collection: visibility_options(:loosen), include_blank: false %>
+                <p>
+                  <%= f.input :visibility_during_embargo, wrapper: :inline, collection: visibility_options(:restrict), include_blank: false %>
+                  <%= t('hyrax.works.form.visibility_until') %> <%= f.date_field :embargo_release_date, wrapper: :inline, 'aria-label': 'Embargo Release Date', value: f.object.embargo_release_date&.to_date || Date.tomorrow, class: 'datepicker form-control' %>
+                  <%= f.input :visibility_after_embargo, wrapper: :inline, collection: visibility_options(:loosen), include_blank: false %>
+              </p>
               </div>
             </div>
           </label>
@@ -56,10 +55,11 @@
               <%= t('hyrax.visibility.lease.note_html') %>
               <div class="collapse" id="collapseLease">
                 <div class="form-inline">
-                  <%= f.input :visibility_during_lease, wrapper: :inline, collection: visibility_options(:loosen), include_blank: false %>
-                  <%= t('hyrax.works.form.visibility_until') %>
-                  <%= f.date_field :lease_expiration_date, wrapper: :inline, 'aria-label': 'Lease Expiration Date', value: f.object.lease_expiration_date&.to_date || Date.tomorrow, class: 'datepicker form-control' %>
-                  <%= f.input :visibility_after_lease, wrapper: :inline, collection: visibility_options(:restrict), include_blank: false %>
+                  <p>
+                    <%= f.input :visibility_during_lease, wrapper: :inline, collection: visibility_options(:loosen), include_blank: false %>
+                    <%= t('hyrax.works.form.visibility_until') %> <%= f.date_field :lease_expiration_date, wrapper: :inline, 'aria-label': 'Lease Expiration Date', value: f.object.lease_expiration_date&.to_date || Date.tomorrow, class: 'datepicker form-control' %>
+                    <%= f.input :visibility_after_lease, wrapper: :inline, collection: visibility_options(:restrict), include_blank: false %>
+                  </p>
                 </div>
               </div>
             </label>

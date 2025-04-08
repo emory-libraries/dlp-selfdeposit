@@ -194,4 +194,27 @@
 #content_block_page * a {
   color: $bright-blue;
 }
+
+#savewidget ul.visibility > li.form-check {
+  margin-bottom: 1rem;
+  > label.form-check-label {
+    > span.badge {
+      width: 4rem;
+    }
+    > div {
+      margin-top: .25rem;
+      > div > p > * {
+          margin-bottom: .25rem;
+      }
+    }
+  }
+  select.form-control {
+    padding: 0;
+    margin-left: .25rem;
+  }
+  input.datepicker.form-control {
+    padding-left: .05rem;
+    margin-left: 0;
+  }
+}
 /**** End Publication Form ****/
