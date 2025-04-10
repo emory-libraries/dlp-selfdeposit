@@ -1,6 +1,7 @@
 @import "colors.scss";
 @import "fonts.scss";
 
+/* sections in order of appearance in the dashboard sidebar */
 /**** Dashboard body and header ****/
 body.dashboard {
   padding-top: 0;
@@ -107,9 +108,16 @@ body.dashboard {
   }
   /**** end Collections ****/
 
+  /*** WORKS ***/
   // works - hide title "Administrative Set"
   #admin_sets h5 {
     display: none;
+  }
+  /* works/browse view versioning*/
+  #versioning_display {
+    // div.fileupload-buttonbar {
+    //   margin-left: 0;
+    // }
   }
 
   /**** filtering from dashboard works or collections ****/
