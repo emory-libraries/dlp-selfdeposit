@@ -115,9 +115,25 @@ body.dashboard {
   }
   /* works/browse view versioning*/
   #versioning_display {
-    // div.fileupload-buttonbar {
-    //   margin-left: 0;
-    // }
+    div.fileupload-buttonbar {
+      padding: 0 0 1.5rem 0;
+    }
+    h3 {
+      margin-bottom: 1rem;
+    }
+    label.fileinput-button,
+    button#upload_submit,
+    div.form-check,
+    button#revert_submit,
+    div#save_version_note {
+      margin-left: 0.9375rem;
+    }
+    form.edit_file_set_previous_version {
+      margin-top: 1.5rem;
+      > div {
+        margin-bottom: 0.5rem;
+      }
+    }
   }
 
   /**** filtering from dashboard works or collections ****/
