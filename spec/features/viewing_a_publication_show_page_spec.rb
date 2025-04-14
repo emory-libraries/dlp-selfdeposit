@@ -52,6 +52,8 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
     expect(page).to have_link('RIS')
   end
 
+  it('does not contain a COINS hook for Zotero') { expect(page).not_to have_css('span.Z3988') }
+
   context 'when user is admin' do
     # make an admin user for testing preservation events table presence
     before do
