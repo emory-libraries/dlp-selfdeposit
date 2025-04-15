@@ -390,8 +390,11 @@ function isOrcidIdValid(orcidVal, orcidID) {
 
 function isUrlValid(url) {
     try {
-        new URL(url);
-        return true;
+        // new URL(url);
+        const newUrl = new URL(url);
+        // console.log(newUrl.protocol);
+        return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';
+        // return true;
     } catch (err) {
         return false;
     }
