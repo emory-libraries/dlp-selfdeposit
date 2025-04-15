@@ -98,8 +98,8 @@
   .list-group-item {
     text-align: left;
   }
-  .list-group-item * {
-    padding: 0.25rem 1rem;
+  .list-group-item div.btn-group > div {
+      padding: 0.25rem 1rem 0.25rem 0;
   }
   .dropdown-toggle::after {
     content: "❯";
