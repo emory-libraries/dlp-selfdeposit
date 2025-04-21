@@ -12,10 +12,8 @@
       <%= "Citation Management Tools" %>
     </div>
     <ul class="dropdown-menu">
-        <li class="dropdown-item"><%= link_to 'RIS', polymorphic_path([main_app, presenter], format: 'ris') %></li>
-        <li class="dropdown-item"><%= link_to t('.endnote'), polymorphic_path([main_app, presenter], format: 'endnote') %></li>
+        <li class="dropdown-item"><%= link_to 'Download Citation (RIS)', polymorphic_path([main_app, presenter], format: 'ris') %></li>
         <li class="dropdown-item"><%= link_to t('.zotero'), hyrax.zotero_path, id: 'zoteroLink', name: 'zotero' %></li>
-        <li class="dropdown-item"><%= link_to t('.mendeley'), hyrax.mendeley_path, id: 'mendeleyLink', name: 'mendeley' %></li>
       </ul>
   </div>
 </li>
