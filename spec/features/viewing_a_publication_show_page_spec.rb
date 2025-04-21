@@ -49,7 +49,13 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
 
   it 'provides a citation link for RIS' do
     find('div.dropdown-toggle', text: 'Citation Management Tools').click
-    expect(page).to have_link('RIS')
+    expect(page).to have_link('Download Citation (RIS)')
+  end
+
+  it 'lacks Mendeley and Endnote citation options' do
+    find('div.dropdown-toggle', text: 'Citation Management Tools').click
+    expect(page).not_to have_link('Mendeley')
+    expect(page).not_to have_link('EndNote')
   end
 
   it('does not contain a COINS hook for Zotero') { expect(page).not_to have_css('span.Z3988') }
