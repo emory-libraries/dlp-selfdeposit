@@ -83,7 +83,7 @@ en:
       service_html: A service of <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a>.
     institution_name: Institution
     institution_name_full: The Institution Name
-    product_name: DLP Self Deposit
+    product_name: OpenEmory
     product_twitter_handle: ""
     search:
       button:
