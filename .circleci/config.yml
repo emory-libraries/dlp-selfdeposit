@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:<< parameters.ruby_version >>-browsers
-      - image: fcrepo/fcrepo:6.4.0
+      - image: fcrepo/fcrepo:6.4.1
         environment:
           CATALINA_OPTS: >-
             -Dfcrepo.home=/fcrepo-home -Djava.awt.headless=true -Dfile.encoding=UTF-8
