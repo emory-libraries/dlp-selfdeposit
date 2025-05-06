@@ -18,13 +18,16 @@
       </div>
     </li>
   <% else %>
-    <li class="nav-item">
-      <%= link_to main_app.new_user_session_path, class: 'nav-link' do %>
-        <%= t("hyrax.toolbar.profile.login") %>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Shib", main_app.user_saml_omniauth_authorize_path(origin: request.original_url), method: :post, class: 'nav-link' %>
-    </li>
+    <% if AuthConfig.use_database_auth? %>
+      <li class="nav-item">
+        <%= link_to main_app.new_user_session_path, class: 'nav-link' do %>
+          <%= t("hyrax.toolbar.profile.login") %>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to "Login", main_app.user_saml_omniauth_authorize_path(origin: request.original_url), method: :post, class: 'nav-link' %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
