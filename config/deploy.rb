@@ -46,7 +46,7 @@ set :branch, ENV['REVISION'] || ENV['BRANCH'] || ENV['BRANCH_NAME'] || 'main'
 append :linked_dirs, "log", "public/assets", "tmp/pids", "tmp/cache", "tmp/sockets",
   "tmp/imports", "config/emory/groups", "tmp/csv_uploads", "tmp/csv_uploads_cache"
 
-append :linked_files, ".env.production", "config/secrets.yml"
+append :linked_files, ".env.production", "config/secrets.yml", "public/sitemap.xml"
 
 set :default_env,
     PATH: '$PATH:/usr/local/rbenv/shims/ruby',

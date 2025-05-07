@@ -311,6 +311,7 @@ GEM
       mime-types (>= 1.16)
       ssrf_filter (~> 1.0, < 1.1.0)
     childprocess (5.0.0)
+    chronic (0.10.2)
     clipboard-rails (1.7.1)
     coderay (1.1.3)
     coffee-rails (4.2.2)
@@ -1259,6 +1260,8 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yaml-ld (0.0.3)
@@ -1344,6 +1347,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  whenever
   xray-rails!
 
 RUBY VERSION
