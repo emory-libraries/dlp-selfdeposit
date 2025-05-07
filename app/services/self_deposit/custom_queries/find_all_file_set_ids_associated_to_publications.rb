@@ -24,7 +24,7 @@ module SelfDeposit
           docs = @connection.paginate(
                    docs.next_page, docs.per_page, "select", params: { q: query, fq: filter_query, fl: fields_selection }
                  )["response"]["docs"]
-          docs.each { |doc| yield doc["member_ids_ssim"] }
+          docs.each { |doc| doc["member_ids_ssim"].each { |id| yield id } }
         end
       end
 
