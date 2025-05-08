@@ -55,7 +55,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.1.0'
 
   # Add inspection tool for frontend
   gem "xray-rails", git: "https://github.com/brentd/xray-rails", branch: "bugs/ruby-3.0.0"
