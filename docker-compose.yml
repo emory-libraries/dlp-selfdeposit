@@ -142,7 +142,7 @@ services:
       - dlp
 
   redis:
-    image: bitnami/redis:6.2
+    image: bitnami/redis:8.0
     env_file:
       - .env.development
     volumes:
