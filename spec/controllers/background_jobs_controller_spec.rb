@@ -9,9 +9,9 @@ RSpec.describe BackgroundJobsController, type: :controller, clean: true do
 
   let(:admin) { FactoryBot.create(:admin) }
   let(:user) { FactoryBot.create(:user) }
-  let(:csv_file) { fixture_file_upload((fixture_path + '/reindex_files.csv'), 'text/csv') }
+  let(:csv_file) { fixture_file_upload(fixture_path + '/reindex_files.csv', 'text/csv') }
   let(:csv_file2) do
-    fixture_file_upload((fixture_path + '/preservation_workflows.csv'), 'text/csv')
+    fixture_file_upload(fixture_path + '/preservation_workflows.csv', 'text/csv')
   end
 
   let(:new_call) { get :new }
