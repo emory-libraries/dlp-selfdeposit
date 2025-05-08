@@ -749,7 +749,7 @@ GEM
     multipart-post (2.4.1)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
-    mutex_m (0.2.0)
+    mutex_m (0.3.0)
     nest (3.2.0)
       redic
     net-http (0.6.0)
@@ -1308,7 +1308,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.9.1)
-  mutex_m (~> 0.2.0)
+  mutex_m (~> 0.3.0)
   omniauth-rails_csrf_protection
   omniauth-saml
   pg (~> 1.3)
