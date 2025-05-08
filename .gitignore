@@ -85,7 +85,8 @@ node_modules
 .env.development
 .env.test
 # ignore branding path
-public/branding
-
-public/uv/
 public/assets/
+public/branding
+public/sitemap.xml
+public/uv/
+
