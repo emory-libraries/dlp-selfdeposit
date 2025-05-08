@@ -15,7 +15,7 @@ jobs:
             -XX:MaxPermSize=256m -XX:+DisableExplicitGC -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
           JAVA_OPTS: >-
             -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
-      - image: zookeeper:3.4
+      - image: zookeeper:3.9
       - image: solr:<< parameters.solr_version >>
         command: >-
           sh -c "server/scripts/cloud-scripts/zkcli.sh -zkhost localhost:2181 -cmd
