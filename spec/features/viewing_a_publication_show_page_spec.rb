@@ -60,6 +60,14 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
 
   it('does not contain a COINS hook for Zotero') { expect(page).not_to have_css('span.Z3988') }
 
+  it 'contains a Contact Us link in Tools' do
+    contact_us = find('.card.viewer-actions ul li.direct_link a', text: 'Contact Us')
+    expect(contact_us['href']).to include(
+      'https://emory.libwizard.com/id/c1f0cb426fc77f8491d3b19eab369b9b?referal_url', "/concern/publications/#{publication.id}"
+    )
+    expect(contact_us['target']).to eq('_blank')
+  end
+
   context 'when user is admin' do
     # make an admin user for testing preservation events table presence
     before do
