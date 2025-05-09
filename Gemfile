@@ -44,7 +44,7 @@ group :development do
   # Add deployment tools
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
   gem "capistrano", require: false
-  gem 'capistrano-bundler', '~> 1.3', require: false
+  gem 'capistrano-bundler', '~> 2.0', require: false
   gem "capistrano-rails", "~> 1.6", require: false
   gem 'capistrano-rbenv', '~> 2.2', require: false
   gem 'ec2_ipv4_retriever', git: 'https://github.com/emory-libraries/ec2_ipv4_retriever', branch: 'main'
