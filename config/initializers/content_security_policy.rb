@@ -10,7 +10,7 @@ Rails.application.config.content_security_policy do |policy|
   #   policy.font_src    :self, :https, :data
   #   policy.img_src     :self, :https, :data
   #   policy.object_src  :none
-  policy.script_src :self, 'https://emory.libwizard.com/form_loader.php?id=c1f0cb426fc77f8491d3b19eab369b9b&noheader=1 https://www.googletagmanager.com/gtag/js?id=G-JJ43YGFK4G'
+  policy.script_src :self, :https, :unsafe_inline
   #   policy.style_src   :self, :https
 
   #   # Specify URI for violation reports
