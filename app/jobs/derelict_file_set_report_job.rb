@@ -5,7 +5,7 @@ class DerelictFileSetReportJob < Hyrax::ApplicationJob
     @query_service = Hyrax.query_service
     @file_sets_lacking_files = []
     @file_sets_unlinked_to_publications = []
-    @all_file_sets_from_fedora = @query_service.find_all_of_model(model: ::FileSet)
+    @all_file_sets_from_fedora = @query_service.find_all_of_model(model: ::FileSet).to_a
     @all_file_set_ids_linked_publications = @query_service.custom_queries.find_all_file_set_ids_associated_to_publications
 
     process_file_sets_without_files
