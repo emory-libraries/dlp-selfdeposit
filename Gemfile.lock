@@ -555,6 +555,9 @@ GEM
     hashdiff (1.1.2)
     hashie (5.0.0)
     hiredis (0.6.3)
+    honeybadger (5.28.0)
+      logger
+      ostruct
     htmlentities (4.3.4)
     http_logger (0.7.0)
     httpclient (2.8.3)
@@ -1312,6 +1315,7 @@ DEPENDENCIES
   ec2_ipv4_retriever!
   ed25519 (>= 1.2, < 2.0)
   factory_bot_rails
+  honeybadger
   hydra-role-management
   hyrax!
   jbuilder (~> 2.5)
