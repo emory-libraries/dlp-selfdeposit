@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get 'auth/failure', to: 'users/omniauth_callbacks#failure'
     post '/auth/saml/callback', to: 'omniauth_callbacks#saml', as: 'user_omniauth_callback'
     post '/auth/saml', to: 'omniauth_callbacks#passthru', as: 'user_omniauth_authorize'
+    delete 'users/sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
   resources :background_jobs, only: [:new, :create]
