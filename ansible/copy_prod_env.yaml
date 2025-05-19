@@ -83,3 +83,10 @@
       state: touch
       owner: deploy
       group: deploy
+
+  - name: touch sitemap.xml
+    file:
+      path: /opt/dlp-selfdeposit/shared/public/sitemap.xml
+      state: touch
+      owner: deploy
+      group: deploy

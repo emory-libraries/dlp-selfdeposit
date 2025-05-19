@@ -1,11 +1,11 @@
-<%# Hyrax v5.0.1 Override: institutes our own layout. Starts line 7, through line 69. %>
+<%# Hyrax v5.0.1 Override: institutes our own layout. Starts line 7, through line 71. %>
 
 <% provide :page_title, @presenter.page_title %>
 
 <%= render 'shared/citations' %>
 
 <div id="view-work-page" class="row work-type">
-  
+
   <div class="col-sm-12">
     <%= render 'work_type', presenter: @presenter %>
   </div>
@@ -47,13 +47,19 @@
                   id: "file_download" %>
                 </li>
                 <% end %>
-
+                <li class="list-group-item direct_link">
+                  <%= link_to 'Contact Us',
+                    "https://emory.libwizard.com/id/c1f0cb426fc77f8491d3b19eab369b9b?referal_url=#{request.original_url}",
+                    target: :_blank
+                  %>
+                </li>
                 <%= render 'citations', presenter: @presenter %>
 
               </ul>
             </div>
           </div>
         </div>
+      </div>
     </div><!-- /.card -->
 
     <div class="card">
