@@ -1,0 +1,13 @@
+---
+# For more options, see https://docs.honeybadger.io/lib/ruby/gem-reference/configuration
+
+api_key: <%= ENV['HONEYBADGER_API_KEY'] %>
+
+# The environment your app is running in.
+env: <%= ENV['HONEYBADGER_ENV'] || Rails.env %>
+
+# The absolute path to your project folder.
+root: "<%= Rails.root.to_s %>"
+
+breadcrumbs:
+  enabled: <%= !Rails.env.test? %>

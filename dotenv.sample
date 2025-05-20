@@ -53,3 +53,6 @@ FEDORA_VERSION=
 OPENEMORY_WORKFLOW_ADMIN_SET_ID=
 OPENEMORY_COLLECTION_ID=
 DATABASE_AUTH=true
+HONEYBADGER_API_KEY=
+# Honeybadger ENV label. Choose from the following values: "SelfDeposit-Prod", "SelfDeposit-Test", "SelfDeposit-Arch". Only set this value for production environments.
+HONEYBADGER_ENV=
