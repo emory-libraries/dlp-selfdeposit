@@ -21,7 +21,7 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
   it 'contains the expected field labels' do
     field_labels = find_all('label.control-label').map(&:text)
     expected_labels = [
-      "Type of Material required", "Title required", "First Name required", "Last Name required", "Institution required",
+      "Type of Material required", "Title required", "Authors", "First Name required", "Last Name required", "Institution required",
       "ORCID ID", "Primary Language required", "Date required", "Publisher required", "Publication Version",
       "Copyright Statement required", "License", "Final Published Version (URL)", "Title of Journal or Parent Work",
       "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Start Page",
