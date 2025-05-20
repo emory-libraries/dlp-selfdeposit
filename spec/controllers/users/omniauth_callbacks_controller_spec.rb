@@ -50,7 +50,7 @@ RSpec.describe Users::OmniauthCallbacksController do
       it 'signs in and redirects the user' do
         get :saml
         expect(response).to redirect_to('/custom/path')
-        expect(flash[:notice]).to match(/Successfully authenticated from SAML account./)
+        expect(flash[:notice]).to match(/Successfully authenticated from Emory account./)
       end
 
       context 'when omniauth.origin is not present' do
