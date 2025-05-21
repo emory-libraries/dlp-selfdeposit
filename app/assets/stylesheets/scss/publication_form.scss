@@ -163,24 +163,37 @@
     min-height: 0;
     overflow: hidden;
 
-    .form-group,
+    .form-group {
+      padding: 1rem 0.75rem 1rem 0.75rem;
+      margin-bottom: 0;
+    }
+
     form.new_user .field {
       padding: 0 0.75rem;
     }
 
-    h6 {
-      padding: 0 0.75rem;
-      font-weight: bold;
-      color: black;
+     /* creators form - multiple creators */
+    #creators-container {
+      margin: 0 -.75rem;
+      > div:not(:last-child) {
+        border-bottom: 1px dotted $base-slate;
+      }
+      div.nested-fields.row {
+        margin: 0 -.93rem;
+      }
     }
+
 
     > div {
       overflow: hidden;
+      > div {
+        border-bottom: 1px solid $base-slate;
+      }
     }
 
     &.open {
       max-height: initial;
-      margin-top: 2rem;
+      margin-top: 1rem;
       padding: 0;
     }
   }
