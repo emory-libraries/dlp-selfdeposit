@@ -10,7 +10,7 @@ RSpec.describe SelfDeposit::CustomQueries::FindAllObjectIdsWithAlternateIdsPrese
   describe '#find_all_object_ids_with_alternate_ids_present' do
     context 'when no objects match' do
       it 'returns an empty enum' do
-        expect(query_handler.find_all_object_ids_with_alternate_ids_present).to be_a(Enumerator)
+        expect(query_handler.find_all_object_ids_with_alternate_ids_present).to be_a(Array)
         expect(query_handler.find_all_object_ids_with_alternate_ids_present.to_a).to be_empty
       end
     end
@@ -21,7 +21,7 @@ RSpec.describe SelfDeposit::CustomQueries::FindAllObjectIdsWithAlternateIdsPrese
       it 'returns an enum with one object' do
         publication
 
-        expect(query_handler.find_all_object_ids_with_alternate_ids_present).to be_a(Enumerator)
+        expect(query_handler.find_all_object_ids_with_alternate_ids_present).to be_a(Array)
         expect(query_handler.find_all_object_ids_with_alternate_ids_present.to_a.first).to eq(
           { "id" => publication.id, "alternate_ids_ssim" => ["145djjdjd-emory"] }
         )
