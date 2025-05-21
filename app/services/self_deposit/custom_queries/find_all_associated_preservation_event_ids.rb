@@ -21,9 +21,9 @@ module SelfDeposit
       ##
       # @returns Array[PreservationEvents ids] or []
       def find_all_associated_preservation_event_ids
-        return_array = +[]
+        return_array = []
         valkyrie_objects.each do |obj|
-          obj.preservation_event_ids.split(',').each { |id| return_array << id } if obj.preservation_event_ids.present?
+          obj.preservation_event_ids.split(',').each { |id| return_array += [id] } if obj.preservation_event_ids.present?
         end
         return_array
       end
