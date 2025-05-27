@@ -15,7 +15,7 @@ Rails.application.configure do
   # To display stack traces in production, you want
   # config.consider_all_requests_local       = true
   # To hide stack traces in production, set this to false.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
