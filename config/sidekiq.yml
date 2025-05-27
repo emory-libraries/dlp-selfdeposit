@@ -6,9 +6,6 @@
   - [default, 1]
   - [export, 1]
 
-:limits:
-  ingest: 7
-
 :timeout: 300
 
 :max_retries: 3
