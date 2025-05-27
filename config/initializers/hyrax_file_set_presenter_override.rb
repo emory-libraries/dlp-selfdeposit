@@ -14,5 +14,10 @@ Rails.application.config.to_prepare do
     end
 
     delegate(*characterization_terms, to: :solr_document)
+
+    # The title of the webpage that shows this FileSet.
+    def page_title
+      "File Set: #{id}"
+    end
   end
 end
