@@ -30,10 +30,15 @@ RSpec.describe "viewing the search results page", :clean_repo, :perform_enqueued
     Hyrax.index_adapter.save(resource: publication)
     visit search_catalog_path
   end
-
   context 'headers and meta tags' do
     it 'contains the expected title tag in header' do
       expect(page).to have_css 'head title', text: 'Search Results | OpenEmory', visible: false
+    end
+  end
+
+  context 'list view options' do
+    it 'omits the gallery view button' do
+      expect(page).not_to have_css('a.view-type-gallery[title="Gallery"]')
     end
   end
 
