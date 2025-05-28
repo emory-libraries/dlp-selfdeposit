@@ -61,6 +61,8 @@ Rails.application.routes.draw do
     end
   end
 
+  match '/404', to: 'errors#not_found', via: :all
+
   # rubocop:disable Rails/FindEach
   def latency_text
     ret_hsh = { queues: [] }
