@@ -35,5 +35,7 @@ module DlpSelfDeposit
     config.action_dispatch.rescue_responses.merge!(
       'I18n::InvalidLocale' => :not_found
     )
+
+    config.exceptions_app = routes
   end
 end
