@@ -15,7 +15,6 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
-    config.view.gallery(document_component: Blacklight::Gallery::DocumentComponent)
     config.view.masonry(document_component: Blacklight::Gallery::DocumentComponent)
     config.view.slideshow(document_component: Blacklight::Gallery::SlideshowComponent)
 
@@ -24,7 +23,6 @@ class CatalogController < ApplicationController
     config.search_builder_class = Hyrax::CatalogSearchBuilder
 
     # Show gallery view
-    config.view.gallery.partials = [:index_header, :index]
     config.view.slideshow.partials = [:index]
 
     # Because too many times on Samvera tech people raise a problem regarding a failed query to SOLR.
