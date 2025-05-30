@@ -56,6 +56,7 @@ jobs:
       DB_PASSWORD: hyrax_password
       DB_PORT: 5432
       DB_USERNAME: hyrax_user
+      DATABASE_URL: postgresql://hyrax_user:hyrax_password@localhost:5432/dlp-selfdeposit-test?pool=5
       FCREPO_TEST_PORT: 8080
       FEDORA6_URL: http://fedoraAdmin:fedoraAdmin@127.0.0.1:8080/fcrepo/rest
       HYRAX_VALKYRIE: true
