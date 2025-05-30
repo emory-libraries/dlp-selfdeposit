@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require './lib/preservation_events'
+require 'bulkrax'
 
 Bulkrax.setup do |config|
   # Add local parsers
