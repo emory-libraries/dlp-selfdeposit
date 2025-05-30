@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Hyrax.config do |config|
     # Injected via `rails g hyrax:work_resource Publication`
     config.register_curation_concern :publication

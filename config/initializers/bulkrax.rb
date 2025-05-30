@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require './lib/preservation_events'
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Bulkrax.setup do |config|
     # Add local parsers
     # config.parsers += [
