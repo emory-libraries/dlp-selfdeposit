@@ -323,37 +323,39 @@ Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
 
-custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
-                  Hyrax::CustomQueries::Navigators::ChildCollectionsNavigator,
-                  Hyrax::CustomQueries::Navigators::ParentCollectionsNavigator,
-                  Hyrax::CustomQueries::Navigators::ChildFileSetsNavigator,
-                  Hyrax::CustomQueries::Navigators::ChildWorksNavigator,
-                  Hyrax::CustomQueries::Navigators::ParentWorkNavigator,
-                  Hyrax::CustomQueries::Navigators::FindFiles,
-                  Hyrax::CustomQueries::FindAccessControl,
-                  Hyrax::CustomQueries::FindCollectionsByType,
-                  Hyrax::CustomQueries::FindFileMetadata,
-                  Hyrax::CustomQueries::FindIdsByModel,
-                  Hyrax::CustomQueries::FindManyByAlternateIds,
-                  Hyrax::CustomQueries::FindModelsByAccess,
-                  Hyrax::CustomQueries::FindCountBy,
-                  Hyrax::CustomQueries::FindByDateRange,
-                  SelfDeposit::CustomQueries::FindAllAssociatedPreservationEventIds,
-                  SelfDeposit::CustomQueries::FindAllByModelViaSolr,
-                  SelfDeposit::CustomQueries::FindAllFileSetIdsAssociatedToPublications,
-                  SelfDeposit::CustomQueries::FindAllMetadataObjects,
-                  SelfDeposit::CustomQueries::FindAllObjectIdsLackingPreservationEvents,
-                  SelfDeposit::CustomQueries::FindAllObjectIdsWithAlternateIdsPresent,
-                  SelfDeposit::CustomQueries::FindAllPublicationIdsUnlinkedToCollection,
-                  SelfDeposit::CustomQueries::FindAllPreservationEventIds,
-                  SelfDeposit::CustomQueries::FindCountByModel,
-                  SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,
-                  SelfDeposit::CustomQueries::FindParentWorks,
-                  SelfDeposit::CustomQueries::FindByEmoryPersistentId,
-                  SelfDeposit::CustomQueries::FindByCollectionTitle,
-                  SelfDeposit::CustomQueries::FindBySourceIdentifier]
-custom_queries.each do |handler|
-  Hyrax.query_service.custom_queries.register_query_handler(handler)
+Rails.application.reloader.to_prepare do
+  custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
+                    Hyrax::CustomQueries::Navigators::ChildCollectionsNavigator,
+                    Hyrax::CustomQueries::Navigators::ParentCollectionsNavigator,
+                    Hyrax::CustomQueries::Navigators::ChildFileSetsNavigator,
+                    Hyrax::CustomQueries::Navigators::ChildWorksNavigator,
+                    Hyrax::CustomQueries::Navigators::ParentWorkNavigator,
+                    Hyrax::CustomQueries::Navigators::FindFiles,
+                    Hyrax::CustomQueries::FindAccessControl,
+                    Hyrax::CustomQueries::FindCollectionsByType,
+                    Hyrax::CustomQueries::FindFileMetadata,
+                    Hyrax::CustomQueries::FindIdsByModel,
+                    Hyrax::CustomQueries::FindManyByAlternateIds,
+                    Hyrax::CustomQueries::FindModelsByAccess,
+                    Hyrax::CustomQueries::FindCountBy,
+                    Hyrax::CustomQueries::FindByDateRange,
+                    SelfDeposit::CustomQueries::FindAllAssociatedPreservationEventIds,
+                    SelfDeposit::CustomQueries::FindAllByModelViaSolr,
+                    SelfDeposit::CustomQueries::FindAllFileSetIdsAssociatedToPublications,
+                    SelfDeposit::CustomQueries::FindAllMetadataObjects,
+                    SelfDeposit::CustomQueries::FindAllObjectIdsLackingPreservationEvents,
+                    SelfDeposit::CustomQueries::FindAllObjectIdsWithAlternateIdsPresent,
+                    SelfDeposit::CustomQueries::FindAllPublicationIdsUnlinkedToCollection,
+                    SelfDeposit::CustomQueries::FindAllPreservationEventIds,
+                    SelfDeposit::CustomQueries::FindCountByModel,
+                    SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,
+                    SelfDeposit::CustomQueries::FindParentWorks,
+                    SelfDeposit::CustomQueries::FindByEmoryPersistentId,
+                    SelfDeposit::CustomQueries::FindByCollectionTitle,
+                    SelfDeposit::CustomQueries::FindBySourceIdentifier]
+  custom_queries.each do |handler|
+    Hyrax.query_service.custom_queries.register_query_handler(handler)
+  end
 end
 
 ActiveFedora.init(solr_config_path: Rails.root.join('config', 'solr.yml'))
