@@ -8,9 +8,9 @@ require 'faraday/multipart'
 Valkyrie::MetadataAdapter.register(
   Valkyrie::Persistence::Fedora::MetadataAdapter.new(
     connection: ::Ldp::Client.new(Hyrax.config.fedora_connection_builder.call(
-      ENV.fetch('FCREPO_URL') { "http://localhost:8080/fcrepo/rest" }
+      ENV.fetch('FEDORA6_URL') { ENV.fetch('FEDORA_URL') { "http://localhost:8080/fcrepo/rest" } }
     )),
-    base_path: Rails.env,
+    base_path: ENV.fetch('FEDORA_BASE_PATH', Rails.env).gsub(/^\/|\/$/, ''),
     schema: Valkyrie::Persistence::Fedora::PermissiveSchema.new(Hyrax::SimpleSchemaLoader.new.permissive_schema_for_valkrie_adapter),
     fedora_version: 6
   ), :fedora_metadata
@@ -40,9 +40,9 @@ Valkyrie.config.metadata_adapter = ENV.fetch('VALKYRIE_METADATA_ADAPTER') { :pg_
 Valkyrie::StorageAdapter.register(
   Valkyrie::Storage::Fedora.new(
     connection: ::Ldp::Client.new(Hyrax.config.fedora_connection_builder.call(
-      ENV.fetch('FCREPO_URL') { "http://localhost:8080/fcrepo/rest" }
+      ENV.fetch('FEDORA6_URL') { ENV.fetch('FEDORA_URL') { "http://localhost:8080/fcrepo/rest" } }
     )),
-    base_path: Rails.env,
+    base_path: ENV.fetch('FEDORA_BASE_PATH', Rails.env).gsub(/^\/|\/$/, ''),
     fedora_version: 6
   ), :fedora_storage
 )

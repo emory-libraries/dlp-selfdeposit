@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '~> 3.2.2'
 
+gem 'activerecord-nulldb-adapter', '~> 1.1'
 gem 'aws-sdk-secretsmanager'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.6'
@@ -16,19 +17,22 @@ gem 'devise-guests', '~> 0.8'
 gem 'dotenv-rails'
 gem 'honeybadger'
 gem 'hydra-role-management'
-gem 'hyrax', git: 'https://github.com/samvera/hyrax', ref: '9c58751'
+gem 'hyrax', '~> 5.1'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mutex_m', '~> 0.2.0'
+gem 'okcomputer'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-saml'
 gem 'pg', '~> 1.3'
 gem 'puma'
-gem 'rails', '~> 6.1'
+gem 'rack-mini-profiler', require: ['prepend_net_http_patch']
+gem 'rails', '~> 7.2', '< 8.0'
 gem 'riiif', '~> 2.1'
 gem 'rsolr', '>= 1.0', '< 3'
 gem 'sass-rails', '~> 6.0'
-gem 'sidekiq', '~> 6.4'
+gem 'sidekiq', '~> 7.0'
+gem 'stackprof', require: false
 gem 'twitter-typeahead-rails', '0.11.1'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
@@ -51,12 +55,7 @@ group :development do
   gem 'ed25519', '>= 1.2', '< 2.0'
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code
-  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
-
-  # Spring speeds up development by keeping your application running in the background
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 
   # Add inspection tool for frontend
   gem "xray-rails", git: "https://github.com/brentd/xray-rails", branch: "bugs/ruby-3.0.0"
