@@ -4,10 +4,18 @@ require 'hyrax/specs/shared_specs/factories/administrative_sets'
 include Warden::Test::Helpers
 
 RSpec.describe 'viewing the root page', :clean_repo, type: :feature do
-  it 'has the welcome text' do
-    visit root_path
+  before { visit root_path }
 
-    expect(page).to have_content('Emory Libraries')
+  it('has the welcome text') { expect(page).to have_content('Emory Libraries') }
+
+  context 'headers and meta tags' do
+    let(:content) do
+      'OpenEmory is an open access repository of scholarly works by Emory researchers and a service of Emory Libraries.'
+    end
+
+    it 'contains the expected meta tag' do
+      expect(page).to have_css "meta[name='description'][content='#{content}']", visible: false
+    end
   end
 
   context 'statistics' do
