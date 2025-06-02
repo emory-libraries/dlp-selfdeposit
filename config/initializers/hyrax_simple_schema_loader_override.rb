@@ -8,7 +8,7 @@ Rails.application.config.to_prepare do
       collection_type = if config['multiple']
                           Valkyrie::Types::Array.constructor { |v| Array(v).select(&:present?) }
                         else
-                          Identity
+                          Hyrax::SimpleSchemaLoader::AttributeDefinition::Identity
                         end
 
       config['ordered'] ? collection_type.of(type_for(config['type'])).meta(ordered: true) : collection_type.of(type_for(config['type']))
