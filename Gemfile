@@ -26,7 +26,6 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-saml'
 gem 'pg', '~> 1.3'
 gem 'puma'
-gem 'rack-mini-profiler', require: ['prepend_net_http_patch']
 gem 'rails', '6.1.7.10'
 gem 'riiif', '~> 2.1'
 gem 'rsolr', '>= 1.0', '< 3'
