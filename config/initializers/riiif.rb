@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'riiif'
+
 Rails.application.reloader.to_prepare do
   Riiif::Image.info_service = lambda do |id, _file|
     # id will look like a path to a pcdm:file
