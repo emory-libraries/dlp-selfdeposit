@@ -68,6 +68,12 @@ RSpec.describe "viewing a publication show page", :clean_repo, :perform_enqueued
     expect(contact_us['target']).to eq('_blank')
   end
 
+  context 'headers and meta tags' do
+    it 'contains the expected title tag in header' do
+      expect(page).to have_css 'head title', text: "#{publication.title.first} | OpenEmory", visible: false
+    end
+  end
+
   context 'when user is admin' do
     # make an admin user for testing preservation events table presence
     before do

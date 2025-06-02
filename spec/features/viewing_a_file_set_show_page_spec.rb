@@ -58,6 +58,12 @@ RSpec.describe "viewing a FileSet's show page", :clean_repo, :perform_enqueued, 
     expect(find_all('table#preservation-event-table tbody tr')).not_to be_present
   end
 
+  context 'headers and meta tags' do
+    it 'contains the expected title tag in header' do
+      expect(page).to have_css 'head title', text: "File Set: #{file_set.id}", visible: false
+    end
+  end
+
   context 'when admin logged in' do
     it 'contains a table of Preservation Events' do
       user.roles << Role.find_or_create_by(name: Hyrax.config.admin_user_group_name)
