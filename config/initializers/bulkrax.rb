@@ -264,7 +264,7 @@ Bulkrax::ValkyrieObjectFactory.class_eval do
   end
 end
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   # Hyrax v5.0.1 Override - since Bulkrax introduces the Wings constant when it installs, the first test to determine query type passes,
   #   but the `is_a?` method produces an error because `Wings::Valkyrie` constant doesn't exist. This provides that test, as well.
   Hyrax::DownloadsController.class_eval do

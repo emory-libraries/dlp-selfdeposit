@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # [Hyrax-overwrite-v5.0.1] - Adds in our charaterization terms to show on the fileset show page.
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Hyrax::FileSetPresenter.class_eval do
     def self.characterization_terms
       [

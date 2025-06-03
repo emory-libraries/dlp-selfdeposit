@@ -3,7 +3,7 @@
 #   - #form_tabs_for: blocks non-admins from seeing the relationships tab.
 #   - #admin_set_options: returns empty array is user's not an admin.
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Hyrax::WorkFormHelper.module_eval do
     ##
     # This helper allows downstream applications and engines to add/remove/reorder the tabs to be
