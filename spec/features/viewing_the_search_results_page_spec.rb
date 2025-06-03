@@ -31,6 +31,12 @@ RSpec.describe "viewing the search results page", :clean_repo, :perform_enqueued
     visit search_catalog_path
   end
 
+  context 'headers and meta tags' do
+    it 'contains the expected title tag in header' do
+      expect(page).to have_css 'head title', text: 'Search Results | OpenEmory', visible: false
+    end
+  end
+
   context 'sidebar facets' do
     it 'contains the expected facet labels' do
       expect(facets_pulled.count).to eq(6)
