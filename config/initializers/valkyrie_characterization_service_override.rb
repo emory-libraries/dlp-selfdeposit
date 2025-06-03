@@ -3,7 +3,7 @@
 #   registering the characterization of a Publication's FileSet.
 require './lib/preservation_events'
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Hyrax::Characterization::ValkyrieCharacterizationService.class_eval do
     include PreservationEvents
 

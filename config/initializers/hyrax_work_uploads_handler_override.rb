@@ -4,7 +4,7 @@
 require './lib/preservation_events'
 require 'noid-rails'
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Hyrax::WorkUploadsHandler.class_eval do
     include PreservationEvents
 

@@ -7,7 +7,7 @@
 #
 # This change will be submitted to Hyrax as a PR.
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Hyrax::EditPermissionsService.class_eval do
     ##
     # @api public

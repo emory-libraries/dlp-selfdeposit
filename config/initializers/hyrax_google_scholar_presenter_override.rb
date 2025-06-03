@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # [Hyrax-overwrite-v5.0.1] - Adds or overrides value pull methods.
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Hyrax::GoogleScholarPresenter.class_eval do
     EMORY_METHOD_ASSIGNMENTS = [
       ['publication_date', :date_issued_year],

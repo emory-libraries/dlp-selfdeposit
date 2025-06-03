@@ -2,7 +2,7 @@
 # [Blacklight-overwrite-v7.37.0]
 #   - should_render_index_field?: need to block `all_text_tsimv` when it returns values with no string provided for query.
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Blacklight::BlacklightHelperBehavior.module_eval do
     # @!group Document helpers
     ##

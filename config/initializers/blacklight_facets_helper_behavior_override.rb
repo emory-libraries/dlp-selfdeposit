@@ -3,7 +3,7 @@
 #   - #render_facet_partials: eliminates any facet group that only contains empty values.
 #   - #admin_set_options: sheds and empty-valued list item.
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Blacklight::FacetsHelperBehavior.module_eval do
     def render_facet_partials(fields = nil, options = {})
       deprecated_method(:render_facet_partials)

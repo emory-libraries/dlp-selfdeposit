@@ -24,7 +24,7 @@ Hyrax::Transactions::CollectionCreate::DEFAULT_STEPS = ['change_set.set_user_as_
                                                         'collection_resource.apply_collection_type_permissions',
                                                         'collection_resource.save_acl'].freeze
 
-Rails.application.config.to_prepare do
+Rails.application.reloader.to_prepare do
   Hyrax::Action::CreateValkyrieWork.class_eval do
     # includes `#set_noid_id` as a step in work creation.
     def step_args
