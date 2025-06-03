@@ -1,4 +1,7 @@
-<%# Hyrax v5.0.1 Override: L#31 turns off turbolinks caching so that javascript elements (accordions) load properly %>
+<%# Hyrax v5.0.1 Override:
+      - removes link to analytics
+      - reworks dropdown menu
+      - removes Zotero hook %>
 
 <div class="row show-actions button-row-top-two-column">
   <div class="col-sm-6">
@@ -23,7 +26,7 @@
 
   <div class="col-sm-6 text-right">
     <% if presenter.editor? && !workflow_restriction?(presenter) %>
-      <%= link_to t('.edit'), edit_polymorphic_path([main_app, presenter]), class: 'btn btn-secondary', data: { turbolinks: false } %>
+      <%= link_to t('.edit'), edit_polymorphic_path([main_app, presenter]), class: 'btn btn-secondary' %>
       <% if presenter.member_count > 1 %>
           <%= link_to t("hyrax.file_manager.link_text"), polymorphic_path([main_app, :file_manager, presenter]), class: 'btn btn-secondary' %>
       <% end %>
