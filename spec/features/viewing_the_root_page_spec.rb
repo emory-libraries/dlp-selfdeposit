@@ -43,5 +43,10 @@ RSpec.describe 'viewing the root page', :clean_repo, type: :feature do
 
       expect(page).to have_css('#total-works-num', text: '1')
     end
+
+    it 'lacks unwanted dlp-stat columns' do
+      expect(page).not_to have_css('.dlp-stat top', text: 'Downloads this year')
+      expect(page).not_to have_css('.dlp-stat top', text: 'Total Downloads')
+    end
   end
 end
