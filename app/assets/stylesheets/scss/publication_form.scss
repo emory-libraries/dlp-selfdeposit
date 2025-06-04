@@ -176,7 +176,7 @@
     #creators-container {
       margin: 0 -.75rem;
       > div:not(:last-child) {
-        border-bottom: 1px dotted $base-slate;
+        border-bottom: 1px dashed $light-slate;
       }
       div.nested-fields.row {
         margin: 0 -.93rem;
@@ -186,9 +186,6 @@
 
     > div {
       overflow: hidden;
-      > div {
-        border-bottom: 1px solid $base-slate;
-      }
     }
 
     &.open {
