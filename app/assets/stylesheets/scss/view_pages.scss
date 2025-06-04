@@ -28,6 +28,10 @@
   .button-row-top-two-column {
     margin-bottom: 2rem;
   }
+  .btn-secondary:not(:disabled):not(.disabled):active {
+    background-color: $bright-blue;
+    color: $white;
+  }
   .viewer-wrapper > iframe {
     /* hhyrax had this set as absolute, not sure why, but it was causing it to overflow from the card into the row on line 21 of the show page which has -15px margins.*/
     position: static;
