@@ -3,6 +3,7 @@ module SelfDeposit
   class Statistic < ::Hyrax::Statistic
     def self.content_genres
       results = query_works("content_genre_tesi")
+      return [] if results.keys == [nil]
       content_genres = []
       results.each do |y|
         if y["content_genre_tesi"].nil? || (y["content_genre_tesi"] == "")
