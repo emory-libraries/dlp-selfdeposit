@@ -63,7 +63,6 @@ module Hyrax
     end
   end
 
-
   class RiiifFileResolver
     include ActiveSupport::Benchmarkable
 
