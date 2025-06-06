@@ -175,8 +175,8 @@
      /* creators form - multiple creators */
     #creators-container {
       margin: 0 -.75rem;
-      > div:not(:last-child) {
-        border-bottom: 1px dashed $light-slate;
+      > div:not(:last-child) > span {
+        border-bottom: 1px dashed $base-slate;
       }
       div.nested-fields.row {
         margin: 0 -.93rem;
