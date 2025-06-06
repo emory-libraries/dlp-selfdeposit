@@ -265,7 +265,7 @@ div#announcement_text {
     color: $white;
     text-align: center;
   }
-  
+
   .dlp-featured {
     background-color: #fff;
     padding: 1.25rem 0.9375rem;
@@ -484,6 +484,12 @@ div#announcement_text {
 }
 
 /*** end Home Page ***/
+
+/*** 404 Error page ***/
+div.tenor-gif-embed {
+  width: 3rem;
+}
+/*** end 404 Error page ***/
 
 /*** Remaining Authors Toggle ***/
 /* shows up on both search results and show item pages */
