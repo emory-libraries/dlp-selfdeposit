@@ -11,7 +11,7 @@
   .primary-file-container {
     padding: 1rem 0 3rem 0;
 
-    //title
+    //title 
     .primary-file-label {
       display: flex;
       align-items: center;
@@ -164,25 +164,55 @@
     overflow: hidden;
 
     .form-group {
-      padding: 1rem 0.75rem 1rem 0.75rem;
+      padding: 1rem;
       margin-bottom: 0;
+      span.glyphicon {
+        display:none;
+      }
     }
 
     form.new_user .field {
-      padding: 0 0.75rem;
+      padding: 0 1rem;
     }
 
-     /* creators form - multiple creators */
-    #creators-container {
-      margin: 0 -.75rem;
-      > div:not(:last-child) > span {
-        border-bottom: 1px dashed $base-slate;
-      }
-      div.nested-fields.row {
-        margin: 0 -.93rem;
-      }
+    /* creators form - multiple creators */
+    h6 {
+      padding: 0 1rem;
+      font-weight: bold;
+      color: black;
     }
 
+    div.publication_creators {
+      #creators-container {
+        margin: 0 1rem;
+        > div:not(:last-child) {
+          border-bottom: 1px dashed $base-slate;
+        }
+        div.nested-fields.row {
+          margin: 0;
+          button.remove {
+            width: auto;
+            padding-left: 0;
+          }
+        }
+        div.col-lg-6 {
+          padding-left: 0;
+          padding-right: 0;
+          > div.form-group {
+            padding: 1rem 1.5rem 1rem 0;
+          }
+          > div.form-group.publication_creators_last_name,
+          > div.form-group.publication_creators_orcid_id {
+            padding-left: 1.5rem;
+            padding-right: 0;
+          }
+        }
+      }
+      button.add-creator {
+        padding-left: 1rem;
+        text-decoration: underline;
+      }
+    }
 
     > div {
       overflow: hidden;

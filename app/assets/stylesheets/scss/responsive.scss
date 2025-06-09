@@ -99,10 +99,23 @@
   #search-results .search-result-wrapper .list-thumbnail {
     justify-content: unset;
   }
+
 }
+
 
 /**** Desktop Screen ****/
 @media (max-width: 991px) {
+  /*** new publication form ***/
+  .pub-accordion-wrapper .card-body div.publication_creators #creators-container div.col-lg-6 {
+    > div.form-group {
+      padding: 1rem 0;
+    }
+    > div.form-group.publication_creators_last_name,
+    > div.form-group.publication_creators_orcid_id {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
   /*** View Work Page (/concerns/publications/) ***/
   #view-work-page {
     .dropdown-toggle {
