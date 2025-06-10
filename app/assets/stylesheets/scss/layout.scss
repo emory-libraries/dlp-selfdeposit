@@ -486,8 +486,23 @@ div#announcement_text {
 /*** end Home Page ***/
 
 /*** 404 Error page ***/
-div.tenor-gif-embed {
-  width: 3rem;
+div.not-found-container {
+  div.static-heading-row,
+  div.static-subheading {
+    margin: 0;
+  }
+  .static-rule {
+    border-top: 1px solid #e5e7ec;
+    width: 100%;
+  }
+  main.section-main-body {
+  img {
+    width: auto;
+    margin: auto;
+    display: block;
+  }
+}
+
 }
 /*** end 404 Error page ***/
 
