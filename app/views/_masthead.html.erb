@@ -3,7 +3,7 @@
 <header aria-label="header" class="top-header">
   <%= render '/controls' %>
   <nav id="masthead" class="emory-masthead navbar border-bottom navbar-expand-lg navbar-dark justify-content-between <%= placement_class %>" role="navigation" aria-label="masthead">
-    <h1 class="sr-only"><%= application_name %></h1>
+    <h1 class="sr-only navbar-text"><%= application_name %></h1>
     <%= render '/logo' %>
     <div class="col-sm-7 header-search-container">
     <% if request.fullpath.start_with?('/dashboard') %>
