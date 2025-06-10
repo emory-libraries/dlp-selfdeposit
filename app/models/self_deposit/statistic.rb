@@ -2,16 +2,13 @@
 module SelfDeposit
   class Statistic < ::Hyrax::Statistic
     def self.content_genres
-      results = query_works("content_genre_tesi")
-      content_genres = []
-      results.each do |y|
-        if y["content_genre_tesi"].nil? || (y["content_genre_tesi"] == "")
-          content_genres.push("Unknown")
-        else
-          content_genres.push(y["content_genre_tesi"])
-        end
+      ret_hsh = {}
+      types = query_works("content_genre_tesi")
+      types['Unknown'] = types.delete(nil)
+      types.keys.each do |k|
+        ret_hsh[k.capitalize] = types[k] if types[k].positive?
       end
-      content_genres.group_by { |rt| rt }.transform_values(&:count)
+      ret_hsh
     end
   end
 end
