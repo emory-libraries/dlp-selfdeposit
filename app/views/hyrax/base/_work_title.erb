@@ -1,0 +1,15 @@
+<div class="work-title-wrapper">
+  <% presenter.title.each_with_index do |title, index| %>
+    <% if index == 0 %>
+      <div class="title-with-badges">
+        <h1><%= title %></h1>
+        <% if current_user&.admin? %>
+          <%= presenter.permission_badge %>
+          <%= presenter.workflow.badge %>
+        <% end %>
+      </div>
+    <% else %>
+      <h1><%= title %></h1>
+    <% end %>
+  <% end %>
+</div>
