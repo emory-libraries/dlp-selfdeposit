@@ -5,7 +5,7 @@
 #   to replace that form with their own in the configuration. We're changing the explicit class to the configuration variable,
 #   which defaults to Hyrax::Forms::FileSetForm.
 #
-# This change will be submitted to Hyrax as a PR.
+# This change was submitted to Hyrax with the following PR: https://github.com/samvera/hyrax/pull/7121
 
 Rails.application.config.to_prepare do
   Hyrax::EditPermissionsService.class_eval do
