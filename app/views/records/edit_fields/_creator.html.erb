@@ -1,8 +1,8 @@
 <% if !f.object.is_a? ::PublicationForm %>
   <%= render 'records/edit_fields/default', f: f, key: :creator %>
 <% else %>
-<div class="form-group multi_value required publication_creators">
-  <label class="control-label string required" for="publication_creators">Authors</label>
+<div class="publication_creators">
+  <h6>Authors</h6>
   <div id="creators-container">
     <% if f.object.creator.count > 0 %>
       <% f.object.creator.each do |creator| %>
@@ -21,12 +21,12 @@
       </div>
     <% end %>
     </div>
-    <button type="button" class="btn btn-link add add-creator"><span class="glyphicon glyphicon-plus"></span><span class="controls-add-text">Add another Author</span></button>
+    <button type="button" class="btn btn-link add add-creator"><span class="controls-add-text">Add another Author</span></button>
 </div>
 
 
   <script>
-    document.addEventListener('turbolinks:load', function() {
+    document.addEventListener('DOMContentLoaded', function() {
       var addCreatorButton = document.querySelector('.add-creator');
       var form = document.getElementById('new_publication_') || document.querySelectorAll('form[id^="edit_publication_"]')[0];
 
