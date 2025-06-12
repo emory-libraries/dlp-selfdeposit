@@ -12,9 +12,9 @@ Rails.application.config.to_prepare do
         preexisting_entity.update(workflow: workflow_for(work), workflow_state: nil)
         preexisting_entity.reload
       else
-        Sipity::Entity.find_or_create_by!(proxy_for_global_id: Hyrax::GlobalID(work).to_s,
-                                          workflow: workflow_for(work),
-                                          workflow_state: nil)
+        Sipity::Entity.create!(proxy_for_global_id: Hyrax::GlobalID(work).to_s,
+                               workflow: workflow_for(work),
+                               workflow_state: nil)
       end
     end
   end
