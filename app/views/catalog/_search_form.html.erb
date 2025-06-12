@@ -1,4 +1,4 @@
-<!-- Hyrax Override:v5.1.0 - adds classes for styling, removes label, and swaps current_user presence to user_signed_in?  -->
+<!-- [Hyrax-override-v5.1 (ec2c524)] - adds classes for styling, removes label, and swaps current_user presence to user_signed_in?  -->
 <%= form_tag search_form_action, method: :get, class: "search-form", id: "search-form-header", role: "search" do %>
   <%= render Blacklight::HiddenSearchStateComponent.new(params: search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8)) %>
   <%= hidden_field_tag :search_field, 'all_fields' %>

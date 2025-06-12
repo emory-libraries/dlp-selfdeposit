@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# Hyrax v5.0.1: remove logic setting file set label and title from #upload method
+# [Hyrax-override-v5.1 (ec2c524)] remove logic setting file set label and title from #upload method
 # we have business logic that we implement upon file set creation in config/initializers/hyrax_work_uploads_handler_override.rb
 
 class Hyrax::ValkyrieUpload
