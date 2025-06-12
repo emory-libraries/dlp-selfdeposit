@@ -2,7 +2,7 @@
 module SelfDeposit
   module Indexers
     ##
-    # Hyrax v5.0.0 Override - Adds our own customized Solr fields to accommodate PreservationEvent values.
+    # [Hyrax-override-v5.1 (ec2c524)] - Adds our own customized Solr fields to accommodate PreservationEvent values.
     # Indexes ::FileSet objects
     class FileSetIndexer < Hyrax::Indexers::FileSetIndexer
       include Hyrax::Indexer(:emory_file_set_metadata)
