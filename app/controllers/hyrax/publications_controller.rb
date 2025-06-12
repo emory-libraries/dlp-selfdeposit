@@ -16,7 +16,7 @@ module Hyrax
     # forms.
     self.work_form_service = Hyrax::FormFactory.new
 
-    # Hyrax v5.0.1 Override - L#26 defaults visibility in the form to Public.
+    # [Hyrax-override-v5.1 (ec2c524)] - L#26 defaults visibility in the form to Public.
     def new
       @admin_set_options = available_admin_sets
       # TODO: move these lines to the work form builder in Hyrax
@@ -47,7 +47,7 @@ module Hyrax
     private
 
     ##
-    # Hyrax v5.0.1 Override - inserts PreservationEvents if Publication is created successfully.
+    # [Hyrax-override-v5.1 (ec2c524)] - inserts PreservationEvents if Publication is created successfully.
     # @return [#errors]
     # rubocop:disable Metrics/MethodLength
     def create_valkyrie_work
@@ -75,7 +75,7 @@ module Hyrax
     end
     # rubocop:enable Metrics/MethodLength
 
-    # Hyrax v5.0.1 Override - inserts PreservationEvents if Publication is updated successfully.
+    # [Hyrax-override-v5.1 (ec2c524)] - inserts PreservationEvents if Publication is updated successfully.
     def update_valkyrie_work
       event_start = DateTime.current
       form = build_form
@@ -92,7 +92,7 @@ module Hyrax
       after_update_response
     end
 
-    # Hyrax 5.0.1 override
+    # [Hyrax-override-v5.1 (ec2c524)]
     # Sometimes the order of permissions is not the same between saved permissions and new permissions for Valkyrie
     # I am replacing array comparison (which relies on order) with comparing array sizes and checking for existence of elements in both arrays
     def permissions_changed?
@@ -106,7 +106,7 @@ module Hyrax
       end
     end
 
-    # Hyrax v5.0.1 Override - adds our respond_to_ris custom method.
+    # [Hyrax-override-v5.1 (ec2c524)] - adds our respond_to_ris custom method.
     def additional_response_formats(format)
       respond_to_ris(format)
       respond_to_endnote(format)
