@@ -1,4 +1,4 @@
-<%# Hyrax v5.0.1 Override: line 7 remove label %>
+<%# [Hyrax-override-v5.1 (ec2c524)] line 7 remove label %>
 <%= form_tag search_action_url, method: :get, class: "search-query-form search-form", role: "search" do %>
 
     <%= render Blacklight::HiddenSearchStateComponent.new(params: search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8)) %>
