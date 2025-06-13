@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] - Hyrax Bug!
+# [Hyrax-override-v5.1 (ec2c524)] Hyrax Bug!
 #   When testing what type of form the application is using in the case of FileSets, the Hyrax::EditPermissionsService
 #   relies on the out-of-box form class but ignores the fact that those using the Hyrax Rails Engine are given the choice
 #   to replace that form with their own in the configuration. We're changing the explicit class to the configuration variable,
