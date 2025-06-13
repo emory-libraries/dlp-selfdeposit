@@ -4,22 +4,40 @@ module SelfDeposit
     class SolrDocumentMultipleReturnQuery
       def initialize(query_service:)
         @query_service = query_service
-        @connection = Hyrax.index_adapter.connection
+        @solr_service = Hyrax::SolrService
       end
 
       class_attribute :queries
       attr_reader :query_service
 
-      # For each Document, it yields the instance of the model object.
-      # @yield [<model instance>]
-      def each
-        docs = Valkyrie::Persistence::Solr::Queries::DefaultPaginator.new
-        while docs.has_next?
-          docs = @connection.paginate(docs.next_page, docs.per_page, "select", params: { q: query })["response"]["docs"]
-          docs.each do |doc|
-            yield query_service.find_by(id: doc['id'])
-          end
-        end
+      def solr_documents
+        @solr_service
+          &.query_result(query, fl: fields_selection, rows: 10_000_000)
+          &.[]('response')
+          &.[]('docs')
+      end
+
+      def solr_documents_with_filter_query
+        @solr_service
+          &.query_result(query, fl: fields_selection, fq: filter_query, rows: 10_000_000)
+          &.[]('response')
+          &.[]('docs')
+      end
+
+      def valkyrie_objects
+        solr_documents.map { |doc| query_service.find_by(id: doc['id']) }
+      end
+
+      def valkyrie_objects_from_filter_query
+        solr_documents_with_filter_query.map { |doc| query_service.find_by(id: doc['id']) }
+      end
+
+      def query
+        "*:*"
+      end
+
+      def fields_selection
+        "id"
       end
     end
   end

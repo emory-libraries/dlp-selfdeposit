@@ -6,25 +6,13 @@ module SelfDeposit
     #   Hyrax.custom_queries.find_all_file_set_ids_associated_to_publications
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
-    class FindAllFileSetIdsAssociatedToPublications
-      def self.queries
-        [:find_all_file_set_ids_associated_to_publications]
-      end
-
-      def initialize(query_service:)
-        @query_service = query_service
-        @solr_service = Hyrax::SolrService
-      end
-
-      attr_reader :query_service
+    class FindAllFileSetIdsAssociatedToPublications < SolrDocumentMultipleReturnQuery
+      self.queries = [:find_all_file_set_ids_associated_to_publications]
 
       ##
       # @return Array[file set ids] or nil
       def find_all_file_set_ids_associated_to_publications
-        @solr_service
-          &.query_result(query, fl: fields_selection, rows: 10_000_000)
-          &.[]('response')
-          &.[]('docs')
+        solr_documents
           &.map { |doc| doc[fields_selection] }
           &.flatten
           &.uniq
