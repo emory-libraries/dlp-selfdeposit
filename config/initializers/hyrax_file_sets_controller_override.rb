@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] - Hyrax Bug!
+# [Hyrax-override-v5.1 (ec2c524)] Hyrax Bug!
 #   Bug ticket filed: https://github.com/samvera/hyrax/pull/7120
 
 Rails.application.config.to_prepare do
