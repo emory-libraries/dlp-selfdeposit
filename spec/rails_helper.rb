@@ -79,7 +79,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include Devise::Test::ControllerHelpers, type: :view
 
-  # The following behaviors are copied from Hyrax v5.0.1's spec_helper.rb
+  # The following behaviors are copied from [Hyrax-override-v5.1 (ec2c524)] spec_helper.rb
   config.before(:suite) { User.group_service = TestHydraGroupService.new }
 
   config.after { User.group_service.clear }

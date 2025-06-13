@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-# Shared testing and factories imported from Hyrax v5.0.1
+# Shared testing and factories imported from [Hyrax-override-v5.1 (ec2c524)]
 require 'hyrax/specs/shared_specs/indexers'
 require 'hyrax/specs/shared_specs/factories/uploaded_files'
 
