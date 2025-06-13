@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.0] - We take over #make_file_set_and_ingest to create a
+# [Hyrax-override-v5.1 (ec2c524)] We take over #make_file_set_and_ingest to create a
 #   PreservationEvent registering the creation of a Publication's FileSet.
 require './lib/preservation_events'
 require 'noid-rails'
