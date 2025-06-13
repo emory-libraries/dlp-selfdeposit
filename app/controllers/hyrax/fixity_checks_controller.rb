@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1]
+# [Hyrax-override-v5.1 (ec2c524)]
 # Adds redirect on L#23 in create action and points to our custom service
 module Hyrax
   class FixityChecksController < ApplicationController
