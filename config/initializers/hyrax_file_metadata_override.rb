@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] - Adds in our own attributes.
+# [Hyrax-override-v5.1 (ec2c524)] Adds in our own attributes.
 
 Rails.application.config.to_prepare do
   Hyrax::FileMetadata.class_eval do

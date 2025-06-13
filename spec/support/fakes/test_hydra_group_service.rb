@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ##
-# Hyrax v5.0.1 direct import needed to run Hyrax test suites.
+# [Hyrax-override-v5.1 (ec2c524)] direct import needed to run Hyrax test suites.
 # A fake group service implementation for use in test suites as a drop-in
 # replacement for `RoleMapper` or the `hydra-role-management` gem, allowing
 # dynamic group assignment backed by in-memory data structures.
