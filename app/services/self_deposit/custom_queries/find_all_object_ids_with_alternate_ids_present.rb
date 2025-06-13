@@ -6,29 +6,13 @@ module SelfDeposit
     #   Hyrax.custom_queries.find_all_object_ids_with_alternate_ids_present
     #
     # @see https://github.com/samvera/valkyrie/wiki/Queries#custom-queries
-    class FindAllObjectIdsWithAlternateIdsPresent
-      def self.queries
-        [:find_all_object_ids_with_alternate_ids_present]
-      end
-
-      def initialize(query_service:)
-        @query_service = query_service
-        @solr_service = Hyrax::SolrService
-      end
-
-      attr_reader :query_service
+    class FindAllObjectIdsWithAlternateIdsPresent < SolrDocumentMultipleReturnQuery
+      self.queries = [:find_all_object_ids_with_alternate_ids_present]
 
       ##
       # @return enumerator of Valkyrie Fedora objects
       def find_all_object_ids_with_alternate_ids_present
         solr_documents_with_filter_query
-      end
-
-      def solr_documents_with_filter_query
-        @solr_service
-          &.query_result(query, fl: fields_selection, fq: filter_query, rows: 10_000_000)
-          &.[]('response')
-          &.[]('docs')
       end
 
       # Solr query for for a Publication with a deduplication_key_tesi that matches the provided key
