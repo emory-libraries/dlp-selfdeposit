@@ -25,13 +25,13 @@ Rails.application.config.to_prepare do
     end
 
     def ensure_no_settings_changes_for_admin_set_type
-      return true unless admin_set? && collection_type_settings_changed? && exists_for_machine_id?(ADMIN_SET_MACHINE_ID)
+      return true unless admin_set? && collection_type_settings_changed? && exists_for_machine_id?(::Hyrax::CollectionType::ADMIN_SET_MACHINE_ID)
       errors.add(:base, I18n.t('hyrax.admin.collection_types.errors.no_settings_change_for_admin_sets'))
       throw :abort
     end
 
     def ensure_no_settings_changes_for_user_collection_type
-      return true unless user_collection? && collection_type_settings_changed? && exists_for_machine_id?(USER_COLLECTION_MACHINE_ID)
+      return true unless user_collection? && collection_type_settings_changed? && exists_for_machine_id?(::Hyrax::CollectionType::USER_COLLECTION_MACHINE_ID)
       errors.add(:base, I18n.t('hyrax.admin.collection_types.errors.no_settings_change_for_user_collections'))
       throw :abort
     end
