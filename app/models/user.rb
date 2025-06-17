@@ -66,7 +66,7 @@ class User < ApplicationRecord
       uid: auth.info.net_id
     )
 
-    user.email = "#{auth.info.net_id}@emory.edu" unless auth.info.net_id == 'tezprox'
+    user.email = "#{auth.info.net_id}@emory.edu"
   end
 
   def self.log_omniauth_error(auth)
