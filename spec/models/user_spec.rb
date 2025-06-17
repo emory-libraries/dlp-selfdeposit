@@ -43,16 +43,11 @@ RSpec.describe User, type: :model do
 
       let!(:existing_user) { create(:emory_saml_user, :tezprox) }
 
-      it 'updates other attributes' do
+      it 'updates attributes and sets email' do
         user = User.from_omniauth(tezprox_auth)
         expect(user.display_name).to eq('Test User')
         expect(user.ppid).to eq('12345')
-      end
-
-      it 'does not set the email' do
-        original_email = existing_user.email
-        user = User.from_omniauth(tezprox_auth)
-        expect(user.email).to eq(original_email)
+        expect(user.email).to eq('tezprox@emory.edu')
       end
     end
 
@@ -132,16 +127,11 @@ RSpec.describe User, type: :model do
         )
       end
 
-      it 'does not update email' do
-        original_email = user.email
-        User.assign_user_attributes(user, tezprox_auth)
-        expect(user.email).to eq(original_email)
-      end
-
-      it 'updates other attributes' do
+      it 'updates attributes and sets email' do
         User.assign_user_attributes(user, tezprox_auth)
         expect(user.display_name).to eq('Test User')
         expect(user.ppid).to eq('12345')
+        expect(user.email).to eq('tezprox@emory.edu')
       end
     end
   end
