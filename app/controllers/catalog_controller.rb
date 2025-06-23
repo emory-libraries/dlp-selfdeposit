@@ -15,7 +15,6 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
-    config.view.masonry(document_component: Blacklight::Gallery::DocumentComponent)
     config.view.slideshow(document_component: Blacklight::Gallery::SlideshowComponent)
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
