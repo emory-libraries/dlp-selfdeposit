@@ -38,6 +38,14 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
     expect(page).not_to have_link('Relationships', class: 'nav-link')
   end
 
+  context 'Files tab' do
+    it 'contains verbiage about file size limits' do
+      click_on 'Files'
+      expect(page).to have_content('Files must be less than 100MB in size.')
+      expect(Hyrax.config.uploader[:maxFileSize]).to eq(104_857_600)
+    end
+  end
+
   context 'when admin logged in' do
     before do
       # the below code adds the admin role to user
