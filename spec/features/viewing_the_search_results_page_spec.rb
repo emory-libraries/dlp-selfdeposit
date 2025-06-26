@@ -37,9 +37,8 @@ RSpec.describe "viewing the search results page", :clean_repo, :perform_enqueued
   end
 
   context 'list view options' do
-    it 'omits the gallery view button' do
-      expect(page).not_to have_css('a.view-type-gallery[title="Gallery"]')
-    end
+    it('omits the gallery view button') { expect(page).not_to have_css('a.view-type-gallery[title="Gallery"]') }
+    it('omits the masonry view button') { expect(page).not_to have_css('a.view-type-masonry[title="Masonry"]') }
   end
 
   context 'sidebar facets' do
