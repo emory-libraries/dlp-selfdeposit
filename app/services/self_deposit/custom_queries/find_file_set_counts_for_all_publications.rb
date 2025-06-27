@@ -13,7 +13,7 @@ module SelfDeposit
       # @return Array[file set ids] or nil
       def find_file_set_counts_for_all_publications
         solr_documents
-          &.map { |doc| [doc['deduplication_key_ssi'], doc['member_ids_ssim'].count] }
+          &.map { |doc| [doc['deduplication_key_ssi'], doc['member_ids_ssim']&.count] || 0 }
       end
 
       # Solr query for for Publications with value(s) in the member_ids_ssim field
