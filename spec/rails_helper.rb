@@ -35,6 +35,7 @@ custom_queries = [Hyrax::CustomQueries::Navigators::CollectionMembers,
                   Hyrax::CustomQueries::FindIdsByModel,
                   Hyrax::CustomQueries::FindFileMetadata,
                   Hyrax::CustomQueries::Navigators::FindFiles,
+                  SelfDeposit::CustomQueries::FindFileSetCountsForAllPublications,
                   SelfDeposit::CustomQueries::FindPublicationByDeduplicationKey,
                   SelfDeposit::CustomQueries::FindBySourceIdentifier]
 custom_queries.each do |handler|
