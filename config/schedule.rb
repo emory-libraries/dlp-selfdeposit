@@ -14,6 +14,11 @@
 #   rake "some:great:rake:task"
 # end
 #
+
+every :day, at: '7:00 am' do
+  rake "selfdeposit:assign_necessary_users_to_emory_mediated_deposit"
+end
+
 every :month do
   rake "selfdeposit:google_scholar:sitemap"
 end
