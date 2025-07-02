@@ -21,7 +21,7 @@
 
 <script>
 
-$(".custom-file-input").on("change", function() {
+$(document).on('change', '.custom-file-input', function() {
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
@@ -36,13 +36,15 @@ $(".custom-file-input").on("change", function() {
 
     function addFileUploadField() {
         var source = $(".<%= fs_use %>-fileset:first"),
-            clone = source.clone();
+            clone = source.clone(),
+            labelHtml = '<label class="custom-file-label" for="customFile">Choose file</label>';
 
         clone.find(':input').each(function() {
             var newId = this.id.replace(/\d+/g, '') + count;
             $(this).attr('id', newId).val('');
         });
 
+        clone.find('.custom-file-label').replaceWith(labelHtml);
         clone.find("#<%= fs_use %>-progress0").attr('id', '<%= fs_use %>-progress' + count).val(0);
         clone.find("#<%= fs_use %>-upload0").attr('id', "<%= fs_use %>-upload" + count).prop('disabled', false);
         clone.appendTo(".<%= fs_use %>-fileset-append");
