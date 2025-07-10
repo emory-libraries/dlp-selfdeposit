@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-override-v5.1 (ec2c524)]
+# [Hyrax-override-v5.2.0]
 #   - #form_tabs_for: blocks non-admins from seeing the relationships tab.
 #   - #admin_set_options: returns empty array is user's not an admin.
 
