@@ -3,7 +3,6 @@ require 'rails_helper'
 
 # Shared testing and factories imported from [Hyrax-override-v5.1 (ec2c524)]
 require 'hyrax/specs/shared_specs/indexers'
-require 'hyrax/specs/shared_specs/factories/uploaded_files'
 
 RSpec.describe SelfDeposit::Indexers::FileSetIndexer do
   shared_context 'with typical preservation_event' do
