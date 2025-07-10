@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-override-v5.1 (ec2c524)] Changes the page_title value.
+# [Hyrax-override-v5.2.0] Changes the page_title value.
 
 Rails.application.config.to_prepare do
   Hyrax::WorkShowPresenter.class_eval do

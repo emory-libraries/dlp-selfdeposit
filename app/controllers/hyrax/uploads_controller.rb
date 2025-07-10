@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-override-v5.1 (ec2c524)] add fileset_name and fileset_use to #create attributes
+# [Hyrax-override-v5.2.0] add fileset_name and fileset_use to #create attributes
 
 module Hyrax
   class UploadsController < ApplicationController
