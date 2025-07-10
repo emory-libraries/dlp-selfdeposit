@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
 require 'hyrax/specs/spy_listener'
-require 'hyrax/specs/shared_specs/factories/uploaded_files'
 
 RSpec.describe Hyrax::WorkUploadsHandler, valkyrie_adapter: :test_adapter do
   subject(:service) { described_class.new(work:) }
