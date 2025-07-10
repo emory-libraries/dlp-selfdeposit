@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-# Shared testing and factories imported from [Hyrax-override-v5.1 (ec2c524)]
+# Shared testing and factories imported from [Hyrax-override-v5.2.0]
 require 'hyrax/specs/shared_specs/indexers'
 
 RSpec.describe SelfDeposit::Indexers::FileSetIndexer do
