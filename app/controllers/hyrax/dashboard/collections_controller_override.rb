@@ -2,7 +2,7 @@
 module Hyrax
   module Dashboard
     module CollectionsControllerOverride
-      # [Hyrax-override-v5.1 (ec2c524)] We are overwriting the `create_valkyrie_collection` method because
+      # [Hyrax-override-v5.2.0] We are overwriting the `create_valkyrie_collection` method because
       # we are a new step for noid minting
       # instead of the default.
       def create_valkyrie_collection

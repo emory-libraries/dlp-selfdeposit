@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-override-v5.1 (ec2c524)] Hyrax Bug!
+# [Hyrax-override-v5.2.0] Hyrax Bug!
 #   `create_workflow_entity!` is called multiple times, so it must be made idempotent.
 
 Rails.application.config.to_prepare do
