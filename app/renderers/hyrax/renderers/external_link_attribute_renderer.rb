@@ -1,4 +1,4 @@
-# [Hyrax-override-v5.1 (ec2c524)] added functionality so that the external link opens in a new tab.
+# [Hyrax-override-v5.2.0] added functionality so that the external link opens in a new tab.
 # frozen_string_literal: true
 module Hyrax
   module Renderers
