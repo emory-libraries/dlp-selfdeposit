@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-override-v5.1 (ec2c524)]:
+# [Hyrax-override-v5.2.0]:
 # - change DEFAULT_ID to 'admin_set_default' to resolve encoded slash issues in Fedora 6.5.0
 # - resolve rubocop warnings
 
