@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-override-v5.1 (ec2c524)] Adds in our charaterization terms to show on the fileset show page.
+# [Hyrax-override-v5.2.0] Adds in our charaterization terms to show on the fileset show page.
 
 Rails.application.config.to_prepare do
   Hyrax::FileSetPresenter.class_eval do

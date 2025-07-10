@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-override-v5.1 (ec2c524)] L#20 uses custom query that avoids looking up work in Fedora.
+# [Hyrax-override-v5.2.0] L#20 uses custom query that avoids looking up work in Fedora.
 
 module Hyrax
   module Listeners

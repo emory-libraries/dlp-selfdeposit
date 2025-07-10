@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-override-v5.1 (ec2c524)] set collection type to be ordered when `ordered: true` is set in the configuration
+# [Hyrax-override-v5.2.0] set collection type to be ordered when `ordered: true` is set in the configuration
 
 Rails.application.reloader.to_prepare do
   Hyrax::SimpleSchemaLoader::AttributeDefinition.class_eval do
