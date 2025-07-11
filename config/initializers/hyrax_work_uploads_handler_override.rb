@@ -79,8 +79,8 @@ Rails.application.config.to_prepare do
         date_uploaded: file.created_at,
         emory_persistent_id: "#{Noid::Rails::Service.new.mint}-emory",
         date_modified: Hyrax::TimeService.time_in_utc,
-        label: file.fileset_name.presence || file.uploader.filename,
-        title: file.fileset_name.presence || file.uploader.filename,
+        label: file.fileset_name.presence || file.uploader.filename.presence || file.file.to_s.split('/').last,
+        title: file.fileset_name.presence || file.uploader.filename.presence || file.file.to_s.split('/').last,
         file_set_use: file.fileset_use }
     end
 
