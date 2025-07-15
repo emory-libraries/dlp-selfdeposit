@@ -32,7 +32,7 @@ module DlpSelfDeposit
     end
 
     # The locale is set by a query parameter, so if it's not found render 404
-    config.action_dispatch.rescue_responses['I18n::InvalidLocale'] = :not_found
+    config.action_dispatch.rescue_responses['I18n::InvalidLocale'] = [:not_found, :internal_server_error, :unprocessable_entity]
 
     config.exceptions_app = routes
   end
