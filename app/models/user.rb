@@ -41,6 +41,13 @@ class User < ApplicationRecord
     email
   end
 
+  # Groups include roles and those set by #groups= (especially in specs)
+  def groups
+    g = roles.map(&:name)
+    g += group_service.fetch_groups(user: self)
+    g
+  end
+
   def self.from_omniauth(auth)
     if auth.info.ppid.nil? || auth.provider != 'saml'
       log_omniauth_error(auth)

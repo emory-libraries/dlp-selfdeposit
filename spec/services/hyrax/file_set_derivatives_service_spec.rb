@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] This is a direct copy of the Hyrax test with an added test on L#57-70.
+# [Hyrax-override-v5.2.0] This is a direct copy of the Hyrax test with an added test on L#57-70.
 require 'rails_helper'
 require 'hyrax/specs/shared_specs'
 require 'hyrax/specs/shared_specs/factories/hyrax_file_metadata.rb'

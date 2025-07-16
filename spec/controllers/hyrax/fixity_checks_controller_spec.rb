@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1
+# [Hyrax-override-v5.2.0]
 # We have removed json_response tests from here since we are
 # no longer rendering json in our create method
 require 'rails_helper'
