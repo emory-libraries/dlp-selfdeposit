@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  def saml_redirect
+    respond_to { |wants| wants.html { render 'shared/saml_redirect' } }
+  end
+
   private
 
   # Hyrax v5.0.1 override: changes html redirect to our saml path
@@ -22,7 +26,7 @@ class ApplicationController < ActionController::Base
         if AuthConfig.use_database_auth?
           redirect_to main_app.new_user_session_path, alert: exception.message
         else
-          redirect_to main_app.user_saml_omniauth_authorize_path, alert: exception.message
+          redirect_to main_app.saml_redirect_path(origin: request.url), alert: exception.message
         end
       end
       wants.json { render_json_response(response_type: :unauthorized, message: json_message) }
