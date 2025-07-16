@@ -1,0 +1,13 @@
+<div class="info_box">You are being redirected to Emory's sign-in page</div>
+<%= button_to "Login", main_app.user_saml_omniauth_authorize_path(origin: params['origin']), method: :post, id: 'saml_button', style: 'display: none' %>
+<script>
+  function ready(callbackFunction){
+    if(document.readyState != 'loading')
+      callbackFunction();
+    else
+      document.addEventListener("DOMContentLoaded", callbackFunction);
+  }
+  ready(() => {
+    document.getElementById('saml_button').click();
+  })
+</script>
