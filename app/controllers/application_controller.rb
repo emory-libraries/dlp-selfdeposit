@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
         if AuthConfig.use_database_auth?
           redirect_to main_app.new_user_session_path, alert: exception.message
         else
-          redirect_to main_app.user_saml_omniauth_authorize_path, alert: exception.message
+          redirect_to main_app.user_saml_omniauth_authorize_path(origin: request.url), alert: exception.message
         end
       end
       wants.json { render_json_response(response_type: :unauthorized, message: json_message) }
