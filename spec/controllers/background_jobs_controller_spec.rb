@@ -42,6 +42,9 @@ RSpec.describe BackgroundJobsController, type: :controller, clean: true do
       let(:link_publications) do
         post :create, params: { jobs: 'publications_to_collection', format: 'json' }
       end
+      let(:remediate_pres_events) do
+        post :create, params: { jobs: 'preservation_event_remediation', format: 'json' }
+      end
 
       it "successfully starts a preservation workflow background job" do
         expect(preservation).to redirect_to(new_background_job_path)
@@ -52,6 +55,12 @@ RSpec.describe BackgroundJobsController, type: :controller, clean: true do
         expect(reindex).to redirect_to(new_background_job_path)
         # Needed to call out how many times the job will be enqueued.
         expect(ReindexObjectJob).to have_been_enqueued.twice
+      end
+
+      it "successfully starts a remediate PreservationEvents background job" do
+        expect(remediate_pres_events).to redirect_to(new_background_job_path)
+        # Needed to call out how many times the job will be enqueued.
+        expect(RemediateObjectsLackingPreservationEventsJob).to have_been_enqueued
       end
 
       it "avoids starting BatchAddPublicationsToCollectionJob background job when no unlinked Publications" do

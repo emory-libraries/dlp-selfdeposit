@@ -18,6 +18,9 @@ class BackgroundJobsController < ApplicationController
       redirect_to new_background_job_path, notice: "Preservation Workflow Importer Job has started successfully."
     elsif params[:jobs] == 'publications_to_collection'
       link_unlinked_publications_to_collection
+    elsif params[:jobs] == 'preservation_event_remediation'
+      RemediateObjectsLackingPreservationEventsJob.perform_later
+      redirect_to new_background_job_path, notice: "PreservationEvent Remediation Job has started successfully."
     else
       reindex_objects_action
       redirect_to new_background_job_path, notice: "Reindex Files Job has started successfully."
