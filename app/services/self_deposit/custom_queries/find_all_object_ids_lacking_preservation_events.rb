@@ -13,7 +13,10 @@ module SelfDeposit
       # @returns [Publications#id, FileSets#id]
       def find_all_object_ids_lacking_preservation_events(model: nil)
         @model = model
-        valkyrie_objects_from_filter_query
+        solr_documents_with_filter_query
+          &.map { |doc| doc[fields_selection] }
+          &.flatten
+          &.uniq
       end
 
       # Solr query for objects with no preservation_events_tesim values.

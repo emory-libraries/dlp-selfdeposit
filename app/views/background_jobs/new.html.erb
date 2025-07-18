@@ -38,6 +38,13 @@
         <%= text_area_tag 'collection_id', nil, size: '60x2', placeholder: 'Collection ID. If left blank, an attempt to find the OpenEmory Collection ID will be made.' %>
       </td>
     </tr>
+    <tr>
+      <td>
+        <%= radio_button_tag :jobs, 'preservation_event_remediation', false, id: 'preservation_event_remediation' %>
+        <%= label :job_cleanup, 'Remediate Objects Lacking PreservationEvents' %>
+      </td>
+      <td>N/A</td>
+    </tr>
   </table>
   <button class="btn btn-primary" type="submit" value="Submit">Start Job</button>
 <% end %>
