@@ -95,9 +95,9 @@ jobs:
       - run:
           name: Get yarn version
           command: echo $(yarn --version) >> "YARN_VERSION"
-      - restore_cache:
-          keys:
-            - v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
+      # - restore_cache:
+      #     keys:
+      #       - v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
       - run: yarn
       - save_cache:
           key: v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}

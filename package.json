@@ -4,7 +4,6 @@
   "repository": "git@github.com:samvera/hyrax.git",
   "dependencies": {
     "bootstrap-select": "*",
-    "node": "^18.18.0",
     "universalviewer": "^4.2.1"
   },
   "scripts": {
