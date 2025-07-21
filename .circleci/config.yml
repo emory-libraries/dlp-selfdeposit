@@ -1,6 +1,7 @@
 version: 2.1
 
 orbs:
+  node: circleci/node@4.7.0
   samvera: samvera/circleci-orb@1.0.3
 
 jobs:
@@ -88,6 +89,10 @@ jobs:
     parallelism: 4
     steps:
       - checkout
+      - node/install:
+          install-yarn: true
+          install-npm: false
+          node-version: "v20.15.1"
       - samvera/bundle:
           ruby_version: << parameters.ruby_version >>
           bundler_version: << parameters.bundler_version >>
@@ -95,9 +100,9 @@ jobs:
       - run:
           name: Get yarn version
           command: echo $(yarn --version) >> "YARN_VERSION"
-      # - restore_cache:
-      #     keys:
-      #       - v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
+      - restore_cache:
+          keys:
+            - v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
       - run: yarn
       - save_cache:
           key: v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
