@@ -4661,6 +4661,11 @@ next-tick@^1.1.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.1.0.tgz#1836ee30ad56d67ef281b22bd199f709449b35eb"
   integrity sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==
 
+node-bin-setup@^1.0.0:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.1.4.tgz#e5a666044152b54d8d84b95297977ae07fd04047"
+  integrity sha512-vWNHOne0ZUavArqPP5LJta50+S8R261Fr5SvGul37HbEDcowvLjwdvd0ZeSr0r2lTSrPxl6okq9QUw8BFGiAxA==
+
 node-fetch@^2.6.1, node-fetch@^2.6.7, node-fetch@^2.x.x:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
@@ -4708,6 +4713,13 @@ node-releases@^2.0.19:
   version "2.0.19"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.19.tgz#9e445a52950951ec4d177d843af370b411caf314"
   integrity sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==
+
+node@^18.18.0:
+  version "18.20.8"
+  resolved "https://registry.yarnpkg.com/node/-/node-18.20.8.tgz#4fe7dc83106bfbd35d8a0cef56bce4d6274f4b65"
+  integrity sha512-oQSpVXWlayMuvIRCn/CiA9UQtEq/vdiPGeBcKE9JP3uAfJn00vMJA7rlNvjxzbIj98eu52SEHmQBQI/ngMCWOw==
+  dependencies:
+    node-bin-setup "^1.0.0"
 
 noms@0.0.0:
   version "0.0.0"
