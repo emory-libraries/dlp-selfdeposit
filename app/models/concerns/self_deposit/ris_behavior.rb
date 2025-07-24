@@ -8,7 +8,7 @@ module SelfDeposit::RisBehavior
     'Conference Paper': 'CONF',
     'Poster': 'GEN',
     'Presentation': 'GEN',
-    'Report': 'REPORT'
+    'Report': 'RPRT'
   }.freeze
   URL_REGEX = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
 
@@ -43,6 +43,7 @@ module SelfDeposit::RisBehavior
 
   def process_parent_title_field(ris_key:, value:, genre:, ret_text:)
     ret_text << "JO  - #{value}\n" if genre == 'Article'
+    ret_text << "T3  - #{value}\n" if genre == 'Report'
     assign_unaltered_value_to_ret_txt(ret_text:, ris_key:, value:) if genre == 'Book Chapter'
   end
 
@@ -86,10 +87,10 @@ module SelfDeposit::RisBehavior
       process_field_with_added_genre_logic(ret_text:, ris_key:, value:, tests_pass: ["Conference Paper", "Poster", "Presentation"].include?(genre))
     end
     if this_field_is_present?(ris_key:, expected_key: [:VL, :IS], value:)
-      process_field_with_added_genre_logic(ret_text:, ris_key:, value:, tests_pass: ["Article", "Conference Paper"].include?(genre))
+      process_field_with_added_genre_logic(ret_text:, ris_key:, value:, tests_pass: ["Article", "Conference Paper", "Report"].include?(genre))
     end
     if this_field_is_present?(ris_key:, expected_key: [:SP, :EP], value:)
-      process_field_with_added_genre_logic(ret_text:, ris_key:, value:, tests_pass: ["Article", "Book Chapter", "Conference Paper"].include?(genre))
+      process_field_with_added_genre_logic(ret_text:, ris_key:, value:, tests_pass: ["Article", "Book Chapter", "Report"].include?(genre))
     end
     process_l2_fields(ret_text:, ris_key:, value:, base_url:) if this_field_is_present?(ris_key:, expected_key: :L2, value:)
   end
