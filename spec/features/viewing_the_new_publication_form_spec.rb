@@ -27,8 +27,7 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
       "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Start Page",
       "End Page", "Place of Publication or Presentation", "Grant/Funding Agency", "Grant/Funding Information",
       "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories",
-      "Copyright Status required", "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Format required",
-      "Library required", "Institution", "Data classification required", "Deduplication key", "Restricted to", "then open it up to"
+      "Restricted to", "then open it up to"
     ]
 
     expect(field_labels).to match_array(expected_labels)
@@ -36,6 +35,10 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
 
   it 'does not contain the Relationships link when normal user' do
     expect(page).not_to have_link('Relationships', class: 'nav-link')
+  end
+
+  it 'does not contain the Administrative Information accordion when normal user' do
+    expect(page).not_to have_css('#pub-accordion .card .card-header', text: 'Administrative Information')
   end
 
   context 'Files tab' do
@@ -54,8 +57,29 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
       visit new_hyrax_publication_path
     end
 
+    it 'contains the expected field labels' do
+      field_labels = find_all('label.control-label').map(&:text)
+      expected_labels = [
+        "Type of Material required", "Title required", "First Name required", "Last Name required", "Institution required",
+        "ORCID ID", "Primary Language required", "Date required", "Publisher required", "Publication Version",
+        "Copyright Statement required", "License", "Final Published Version (URL)", "Title of Journal or Parent Work",
+        "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Start Page",
+        "End Page", "Place of Publication or Presentation", "Grant/Funding Agency", "Grant/Funding Information",
+        "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories",
+        "Copyright Status required", "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Format required",
+        "Library required", "Institution", "Data classification required", "Deduplication key", "Restricted to", "then open it up to",
+        "Administrative Set", "Is available to", "then restrict it to"
+      ]
+
+      expect(field_labels).to match_array(expected_labels)
+    end
+
     it 'contains the Relationships link' do
       expect(page).to have_link('Relationships', class: 'nav-link')
+    end
+
+    it 'contains the Administrative Information accordion' do
+      expect(page).to have_css('#pub-accordion .card .card-header', text: 'Administrative Information')
     end
   end
 end
