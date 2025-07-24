@@ -3,75 +3,76 @@
 <div class="add-pub-intro">
   <p class="">Please provide a description of your publication so that it can be properly cited by others. Next, click on the Files tab when you are ready to upload your content.</p>
   <hr class="my-4">
-    <p>The Save Work menu will indicate when you have completed all required elements for your submission.
+  <p>The Save Work menu will indicate when you have completed all required elements for your submission.
 Please refer to our <%= link_to 'Help', help_path %> page for more guidance.</p>
 </div>
 
 
 <div class="genres-block">
-<% f.object.genres_block.each do |term| %>
-<%= render_edit_field_partial(term, f: f) %>
-<% end %>
+  <% f.object.genres_block.each do |term| %>
+    <%= render_edit_field_partial(term, f: f) %>
+  <% end %>
 </div>
 
 <div class="pub-accordion-wrapper">
   <div id="pub-accordion">
     <div class="card">
-          <div class="card-header pub-form-header" id="pubform-pub-info">
-            Publication Information
-          </div>
-          <div class="card-body open">
-            <div>
-              <% f.object.publication_information.each do |term| %>
-              <%= render_edit_field_partial(term, f: f) %>
-              <% end %>
-            </div>
-          </div>
+      <div class="card-header pub-form-header" id="pubform-pub-info">
+        Publication Information
+      </div>
+      <div class="card-body open">
+        <div>
+          <% f.object.publication_information.each do |term| %>
+            <%= render_edit_field_partial(term, f: f) %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 
   <div id="pub-accordion">
     <div class="card">
-          <div class="card-header pub-form-header" id="pubform-add-info">
-            Additional Information
-          </div>
-          <div class="card-body">
-            <div>
-              <% f.object.additional_information.each do |term| %>
-              <%= render_edit_field_partial(term, f: f) %>
-              <% end %>
-            </div>
-          </div>
+      <div class="card-header pub-form-header" id="pubform-add-info">
+        Additional Information
+      </div>
+      <div class="card-body">
+        <div>
+          <% f.object.additional_information.each do |term| %>
+            <%= render_edit_field_partial(term, f: f) %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 
+  <% if current_user.admin? %>
     <div id="pub-accordion">
-    <div class="card">
-          <div class="card-header pub-form-header" id="pubform--info">
-            Administrative Information
-          </div>
-          <div class="card-body">
-            <div>
-              <% f.object.administrative_terms.each do |term| %>
+      <div class="card">
+        <div class="card-header pub-form-header" id="pubform--info">
+          Administrative Information
+        </div>
+        <div class="card-body">
+          <div>
+            <% f.object.administrative_terms.each do |term| %>
               <%= render_edit_field_partial(term, f: f) %>
-              <% end %>
-            </div>
+            <% end %>
           </div>
+        </div>
+      </div>
     </div>
-  </div>
-
+  <% end %>
 </div>
 
 
 <% if f.object.persisted? && f.object.member_ids.present? %>
-    <%= link_to t('hyrax.works.form.additional_fields'),
-                '#extended-terms',
-                class: 'btn btn-secondary additional-fields',
-                data: { toggle: 'collapse' },
-                role: "button",
-                'aria-expanded'=> "false",
-                'aria-controls'=> "extended-terms" %>
-    <div id="extended-terms" class='collapse'>
+  <%= link_to t('hyrax.works.form.additional_fields'),
+              '#extended-terms',
+              class: 'btn btn-secondary additional-fields',
+              data: { toggle: 'collapse' },
+              role: "button",
+              'aria-expanded'=> "false",
+              'aria-controls'=> "extended-terms" %>
+  <div id="extended-terms" class='collapse'>
     <%= render 'form_media', f: f %>
-    </div>
+  </div>
 <% end %>
