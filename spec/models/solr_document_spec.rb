@@ -61,7 +61,7 @@ RSpec.describe ::SolrDocument, type: :model do
 
     describe 'with a genre of Article' do
       it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'JO', 'VL', 'IS', 'SP', 'EP', 'CY', 'L2'], expected_ty_field: 'JOUR') }
-      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['T2', 'BT']) }
+      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['T2', 'BT', 'T3']) }
 
       context 'empty fields' do
         subject(:document) { described_class.new(attributes.merge('publisher_tesim': "", 'parent_title_tesi': "")) }
@@ -74,7 +74,7 @@ RSpec.describe ::SolrDocument, type: :model do
       subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Book')) }
 
       it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'CY', 'L2'], expected_ty_field: 'BOOK') }
-      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'T2', 'VL', 'IS', 'SP', 'EP']) }
+      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'T2', 'VL', 'IS', 'SP', 'EP', 'T3']) }
 
       context 'empty fields' do
         subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Book', 'publisher_tesim': "", 'final_published_versions_tesim': "")) }
@@ -87,7 +87,7 @@ RSpec.describe ::SolrDocument, type: :model do
       subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Book Chapter')) }
 
       it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'BT', 'SP', 'EP', 'CY', 'L2'], expected_ty_field: 'CHAP') }
-      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['JO', 'T2', 'VL', 'IS']) }
+      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['JO', 'T2', 'VL', 'IS', 'T3']) }
 
       context 'empty fields' do
         subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Book Chapter', 'publisher_tesim': "", 'final_published_versions_tesim': "")) }
@@ -99,8 +99,8 @@ RSpec.describe ::SolrDocument, type: :model do
     describe 'with a genre of Conference Paper' do
       subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Conference Paper')) }
 
-      it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'T2', 'VL', 'IS', 'CY', 'L2', 'SP', 'EP'], expected_ty_field: 'CONF') }
-      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO']) }
+      it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'T2', 'VL', 'IS', 'CY', 'L2'], expected_ty_field: 'CONF') }
+      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'SP', 'EP', 'T3']) }
 
       context 'empty fields' do
         subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Conference Paper', 'publisher_tesim': "", 'final_published_versions_tesim': "")) }
@@ -113,7 +113,7 @@ RSpec.describe ::SolrDocument, type: :model do
       subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Poster')) }
 
       it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'T2', 'CY', 'L2'], expected_ty_field: 'GEN') }
-      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'VL', 'IS', 'SP', 'EP']) }
+      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'VL', 'IS', 'SP', 'EP', 'T3']) }
 
       context 'empty fields' do
         subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Poster', 'publisher_tesim': "", 'final_published_versions_tesim': "")) }
@@ -126,7 +126,7 @@ RSpec.describe ::SolrDocument, type: :model do
       subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Presentation')) }
 
       it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'T2', 'CY', 'L2'], expected_ty_field: 'GEN') }
-      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'VL', 'IS', 'SP', 'EP']) }
+      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'VL', 'IS', 'SP', 'EP', 'T3']) }
 
       context 'empty fields' do
         subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Presentation', 'publisher_tesim': "", 'final_published_versions_tesim': "")) }
@@ -138,8 +138,8 @@ RSpec.describe ::SolrDocument, type: :model do
     describe 'with a genre of Report' do
       subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Report')) }
 
-      it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'CY', 'L2'], expected_ty_field: 'REPORT') }
-      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'T2', 'VL', 'IS', 'SP', 'EP']) }
+      it('contains the right fields') { ris_right_test(right_fields: ['TY', 'TI', 'AU', 'LA', 'PY', 'PB', 'DO', 'T3', 'L2', 'VL', 'IS', 'SP', 'EP', 'CY', 'L2'], expected_ty_field: 'RPRT') }
+      it('does not contain the wrong fields') { ris_wrong_test(wrong_fields: ['BT', 'JO', 'T2']) }
 
       context 'empty fields' do
         subject(:document) { described_class.new(attributes.merge('content_genre_ssi': 'Report', 'publisher_tesim': "", 'final_published_versions_tesim': "")) }
