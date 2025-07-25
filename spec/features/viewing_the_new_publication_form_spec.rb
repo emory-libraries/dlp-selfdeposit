@@ -25,7 +25,7 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
       "ORCID ID", "Primary Language required", "Date required", "Publisher required", "Publication Version",
       "Copyright Statement required", "License", "Final Published Version (URL)", "Title of Journal or Parent Work",
       "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Start Page",
-      "End Page", "Place of Publication or Presentation", "Grant/Funding Agency", "Grant/Funding Information",
+      "End Page", "Place of Publication or Presentation", "Grant/Funding Agency", "Grant/Funding Information", "Authors",
       "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories",
       "Restricted to", "then open it up to"
     ]
