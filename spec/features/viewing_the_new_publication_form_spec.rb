@@ -65,7 +65,7 @@ RSpec.describe 'viewing the new Publication form', :clean_repo, type: :feature d
         "Copyright Statement required", "License", "Final Published Version (URL)", "Title of Journal or Parent Work",
         "Conference or Event Name", "ISSN", "ISBN", "Series Title", "Edition", "Volume", "Issue", "Start Page",
         "End Page", "Place of Publication or Presentation", "Grant/Funding Agency", "Grant/Funding Information",
-        "Supplemental Material (URL)", "Abstract", "Author Notes", "Keywords", "Subject - Topics", "Research Categories",
+        "Supplemental Material (URL)", "Abstract", "Author Notes", "Authors", "Keywords", "Subject - Topics", "Research Categories",
         "Copyright Status required", "Emory ark", "Internal rights note", "Staff notes", "System of record id", "Format required",
         "Library required", "Institution", "Data classification required", "Deduplication key", "Restricted to", "then open it up to",
         "Administrative Set", "Is available to", "then restrict it to"
