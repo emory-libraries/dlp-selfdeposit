@@ -45,22 +45,20 @@ Please refer to our <%= link_to 'Help', help_path %> page for more guidance.</p>
     </div>
   </div>
 
-  <% if current_user.admin? %>
-    <div id="pub-accordion">
-      <div class="card">
-        <div class="card-header pub-form-header" id="pubform--info">
-          Administrative Information
-        </div>
-        <div class="card-body">
-          <div>
-            <% f.object.administrative_terms.each do |term| %>
-              <%= render_edit_field_partial(term, f: f) %>
-            <% end %>
-          </div>
+  <div id="pub-accordion" <%= 'hidden' unless current_user.admin? %>>
+    <div class="card">
+      <div class="card-header pub-form-header" id="pubform--info">
+        Administrative Information
+      </div>
+      <div class="card-body">
+        <div>
+          <% f.object.administrative_terms.each do |term| %>
+            <%= render_edit_field_partial(term, f: f) %>
+          <% end %>
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
 
 
