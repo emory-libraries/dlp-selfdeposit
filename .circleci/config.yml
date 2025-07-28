@@ -86,9 +86,6 @@ jobs:
       core_name:
         default: dlp-selfdeposit-test
         type: string
-      cache_version:
-        type: string
-        default: '1'
     working_directory: ~/project
     parallelism: 4
     steps:
@@ -100,19 +97,7 @@ jobs:
       - samvera/bundle:
           ruby_version: << parameters.ruby_version >>
           bundler_version: << parameters.bundler_version >>
-      - restore_cache:
-          name: Restore rubocop cache
-          keys:
-            - v<< parameters.cache_version >>-rubocop-{{ .Environment.CIRCLE_BRANCH }}
-            - v<< parameters.cache_version >>-rubocop
-      - run:
-          name: Call Rubocop in parallel
-          command: bundle exec rubocop --parallel
-      - save_cache:
-          name: Save rubocop cache
-          key: v<< parameters.cache_version >>-rubocop-{{ .Environment.CIRCLE_BRANCH }}
-          paths:
-            - ~/.cache
+      - samvera/rubocop
       - run:
           name: Get yarn version
           command: echo $(yarn --version) >> "YARN_VERSION"
