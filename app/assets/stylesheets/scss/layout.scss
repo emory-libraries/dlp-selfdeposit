@@ -307,6 +307,9 @@ div#announcement_text {
       a {
         font-size: 1.75rem;
         color: $dark-blue;
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       a.btn {
@@ -346,6 +349,9 @@ div#announcement_text {
     .dlp-feat-menu-link {
       padding-bottom: 0.625rem;
       color: $white;
+      &:hover {
+        text-decoration: underline;
+      }
 
       &:last-child {
         font-weight: bold;
@@ -408,6 +414,9 @@ div#announcement_text {
       h3 {
         font-weight: bold;
         color: $base-blue;
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       .dlp-collections-descrip {
