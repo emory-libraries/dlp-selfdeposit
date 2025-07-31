@@ -148,6 +148,9 @@
         font-size: inherit;
       }
     }
+    td.items-actions-button > a.btn {
+      width: max-content;
+    }
   }
   p.no-events {
     padding: 0.75rem;
