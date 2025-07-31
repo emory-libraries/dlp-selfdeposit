@@ -21,6 +21,9 @@
   // item action buttons directly beneath item title
   a {
     color: $bright-blue;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   a.btn-danger {
     color: $white;
