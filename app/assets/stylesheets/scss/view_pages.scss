@@ -18,6 +18,9 @@
 
   a {
     color: $bright-blue;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   a.btn-danger {
     color: $white;
