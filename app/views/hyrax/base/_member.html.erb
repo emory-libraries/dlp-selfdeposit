@@ -10,7 +10,7 @@
   <td class="attribute attribute-file_set_use"><%= member.try(:solr_document)&.fetch("file_set_use_ssi", '') %></td>
   <td class="attribute attribute-date_uploaded"><%= member.try(:date_uploaded) %></td>
   <td class="attribute attribute-permission"><%= member.permission_badge %></td>
-  <td>
+  <td class="items-actions-button">
     <%= render 'actions', member: member %>
   </td>
 </tr>
