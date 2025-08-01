@@ -147,6 +147,9 @@
     }
     td {
       word-break: break-word;
+      li.dropdown-item {
+        font-size: inherit;
+      }
     }
     td.items-actions-button > a.btn {
       width: max-content;
