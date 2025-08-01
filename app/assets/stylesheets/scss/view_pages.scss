@@ -3,6 +3,8 @@
 
 /*** View Work Page (/concerns/publications/) ***/
 #view-work-page {
+
+  // item title
   .work-title-wrapper .title-with-badges {
     flex-wrap: wrap;
 
@@ -16,6 +18,7 @@
     }
   }
 
+  // item action buttons directly beneath item title
   a {
     color: $bright-blue;
     &:hover {
@@ -35,10 +38,18 @@
     background-color: $bright-blue;
     color: $white;
   }
+
+  // for images and pdfs, the large viewing area
   .viewer-wrapper > iframe {
     /* hhyrax had this set as absolute, not sure why, but it was causing it to overflow from the card into the row on line 21 of the show page which has -15px margins.*/
     position: static;
   }
+
+  .fileset-pdf-viewer > iframe {
+    border: 1px solid $base-slate;
+    border-radius: 0.25rem;
+  }
+
   /* review and approval actions, admins only */
   div.workflow-actions {
     h2,
@@ -64,22 +75,10 @@
     }
   }
 
-  .fileset-pdf-viewer > iframe {
-    border: 1px solid $base-slate;
-    border-radius: 0.25rem;
-  }
-
-  h2.show-tools-card-title {
-    font-family: $font-family-sans-serif;
-    color: $gold;
-    background-color: $dark-blue;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  .viewer-actions div.card-header {
-    background-color: $dark-blue;
-    text-align: left;
+  // the col-4 to the right, with a small player for videos, and the tools menu
+  .card.viewer-actions, .sidebar-media {
+    margin-right: 1.25rem;
+    margin-top: 1.25rem;
   }
 
   .sidebar-media > div > img {
@@ -89,9 +88,7 @@
   .sidebar-media > div > a {
     display: none;
   }
-  .viewer-actions {
-    margin-top: 1.25rem;
-  }
+
   h2.show-tools-card-title {
     font-family: $font-family-sans-serif;
     color: $gold;
@@ -120,6 +117,7 @@
     vertical-align: top;
   }
 
+  // col-8 on the left sside of item details card
   .card-body {
     padding: 0;
 
@@ -135,14 +133,11 @@
     }
   }
 
-  .card.viewer-actions {
-    margin-right: 1.25rem;
-  }
-
   .work-show {
     padding: 1.25rem 1.25rem 0 1.25rem;
   }
 
+  //items table
   table.items-table {
     th {
       white-space: nowrap;
