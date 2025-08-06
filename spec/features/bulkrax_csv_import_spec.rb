@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature, js: true do
+RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature do
   context 'field mappings' do
     let(:pulled_field_mappings) { Bulkrax.field_mappings['Bulkrax::CsvParser'] }
     let(:all_mapped_fields) do
@@ -70,7 +70,7 @@ RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature, js: true do
       end
 
       unless ENV['CI']
-        it "has none of the other parser option's labels" do
+        it "has none of the other parser option's labels", js: true do
           expect(page).not_to have_css('.oai_fields .importer_parser_fields_base_url label', text: 'Base url')
           expect(page).not_to have_css('.bagit_fields .importer_parser_fields_metadata_file_name label', text: 'Metadata file name ')
           expect(page).not_to have_css('.xml_fields .importer_parser_fields_record_element label', text: 'Record element ')
