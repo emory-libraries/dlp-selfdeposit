@@ -13,7 +13,7 @@
   }
 }
 
-/**** Phone/Tablet Screen ****/
+/**** Phone Screen ****/
 @media (max-width: 767px) {
   /**** Header ****/
   header {
@@ -103,7 +103,7 @@
 }
 
 
-/**** Desktop Screen ****/
+/**** Tablet Screen ****/
 @media (max-width: 991px) {
   /*** new publication form ***/
   .pub-accordion-wrapper .card-body div.publication_creators #creators-container div.col-lg-6 {
@@ -121,9 +121,9 @@
     .dropdown-toggle {
       white-space: normal;
     }
-  }
-  .table-responsive {
-    overflow-x: scroll;
+    table.items-table td.items-actions-button {
+      word-break: auto-phrase;
+    }
   }
 
   /**** homepage ****/
@@ -141,4 +141,12 @@
     padding-bottom: 20px;
   }
   /**** end homepage ****/
+}
+
+/**** Desktop Screen ****/
+@media (max-width: 1199px) {
+  .table-responsive {
+    overflow-x: scroll;
+
+  }
 }
