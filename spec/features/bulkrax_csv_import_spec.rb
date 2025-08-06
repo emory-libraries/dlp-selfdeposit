@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature do
+RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature, js: true do
   context 'field mappings' do
     let(:pulled_field_mappings) { Bulkrax.field_mappings['Bulkrax::CsvParser'] }
     let(:all_mapped_fields) do
@@ -67,6 +67,12 @@ RSpec.describe 'Bulkrax CSV importer', :clean_repo, type: :feature do
         expect(find_all('.csv_fields div #importer_parser_fields_visibility option').map(&:text)).to match_array(
           ["Public", "Private", "Institution"]
         )
+      end
+
+      it "has none of the other parser option's labels" do
+        expect(page).not_to have_css('.oai_fields .importer_parser_fields_base_url label', text: 'Base url')
+        expect(page).not_to have_css('.bagit_fields .importer_parser_fields_metadata_file_name label', text: 'Metadata file name ')
+        expect(page).not_to have_css('.xml_fields .importer_parser_fields_record_element label', text: 'Record element ')
       end
 
       # This tests works when `js:true` is set, but that breaks in Circle CI.
