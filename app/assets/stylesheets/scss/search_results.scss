@@ -63,6 +63,10 @@
   }
   a.facet-select {
     font-weight: bold;
+    color: $bright-blue;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -97,6 +101,9 @@
 
   a {
     color: $bright-blue;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   h3 {
     font-weight: bold;
