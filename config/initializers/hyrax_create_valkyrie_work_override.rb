@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] - Adds set_noid step
+# [Hyrax-override-v5.2.0] Adds set_noid step
 
 require './lib/hyrax/transactions/steps/set_noid_id'
 

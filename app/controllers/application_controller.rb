@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # Hyrax v5.0.1 override: changes html redirect to our saml path
+  # [Hyrax-override-v5.2.0] changes html redirect to our saml path
   def deny_access_for_anonymous_user(exception, json_message)
     session['user_return_to'] = request.url
     respond_to do |wants|
