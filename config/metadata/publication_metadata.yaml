@@ -27,10 +27,10 @@ attributes:
     predicate: http://purl.org/dc/terms/accessRights
   author_notes:
     type: string
-    multiple: false
+    multiple: true
     form:
       primary: false
-      multiple: false
+      multiple: true
     index_keys:
       - 'author_notes_tesi'
     predicate: http://metadata.emory.edu/vocab/cor-terms#authorNote
