@@ -11,12 +11,18 @@ class ApplicationController < ActionController::Base
   with_themed_layout '1_column'
 
   protect_from_forgery with: :exception
+  rescue_from I18n::InvalidLocale, with: :locale_not_found
 
   def saml_redirect
     respond_to { |wants| wants.html { render 'shared/saml_redirect' } }
   end
 
   private
+
+  def locale_not_found(exception)
+    redirect_to main_app.not_found_error_path
+    Rails.logger.warn("Locale not found: #{exception.message}")
+  end
 
   # Hyrax v5.0.1 override: changes html redirect to our saml path
   def deny_access_for_anonymous_user(exception, json_message)
