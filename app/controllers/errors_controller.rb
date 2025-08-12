@@ -4,6 +4,8 @@ class ErrorsController < ApplicationController
     set_locale
   end
 
+  def unprocessable; end
+
   private
 
   def set_locale
