@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   end
 
   match '/404', to: 'errors#not_found', via: :all, as: :not_found_error
-  match '/422', to: 'errors#unprocessable', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all, as: :unprocessable_error
   match '/500', to: 'errors#unhandled_exception', via: :all
 
   # rubocop:disable Rails/FindEach

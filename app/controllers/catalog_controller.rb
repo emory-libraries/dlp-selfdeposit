@@ -5,6 +5,7 @@ class CatalogController < ApplicationController
 
   # This filter applies the hydra access controls
   before_action :enforce_show_permissions, only: :show
+  rescue_from KeyError, with: :key_value_not_found
 
   def self.uploaded_field
     "system_create_dtsi"
@@ -325,5 +326,12 @@ class CatalogController < ApplicationController
   # this method is not called in that context.
   def render_bookmarks_control?
     false
+  end
+
+  private
+
+  def key_value_not_found(exception)
+    redirect_to main_app.unprocessable_error_path
+    Rails.logger.warn(exception.message)
   end
 end
