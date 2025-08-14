@@ -65,4 +65,32 @@ RSpec.describe "viewing the search results page", :clean_repo, :perform_enqueued
       expect(pulled_keyword_facet_items.map(&:text)).not_to include('')
     end
   end
+
+  context 'error redirects' do
+    shared_examples 'checks for expected error redirects' do |redirect_code, log_message, catalog_path, page_content|
+      it "redirects to #{redirect_code}" do
+        expect(Rails.logger).to receive(:warn).with(log_message)
+
+        visit catalog_path
+
+        expect(page).to have_content(page_content)
+      end
+    end
+
+    describe 'invalid locale' do
+      include_examples 'checks for expected error redirects',
+                       '404',
+                       'Locale not found: "kdcjhwdcj" is not a valid locale',
+                       '/catalog?f%5Bkeyword_sim%5D%5B%5D=shape+control&locale=kdcjhwdcj',
+                       '404 Error - Page Not Found'
+    end
+
+    describe 'invalid response format' do
+      include_examples 'checks for expected error redirects',
+                       '404',
+                       'Response format not found: ActionController::UnknownFormat',
+                       '/catalog.json?f%5Bkeyword_sim%5D%5B%5D=shape+control',
+                       '404 Error - Page Not Found'
+    end
+  end
 end
