@@ -5,6 +5,7 @@ class CatalogController < ApplicationController
 
   # This filter applies the hydra access controls
   before_action :enforce_show_permissions, only: :show
+  rescue_from ActionController::UnknownFormat, with: :response_format_not_found
   rescue_from KeyError, with: :key_value_not_found
 
   def self.uploaded_field
@@ -328,10 +329,33 @@ class CatalogController < ApplicationController
     false
   end
 
+  # [Hyrax-override-v5.0.1] removes processing of rss, atom and json.
+  # get search results from the solr index
+  def index
+    (@response, deprecated_document_list) = search_service.search_results
+
+    @document_list = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(
+      deprecated_document_list,
+      'The @document_list instance variable is deprecated; use @response.documents instead.',
+      ActiveSupport::Deprecation.new("8.0", "blacklight")
+    )
+
+    respond_to do |format|
+      format.html { store_preferred_view }
+      additional_response_formats(format)
+      document_export_formats(format)
+    end
+  end
+
   private
 
   def key_value_not_found(exception)
-    redirect_to main_app.unprocessable_error_path
+    redirect_to main_app.not_found_error_path, params: { 'locale': 'en' }
     Rails.logger.warn(exception.message)
+  end
+
+  def response_format_not_found(exception)
+    redirect_to main_app.not_found_error_path, params: { 'locale': 'en' }
+    Rails.logger.warn("Response format not found: #{exception.message}")
   end
 end
