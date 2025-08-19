@@ -8,7 +8,7 @@ RSpec.describe CatalogController, type: :controller do
                           "language_tesim", "date_issued_tesi", "publisher_tesim", "publisher_version_tesi",
                           "parent_title_tesi", "conference_name_tesi", "issn_tesi", "isbn_tesi",
                           "series_title_tesi", "grant_agencies_tesim", "grant_information_tesim",
-                          "abstract_tesim", "author_notes_tesi", "keyword_tesim", "subject_tesim",
+                          "abstract_tesim", "author_notes_tesim", "keyword_tesim", "subject_tesim",
                           "research_categories_tesim", "emory_ark_tesim"]
 
   default_search_fields = ["title_tesim", "id", "deduplication_key_ssi", "system_of_record_ID_ssi", "emory_persistent_id_ssi",

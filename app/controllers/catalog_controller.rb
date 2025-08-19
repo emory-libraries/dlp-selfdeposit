@@ -103,7 +103,7 @@ class CatalogController < ApplicationController
     config.add_show_field "grant_agencies_tesim"
     config.add_show_field "grant_information_tesim"
     config.add_show_field "abstract_tesim"
-    config.add_show_field "author_notes_tesi"
+    config.add_show_field "author_notes_tesim"
     config.add_show_field "keyword_tesim"
     config.add_show_field "subject_tesim"
     config.add_show_field "research_categories_tesim"
