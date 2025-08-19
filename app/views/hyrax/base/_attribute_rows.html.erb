@@ -45,7 +45,7 @@
 <!-- External Hyperlink to the related datasets facet -->
 <%= external_link_renderer.new(:related_datasets, presenter.solr_document['related_datasets_ssim'], {}).render_dl_row  %>
 <%= presenter.attribute_to_html(:abstract, html_dl: true) %>
-<%= generic_renderer.new(:author_notes, presenter.solr_document['author_notes_tesi'], {}).render_dl_row  %>
+<%= generic_renderer.new(:author_notes, presenter.solr_document['author_notes_tesim'], {}).render_dl_row  %>
 <!-- Hyperlink to the keyword facet -->
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject, html_dl: true) %>

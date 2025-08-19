@@ -32,7 +32,7 @@ attributes:
       primary: false
       multiple: true
     index_keys:
-      - 'author_notes_tesi'
+      - 'author_notes_tesim'
     predicate: http://metadata.emory.edu/vocab/cor-terms#authorNote
   conference_dates:
     type: string
