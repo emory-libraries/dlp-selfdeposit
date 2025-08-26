@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# Hyrax v5.0.1 override: app/services/hyrax/simple_schema_loader.rb
+# [Hyrax-override-v5.2.0]: app/services/hyrax/simple_schema_loader.rb
 # Override #type to include support for ordered members in metadata files
 
 module Hyrax

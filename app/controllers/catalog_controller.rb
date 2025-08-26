@@ -329,7 +329,7 @@ class CatalogController < ApplicationController
     false
   end
 
-  # [Hyrax-override-v5.0.1] removes processing of rss, atom and json.
+  # [Hyrax-override-v5.2.0] removes processing of rss, atom and json.
   # get search results from the solr index
   def index
     (@response, deprecated_document_list) = search_service.search_results
