@@ -52,6 +52,7 @@ jobs:
       BUNDLE_JOBS: 4
       BUNDLE_PATH: vendor/bundle
       BUNDLE_RETRY: 3
+      DATABASE_URL: postgresql://hyrax_user:hyrax_password@localhost:5432/dlp-selfdeposit-test?pool=5
       DB_HOST: localhost
       DB_NAME: dlp-selfdeposit-test
       DB_PASSWORD: hyrax_password

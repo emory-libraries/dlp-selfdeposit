@@ -91,6 +91,9 @@ header {
     font-weight: bold;
     font-size: 0.875rem;
     color: $gold-metallic !important;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .division {
@@ -98,6 +101,9 @@ header {
     font-weight: bold;
     color: $base-blue !important;
     font-size: 1.5rem;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   /**** Search Form Styling ****/

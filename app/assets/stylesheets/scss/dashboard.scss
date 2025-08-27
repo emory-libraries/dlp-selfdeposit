@@ -147,4 +147,11 @@ body.dashboard {
   #importers-table_wrapper #status-filter {
     margin-bottom: 0.3125rem;
   }
+
+  //file manager
+  #file-manager-tools div.actions.card {
+    background: none;
+    border: none;
+  }
+
 }

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1]
+# [Hyrax-override-v5.2.0]
 # Adds tests for fixity_check preservation_event
 require 'rails_helper'
 
