@@ -556,7 +556,7 @@ GEM
     hashdiff (1.1.2)
     hashie (5.0.0)
     hiredis (0.6.3)
-    honeybadger (6.0.5)
+    honeybadger (6.0.6)
       logger
       ostruct
     htmlentities (4.3.4)
