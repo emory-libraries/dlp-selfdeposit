@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] - SelfDeposit retroactive bug fix
+# [Hyrax-override-v5.2.0] - SelfDeposit retroactive bug fix
 #   This checks for the existence of the FileSet's Title value
 #   and inserts the UploadFile's filename if missing.
 

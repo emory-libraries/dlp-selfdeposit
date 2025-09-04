@@ -1,4 +1,4 @@
-<%# Hyrax v5.0.1 Override: institutes our own layout. Starts line 7, through line 71. %>
+<%# [Hyrax-override-v5.2.0] institutes our own layout. Starts line 7, through line 71, then 83-92. %>
 
 <% provide :page_title, @presenter.page_title %>
 
@@ -81,7 +81,7 @@
     </div>
 
     <% if current_user.try(:admin?) %>
-    <div class="card card-verflow">
+    <div class="card card-overflow">
       <div class="card-header">
         <h2 class="card-title"><%= t('.preservation_events') %></h2>
       </div>
@@ -90,7 +90,7 @@
       </div>
     </div>
     <% end %>
-    
+
     <%# TODO: we may consider adding these partials in the future %>
     <%# = render 'sharing_with', presenter: @presenter %>
     <%# = render 'user_activity', presenter: @presenter %>

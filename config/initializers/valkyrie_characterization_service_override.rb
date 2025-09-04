@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.0] - We take over .run to create a PreservationEvent
+# [Hyrax-override-v5.2.0] We take over .run to create a PreservationEvent
 #   registering the characterization of a Publication's FileSet.
 require './lib/preservation_events'
 

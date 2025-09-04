@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# [Hyrax-overwrite-v5.0.1] - Adds method to pull total works found.
+# [Hyrax-override-v5.2.0] Adds method to pull total works found.
 
 Rails.application.config.to_prepare do
   Hyrax::HomepagePresenter.class_eval do
