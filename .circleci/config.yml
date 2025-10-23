@@ -114,13 +114,13 @@ jobs:
       - samvera/install_solr_core:
           solr_port: << parameters.solr_port >>
           core_name: << parameters.core_name >>
+
+      - samvera/parallel_rspec
       
       - qlty-orb/coverage_publish:
           files: coverage/.resultset.json
           incomplete: true
           total_parts_count: 4
-      
-      # - samvera/parallel_rspec
       
       - store_artifacts:
           path: tmp/screenshots
