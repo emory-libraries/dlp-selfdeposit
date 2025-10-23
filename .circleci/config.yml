@@ -120,7 +120,7 @@ jobs:
           incomplete: true
           total_parts_count: 4
       
-      - samvera/parallel_rspec
+      # - samvera/parallel_rspec
       
       - store_artifacts:
           path: tmp/screenshots
