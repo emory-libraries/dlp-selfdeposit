@@ -1059,7 +1059,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     retriable (3.1.2)
-    rexml (3.4.2)
+    rexml (3.4.4)
     riiif (2.7.0)
       deprecation (>= 1.0.0)
       iiif-image-api (>= 0.1.0)
@@ -1150,7 +1150,7 @@ GEM
       tilt
     scanf (1.0.0)
     select2-rails (3.5.11)
-    selenium-webdriver (4.35.0)
+    selenium-webdriver (4.37.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
