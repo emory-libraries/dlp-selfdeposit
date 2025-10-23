@@ -139,6 +139,7 @@ workflows:
     jobs:
       - build:
           name: ruby3.2.2
+          name: rspec
       - coverage:
           name: qlty
           requires:
