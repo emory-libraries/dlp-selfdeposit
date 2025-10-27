@@ -102,7 +102,7 @@ services:
       - dlp
 
   postgres:
-    image: postgres:15
+    image: postgres:18
     env_file:
       - .env.development
     ports:
