@@ -35,7 +35,7 @@ jobs:
             "user-role":{"solr":"admin"}}}
           VERBOSE: 'yes'
       - image: redis:6.2
-      - image: postgres:18.0
+      - image: postgres:18.1
         environment:
           POSTGRES_USER: hyrax_user
           POSTGRES_PASSWORD: hyrax_password
@@ -127,7 +127,7 @@ jobs:
 
   coverage:
     docker:
-        - image: cimg/ruby:3.2.2
+        - image: cimg/ruby:3.4.7
     working_directory: ~/project
     parallelism: 1
     steps:
