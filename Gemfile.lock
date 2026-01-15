@@ -182,7 +182,7 @@ GEM
     blacklight-gallery (4.6.4)
       blacklight (>= 7.17, < 9)
       rails (>= 6.1, < 9)
-    bootsnap (1.19.0)
+    bootsnap (1.21.1)
       msgpack (~> 1.2)
     bootstrap (4.6.2.1)
       autoprefixer-rails (>= 9.1.0)
