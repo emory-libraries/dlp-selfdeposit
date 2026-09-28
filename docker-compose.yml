@@ -142,11 +142,12 @@ services:
       - dlp
 
   redis:
-    image: bitnami/redis:6.2
+    image: redis:6.2-alpine
+    command: redis-server --requirepass sidekickin
     env_file:
       - .env.development
     volumes:
-      - redis:/bitnami/redis/data
+      - redis:/data
     networks:
       - dlp
 

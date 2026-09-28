@@ -25,6 +25,7 @@ gem 'omniauth-saml'
 gem 'pg', '~> 1.3'
 gem 'puma'
 gem 'rails', '~> 6.1'
+gem "railsfooter", source: "https://gem.coop/@emorylibraries"
 gem 'riiif', '~> 2.1'
 gem 'rsolr', '>= 1.0', '< 3'
 gem 'sass-rails', '~> 6.0'

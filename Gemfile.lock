@@ -15,6 +15,12 @@ GIT
       aws-sdk-ec2
 
 GEM
+  remote: https://gem.coop/@emorylibraries/
+  specs:
+    railsfooter (1.0.0)
+      rails (>= 5.0)
+
+GEM
   remote: https://rubygems.org/
   specs:
     actioncable (6.1.7.10)
@@ -1375,6 +1381,7 @@ DEPENDENCIES
   puma
   rails (~> 6.1)
   rails-controller-testing
+  railsfooter!
   riiif (~> 2.1)
   rsolr (>= 1.0, < 3)
   rspec-activemodel-mocks

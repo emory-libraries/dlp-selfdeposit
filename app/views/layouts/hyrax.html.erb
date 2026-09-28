@@ -5,6 +5,7 @@
   <head>
     <%= render partial: 'layouts/head_tag_content' %>
     <%= content_for(:head) %>
+    <%= stylesheet_link_tag "railsfooter/application.css" %>
   </head>
 
   <body>
@@ -30,7 +31,7 @@
       <%= render 'shared/read_only' if Flipflop.read_only? %>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div><!-- /#content-wrapper -->
-    <%= render 'shared/footer' %>
+    <%= render 'railsfooter/footer' %>
     <%= render 'shared/modal' %>
   </body>
 </html>
