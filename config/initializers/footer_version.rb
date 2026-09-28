@@ -5,7 +5,7 @@
 
 # if you can figure out the path to the revision log from where the app is running...
 # REVISIONS_LOGFILE = Rails.root.join("../../revisions.log")
-REVISIONS_LOGFILE = Rails.root.join("opt", "#{ENV['PROJECT_NAME']}", "revisions.log")
+REVISIONS_LOGFILE = Rails.root.join("opt", "dlp-selfdeposit", "revisions.log")
 GIT_LOGFILE = Rails.root.join(".git")
 
 GIT_SHA =
