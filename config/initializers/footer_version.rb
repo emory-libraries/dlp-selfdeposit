@@ -4,11 +4,11 @@
 # If you want to make changes to the file, make sure to also rename it so that it doesn't get accidentally rewritten with gem updates.
 
 # if you can figure out the path to the revision log from where the app is running...
-# REVISIONS_LOGFILE = Rails.root.join("../../revisions.log") (this one works for oe24 fwiw)
-# REVISIONS_LOGFILE = Rails.root.join("..", "..", "revisions.log").cleanpath
+# REVISIONS_LOGFILE = Rails.root.join("../../revisions.log") (this one works for oe24 fwiw but is not how root.jin should be used.)
+REVISIONS_LOGFILE = Rails.root.join("..", "..", "revisions.log").cleanpath
 # REVISIONS_LOGFILE = Rails.root.join("opt", "#{ENV['PROJECT_NAME']}", "revisions.log") (did not work for oe24)
 # REVISIONS_LOGFILE = Rails.root.join("opt", "dlp-selfdeposit", "revisions.log") (did not work for oe24)
-REVISIONS_LOGFILE = Rails.root.join("/opt", "dlp-selfdeposit", "revisions.log")
+# REVISIONS_LOGFILE = Rails.root.join("/opt", "dlp-selfdeposit", "revisions.log") (this did work but is also not root.join best practice? kind of exploiting the loophole)
 # REVISIONS_LOGFILE = Rails.root / "opt" / "dlp-selfdeposit" / "revisions.log" (did not work for oe24)
 GIT_LOGFILE = Rails.root.join(".git")
 
