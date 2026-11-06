@@ -17,7 +17,7 @@ GIT
 GEM
   remote: https://gem.coop/@emorylibraries/
   specs:
-    railsfooter (1.0.1)
+    railsfooter (1.1.0)
       rails (>= 5.0)
 
 GEM
@@ -1382,7 +1382,7 @@ DEPENDENCIES
   puma
   rails (~> 6.1)
   rails-controller-testing
-  railsfooter!
+  railsfooter (= 1.1.0)!
   riiif (~> 2.1)
   rsolr (>= 1.0, < 3)
   rspec-activemodel-mocks
