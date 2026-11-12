@@ -31,7 +31,7 @@
       <%= render 'shared/read_only' if Flipflop.read_only? %>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div><!-- /#content-wrapper -->
-    <%= render 'railsfooter/railsfooter' %>
+    <%= render 'railsfooter/footer' %>
     <%= render 'shared/modal' %>
   </body>
 </html>
