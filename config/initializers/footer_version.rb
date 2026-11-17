@@ -4,7 +4,6 @@
 # If you want to make changes to the file, make sure to also rename it so that it doesn't get accidentally rewritten with gem updates.
 
 # if you can figure out the path to the revision log from where the app is running...
-# REVISIONS_LOGFILE = Rails.root.join("/opt", "#{ENV['PROJECT_NAME']}", "revisions.log")
 REVISIONS_LOGFILE = Rails.root.join("..", "..", "revisions.log").cleanpath
 GIT_LOGFILE = Rails.root.join(".git")
 
@@ -36,5 +35,5 @@ LAST_DEPLOYED =
   elsif File.exist?(GIT_LOGFILE)
    `git log -1 --format=%cd --date=short`.chomp
   else
-    Time.now.year
+    Date.current.year
   end
