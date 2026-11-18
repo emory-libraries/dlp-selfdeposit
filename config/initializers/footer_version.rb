@@ -9,7 +9,7 @@ GIT_LOGFILE = Rails.root.join(".git")
 
 GIT_SHA =
   if File.exist?(REVISIONS_LOGFILE)
-   `tail -1 #{REVISIONS_LOGFILE}`.chomp.split(" ")[3].gsub(/\)$/, "")
+    `tail -1 #{REVISIONS_LOGFILE}`.chomp.split(" ")[3].gsub(/\)$/, "")
   elsif File.exist?(GIT_LOGFILE)
     `git rev-parse HEAD`.chomp
   else
@@ -17,11 +17,9 @@ GIT_SHA =
   end
 
 BRANCH =
-  if
-    File.exist?(REVISIONS_LOGFILE)
+  if File.exist?(REVISIONS_LOGFILE)
     `tail -1 #{REVISIONS_LOGFILE}`.chomp.split(" ")[1]
-  elsif
-    File.exist?(GIT_LOGFILE)
+  elsif File.exist?(GIT_LOGFILE)
     `git rev-parse --abbrev-ref HEAD`.chomp
   else
     # trying `pwd` here might give you a clue for the revisions.log path in a deployed env.
@@ -33,7 +31,7 @@ LAST_DEPLOYED =
     deployed = `tail -1 #{REVISIONS_LOGFILE}`.chomp.split(" ")[7]
     Date.parse(deployed).strftime("%d %B %Y")
   elsif File.exist?(GIT_LOGFILE)
-   `git log -1 --format=%cd --date=short`.chomp
+    `git log -1 --format=%cd --date=short`.chomp
   else
     Date.current.year
   end
