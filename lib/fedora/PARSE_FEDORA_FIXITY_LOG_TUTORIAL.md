@@ -4,7 +4,7 @@ This tool produces a CSV report when provided with a fixity log outputted by Fed
 
 ## Prerequisites
 
-The Parse Fedora Fixity Log script relies on Ruby gems that should be included within the standard library. If errors are encountered during processing, please contact Software Development for assistance. The `dlp-selfdeposit` repository must also be cloned on any computer or server this is to be called from. And since this is a Ruby script, Ruby v3.2.2 must also be installed.
+The Parse Fedora Fixity Log script relies on Ruby gems that should be included within the standard library. If errors are encountered during processing, please contact Software Development for assistance. The `dlp-selfdeposit` repository must also be cloned on any computer or server this is to be called from. And since this is a Ruby script, Ruby v3.3.14 must also be installed.
 
 ## Usage
 

@@ -8,7 +8,7 @@ This tool exports "datastreams" (binary or XML files) when provided with the Fed
 
 The Migrate Fedora 3 Objects script relies on [Lyrasis' fedora-export CLI script](https://wiki.lyrasis.org/display/FEDORA38/fedora-export). Before running the Emory Library script, this suite of CLI tools must be installed in the computer or server that it will be executed from. Instructions on how to install the "client" level of CLI tools can be found [here](https://wiki.lyrasis.org/display/FEDORA38/Installation+and+Configuration). Please note that, since we only need the CLI scripts from this install, the only prerequisites needed for the installation are to have Java 8 installed, the environment variable of JAVA_HOME set to the home of JAVA 8's bin folder, the FEDORA_HOME environment variable set to where the client version of Fedora 3.8 is installed, and the computer or server's PATH to be updated as described in the installation instructions.
 
-The `dlp-selfdeposit` repository must also be cloned on any computer or server this is to be called from. And since this is a Ruby script, Ruby v3.2.2 must also be installed.
+The `dlp-selfdeposit` repository must also be cloned on any computer or server this is to be called from. And since this is a Ruby script, Ruby v3.3.14 must also be installed.
 
 # Usage
 

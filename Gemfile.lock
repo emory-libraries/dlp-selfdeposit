@@ -725,7 +725,7 @@ GEM
       rdf-vocab (~> 3.0)
     legato (0.7.0)
       multi_json
-    libxml-ruby (5.0.3)
+    libxml-ruby (5.0.6)
     link_header (0.0.8)
     linkeddata (3.3.3)
       json-ld (~> 3.3, >= 3.3.2)
@@ -1405,7 +1405,7 @@ DEPENDENCIES
   xray-rails!
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.3.14p208
 
 BUNDLED WITH
    2.5.6
