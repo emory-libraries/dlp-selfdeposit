@@ -32,7 +32,7 @@ before 'deploy:starting', 'deploy:confirm_cab_approval'
 set :application, "dlp-selfdeposit"
 set :repo_url, "https://github.com/emory-libraries/dlp-selfdeposit"
 set :deploy_to, '/opt/dlp-selfdeposit'
-set :rbenv_ruby, '3.2.2'
+set :rbenv_ruby, '3.3.14'
 set :rbenv_custom_path, '/usr/local/rbenv'
 set :rails_env, 'production'
 set :assets_prefix, "#{shared_path}/public/assets"

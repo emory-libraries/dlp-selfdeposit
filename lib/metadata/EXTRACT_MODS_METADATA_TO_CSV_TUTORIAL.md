@@ -6,7 +6,7 @@ This tool parses the necessary metadata needed to import Publication objects int
 
 # Prerequisites
 
-This is a Ruby script which has been authored and tested with Ruby v3.2.2. Please use the same version. The `dlp-selfdeposit` repository must also be cloned on any computer or server this is to be called from.
+This is a Ruby script which has been authored and tested with Ruby v3.3.14. Please use the same version. The `dlp-selfdeposit` repository must also be cloned on any computer or server this is to be called from.
 
 Since this script uses the `pids_with_binaries_<date and time of processing>.csv` and the `descMetadata.xml`  file for each PID produced by the Migrate Fedora 3 Objects Script, access to where the migration script saved these files is required.
 

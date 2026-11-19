@@ -73,7 +73,7 @@ jobs:
       VALKYRIE_STORAGE_ADAPTER: fedora_storage
     parameters:
       ruby_version:
-        default: "3.2.2"
+        default: "3.3.14"
         type: string
       bundler_version:
         default: "2.5.6"
