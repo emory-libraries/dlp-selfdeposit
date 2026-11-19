@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '~> 3.3.14'
+ruby '~> 3.4.0'
 
 gem 'aws-sdk-secretsmanager'
 gem 'bootsnap', '>= 1.1.0', require: false
